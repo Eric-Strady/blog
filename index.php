@@ -32,6 +32,7 @@
 
 		<?php
 			}
+			$req->closeCursor();
 		?>
 
 	</body>

@@ -9,7 +9,8 @@
 	</head>
 
 	<body>
-
+		<p><a href="index.php">Page d'accueil</a></p>
+		
 		<?php
 
 			try

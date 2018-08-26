@@ -23,7 +23,7 @@
 
 			$req = $db->prepare('SELECT title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = :postId');
 			$req->execute(array(
-				'postId' = $_GET['post']
+				'postId' => $_GET['post']
 			));
 			$data = $req->fetch();
 

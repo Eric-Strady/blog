@@ -27,8 +27,8 @@
 
 			<h4><?php echo strip_tags($data['title']);?></h4>
 			<em> le <?php echo $data['creation_date_fr'];?></em>
-		    <p><?php echo nl2br(strip_tags($data['content']));?><br/>
-		    <em><a href="comments.php?post=<?php echo $data['id']; ?>">Commentaires</a></em></p>
+		    <p><?php echo nl2br(strip_tags($data['content']));?></p>
+		    <em><a href="comments.php?post=<?php echo $data['id']; ?>">Commentaires</a></em>
 
 		<?php
 			}

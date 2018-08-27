@@ -55,8 +55,10 @@
 		?>
 
 				<form action="addcomment.php" method="POST">
-				<p><label for="pseudo">Pseudo: </label><input type="text" name="pseudo" id="pseudo" value="<?php if (isset($_COOKIE['pseudo'])) {echo $_COOKIE['pseudo'];} ?>" maxlength="255" required/></p>
-		        <p><label for="comment">Commentaire: </label><input type="textarea" name="comment" id="comment" placeholder="Max 255 caractères" maxlength="255" row="4" cols="40" required/></p>
+				<p><label for="pseudo">Pseudo: </label><br/>
+				<input type="text" name="pseudo" id="pseudo" value="<?php if (isset($_COOKIE['pseudo'])) {echo $_COOKIE['pseudo'];} ?>" maxlength="255" required/></p>
+		        <p><label for="comment">Commentaire: </label><br/>
+		        <textarea name="comment" id="comment" placeholder="Max 255 caractères" maxlength="255" row="4" cols="40" required></textarea></p>
 		        <input type="hidden" name="postId" value="<?php echo $_GET['post'];?>">
 		        <input type="submit" value="Envoyer le commentaire"/>
 				</form>

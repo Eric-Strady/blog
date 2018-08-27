@@ -33,7 +33,7 @@
 	    <ul>
 	    	<li>Utiliser au minimum 8 caractères</li>
 	    	<li>Utiliser au minimum un chiffre et une lettre</li>
-	    	<li>Utiliser au minimum un caractère spécial</li>
+	    	<li>Utiliser au minimum une majuscule</li>
 	    </ul>
 		</p>
 

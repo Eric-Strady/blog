@@ -20,6 +20,7 @@
 			$addComment->execute(array('id_post' => $_POST['postId'], 'author' => $_POST['pseudo'], 'comment' => $_POST['comment']));
 
 			setcookie('pseudo', $_POST['pseudo'], time()+10*24*3600, null, null, false, true);
-			header("Location: http://127.0.0.1/blog/comments.php?post=$_POST['postId']");
+			$redirection = 'Location: http://127.0.0.1/blog/comments.php?post=' . $_POST['postId'];
+			header($redirection);
 		}
 	}

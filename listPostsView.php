@@ -33,13 +33,14 @@
 
 		<?php
 			}
+			$req->closeCursor();
 
-			echo '<p>Page: ';
+			/*echo '<p>Page: ';
 			for ($i = 1; $i <= $nb_page; $i++)
 			{
 				echo '<a href="index.php?page=' . $i . '">' . $i . '</a> > ';
 			}
-			echo '</p>';
+			echo '</p>';*/
 		?>
 
 	</body>

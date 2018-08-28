@@ -1,9 +1,10 @@
 <?php
-	require ('model.php');
+	require_once ('model.php');
 
 	$max_nb_post = 5;
-	$count = countPosts();
-	$total_post = $count->fetch();
+	$req = countPosts();
+	$total_post = $req->fetch();
+	$req->closeCursor();
 	$nb_post = $total_post['nb_post'];
 	$nb_page = ceil($nb_post/$max_nb_post);
 
@@ -25,10 +26,9 @@
 	{
 		$current_page = 1;
 	}
-	
-	$req->closeCursor();
+
 	$first_post = ($current_page-1)*$max_nb_post;
 
 	$req = getPosts($first_post, $max_nb_post);
 
-	require('listPostsView.php');
+	require_once ('listPostsView.php');

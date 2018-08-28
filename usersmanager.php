@@ -1,5 +1,7 @@
 <?php
 
+	//Sytème de vérification et d'insertion dans la BDD pour la page d'inscription
+
 	if (isset($_POST['pseudo']) AND isset($_POST['password']) AND isset($_POST['passwordVerify']) AND isset($_POST['email']) )
 	{
 
@@ -79,3 +81,7 @@
 			
 		}
 	}
+
+	//Système de vérification et de création de session pour la page de connexion
+
+	

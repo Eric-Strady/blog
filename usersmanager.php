@@ -47,7 +47,8 @@
 								$registration = $db->prepare('INSERT INTO users( pseudo, password, email, registration_date) VALUES (:pseudo, :password, :email, NOW())');
 								$registration->execute(array('pseudo' => $pseudo, 'password' => $pass_hash, 'email' => $email));
 
-								header('Location: signin.php');
+								$redirection = 'Location: http://127.0.0.1/blog/signin.php?pseudo=' . $pseudo;
+								header($redirection);
 							}
 							else
 							{
@@ -97,32 +98,26 @@
 				die('Erreur: ' . $e->getMessage());
 			}
 
-			$id_connect = $_POST['id_connect'];
-			$pass_connect = $_POST['pass_connect'];
+			$id_connect = strip_tags($_POST['id_connect']);
+			$pass_connect = strip_tags($_POST['pass_connect']);
 
-			$req = $db->prepare('SELECT id, pseudo, password FROM users WHERE pseudo = :pseudo OR email = :email, password = :pass');
-			$req->execute(array('pseudo' => $id_connect, 'email' => $id_connect, 'pass' => $pass_connect));
+
+			$req = $db->prepare('SELECT id, pseudo, password FROM users WHERE pseudo = :pseudo OR email = :email');
+			$req->execute(array('pseudo' => $id_connect, 'email' => $id_connect));
 			$verifyConnect = $req->fetch();
 
-			$isPassCorrect = password_verify($pass_connect, $verifyConnect['password']);
-
-			if ($verifyConnect)
+			if (password_verify($pass_connect, $verifyConnect['password']))
 			{
-				if ($isPassCorrect)
-				{
-					session_start();
-			        $_SESSION['id'] = $verifyConnect['id'];
-			        $_SESSION['pseudo'] = $verifyConnect['pseudo'];
+				session_start();
+		        $_SESSION['id'] = $verifyConnect['id'];
+		        $_SESSION['pseudo'] = $verifyConnect['pseudo'];
 
-				}
-				else
-				{
-					echo 'Mauvais identifiant ou mot de passe';
-				}
+		        header('Location: index.php');
 			}
 			else
 			{
-				echo 'Mauvais identifiant ou mot de passe';
-			}
+				echo 'Mauvais identifiant ou mot de passe :/<br/>';
+				echo 'Retour à la page de <a href="signin.php">connexion</a>';
+			}	
 		}
 	}

@@ -15,9 +15,9 @@
 	{
 		$db = dbConnect();
 
-		$count = $db->query('SELECT COUNT(*) AS nb_post FROM posts');
+		$req = $db->query('SELECT COUNT(*) AS nb_post FROM posts');
 
-		return $count;
+		return $req;
 	}
 
 	function getPosts($first_post, $max_nb_post)

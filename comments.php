@@ -51,28 +51,33 @@
 			else
 			{
 		?>
-
 				<h2>Erreur:</h2>
 				<p>Le billet auquel vous souhaitez accéder n'existe pas !</p>
-
 		<?php
 			}
 			$req->closeCursor();
 
 			if (isset($_GET['comment']) AND $_GET['comment']=='add')
 			{
+				if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
+				{
 		?>
 
 				<form action="addcomment.php" method="POST">
 				<p><label for="pseudo">Pseudo: </label><br/>
-				<input type="text" name="pseudo" id="pseudo" value="<?php if (isset($_COOKIE['pseudo'])) {echo $_COOKIE['pseudo'];} ?>" maxlength="255" required autofocus/></p>
+				<input type="text" name="pseudo" id="pseudo" value="<?php echo $_SESSION['pseudo'];?>" maxlength="255" required autofocus/></p>
 		        <p><label for="comment">Commentaire: </label><br/>
 		        <textarea name="comment" id="comment" placeholder="Max 255 caractères" maxlength="255" row="4" cols="40" required></textarea></p>
 		        <input type="hidden" name="postId" value="<?php echo $_GET['post'];?>">
 		        <input type="submit" value="Envoyer le commentaire"/>
 				</form>
 				
-		<?php		
+		<?php
+				}
+				else
+				{
+					echo 'Vous devez être connecté(e) pour ajouter un commentaire !';
+				}
 			}
 
 			$req = $db->prepare('

@@ -24,7 +24,7 @@
 			$req->execute(array('pseudo' => $pseudo));
 			$verifyPseudo = $req->fetch();
 
-			if (empty($verifyPseudo))
+			if (!$verifyPseudo)
 			{
 				$req->closeCursor();
 
@@ -38,7 +38,7 @@
 							$req->execute(array('email' => $email));
 							$verifyEmail = $req->fetch();
 
-							if(empty($verifyEmail))
+							if(!$verifyEmail)
 							{
 								$req->closeCursor();
 
@@ -84,4 +84,44 @@
 
 	//Système de vérification et de création de session pour la page de connexion
 
-	
+	if (isset($_POST['id_connect']) AND isset($_POST['pass_connect']))
+	{
+		if ($_POST['id_connect']!='' AND $_POST['pass_connect']!='')
+		{
+			try
+			{
+				$db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
+			}
+			catch (Exception $e)
+			{
+				die('Erreur: ' . $e->getMessage());
+			}
+
+			$id_connect = $_POST['id_connect'];
+			$pass_connect = $_POST['pass_connect'];
+
+			$req = $db->prepare('SELECT id, pseudo, password FROM users WHERE pseudo = :pseudo OR email = :email, password = :pass');
+			$req->execute(array('pseudo' => $id_connect, 'email' => $id_connect, 'pass' => $pass_connect));
+			$verifyConnect = $req->fetch();
+
+			$isPassCorrect = password_verify($pass_connect, $verifyConnect['password']);
+
+			if ($verifyConnect)
+			{
+				if ($isPassCorrect)
+				{
+					session_start();
+			        $_SESSION['id'] = $verifyConnect['id'];
+			        $_SESSION['pseudo'] = $verifyConnect['pseudo'];
+				}
+				else
+				{
+					echo 'Mauvais identifiant ou mot de passe';
+				}
+			}
+			else
+			{
+				echo 'Mauvais identifiant ou mot de passe';
+			}
+		}
+	}

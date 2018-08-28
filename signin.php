@@ -40,6 +40,7 @@
 				}
 				else
 				{
+					$id = '';
 					echo 'Cet identifiant n\'est pas valide !';
 				}
 			}

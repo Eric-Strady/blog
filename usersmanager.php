@@ -47,7 +47,7 @@
 								$registration = $db->prepare('INSERT INTO users( pseudo, password, email, registration_date) VALUES (:pseudo, :password, :email, NOW())');
 								$registration->execute(array('pseudo' => $pseudo, 'password' => $pass_hash, 'email' => $email));
 
-								header('Location: http://127.0.0.1/blog/index.php');
+								header('Location: signin.php');
 							}
 							else
 							{
@@ -113,6 +113,7 @@
 					session_start();
 			        $_SESSION['id'] = $verifyConnect['id'];
 			        $_SESSION['pseudo'] = $verifyConnect['pseudo'];
+
 				}
 				else
 				{

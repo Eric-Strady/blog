@@ -40,17 +40,14 @@
 				}
 				else
 				{
-					$id = '';
 					echo 'Cet identifiant n\'est pas valide !';
 				}
 			}
-
-
 		?>
 
 		<form action="usersmanager.php" method="post">
 			<p><label for="id_connect">Pseudo ou adresse e-mail:</label><br/>
-			<input type="text" name="id_connect" id="id_connect" value="<?php echo $id?>" maxlength="255" size="30" required autofocus/></p>
+			<input type="text" name="id_connect" id="id_connect" <?php if(isset($id)){echo 'value=' . $id;}?> maxlength="255" size="30" required autofocus/></p>
 			<p><label for="pass_connect">Mot de passe:</label><br/>
 		    <input type="password" name="pass_connect" id="pass_connect" maxlength="255" size="30" required/></p>
 		    <p><input type="checkbox" name="auto_connect" id="auto_connect" /> <label for="auto_connect">Se rappeler de moi</label></p>

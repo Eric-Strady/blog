@@ -39,10 +39,10 @@
 		?>
 
 				<h2>Billet:</h2>
-				<h4><?php echo strip_tags($data['title']); ?></h4>
-				<em>le <?php echo $data['creation_date_fr'];?></em>
-				<p><?php echo nl2br(strip_tags($data['content']));?></p>
-				<em><a href="comments.php?post=<?php echo $_GET['post'];?>&amp;comment=add">Ajouter un commentaire</a></em>
+				<h4><?= strip_tags($data['title']) ?></h4>
+				<em>le <?= $data['creation_date_fr'] ?></em>
+				<p><?= nl2br(strip_tags($data['content'])) ?></p>
+				<em><a href="comments.php?post=<?= $_GET['post'] ?>&amp;comment=add">Ajouter un commentaire</a></em>
 
 				<h2>Commentaires:</h2>
 
@@ -65,10 +65,10 @@
 
 				<form action="addcomment.php" method="POST">
 				<p><label for="pseudo">Pseudo: </label><br/>
-				<input type="text" name="pseudo" id="pseudo" value="<?php echo $_SESSION['pseudo'];?>" maxlength="255" required autofocus/></p>
+				<input type="text" name="pseudo" id="pseudo" value="<?= $_SESSION['pseudo'] ?>" maxlength="255" required autofocus/></p>
 		        <p><label for="comment">Commentaire: </label><br/>
 		        <textarea name="comment" id="comment" placeholder="Max 255 caractères" maxlength="255" row="4" cols="40" required></textarea></p>
-		        <input type="hidden" name="postId" value="<?php echo $_GET['post'];?>">
+		        <input type="hidden" name="postId" value="<?= $_GET['post'] ?>">
 		        <input type="submit" value="Envoyer le commentaire"/>
 				</form>
 				

@@ -1,5 +1,6 @@
 <?php
 	session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -7,6 +8,7 @@
 	<head>
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 	    <title>Page de connexion</title>
 
@@ -30,6 +32,7 @@
 		    <input type="password" name="passwordVerify" id="passwordVerify" maxlength="255" size="30" required/></p>
 		    <p><label for="email">Votre adresse e-mail:</label><br/>
 		    <input type="email" id="email" name="email" maxlength="255" size="30" required/></p>
+		    <div class="g-recaptcha" data-sitekey="6LfRh20UAAAAAECJ4QkzsCdxCJ3XbXWHRoKhVngm"></div>
 		    <input type="submit" value="S'inscrire"/>
 		</form>
 

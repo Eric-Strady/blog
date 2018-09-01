@@ -27,7 +27,7 @@
 			{
 	?>
 
-			<form action="addcomment.php" method="POST">
+			<form action="index.php" method="POST">
 			<p><label for="pseudo">Pseudo: </label><br/>
 			<input type="text" name="pseudo" id="pseudo" value="<?= $_SESSION['pseudo'] ?>" maxlength="255" required autofocus/></p>
 	        <p><label for="comment">Commentaire: </label><br/>
@@ -52,4 +52,4 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('view/frontend/template.php'); ?>

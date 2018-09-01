@@ -1,6 +1,6 @@
 <?php
 
-require_once 'recaptcha/autoload.php';
+require ('recaptcha/autoload.php');
 
 //Sytème de vérification et d'insertion dans la BDD pour la page d'inscription
 

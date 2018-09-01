@@ -1,5 +1,5 @@
 <?php
-	require ('model.php');
+	require ('model/model.php');
 
 	function listPosts()
 	{
@@ -33,7 +33,7 @@
 
 		$req = getPosts($first_post, $max_nb_post);
 
-		require ('listPostsView.php');
+		require ('view/frontend/listPostsView.php');
 	}
 
 	function post()
@@ -43,7 +43,7 @@
 		if (!empty($post))
 		{
 		$comments = getComments($_GET['post']);
-		require ('comments.php');
+		require ('view/frontend/comments.php');
 		}
 		else
 		{
@@ -56,5 +56,5 @@
 	{
 		addComment($_POST['postId'], $_POST['pseudo'], $_POST['comment']);
 
-		require ('comments.php');
+		require ('view/frontend/comments.php');
 	}

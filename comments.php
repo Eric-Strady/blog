@@ -20,42 +20,15 @@
 			<a href="signout.php">Déconnexion</a>
 		</nav>
 
-		<?php
-			try
-			{
-			    $db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
-			}
-			catch(Exception $e)
-			{
-			    die('Erreur : '.$e->getMessage());
-			}
+		<h2>Billet:</h2>
+		<h4><?= strip_tags($post['title']) ?></h4>
+		<em>le <?= $post['creation_date_fr'] ?></em>
+		<p><?= nl2br(strip_tags($post['content'])) ?></p>
+		<em><a href="post.php?post=<?= $_GET['post'] ?>&amp;comment=add">Ajouter un commentaire</a></em>
 
-			$req = $db->prepare('SELECT title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = :postId');
-			$req->execute(array('postId' => $_GET['post']));
-			$data = $req->fetch();
-
-			if (!empty($data))
-			{
-		?>
-
-				<h2>Billet:</h2>
-				<h4><?= strip_tags($data['title']) ?></h4>
-				<em>le <?= $data['creation_date_fr'] ?></em>
-				<p><?= nl2br(strip_tags($data['content'])) ?></p>
-				<em><a href="comments.php?post=<?= $_GET['post'] ?>&amp;comment=add">Ajouter un commentaire</a></em>
-
-				<h2>Commentaires:</h2>
+		<h2>Commentaires:</h2>
 
 		<?php
-			}
-			else
-			{
-		?>
-				<h2>Erreur:</h2>
-				<p>Le billet auquel vous souhaitez accéder n'existe pas !</p>
-		<?php
-			}
-			$req->closeCursor();
 
 			if (isset($_GET['comment']) AND $_GET['comment']=='add')
 			{
@@ -80,20 +53,10 @@
 				}
 			}
 
-			$req = $db->prepare('
-			SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS d_comment, DATE_FORMAT(comment_date, \'%Hh%imin%ss\') AS h_comment
-			FROM comments 
-			WHERE id_post = :postId 
-			ORDER BY comment_date DESC
-			');
-			$req->execute(array('postId' => $_GET['post']));
-
-			while ($data = $req->fetch())
+			while ($comment = $comments->fetch())
 			{
-				echo '<p><em>Le ' . $data['d_comment'] . ' à ' . $data['h_comment'] . '</em> - <strong>' .strip_tags($data['author']) . '</strong>: ' . strip_tags($data['comment']) . '</p>';
+				echo '<p><em>Le ' . $comment['d_comment'] . ' à ' . $comment['h_comment'] . '</em> - <strong>' .strip_tags($comment['author']) . '</strong>: ' . strip_tags($comment['comment']) . '</p>';
 			}
-
-			$req->closeCursor();
 
 		?>
 

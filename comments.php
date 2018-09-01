@@ -15,7 +15,7 @@
 	<h4><?= strip_tags($post['title']) ?></h4>
 	<em>le <?= $post['creation_date_fr'] ?></em>
 	<p><?= nl2br(strip_tags($post['content'])) ?></p>
-	<em><a href="post.php?post=<?= $_GET['post'] ?>&amp;comment=add">Ajouter un commentaire</a></em>
+	<em><a href="index.php?post=<?= $_GET['post'] ?>&amp;comment=add">Ajouter un commentaire</a></em>
 
 	<h2>Commentaires:</h2>
 

@@ -66,6 +66,6 @@
 		$addComment = $db->prepare('INSERT INTO comments(id_post, author, comment, comment_date) VALUES (:id_post, :author, :comment, NOW())');
 		$addComment->execute(array('id_post' => $postId, 'author' => $pseudo, 'comment' => $comment));
 
-		$redirection = 'Location: http://127.0.0.1/blog/post.php?post=' . $postId;
+		$redirection = 'Location: http://127.0.0.1/blog/index.php?post=' . $postId;
 		header($redirection);
 	}

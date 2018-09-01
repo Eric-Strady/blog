@@ -40,7 +40,7 @@
 			}
 			else
 			{
-				echo 'Vous devez être connecté(e) pour ajouter un commentaire !';
+				throw new Exception('Vous devez être connecté(e) pour ajouter un commentaire !');
 			}
 		}
 

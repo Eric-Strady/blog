@@ -9,13 +9,6 @@
         
     <body>
 
-    	<nav>
-			<a href="index.php">Page d'accueil</a>
-			<a href="registration.php">Inscription</a>
-			<a href="signin.php">Connexion</a>
-			<a href="signout.php">Déconnexion</a>
-		</nav>
-
         <?= $errorMessage ?>
 
     </body>

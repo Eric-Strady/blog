@@ -1,18 +1,27 @@
 <?php
 	require ('controller/controller.php');
 
-	if (isset($_GET['post']) AND $_GET['post']!= '')
+	try
 	{
-		post();
-	}
-	elseif (isset($_POST['pseudo']) AND isset($_POST['comment']))
-	{
-		if ($_POST['pseudo']!='' AND $_POST['comment']!='')
+		if (isset($_GET['post']) AND $_GET['post']!= '')
 		{
-			insertComment();
+			post();
+		}
+		elseif (isset($_POST['pseudo']) AND isset($_POST['comment']))
+		{
+			if ($_POST['pseudo']!='' AND $_POST['comment']!='')
+			{
+				insertComment();
+			}
+		}
+		else
+		{
+			listPosts();
 		}
 	}
-	else
+	catch(Exception $e)
 	{
-		listPosts();
+    	$errorMessage =  $e->getMessage();
+
+    	require ('view/frontend/errorView.php');
 	}

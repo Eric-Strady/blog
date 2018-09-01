@@ -47,8 +47,7 @@
 		}
 		else
 		{
-			echo '<h2>Erreur:</h2><p>Le billet auquel vous souhaitez accéder n\'existe pas !</p>';
-			echo 'Retour à la page d\'<a href="index.php">accueil</a>';
+			throw new Exception('Le billet auquel vous souhaitez accéder n\'existe pas !');
 		}
 	}
 

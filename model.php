@@ -30,24 +30,28 @@
 		return $req;
 	}
 
-	function getPost($post)
+	function getPost($postId)
 	{
-		$req = $db->prepare('SELECT title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = :postId');
-		$req->execute(array('postId' => $post));
-		$data = $req->fetch();
+		$db = dbConnect();
 
-		return $data;
+		$req = $db->prepare('SELECT title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = :postId');
+		$req->execute(array('postId' => $postId));
+		$post = $req->fetch();
+
+		return $post;
 	}
 
-	function getComments()
+	function getComments($postId)
 	{
-		$req = $db->prepare('
+		$db = dbConnect();
+
+		$comments = $db->prepare('
 		SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS d_comment, DATE_FORMAT(comment_date, \'%Hh%imin%ss\') AS h_comment
 		FROM comments 
 		WHERE id_post = :postId 
 		ORDER BY comment_date DESC
 		');
-		$req->execute(array('postId' => $_GET['post']));
-		
-		return $req;
+		$comments->execute(array('postId' => $postId));
+
+		return $comments;
 	}

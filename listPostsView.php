@@ -19,7 +19,7 @@
 			<h4><?= strip_tags($data['title']) ?></h4>
 			<em> le <?= $data['creation_date_fr'] ?></em>
 		    <p><?= nl2br(strip_tags($data['content'])) ?></p>
-		    <em><a href="post.php?post=<?= $data['id'] ?>">Commentaires</a></em>
+		    <em><a href="index.php?post=<?= $data['id'] ?>">Commentaires</a></em>
 
 	<?php
 		}

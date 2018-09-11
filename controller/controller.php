@@ -5,8 +5,8 @@
 
 	function listPosts()
 	{
-		$count = new PostsManager();
-		$postManager = new PostsManager();
+		$count = new Eric\Blog\Model\PostsManager();
+		$postManager = new Eric\Blog\Model\PostsManager();
 
 		$max_nb_post = 5;
 		$req = $count->countPosts();
@@ -43,8 +43,8 @@
 
 	function post()
 	{
-		$postsManager = new PostsManager();
-		$commentsManager = new CommentsManager();
+		$postsManager = new Eric\Blog\Model\PostsManager();
+		$commentsManager = new Eric\Blog\Model\CommentsManager();
 
 		$post = $postsManager->getPost($_GET['post']);
 
@@ -61,7 +61,7 @@
 
 	function insertComment()
 	{
-		$commentsManager = new CommentsManager();
+		$commentsManager = new Eric\Blog\Model\CommentsManager();
 
 		$commentsManager->addComment($_POST['postId'], $_POST['pseudo'], $_POST['comment']);
 

@@ -1,5 +1,5 @@
 <?php
-
+	namespace Eric\Blog\Model;
 	require_once("model/Manager.php");
 
 	class PostsManager extends Manager

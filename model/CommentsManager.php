@@ -6,7 +6,7 @@
 	{
 		function getComments($postId)
 		{
-			$db = dbConnect();
+			$db = $this->dbConnect();
 
 			$comments = $db->prepare('
 			SELECT author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS d_comment, DATE_FORMAT(comment_date, \'%Hh%imin%ss\') AS h_comment
@@ -21,7 +21,7 @@
 
 		function addComment($postId, $pseudo, $comment)
 		{
-			$db = dbConnect();
+			$db = $this->dbConnect();
 
 			strip_tags($pseudo);
 			strip_tags($comment);

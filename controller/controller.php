@@ -1,10 +1,15 @@
 <?php
-	require ('model/model.php');
+
+	require_once('model/PostsManager.php');
+	require_once('model/CommentsManager.php');
 
 	function listPosts()
 	{
+		$count = new PostsManager();
+		$postManager = new PostsManager();
+
 		$max_nb_post = 5;
-		$req = countPosts();
+		$req = $count->countPosts();
 		$total_post = $req->fetch();
 		$req->closeCursor();
 		$nb_post = $total_post['nb_post'];
@@ -31,18 +36,21 @@
 
 		$first_post = ($current_page-1)*$max_nb_post;
 
-		$req = getPosts($first_post, $max_nb_post);
+		$req = $postManager->getPosts($first_post, $max_nb_post);
 
 		require ('view/frontend/listPostsView.php');
 	}
 
 	function post()
 	{
-		$post = getPost($_GET['post']);
+		$postsManager = new PostsManager();
+		$commentsManager = new CommentsManager();
+
+		$post = $postsManager->getPost($_GET['post']);
 
 		if (!empty($post))
 		{
-		$comments = getComments($_GET['post']);
+		$comments = $commentsManager->getComments($_GET['post']);
 		require ('view/frontend/comments.php');
 		}
 		else
@@ -53,7 +61,9 @@
 
 	function insertComment()
 	{
-		addComment($_POST['postId'], $_POST['pseudo'], $_POST['comment']);
+		$commentsManager = new CommentsManager();
+
+		$commentsManager->addComment($_POST['postId'], $_POST['pseudo'], $_POST['comment']);
 
 		require ('view/frontend/comments.php');
 	}

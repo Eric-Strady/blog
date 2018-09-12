@@ -44,7 +44,7 @@
 		require('view/frontend/listPostsView.php');
 	}
 
-	//Affichage du post selectionne et de ses commentaires + ajout de commentaires 
+	//Affichage du post selectionné et de ses commentaires + ajout de commentaires 
 
 	function post($postId)
 	{
@@ -72,6 +72,8 @@
 		require('view/frontend/comments.php');
 	}
 
+	//Vérifications pour l'insciption d'un utilisateur
+
 	function verifyPseudo($pseudo)
 	{
 		$verifyPseudo = new Eric\Blog\Model\UsersManager();
@@ -96,6 +98,8 @@
 		setcookie('pseudo', $pseudo, time()+120, null, null, false, true);
 		require('signInView.php');
 	}
+
+	//Vérifications pour la connexion d'un utilisateur
 
 	function verifyConnect($id_connect)
 	{

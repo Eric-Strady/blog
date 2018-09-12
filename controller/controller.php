@@ -3,6 +3,8 @@
 	require_once('model/PostsManager.php');
 	require_once('model/CommentsManager.php');
 
+	//Affichage des posts + pagination pour listPostsView
+
 	function listPosts()
 	{
 		$count = new Eric\Blog\Model\PostsManager();
@@ -40,6 +42,8 @@
 
 		require ('view/frontend/listPostsView.php');
 	}
+
+	//Affichage du post selectionne et de ses commentaires + ajout de commentaires 
 
 	function post()
 	{

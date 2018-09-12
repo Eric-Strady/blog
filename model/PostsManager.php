@@ -4,7 +4,7 @@
 
 	class PostsManager extends Manager
 	{
-		function countPosts()
+		public function countPosts()
 		{
 			$db = $this->dbConnect();
 
@@ -13,7 +13,7 @@
 			return $req;
 		}
 
-		function getPosts($first_post, $max_nb_post)
+		public function getPosts($first_post, $max_nb_post)
 		{
 			$db = $this->dbConnect();
 
@@ -22,7 +22,7 @@
 			return $req;
 		}
 
-		function getPost($postId)
+		public function getPost($postId)
 		{
 			$db = $this->dbConnect();
 

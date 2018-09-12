@@ -4,7 +4,7 @@
 
 	class CommentsManager extends Manager
 	{
-		function getComments($postId)
+		public function getComments($postId)
 		{
 			$db = $this->dbConnect();
 
@@ -19,7 +19,7 @@
 			return $comments;
 		}
 
-		function addComment($postId, $pseudo, $comment)
+		public function addComment($postId, $pseudo, $comment)
 		{
 			$db = $this->dbConnect();
 

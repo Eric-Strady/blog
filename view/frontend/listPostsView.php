@@ -6,9 +6,17 @@
 
 	<nav>
 		<a href="index.php">Page d'accueil</a>
-		<a href="registration.php">Inscription</a>
-		<a href="signin.php">Connexion</a>
-		<a href="signout.php">Déconnexion</a>
+		<?php
+			if (!isset($_SESSION['id']) AND !isset($_SESSION['pseudo']))
+			{
+				echo '<a href="registration.php">Inscription</a> ';
+				echo '<a href="signin.php">Connexion</a>';
+			}
+			else
+			{
+				echo '<a href="signout.php">Déconnexion</a>';
+			}
+		?>
 	</nav>
     
     <?php

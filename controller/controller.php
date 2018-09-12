@@ -96,3 +96,11 @@
 		setcookie('pseudo', $pseudo, time()+120, null, null, false, true);
 		require('signInView.php');
 	}
+
+	function verifyConnect($id_connect)
+	{
+		$verifyConnect = new Eric\Blog\Model\UsersManager();
+		$verifyId = $verifyConnect->checkConnect($id_connect);
+
+		return $verifyId;
+	}

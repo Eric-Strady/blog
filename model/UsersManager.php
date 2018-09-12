@@ -33,4 +33,15 @@
 			$addMembers = $db->prepare('INSERT INTO users( pseudo, password, email, registration_date) VALUES (:pseudo, :password, :email, NOW())');
 			$addMembers->execute(array('pseudo' => $pseudo, 'password' => $pass_hash, 'email' => $email));
 		}
+
+		public function checkConnect($id_connect)
+		{
+			$db = $this->dbConnect();
+
+			$req = $db->prepare('SELECT id, pseudo, password FROM users WHERE pseudo = :pseudo OR email = :email');
+			$req->execute(array('pseudo' => $id_connect, 'email' => $id_connect));
+			$checkConnect = $req->fetch();
+
+			return $checkConnect;
+		}
 	}

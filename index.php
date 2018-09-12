@@ -42,7 +42,7 @@
 									if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email))
 									{
 										verifyEmail($email);
-										
+
 										if(!verifyEmail($email))
 										{
 											$pass_hash = password_hash($password, PASSWORD_DEFAULT);
@@ -85,6 +85,30 @@
 			else
 			{
 			    $errors = $resp->getErrorCodes();
+			}
+		}
+		//Système de vérification et de création de session pour la page de connexion
+		elseif (isset($_POST['id_connect']) AND isset($_POST['pass_connect']))
+		{
+			if ($_POST['id_connect']!='' AND $_POST['pass_connect']!='')
+			{
+				$id_connect = strip_tags($_POST['id_connect']);
+				$pass_connect = strip_tags($_POST['pass_connect']);
+				$isPassCorrect = verifyConnect($id_connect);
+
+				if (password_verify($pass_connect, $isPassCorrect['password']))
+				{
+					session_start();
+			        $_SESSION['id'] = $isPassCorrect['id'];
+			        $_SESSION['pseudo'] = $isPassCorrect['pseudo'];
+
+			        header('Location: index.php');
+				}
+				else
+				{
+					echo 'Mauvais identifiant ou mot de passe :/<br/>';
+					echo 'Retour à la page de <a href="signInView.php">connexion</a>';
+				}	
 			}
 		}
 		else

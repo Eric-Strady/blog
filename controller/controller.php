@@ -78,5 +78,5 @@
 
 		$usersManager->verifyPseudo($_GET['pseudo']);
 
-		require ('signInView.php');
+		require ('registration.php');
 	}

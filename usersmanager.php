@@ -55,7 +55,7 @@ if (isset($_POST['g-recaptcha-response']))
 									$registration = $db->prepare('INSERT INTO users( pseudo, password, email, registration_date) VALUES (:pseudo, :password, :email, NOW())');
 									$registration->execute(array('pseudo' => $pseudo, 'password' => $pass_hash, 'email' => $email));
 
-									$redirection = 'Location: http://127.0.0.1/blog/signin.php?pseudo=' . $pseudo;
+									$redirection = 'Location: http://127.0.0.1/blog/signInView.php?pseudo=' . $pseudo;
 									header($redirection);
 								}
 								else
@@ -132,7 +132,7 @@ if (isset($_POST['id_connect']) AND isset($_POST['pass_connect']))
 		else
 		{
 			echo 'Mauvais identifiant ou mot de passe :/<br/>';
-			echo 'Retour à la page de <a href="signin.php">connexion</a>';
+			echo 'Retour à la page de <a href="signInView.php">connexion</a>';
 		}	
 	}
 }

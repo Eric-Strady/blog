@@ -31,7 +31,7 @@
 					if (!isset($_SESSION['id']) AND !isset($_SESSION['pseudo']))
 					{
 						echo '<a href="registration.php">Inscription</a> ';
-						echo '<a href="signin.php">Connexion</a>';
+						echo '<a href="signInView.php">Connexion</a>';
 					}
 					else
 					{

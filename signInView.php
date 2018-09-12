@@ -25,8 +25,8 @@
 			echo '<p>Votre inscription a bien été prise en compte ! Pour utiliser votre compte, veuillez vous connecter ci-dessous.</p>';
 		}
 	?>
-	
-	<form action="usersmanager.php" method="post">
+
+	<form action="index.php" method="post">
 		<p><label for="id_connect">Pseudo ou adresse e-mail:</label><br/>
 		<input type="text" name="id_connect" id="id_connect" <?php if(isset($_COOKIE['pseudo'])){ echo 'value=' . $_COOKIE['pseudo'];}?> maxlength="255" size="30" required autofocus/></p>
 		<p><label for="pass_connect">Mot de passe:</label><br/>

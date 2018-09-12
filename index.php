@@ -4,11 +4,15 @@
 
 	try
 	{
+
+		//Vérifications pour l'affichage d'un post
 		if (isset($_GET['post']) AND $_GET['post']!= '')
 		{
 			$postId = $_GET['post'];
 			post($postId);
 		}
+
+		//Vérifications pour l'ajout d'un commentaire
 		elseif (isset($_POST['pseudo']) AND isset($_POST['comment']))
 		{
 			if ($_POST['pseudo']!='' AND $_POST['comment']!='')
@@ -16,6 +20,7 @@
 				insertComment($_POST['postId'], $_POST['pseudo'], $_POST['comment']);
 			}
 		}
+
 		//Sytème de vérification et d'insertion dans la BDD pour la page d'inscription
 		elseif (isset($_POST['g-recaptcha-response']))
 		{
@@ -51,32 +56,27 @@
 										}
 										else
 										{
-											echo 'L\'adresse e-mail renseigné existe déjà sur un autre compte. Merci d\'en indiqué une autre.<br/>';
-											echo 'Retour à la page d\'<a href="registration.php">inscription</a>';
+											throw new Exception('<p>L\'adresse e-mail renseigné existe déjà sur un autre compte. Merci d\'en indiqué une autre.<br/>Retour à la page d\'<a href="registration.php">inscription</a></p>');
 										}
 									}
 									else
 									{
-										echo 'L\'adresse e-mail n\'est pas valide.<br/>';
-										echo 'Retour à la page d\'<a href="registration.php">inscription</a>';
+										throw new Exception('<p>L\'adresse e-mail n\'est pas valide.<br/>Retour à la page d\'<a href="registration.php">inscription</a></p>');
 									}
 								}
 								else
 								{
-									echo 'Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>';
-									echo 'Retour à la page d\'<a href="registration.php">inscription</a>';
+									throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à la page d\'<a href="registration.php">inscription</a></p>');
 								}					
 							}
 							else
 							{
-								echo 'Le mot de passe ne correspond pas à celui renseigné.<br/>';
-								echo 'Retour à la page d\'<a href="registration.php">inscription</a>';
+								throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à la page d\'<a href="registration.php">inscription</a></p>');
 							}
 						}
 						else
 						{
-							echo 'Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>';
-							echo 'Retour à la page d\'<a href="registration.php">inscription</a>';
+							throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à la page d\'<a href="registration.php">inscription</a></p>');
 						}
 						
 					}
@@ -87,6 +87,7 @@
 			    $errors = $resp->getErrorCodes();
 			}
 		}
+
 		//Système de vérification et de création de session pour la page de connexion
 		elseif (isset($_POST['id_connect']) AND isset($_POST['pass_connect']))
 		{
@@ -106,11 +107,12 @@
 				}
 				else
 				{
-					echo 'Mauvais identifiant ou mot de passe :/<br/>';
-					echo 'Retour à la page de <a href="signInView.php">connexion</a>';
+					throw new Exception('<p>Mauvais identifiant ou mot de passe :/<br/>Retour à la page de <a href="signInView.php">connexion</a></p>');
 				}	
 			}
 		}
+
+		//Affichage par défaut (page d'accueil)
 		else
 		{
 			listPosts();

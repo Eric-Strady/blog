@@ -5,18 +5,20 @@
 <?php ob_start(); ?>
 
 	<nav>
-		<a href="index.php">Page d'accueil</a>
+		<ul>
+			<li><a href="index.php">Page d'accueil</a></li>
 		<?php
 			if (!isset($_SESSION['id']) AND !isset($_SESSION['pseudo']))
 			{
-				echo '<a href="registration.php">Inscription</a> ';
-				echo '<a href="signInView.php">Connexion</a>';
+				echo '<li><a href="index.php?link=inscription">Inscription</a></li>';
+				echo '<li><a href="index.php?link=connexion">Connexion</a></li>';
 			}
 			else
 			{
-				echo '<a href="signout.php">Déconnexion</a>';
+				echo '<li><a href="index.php?link=deconnexion">Déconnexion</a></li>';
 			}
 		?>
+		</ul>
 	</nav>
 
 	<?php

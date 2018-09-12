@@ -44,6 +44,21 @@
 		require('view/frontend/listPostsView.php');
 	}
 
+	//Liens vers les pages du menu
+
+	function registrationLink()
+	{
+		require('view/frontend/registrationView.php');
+	}
+	function signinLink()
+	{
+		require('view/frontend/signInView.php');
+	}
+	function signoutLink()
+	{
+		require('view/frontend/signOutView.php');
+	}
+
 	//Affichage du post selectionné et de ses commentaires + ajout de commentaires 
 
 	function post($postId)

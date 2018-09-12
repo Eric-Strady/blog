@@ -4,9 +4,23 @@
 
 	try
 	{
-
+		if (isset($_GET['link']) AND $_GET['link']!= '')
+		{
+			if ($_GET['link'] == 'inscription')
+			{
+				registrationLink();
+			}
+			elseif ($_GET['link'] == 'connexion')
+			{
+				signinLink();
+			}
+			elseif ($_GET['link'] == 'deconnexion')
+			{
+				signOutLink();
+			}
+		}
 		//Vérifications pour l'affichage d'un post
-		if (isset($_GET['post']) AND $_GET['post']!= '')
+		elseif (isset($_GET['post']) AND $_GET['post']!= '')
 		{
 			$postId = $_GET['post'];
 			post($postId);
@@ -56,27 +70,27 @@
 										}
 										else
 										{
-											throw new Exception('<p>L\'adresse e-mail renseigné existe déjà sur un autre compte. Merci d\'en indiqué une autre.<br/>Retour à la page d\'<a href="registration.php">inscription</a></p>');
+											throw new Exception('<p>L\'adresse e-mail renseigné existe déjà sur un autre compte. Merci d\'en indiqué une autre.<br/>Retour à la page d\'<a href="view/frontend/registration.php">inscription</a></p>');
 										}
 									}
 									else
 									{
-										throw new Exception('<p>L\'adresse e-mail n\'est pas valide.<br/>Retour à la page d\'<a href="registration.php">inscription</a></p>');
+										throw new Exception('<p>L\'adresse e-mail n\'est pas valide.<br/>Retour à la page d\'<a href="view/frontend/registration.php">inscription</a></p>');
 									}
 								}
 								else
 								{
-									throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à la page d\'<a href="registration.php">inscription</a></p>');
+									throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à la page d\'<a href="view/frontend/registration.php">inscription</a></p>');
 								}					
 							}
 							else
 							{
-								throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à la page d\'<a href="registration.php">inscription</a></p>');
+								throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à la page d\'<a href="view/frontend/registration.php">inscription</a></p>');
 							}
 						}
 						else
 						{
-							throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à la page d\'<a href="registration.php">inscription</a></p>');
+							throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à la page d\'<a href="view/frontend/registration.php">inscription</a></p>');
 						}
 						
 					}

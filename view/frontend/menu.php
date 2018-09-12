@@ -1,6 +1,6 @@
 <nav>
 	<ul>
-		<li><a href="index.php?link=accueil">Page d'accueil</a></li>
+		<li><a href="index.php">Page d'accueil</a></li>
 	<?php
 		if (!isset($_SESSION['id']) AND !isset($_SESSION['pseudo']))
 		{

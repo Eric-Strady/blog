@@ -9,6 +9,8 @@
     </head>
         
     <body>
+    	
+    	<?php require('menu.php');?>
 
         <?= $content ?>
 

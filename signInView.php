@@ -19,18 +19,6 @@
 		?>
 	</nav>
 
-	<?php
-		if ($verifyPseudo)
-		{
-			$id = strip_tags($verifyPseudo['pseudo']);
-			echo 'Votre inscription a bien été prise en compte ! Pour utiliser votre compte, veuillez vous connecter ci-dessous.';
-		}
-		else
-		{
-			echo 'Cet identifiant n\'est pas valide !';
-		}
-	?>
-
 	<form action="usersmanager.php" method="post">
 		<p><label for="id_connect">Pseudo ou adresse e-mail:</label><br/>
 		<input type="text" name="id_connect" id="id_connect" <?php if(isset($id)){echo 'value=' . $id;}?> maxlength="255" size="30" required autofocus/></p>

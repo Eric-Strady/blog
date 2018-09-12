@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-
+<?php $script = '<script src=\'https://www.google.com/recaptcha/api.js\'></script>'; ?>
 <?php $title = 'Page de connexion'; ?>
 
 <?php ob_start(); ?>
@@ -18,18 +18,7 @@
 			}
 		?>
 	</nav>
-	    
-    <?php
-		if ($verifyPseudo)
-		{
-			$id = strip_tags($verifyPseudo['pseudo']);
-			echo 'Votre inscription a bien été prise en compte ! Pour utiliser votre compte, veuillez vous connecter ci-dessous.';
-		}
-		else
-		{
-			echo 'Cet identifiant n\'est pas valide !';
-		}
-	?>
+
 	<form action="usersmanager.php" method="post">
 		<p><label for="pseudo">Votre pseudo:</label><br/>
 		<input type="text" name="pseudo" id="pseudo" maxlength="255" size="30" required autofocus/></p>

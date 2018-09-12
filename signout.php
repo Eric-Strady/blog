@@ -40,7 +40,7 @@
 				?>
 			</nav>
 
-			<p>Pour être déconnecté, il faudrait d'abord se <a href="signin.php">connecter</a> ;)</p>
+			<p>Pour être déconnecté, il faudrait d'abord se <a href="signInView.php">connecter</a> ;)</p>
 
 		</body>
 	</html>

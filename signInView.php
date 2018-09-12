@@ -20,30 +20,14 @@
 	</nav>
 
 	<?php
-		if (isset($_GET['pseudo']) AND $_GET['pseudo']!='')
+		if ($verifyPseudo)
 		{
-			try
-			{
-				$db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
-			}
-			catch (Exception $e)
-			{
-				die('Erreur: ' . $e->getMessage());
-			}
-
-			$req = $db->prepare('SELECT pseudo FROM users WHERE pseudo = :pseudo');
-			$req->execute(array('pseudo' => $_GET['pseudo']));
-			$verifyPseudo = $req->fetch();
-
-			if ($verifyPseudo)
-			{
-				$id = strip_tags($verifyPseudo['pseudo']);
-				echo 'Votre inscription a bien été prise en compte ! Pour utiliser votre compte, veuillez vous connecter ci-dessous.';
-			}
-			else
-			{
-				echo 'Cet identifiant n\'est pas valide !';
-			}
+			$id = strip_tags($verifyPseudo['pseudo']);
+			echo 'Votre inscription a bien été prise en compte ! Pour utiliser votre compte, veuillez vous connecter ci-dessous.';
+		}
+		else
+		{
+			echo 'Cet identifiant n\'est pas valide !';
 		}
 	?>
 

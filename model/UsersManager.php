@@ -4,5 +4,14 @@
 
 	class UsersManager extends Manager
 	{
-		
+		public function verifyPseudo($pseudo)
+		{
+			$db = $this->dbConnect();
+
+			$req = $db->prepare('SELECT pseudo FROM users WHERE pseudo = :pseudo');
+			$req->execute(array('pseudo' => $pseudo);
+			$verifyPseudo = $req->fetch();
+
+			return $verifyPseudo;
+		}
 	}

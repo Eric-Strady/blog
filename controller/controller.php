@@ -54,8 +54,8 @@
 
 		if (!empty($post))
 		{
-		$comments = $commentsManager->getComments($_GET['post']);
-		require ('view/frontend/comments.php');
+			$comments = $commentsManager->getComments($_GET['post']);
+			require ('view/frontend/comments.php');
 		}
 		else
 		{
@@ -70,4 +70,13 @@
 		$commentsManager->addComment($_POST['postId'], $_POST['pseudo'], $_POST['comment']);
 
 		require ('view/frontend/comments.php');
+	}
+
+	function checkPseudo()
+	{
+		$usersManager = new Eric\Blog\Model\UsersManager();
+
+		$usersManager->verifyPseudo($_GET['pseudo']);
+
+		require ('signInView.php');
 	}

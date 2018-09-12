@@ -14,6 +14,10 @@
 				insertComment();
 			}
 		}
+		elseif (isset($_GET['pseudo']) AND $_GET['pseudo']!='')
+		{
+			checkPseudo();
+		}
 		else
 		{
 			listPosts();

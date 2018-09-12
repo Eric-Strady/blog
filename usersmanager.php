@@ -55,8 +55,8 @@ if (isset($_POST['g-recaptcha-response']))
 									$registration = $db->prepare('INSERT INTO users( pseudo, password, email, registration_date) VALUES (:pseudo, :password, :email, NOW())');
 									$registration->execute(array('pseudo' => $pseudo, 'password' => $pass_hash, 'email' => $email));
 
-									$redirection = 'Location: http://127.0.0.1/blog/index.php?pseudo=' . $pseudo;
-									header($redirection);
+									setcookie('pseudo', $pseudo, time() + 1*24*3600);
+									header('Location: http://127.0.0.1/blog/signInView.php?');
 								}
 								else
 								{

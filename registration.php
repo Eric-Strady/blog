@@ -19,7 +19,7 @@
 		?>
 	</nav>
 
-	<form action="usersmanager.php" method="post">
+	<form action="index.php" method="post">
 		<p><label for="pseudo">Votre pseudo:</label><br/>
 		<input type="text" name="pseudo" id="pseudo" maxlength="255" size="30" required autofocus/></p>
 		<p><label for="password">Votre mot de passe *:</label><br/>

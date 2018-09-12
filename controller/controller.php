@@ -2,6 +2,7 @@
 
 	require_once('model/PostsManager.php');
 	require_once('model/CommentsManager.php');
+	require_once('model/UsersManager.php');
 
 	//Affichage des posts + pagination pour listPostsView
 
@@ -40,22 +41,22 @@
 
 		$req = $postManager->getPosts($first_post, $max_nb_post);
 
-		require ('view/frontend/listPostsView.php');
+		require('view/frontend/listPostsView.php');
 	}
 
 	//Affichage du post selectionne et de ses commentaires + ajout de commentaires 
 
-	function post()
+	function post($postId)
 	{
 		$postsManager = new Eric\Blog\Model\PostsManager();
 		$commentsManager = new Eric\Blog\Model\CommentsManager();
 
-		$post = $postsManager->getPost($_GET['post']);
+		$post = $postsManager->getPost($postId);
 
-		if (!empty($post))
+		if (!empty($postId))
 		{
-			$comments = $commentsManager->getComments($_GET['post']);
-			require ('view/frontend/comments.php');
+			$comments = $commentsManager->getComments($postId);
+			require('view/frontend/comments.php');
 		}
 		else
 		{
@@ -63,20 +64,35 @@
 		}
 	}
 
-	function insertComment()
+	function insertComment($id, $pseudo, $comment)
 	{
 		$commentsManager = new Eric\Blog\Model\CommentsManager();
+		$commentsManager->addComment($id, $pseudo, $comment);
 
-		$commentsManager->addComment($_POST['postId'], $_POST['pseudo'], $_POST['comment']);
-
-		require ('view/frontend/comments.php');
+		require('view/frontend/comments.php');
 	}
 
-	function checkPseudo()
+	function verifyPseudo($pseudo)
 	{
-		$usersManager = new Eric\Blog\Model\UsersManager();
+		$verifyPseudo = new Eric\Blog\Model\UsersManager();
+		$avaiblePseudo = $verifyPseudo->checkPseudo($pseudo);
 
-		$usersManager->verifyPseudo($_GET['pseudo']);
+		return $avaiblePseudo;
+	}
 
-		require ('registration.php');
+	function verifyEmail($email)
+	{
+		$verifyEmail = new Eric\Blog\Model\UsersManager();
+		$avaibleEmail = $verifyEmail->checkEmail($email);
+
+		return $avaibleEmail;
+	}
+
+	function registration($pseudo, $pass_hash, $email)
+	{
+		$registration = new Eric\Blog\Model\UsersManager();
+		$registration->addMembers($pseudo, $pass_hash, $email);
+
+		setcookie('pseudo', $pseudo, time()+120, null, null, false, true);
+		require('signInView.php');
 	}

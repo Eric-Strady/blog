@@ -35,6 +35,14 @@
 			}
 		}
 
+		elseif (isset($_POST['up_comment']) AND isset($_POST['id']))
+		{
+			if ($_POST['up_comment']!='' AND $_POST['id']!='')
+			{
+				reComment($_POST['up_comment'], $_POST['id']);
+			}
+		}
+
 		//Sytème de vérification et d'insertion dans la BDD pour la page d'inscription
 		elseif (isset($_POST['g-recaptcha-response']))
 		{

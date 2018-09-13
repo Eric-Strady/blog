@@ -85,6 +85,12 @@
 		$commentsManager->addComment($postId, $pseudo, $comment);
 	}
 
+	function reComment($comment, $commentId)
+	{
+		$commentsManager = new Eric\Blog\Model\CommentsManager();
+		$commentsManager->updateComment($comment, $commentId);
+	}
+
 	//Vérifications pour l'insciption d'un utilisateur
 
 	function verifyPseudo($pseudo)

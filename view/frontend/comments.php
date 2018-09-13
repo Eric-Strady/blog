@@ -53,15 +53,9 @@
 
 		while ($comment = $comments->fetch())
 		{
-			echo '<p><em>Le ' . $comment['d_comment'] . ' à ' . $comment['h_comment'] . '</em> - <strong>' .strip_tags($comment['author']) . '</strong>: ' . strip_tags($comment['comment']);
-			if ($comment['author']==$_SESSION['pseudo'])
-			{
-				echo '<em><a href="index.php?comment=<?= $_SESSION[\'pseudo\'] ?>">Modifier</a></em></p>';
-			}
-			else
-			{
-				echo '</p>';
-			}
+			echo '<p><em>Le ' . $comment['d_comment'] . ' à ' . $comment['h_comment'] . '</em> - <strong>' . strip_tags($comment['author']) . '</strong>:';
+			if ($comment['author']==$_SESSION['pseudo']){ echo '<em>( <a href="index.php?comment=<?= $_SESSION[\'pseudo\'] ?>">Modifier</a> )</em>';}
+			echo '</br>' . strip_tags($comment['comment']) . '</p>';
 		}
 	?>
 

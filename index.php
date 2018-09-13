@@ -19,7 +19,7 @@
 				signOutLink();
 			}
 		}
-		//Vérifications pour l'affichage d'un post
+		//Vérifications pour l'affichage d'un post et de ses commentaires
 		elseif (isset($_GET['post']) AND $_GET['post']!= '')
 		{
 			$postId = $_GET['post'];
@@ -27,9 +27,9 @@
 		}
 
 		//Vérifications pour l'ajout d'un commentaire
-		elseif (isset($_POST['pseudo']) AND isset($_POST['comment']))
+		elseif (isset($_POST['comment']))
 		{
-			if ($_POST['pseudo']!='' AND $_POST['comment']!='')
+			if ($_POST['comment']!='')
 			{
 				insertComment($_POST['postId'], $_POST['pseudo'], $_POST['comment']);
 			}

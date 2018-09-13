@@ -79,12 +79,10 @@
 		}
 	}
 
-	function insertComment($id, $pseudo, $comment)
+	function insertComment($postId, $pseudo, $comment)
 	{
 		$commentsManager = new Eric\Blog\Model\CommentsManager();
-		$commentsManager->addComment($id, $pseudo, $comment);
-
-		require('view/frontend/comments.php');
+		$commentsManager->addComment($postId, $pseudo, $comment);
 	}
 
 	//Vérifications pour l'insciption d'un utilisateur

@@ -23,7 +23,6 @@
 		{
 			$db = $this->dbConnect();
 
-			strip_tags($pseudo);
 			strip_tags($comment);
 
 			$addComment = $db->prepare('INSERT INTO comments(id_post, author, comment, comment_date) VALUES (:id_post, :author, :comment, NOW())');

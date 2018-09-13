@@ -37,11 +37,9 @@
 	?>
 
 			<form action="index.php" method="POST">
-			<p><label for="pseudo">Pseudo: </label><br/>
-			<input type="text" name="pseudo" id="pseudo" value="<?= $_SESSION['pseudo'] ?>" maxlength="255" required autofocus/></p>
-	        <p><label for="comment">Commentaire: </label><br/>
 	        <textarea name="comment" id="comment" placeholder="Max 255 caractères" maxlength="255" row="4" cols="40" required></textarea></p>
 	        <input type="hidden" name="postId" value="<?= $_GET['post'] ?>">
+	        <input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
 	        <input type="submit" value="Envoyer le commentaire"/>
 			</form>
 			

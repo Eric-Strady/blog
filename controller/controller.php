@@ -4,8 +4,9 @@
 	require_once('model/CommentsManager.php');
 	require_once('model/UsersManager.php');
 
-	//Affichage des posts + pagination pour listPostsView
+//FRONTEND :
 
+	//Affichage des posts + pagination pour listPostsView
 	function listPosts()
 	{
 		$count = new Eric\Blog\Model\PostsManager();
@@ -60,7 +61,6 @@
 	}
 
 	//Affichage du post selectionné et de ses commentaires + ajout de commentaire + modification de commentaire
-
 	function post($postId)
 	{
 		$postsManager = new Eric\Blog\Model\PostsManager();
@@ -92,7 +92,6 @@
 	}
 
 	//Vérifications pour l'insciption d'un utilisateur
-
 	function verifyPseudo($pseudo)
 	{
 		$verifyPseudo = new Eric\Blog\Model\UsersManager();
@@ -119,7 +118,6 @@
 	}
 
 	//Vérifications pour la connexion d'un utilisateur
-
 	function verifyConnect($id_connect)
 	{
 		$verifyConnect = new Eric\Blog\Model\UsersManager();
@@ -127,6 +125,8 @@
 
 		return $verifyId;
 	}
+
+//BACKEND :
 
 	//Affichage liste des posts + pagination pour adminView.php
 	function listPostsAdmin()
@@ -165,4 +165,14 @@
 		$req = $postManager->getPosts($first_post, $max_nb_post);
 
 		require('view/backend/adminView.php');
+	}
+
+	//Affichage d'un post
+	function readPost($postId)
+	{
+		$postsManager = new Eric\Blog\Model\PostsManager();
+
+		$post = $postsManager->getPost($postId);
+
+		require ('view/backend/updatePostView.php');
 	}

@@ -9,7 +9,7 @@
     </head>
         
     <body>
-    	
+
 		<nav>
 			<ul>
 				<li><a href="index.php">Page d'accueil</a></li>
@@ -18,6 +18,10 @@
 				{
 					echo '<li><a href="index.php?link=inscription">Inscription</a></li>';
 					echo '<li><a href="index.php?link=connexion">Connexion</a></li>';
+				}
+				elseif ($_SESSION['pseudo']=='Coxus' OR $_SESSION['pseudo']=='coxus@gmail.com')
+				{
+					echo '<li><a href="index.php?link=admin">Retour à l\'interface d\'administration</a></li>';
 				}
 				else
 				{

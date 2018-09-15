@@ -14,6 +14,10 @@
 			{
 				signinLink();
 			}
+			elseif ($_GET['link'] == 'admin')
+			{
+				listPostsAdmin();
+			}
 			elseif ($_GET['link'] == 'deconnexion')
 			{
 				signOutLink();
@@ -126,7 +130,7 @@
 
 				if (password_verify($pass_connect, $isPassCorrect['password']))
 				{
-					if ($_POST['id_connect']=='Coxus')
+					if ($_POST['id_connect']=='Coxus' OR $_POST['id_connect']=='coxus@gmail.com')
 					{
 						session_start();
 				        $_SESSION['id'] = $isPassCorrect['id'];

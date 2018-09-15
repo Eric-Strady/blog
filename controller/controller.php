@@ -71,7 +71,7 @@
 		if (!empty($postId))
 		{
 			$comments = $commentsManager->getComments($postId);
-			require('view/frontend/comments.php');
+			require('view/frontend/postView.php');
 		}
 		else
 		{

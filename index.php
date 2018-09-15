@@ -157,6 +157,21 @@
 
 //BACKEND :
 
+		//Vérifications pour l'affichage d'un post (administrateur)
+		elseif (isset($_GET['read']))
+		{
+			if ($_GET['read']!='')
+			{
+			$postId = strip_tags($_GET['read']);
+
+			readPost($postId);
+			}
+			else
+			{
+				throw new Exception('Le billet auquel vous souhaitez accéder n\'existe pas !');
+			}
+		}
+
 //SI RIEN NE CORRESPOND :
 
 		//Affichage par défaut (page d'accueil)

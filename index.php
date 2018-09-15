@@ -36,11 +36,12 @@
 		}
 
 		//Vérifications pour modifier un commentaire
-		elseif (isset($_POST['up_comment']) AND isset($_POST['id']))
+		elseif (isset($_POST['up_comment']))
 		{
-			if ($_POST['up_comment']!='' AND $_POST['id']!='')
+			if ($_POST['up_comment']!='')
 			{
-				reComment($_POST['up_comment'], $_POST['id']);
+				$comment = strip_tags($_POST['up_comment']);
+				reComment($comment, $_POST['commentId'], $_POST['id_post']);
 			}
 		}
 

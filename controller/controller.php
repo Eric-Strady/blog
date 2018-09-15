@@ -59,7 +59,7 @@
 		require('view/frontend/signOutView.php');
 	}
 
-	//Affichage du post selectionné et de ses commentaires + ajout de commentaires 
+	//Affichage du post selectionné et de ses commentaires + ajout de commentaire + modification de commentaire
 
 	function post($postId)
 	{
@@ -85,10 +85,10 @@
 		$commentsManager->addComment($postId, $pseudo, $comment);
 	}
 
-	function reComment($comment, $commentId)
+	function reComment($comment, $commentId, $id_post)
 	{
 		$commentsManager = new Eric\Blog\Model\CommentsManager();
-		$commentsManager->updateComment($comment, $commentId);
+		$commentsManager->updateComment($comment, $commentId, $id_post);
 	}
 
 	//Vérifications pour l'insciption d'un utilisateur

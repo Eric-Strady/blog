@@ -67,7 +67,8 @@
 	?>
 						<form action="index.php" method="POST">
 				        <textarea name="up_comment" id="up_comment" maxlength="255" row="4" cols="40" required><?= $comment['comment'] ?></textarea></p>
-				        <input type="hidden" name="id" value="<?= $comment['id'] ?>">
+				        <input type="hidden" name="commentId" value="<?= $comment['id'] ?>">
+				        <input type="hidden" name="id_post" value="<?= $comment['id_post'] ?>">
 				        <input type="submit" value="Modifier le commentaire"/>
 						</form>
 	<?php

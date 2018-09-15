@@ -9,7 +9,7 @@
 			$db = $this->dbConnect();
 
 			$comments = $db->prepare('
-			SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS d_comment, DATE_FORMAT(comment_date, \'%Hh%imin%ss\') AS h_comment
+			SELECT id, id_post, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS d_comment, DATE_FORMAT(comment_date, \'%Hh%imin%ss\') AS h_comment
 			FROM comments 
 			WHERE id_post = :postId 
 			ORDER BY comment_date DESC
@@ -28,18 +28,18 @@
 			$addComment = $db->prepare('INSERT INTO comments(id_post, author, comment, comment_date) VALUES (:id_post, :author, :comment, NOW())');
 			$addComment->execute(array('id_post' => $postId, 'author' => $pseudo, 'comment' => $comment));
 
-			$redirection = 'Location: http://127.0.0.1/blog/index.php?post=' . $postId;
-			header($redirection);
+			$path = 'Location: http://127.0.0.1/blog/index.php?post=' . $postId;
+			header($path);
 		}
 
-		public function updateComment($comment, $commentId)
+		public function updateComment($comment, $commentId, $id_post)
 		{
 			$db = $this->dbConnect();
 
 			$updateComment = $db->prepare('UPDATE comments SET comment = :comment, comment_date = NOW() WHERE id = :commentId');
 			$updateComment->execute(array('comment' => $comment, 'commentId' => $commentId));
 
-			$redirection = 'Location: http://127.0.0.1/blog/index.php?post=' . $postId;
-			header($redirection);
+			$path = 'Location: http://127.0.0.1/blog/index.php?post=' . $id_post;
+			header($path);
 		}
 	}

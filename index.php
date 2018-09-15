@@ -35,6 +35,7 @@
 			}
 		}
 
+		//Vérifications pour modifier un commentaire
 		elseif (isset($_POST['up_comment']) AND isset($_POST['id']))
 		{
 			if ($_POST['up_comment']!='' AND $_POST['id']!='')

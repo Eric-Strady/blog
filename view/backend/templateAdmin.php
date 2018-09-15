@@ -13,10 +13,10 @@
 
 		<nav>
 			<ul>
-				<li><a href="#">Ajouter un billet</a></li>;
-				<li><a href="#">Modérer les commentaires</a></li>;
+				<li><a href="#">Ajouter un billet</a></li>
+				<li><a href="#">Modérer les commentaires</a></li>
 				<li><a href="index.php">Visualiser le site</a></li>
-				<li><a href="#">Mon profil</a></li>;
+				<li><a href="#">Mon profil</a></li>
 			</ul>
 		</nav>
 

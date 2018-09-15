@@ -19,6 +19,9 @@
 				signOutLink();
 			}
 		}
+
+//FRONTEND :
+
 		//Vérifications pour l'affichage d'un post et de ses commentaires
 		elseif (isset($_GET['post']) AND $_GET['post']!= '')
 		{
@@ -112,7 +115,7 @@
 			}
 		}
 
-		//Système de vérification et de création de session pour la page de connexion
+		//Système de vérification et de création de session pour la page de connexion + redirection interface admin
 		elseif (isset($_POST['id_connect']) AND isset($_POST['pass_connect']))
 		{
 			if ($_POST['id_connect']!='' AND $_POST['pass_connect']!='')
@@ -123,11 +126,23 @@
 
 				if (password_verify($pass_connect, $isPassCorrect['password']))
 				{
-					session_start();
-			        $_SESSION['id'] = $isPassCorrect['id'];
-			        $_SESSION['pseudo'] = $isPassCorrect['pseudo'];
+					if ($_POST['id_connect']=='Coxus')
+					{
+						session_start();
+				        $_SESSION['id'] = $isPassCorrect['id'];
+				        $_SESSION['pseudo'] = $isPassCorrect['pseudo'];
 
-			        header('Location: index.php');
+				        listPostsAdmin();
+					}
+					else
+					{
+						session_start();
+				        $_SESSION['id'] = $isPassCorrect['id'];
+				        $_SESSION['pseudo'] = $isPassCorrect['pseudo'];
+
+				        header('Location: index.php');
+					}
+
 				}
 				else
 				{
@@ -135,6 +150,10 @@
 				}	
 			}
 		}
+
+//BACKEND :
+
+//SI RIEN NE CORRESPOND :
 
 		//Affichage par défaut (page d'accueil)
 		else

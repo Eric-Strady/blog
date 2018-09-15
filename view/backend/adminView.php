@@ -9,8 +9,8 @@
 
 		<h4><?= strip_tags($data['title']) ?></h4>
 		<em> le <?= $data['creation_date_fr'] ?></em>
-	    <p><?= nl2br(strip_tags($data['content'])) ?></p>
-	    <em><a href="index.php?post=<?= $data['id'] ?>">Commentaires</a></em>
+	    <p><?= nl2br(strip_tags($data['content'])) ?>
+	    <em><a href="index.php?admin=read">Lire</a></em> - <em><a href="index.php?admin=update">Mettre à jour</a></em> - <em><a href="index.php?admin=delete">Supprimer</a></em></p>
 
 <?php
 	}

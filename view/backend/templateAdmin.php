@@ -3,6 +3,13 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+        <script>
+        	tinymce.init({
+        		selector: 'textarea'
+        	});
+		</script>
+
         <title><?= $title ?></title>
         
     </head>

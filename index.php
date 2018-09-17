@@ -157,6 +157,15 @@
 
 //BACKEND :
 
+		//Vérifications pour une pagination dans l'interface d'administration
+		elseif (isset($_GET['show']))
+		{
+			if ($_GET['show']!='')
+			{
+				listPostsAdmin();
+			}
+		}
+
 		//Vérifications pour l'affichage d'un post (administrateur)
 		elseif (isset($_GET['read']))
 		{

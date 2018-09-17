@@ -3,10 +3,19 @@
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
-        <script>
+        <script type="text/javascript" src='public/js/tinymce/tinymce.min.js'></script>
+        <script type="text/javascript">
         	tinymce.init({
-        		selector: 'textarea'
+        		selector: '#up_title',
+        	});
+		</script>
+		<script type="text/javascript">
+        	tinymce.init({
+        		selector: '#up_content',
+        		height: 500,
+				theme: 'modern',
+				plugins: 'print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker help',
+				toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
         	});
 		</script>
 

@@ -22,6 +22,7 @@
 				elseif ($_SESSION['pseudo']=='Coxus' OR $_SESSION['pseudo']=='coxus@gmail.com')
 				{
 					echo '<li><a href="index.php?link=admin">Retour à l\'interface d\'administration</a></li>';
+					echo '<li><a href="index.php?link=deconnexion">Déconnexion</a></li>';
 				}
 				else
 				{

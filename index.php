@@ -29,7 +29,7 @@
 		//Vérifications pour l'affichage d'un post et de ses commentaires
 		elseif (isset($_GET['post']) AND $_GET['post']!= '')
 		{
-			$postId = $_GET['post'];
+			$postId = strip_tags($_GET['post']);
 			post($postId);
 		}
 
@@ -38,7 +38,8 @@
 		{
 			if ($_POST['comment']!='')
 			{
-				insertComment($_POST['postId'], $_POST['pseudo'], $_POST['comment']);
+				$comment = strip_tags($_POST['comment']);
+				insertComment($_POST['postId'], $_POST['pseudo'], $comment);
 			}
 			else
 			{
@@ -210,7 +211,7 @@
 			if ($_POST['up_title']!='' AND $_POST['up_content']!='')
 			{
 				$title = strip_tags($_POST['up_title']);
-				$content = strip_tags($_POST['up_content']);
+				$content = ($_POST['up_content']);
 				$id = $_POST['id'];
 
 				rePost($title, $content, $id);

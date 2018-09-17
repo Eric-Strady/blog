@@ -7,7 +7,7 @@
 <h2>Billet:</h2>
 <h4><?= strip_tags($post['title']) ?></h4>
 <em>le <?= $post['creation_date_fr'] ?></em>
-<p><?= nl2br(strip_tags($post['content'])) ?></p>
+<p><?= nl2br($post['content']) ?></p>
 <em><a href="index.php?post=<?= $_GET['post'] ?>&amp;comment=add">Ajouter un commentaire</a></em>
 
 <h2>Commentaires:</h2>

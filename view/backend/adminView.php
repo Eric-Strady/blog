@@ -9,7 +9,7 @@
 
 		<h4><?= strip_tags($data['title']) ?></h4>
 		<em> le <?= $data['creation_date_fr'] ?></em>
-	    <p><?= nl2br(strip_tags($data['content'])) ?>
+	    <p><?= nl2br($data['content']) ?>
 	    <em><a href="index.php?read=<?= $data['id'] ?>">Lire</a></em>
 	     - <em><a href="index.php?update=<?= $data['id'] ?>">Mettre à jour</a></em>
 	     - <em><a href="index.php?delete=<?= $data['id'] ?>">Supprimer</a></em></p>

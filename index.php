@@ -96,27 +96,27 @@
 										}
 										else
 										{
-											throw new Exception('<p>L\'adresse e-mail renseigné existe déjà sur un autre compte. Merci d\'en indiqué une autre.<br/>Retour à la page d\'<a href="view/frontend/registration.php">inscription</a></p>');
+											throw new Exception('<p>L\'adresse e-mail renseigné existe déjà sur un autre compte. Merci d\'en indiqué une autre.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
 										}
 									}
 									else
 									{
-										throw new Exception('<p>L\'adresse e-mail n\'est pas valide.<br/>Retour à la page d\'<a href="view/frontend/registration.php">inscription</a></p>');
+										throw new Exception('<p>L\'adresse e-mail n\'est pas valide.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
 									}
 								}
 								else
 								{
-									throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à la page d\'<a href="view/frontend/registration.php">inscription</a></p>');
+									throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
 								}					
 							}
 							else
 							{
-								throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à la page d\'<a href="view/frontend/registration.php">inscription</a></p>');
+								throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
 							}
 						}
 						else
 						{
-							throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à la page d\'<a href="view/frontend/registration.php">inscription</a></p>');
+							throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
 						}
 						
 					}
@@ -159,7 +159,7 @@
 				}
 				else
 				{
-					throw new Exception('<p>Mauvais identifiant ou mot de passe :/<br/>Retour à la page de <a href="signInView.php">connexion</a></p>');
+					throw new Exception('<p>Mauvais identifiant ou mot de passe :/<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
 				}	
 			}
 		}

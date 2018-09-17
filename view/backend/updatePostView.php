@@ -9,6 +9,23 @@
 <em>le <?= $post['creation_date_fr'] ?></em>
 <p><?= nl2br(strip_tags($post['content'])) ?></p>
 
+<?php
+	if (isset($_GET['update']) AND $_GET['update']!='')
+	{
+?>
+		<h2>Modification du billet:</h2>
+		<form action="index.php" method="POST">
+		<p><label for="up_title">Titre du billet:</label><br/>
+		<input type="text" name="up_title" id="up_title" maxlength="255" size="50" value="<?= $post['title'] ?>" required autofocus/></p>
+		<p><label for="up_content">Contenu du billet:</label><br/>
+        <textarea name="up_content" id="up_content" required><?= $post['content'] ?></textarea></p>
+        <input type="hidden" name="id" value="<?= $post['id'] ?>">
+        <input type="submit" value="Modifier le billet"/>
+		</form>
+<?php
+	}
+?>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('view/backend/templateAdmin.php'); ?>

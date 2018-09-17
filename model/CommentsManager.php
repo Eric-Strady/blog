@@ -1,8 +1,8 @@
 <?php
-	namespace Eric\Blog\Model;
+	namespace Eric\Blog\Model\Comments;
 	require_once("model/Manager.php");
 
-	class CommentsManager extends Manager
+	class CommentsManager extends \Eric\Blog\Model\Manager
 	{
 		public function getComments($postId)
 		{

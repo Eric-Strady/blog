@@ -40,6 +40,10 @@
 			{
 				insertComment($_POST['postId'], $_POST['pseudo'], $_POST['comment']);
 			}
+			else
+			{
+				throw new Exception('Impossible d\'ajouter de commentaire pour le moment !');
+			}
 		}
 
 		//Vérifications pour modifier un commentaire
@@ -49,6 +53,10 @@
 			{
 				$comment = strip_tags($_POST['up_comment']);
 				reComment($comment, $_POST['commentId'], $_POST['id_post']);
+			}
+			else
+			{
+				throw new Exception('Impossible de modifier le commentaire pour le moment !');
 			}
 		}
 
@@ -178,6 +186,38 @@
 			else
 			{
 				throw new Exception('Le billet auquel vous souhaitez accéder n\'existe pas !');
+			}
+		}
+
+		//Vérifications pour l'affichage d'un post à modifier (administrateur)
+		elseif (isset($_GET['update']))
+		{
+			if ($_GET['update']!='')
+			{
+			$postId = strip_tags($_GET['update']);
+
+			readPost($postId);
+			}
+			else
+			{
+				throw new Exception('Le billet auquel vous souhaitez accéder n\'existe pas !');
+			}
+		}
+
+		//Vérifications pour modifier un post
+		elseif (isset($_POST['up_title']) AND isset($_POST['up_content']))
+		{
+			if ($_POST['up_title']!='' AND $_POST['up_content']!='')
+			{
+				$title = strip_tags($_POST['up_title']);
+				$content = strip_tags($_POST['up_content']);
+				$id = $_POST['id'];
+
+				rePost($title, $content, $id);
+			}
+			else
+			{
+				throw new Exception('Impossible de modifier le billet pour le moment !');
 			}
 		}
 

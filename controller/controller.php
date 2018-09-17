@@ -3,14 +3,20 @@
 	require_once('model/PostsManager.php');
 	require_once('model/CommentsManager.php');
 	require_once('model/UsersManager.php');
+	require_once('model/AdminManager.php');
+
+	use \Eric\Blog\Model\Posts\PostsManager;
+	use \Eric\Blog\Model\Comments\CommentsManager;
+	use \Eric\Blog\Model\Users\UsersManager;
+	use \Eric\Blog\Model\Admin\AdminManager;
 
 //FRONTEND :
 
 	//Affichage des posts + pagination pour listPostsView
 	function listPosts()
 	{
-		$count = new Eric\Blog\Model\PostsManager();
-		$postManager = new Eric\Blog\Model\PostsManager();
+		$count = new PostsManager();
+		$postManager = new PostsManager();
 
 		$max_nb_post = 5;
 		$req = $count->countPosts();
@@ -63,8 +69,8 @@
 	//Affichage du post selectionné et de ses commentaires + ajout de commentaire + modification de commentaire
 	function post($postId)
 	{
-		$postsManager = new Eric\Blog\Model\PostsManager();
-		$commentsManager = new Eric\Blog\Model\CommentsManager();
+		$postsManager = new PostsManager();
+		$commentsManager = new CommentsManager();
 
 		$post = $postsManager->getPost($postId);
 
@@ -81,20 +87,20 @@
 
 	function insertComment($postId, $pseudo, $comment)
 	{
-		$commentsManager = new Eric\Blog\Model\CommentsManager();
+		$commentsManager = new CommentsManager();
 		$commentsManager->addComment($postId, $pseudo, $comment);
 	}
 
 	function reComment($comment, $commentId, $id_post)
 	{
-		$commentsManager = new Eric\Blog\Model\CommentsManager();
+		$commentsManager = new CommentsManager();
 		$commentsManager->updateComment($comment, $commentId, $id_post);
 	}
 
 	//Vérifications pour l'insciption d'un utilisateur
 	function verifyPseudo($pseudo)
 	{
-		$verifyPseudo = new Eric\Blog\Model\UsersManager();
+		$verifyPseudo = new UsersManager();
 		$avaiblePseudo = $verifyPseudo->checkPseudo($pseudo);
 
 		return $avaiblePseudo;
@@ -102,7 +108,7 @@
 
 	function verifyEmail($email)
 	{
-		$verifyEmail = new Eric\Blog\Model\UsersManager();
+		$verifyEmail = new UsersManager();
 		$avaibleEmail = $verifyEmail->checkEmail($email);
 
 		return $avaibleEmail;
@@ -110,7 +116,7 @@
 
 	function registration($pseudo, $pass_hash, $email)
 	{
-		$registration = new Eric\Blog\Model\UsersManager();
+		$registration = new UsersManager();
 		$registration->addMembers($pseudo, $pass_hash, $email);
 
 		setcookie('pseudo', $pseudo, time()+120, null, null, false, true);
@@ -120,7 +126,7 @@
 	//Vérifications pour la connexion d'un utilisateur
 	function verifyConnect($id_connect)
 	{
-		$verifyConnect = new Eric\Blog\Model\UsersManager();
+		$verifyConnect = new UsersManager();
 		$verifyId = $verifyConnect->checkConnect($id_connect);
 
 		return $verifyId;
@@ -131,8 +137,8 @@
 	//Affichage liste des posts + pagination pour adminView.php
 	function listPostsAdmin()
 	{
-		$count = new Eric\Blog\Model\PostsManager();
-		$postManager = new Eric\Blog\Model\PostsManager();
+		$count = new PostsManager();
+		$postManager = new PostsManager();
 
 		$max_nb_post = 5;
 		$req = $count->countPosts();
@@ -170,9 +176,16 @@
 	//Affichage d'un post
 	function readPost($postId)
 	{
-		$postsManager = new Eric\Blog\Model\PostsManager();
+		$postsManager = new PostsManager();
 
 		$post = $postsManager->getPost($postId);
 
 		require ('view/backend/updatePostView.php');
+	}
+
+	//Modification d'un post
+	function rePost($title, $content, $id)
+	{
+		$adminManager = new AdminManager();
+		$adminManager->updatePost($title, $content, $id);
 	}

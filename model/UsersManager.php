@@ -1,8 +1,8 @@
 <?php
-	namespace Eric\Blog\Model;
+	namespace Eric\Blog\Model\Users;
 	require_once("model/Manager.php");
 
-	class UsersManager extends Manager
+	class UsersManager extends \Eric\Blog\Model\Manager
 	{
 		public function checkPseudo($pseudo)
 		{

@@ -120,7 +120,7 @@
 		$registration->addMembers($pseudo, $pass_hash, $email);
 
 		setcookie('pseudo', $pseudo, time()+120, null, null, false, true);
-		require('signInView.php');
+		require('view/frontend/signInView.php');
 	}
 
 	//Vérifications pour la connexion d'un utilisateur

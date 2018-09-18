@@ -25,7 +25,7 @@
         
     <body>
 
-    	<h1>Interface d'administration</h1>
+    	<h1><a href="index.php?link=admin">Interface d'administration</a></h1>
 
 		<nav>
 			<ul>

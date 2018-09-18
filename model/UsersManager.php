@@ -32,6 +32,10 @@
 
 			$addMembers = $db->prepare('INSERT INTO users( pseudo, password, email, registration_date) VALUES (:pseudo, :password, :email, NOW())');
 			$addMembers->execute(array('pseudo' => $pseudo, 'password' => $pass_hash, 'email' => $email));
+
+			setcookie('pseudo', $pseudo, time()+120, null, null, false, true);
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=connexion';
+			header($path);
 		}
 
 		public function checkConnect($id_connect)

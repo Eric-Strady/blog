@@ -10,9 +10,11 @@
         
     <body>
 
+    	<h1><a href="index.php">Jean Forteroche - Un billet pour l'Alaska</a></h1>
+
 		<nav>
 			<ul>
-				<li><a href="index.php">Page d'accueil</a></li>
+				<li><a href="index.php">Accueil</a></li>
 			<?php
 				if (!isset($_SESSION['id']) AND !isset($_SESSION['pseudo']))
 				{

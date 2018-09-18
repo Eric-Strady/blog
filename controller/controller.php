@@ -173,11 +173,23 @@
 		require('view/backend/adminView.php');
 	}
 
+	//Lien vers la création d'un post
+	function newPost()
+	{
+		require ('view/backend/addPostView.php');
+	}
+
+	//Insertion d'un post
+	function addPost($title, $content)
+	{
+		$adminManager = new AdminManager();
+		$adminManager->createPost($title, $content);
+	}
+
 	//Affichage d'un post
 	function readPost($postId)
 	{
 		$postsManager = new PostsManager();
-
 		$post = $postsManager->getPost($postId);
 
 		require ('view/backend/updatePostView.php');

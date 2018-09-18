@@ -4,6 +4,17 @@
 
 	class AdminManager extends \Eric\Blog\Model\Manager
 	{
+		public function createPost($title, $content)
+		{
+			$db = $this->dbConnect();
+
+			$createPost = $db->prepare('INSERT INTO posts(title, content, creation_date) VALUES( :title, :content , NOW())');
+			$createPost->execute(array('title' => $title, 'content' => $content));
+
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin';
+			header($path);
+		}
+
 		public function updatePost($title, $content, $id)
 		{
 			$db = $this->dbConnect();

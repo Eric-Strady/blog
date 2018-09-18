@@ -18,6 +18,10 @@
 			{
 				listPostsAdmin();
 			}
+			elseif ($_GET['link'] == 'create')
+			{
+				newPost();
+			}
 			elseif ($_GET['link'] == 'deconnexion')
 			{
 				signOutLink();
@@ -172,6 +176,22 @@
 			if ($_GET['show']!='')
 			{
 				listPostsAdmin();
+			}
+		}
+
+		//Vérifications pour ajouter un post (Crud)
+		elseif (isset($_POST['add_title']) AND isset($_POST['add_content']))
+		{
+			if ($_POST['add_title']!='' AND $_POST['add_content']!='')
+			{
+				$title = strip_tags($_POST['add_title']);
+				$content = strip_tags($_POST['add_content']);
+
+				addPost($title, $content);
+			}
+			else
+			{
+				throw new Exception('Impossible de créer de billet pour le moment.');
 			}
 		}
 

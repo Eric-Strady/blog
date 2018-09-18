@@ -180,9 +180,9 @@
 		{
 			if ($_GET['read']!='')
 			{
-			$postId = strip_tags($_GET['read']);
+				$postId = strip_tags($_GET['read']);
 
-			readPost($postId);
+				readPost($postId);
 			}
 			else
 			{
@@ -195,9 +195,9 @@
 		{
 			if ($_GET['update']!='')
 			{
-			$postId = strip_tags($_GET['update']);
+				$postId = strip_tags($_GET['update']);
 
-			readPost($postId);
+				readPost($postId);
 			}
 			else
 			{
@@ -219,6 +219,38 @@
 			else
 			{
 				throw new Exception('Impossible de modifier le billet pour le moment !');
+			}
+		}
+
+		//Vérifications pour afficher la demande de suppression d'un post
+		elseif (isset($_GET['delete']))
+		{
+			if ($_GET['delete']!='')
+			{
+				deleteForm();
+			}
+			else
+			{
+				throw new Exception('Le billet auquel vous souhaitez accéder n\'existe pas !');
+			}
+		}
+
+		//Vérifications pour suppression du post
+		elseif (isset($_POST['delete']) AND isset($_POST['id']))
+		{
+			if ($_POST['delete']=='confirm')
+			{
+				$id = strip_tags($_POST['id']);
+
+				erasePost($id);
+			}
+			elseif ($_POST['delete']=='cancel')
+			{
+				listPostsAdmin();
+			}
+			else
+			{
+				throw new Exception('Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)');
 			}
 		}
 

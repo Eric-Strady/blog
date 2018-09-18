@@ -14,4 +14,15 @@
 			$path = 'Location: http://127.0.0.1/blog/index.php?read=' . $id;
 			header($path);
 		}
+
+		public function deletePost($id)
+		{
+			$db = $this->dbConnect();
+
+			$deletePost = $db->prepare('DELETE FROM posts WHERE id = :id');
+			$deletePost->execute(array('id' => $id));
+
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin';
+			header($path);
+		}
 	}

@@ -189,3 +189,16 @@
 		$adminManager = new AdminManager();
 		$adminManager->updatePost($title, $content, $id);
 	}
+
+	//Affichage du formulaire de suppression
+	function deleteForm()
+	{
+		require('view/backend/deletePostView.php');
+	}
+
+	//Suppression d'un post
+	function erasePost($id)
+	{
+		$adminManager = new AdminManager();
+		$adminManager->deletePost($id);
+	}

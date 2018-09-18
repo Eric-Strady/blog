@@ -36,7 +36,7 @@
 		<nav>
 			<ul>
 				<li><a href="index.php?link=create">Ajouter un billet</a></li>
-				<li><a href="#">Modérer les commentaires</a></li>
+				<li><a href="index.php?link=moderate">Modérer les commentaires</a></li>
 				<li><a href="index.php">Visualiser le site</a></li>
 				<li><a href="#">Mon profil</a></li>
 				<li><a href="index.php?link=deconnexion">Déconnexion</a></li>

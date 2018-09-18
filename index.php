@@ -22,6 +22,10 @@
 			{
 				newPost();
 			}
+			elseif ($_GET['link'] == 'moderate')
+			{
+				listWarnedComments();
+			}
 			elseif ($_GET['link'] == 'deconnexion')
 			{
 				signOutLink();
@@ -271,6 +275,20 @@
 			else
 			{
 				throw new Exception('Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)');
+			}
+		}
+
+		//Vérifications pour signaler un commentaire
+		elseif (isset($_GET['warnedId']))
+		{
+			if ($_GET['warnedId']!='')
+			{
+				$warnedId = strip_tags($_GET['warnedId']);
+				addWarnedComments($warnedId);
+			}
+			else
+			{
+				throw new Exception('Le système de signalement n\'est pas accessible pour le moment.');
 			}
 		}
 

@@ -57,6 +57,12 @@
 <?php
 				}
 			}
+			else
+			{
+?>
+				<em>( <a href="index.php?warnedId=<?= $comment['id'] ?>">Signaler</a> )</em>
+<?php
+			}
 		}
 		echo '</br>' . strip_tags($comment['comment']) . '</p>';
 	}

@@ -19,6 +19,16 @@
 			return $comments;
 		}
 
+		public function getComment($id)
+		{
+			$db = $this->dbConnect();
+
+			$comment = $db->prepare('SELECT id, id_post, author, comment FROM comments WHERE id = :id');
+			$comment->execute(array('id' => $id));
+
+			return $comment;
+		}
+
 		public function addComment($postId, $pseudo, $comment)
 		{
 			$db = $this->dbConnect();

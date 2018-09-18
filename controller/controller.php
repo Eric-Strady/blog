@@ -10,7 +10,7 @@
 	use \Eric\Blog\Model\Comments\CommentsManager;
 	use \Eric\Blog\Model\Users\UsersManager;
 	use \Eric\Blog\Model\Admin\AdminManager;
-	use \Eric\Blog\Model\Admin\WarningManager;
+	use \Eric\Blog\Model\Warning\WarningManager;
 
 //FRONTEND :
 
@@ -172,20 +172,19 @@
 		require('view/backend/adminView.php');
 	}
 
-	//Lien vers la création d'un post
+	//Lien vers la création d'un post + insertion d'un post
 	function newPost()
 	{
 		require ('view/backend/addPostView.php');
 	}
 
-	//Insertion d'un post
 	function addPost($title, $content)
 	{
 		$adminManager = new AdminManager();
 		$adminManager->createPost($title, $content);
 	}
 
-	//Affichage d'un post
+	//Affichage d'un post + modification d'un post
 	function readPost($postId)
 	{
 		$postsManager = new PostsManager();
@@ -194,22 +193,40 @@
 		require ('view/backend/updatePostView.php');
 	}
 
-	//Modification d'un post
 	function rePost($title, $content, $id)
 	{
 		$adminManager = new AdminManager();
 		$adminManager->updatePost($title, $content, $id);
 	}
 
-	//Affichage du formulaire de suppression
+	//Affichage du formulaire de suppression + suppression d'un post
 	function deleteForm()
 	{
 		require('view/backend/deletePostView.php');
 	}
 
-	//Suppression d'un post
 	function erasePost($id)
 	{
 		$adminManager = new AdminManager();
 		$adminManager->deletePost($id);
+	}
+
+	//Commentaires signalés
+	function addWarnedComments($id)
+	{
+		$commentsManager = new CommentsManager();
+		$warningManager = new WarningManager();
+
+		$careComment = $commentsManager->getComment($id);
+		$warnedComment = $careComment->fetch();
+
+		$warningManager->insertWarnedComment($warnedComment['id'], $warnedComment['author'], $warnedComment['comment'], $warnedComment['id_post']);
+	}
+
+	function listWarnedComments()
+	{
+		$warningManager = new WarningManager();
+		$listWarnedComments = $warningManager->getWarningComments();
+
+		require ('view/backend/warningCommentsView.php');
 	}

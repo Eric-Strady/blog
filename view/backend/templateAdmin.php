@@ -4,18 +4,14 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src='public/js/tinymce/tinymce.min.js'></script>
-        <script type="text/javascript">
-        	tinymce.init({
-        		selector: '#up_title',
-        	});
-		</script>
 		<script type="text/javascript">
         	tinymce.init({
         		selector: '#up_content',
         		height: 500,
 				theme: 'modern',
-				plugins: 'print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount imagetools contextmenu colorpicker help',
-				toolbar1: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat',
+				plugins: 'preview searchreplace autolink image link pagebreak nonbreaking advlist lists textcolor wordcount imagetools contextmenu colorpicker help',
+				block_formats: 'Paragraph=p;Heading 1=h1;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6',
+				toolbar: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify  | numlist bullist outdent indent  | removeformat'
         	});
 		</script>
 

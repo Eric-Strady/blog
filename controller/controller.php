@@ -4,11 +4,13 @@
 	require_once('model/CommentsManager.php');
 	require_once('model/UsersManager.php');
 	require_once('model/AdminManager.php');
+	require_once('model/WarningManager.php');
 
 	use \Eric\Blog\Model\Posts\PostsManager;
 	use \Eric\Blog\Model\Comments\CommentsManager;
 	use \Eric\Blog\Model\Users\UsersManager;
 	use \Eric\Blog\Model\Admin\AdminManager;
+	use \Eric\Blog\Model\Admin\WarningManager;
 
 //FRONTEND :
 
@@ -118,9 +120,6 @@
 	{
 		$registration = new UsersManager();
 		$registration->addMembers($pseudo, $pass_hash, $email);
-
-		setcookie('pseudo', $pseudo, time()+120, null, null, false, true);
-		require('view/frontend/signInView.php');
 	}
 
 	//Vérifications pour la connexion d'un utilisateur

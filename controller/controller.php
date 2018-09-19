@@ -103,7 +103,7 @@
 		$commentsManager->updateComment($comment, $commentId, $id_post);
 	}
 
-	//Vérifications pour l'insciption d'un utilisateur + inscription
+	//Vérifications pour l'insciption d'un utilisateur + inscription et confirmation par e-mail
 	function verifyPseudo($pseudo)
 	{
 		$verifyPseudo = new UsersManager();
@@ -123,7 +123,41 @@
 	function registration($pseudo, $pass_hash, $email)
 	{
 		$registration = new UsersManager();
-		$registration->addMembers($pseudo, $pass_hash, $email);
+
+		$length = 10;
+		$string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$maxLength = strlen($string);
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++)
+		{
+		$randomString.= $string[rand(0, $maxLength - 1)];
+		}
+		$registration_key = $randomString;
+
+		$to = $email;
+		$subject = 'Confirmation d\'inscription';
+		$message = '
+			<html>
+				<head></head>
+				<body>
+					<div align="center">
+						<h3>Bienvenue parmis les membres du blog de Jean Forteroche !</h3>
+						<p>Pour pouvoir vous connecter, merci de bien vouloir finaliser votre inscription en cliquant sur le lien ci-dessous:</p>
+						<p><a href="127.0.0.1/blog/index.php?key=' . $registration_key . '" target="_blank">Confirmer mon inscription</a></p>
+					</div>
+				</body>
+			</html>
+		';
+		$header = "From: \"Jean Forteroche\"<test.coxus@gmail.com>\n";
+		$header.= "Reply-to: \"Jean Forteroche\" <test.coxus@gmail.com>\n";
+		$header.= "MIME-Version: 1.0\n";
+		$header.= "Content-Type: text/html; charset=\"UTF-8\"";
+		$header.= "Content-Transfer-Encoding: 8bit";
+
+		mail($to, $subject, $message, $header);
+
+		$confirm = 0;
+		$registration->addMembers($pseudo, $pass_hash, $email, $registration_key, $confirm);
 	}
 
 	//Vérifications pour la connexion d'un utilisateur + envoi nouveau mot de passe
@@ -133,6 +167,22 @@
 		$verifyId = $verifyConnect->checkConnect($id_connect);
 
 		return $verifyId;
+	}
+
+	function verifyRegistrationKey($registration_key)
+	{
+		$verifyRegistrationKey = new UsersManager();
+		$isKeyExist = $verifyRegistrationKey->checkRegistrationKey($registration_key);
+
+		return $isKeyExist;
+	}
+
+	function changeConfirm($registration_key)
+	{
+		$changeConfirm = new UsersManager();
+		$changeConfirm->updateConfirm($registration_key);
+
+		require('index.php');
 	}
 
 	function sendNewPassword($email)
@@ -151,7 +201,7 @@
 		$newPassword = $randomString;
 
 		$to = 'strady60@gmail.com';
-		$subject = 'Test d\'envoi d\'e-mail';
+		$subject = 'Réinitialisation du mot de passe';
 		$message = '
 			<html>
 				<head></head>
@@ -167,8 +217,8 @@
 				</body>
 			</html>
 		';
-		$header = "From: \"Blog de Jean Forteroche\"<test.coxus@gmail.com>\n";
-		$header.= "Reply-to: \"Blog de Jean Forteroche\" <test.coxus@gmail.com>\n";
+		$header = "From: \"Jean Forteroche\"<test.coxus@gmail.com>\n";
+		$header.= "Reply-to: \"Jean Forteroche\" <test.coxus@gmail.com>\n";
 		$header.= "MIME-Version: 1.0\n";
 		$header.= "Content-Type: text/html; charset=\"UTF-8\"";
 		$header.= "Content-Transfer-Encoding: 8bit";

@@ -26,12 +26,12 @@
 			return $checkEmail;
 		}
 
-		public function addMembers($pseudo, $pass_hash, $email)
+		public function addMembers($pseudo, $pass_hash, $email, $registration_key, $confirm)
 		{
 			$db = $this->dbConnect();
 
-			$addMembers = $db->prepare('INSERT INTO users( pseudo, password, email, registration_date) VALUES (:pseudo, :password, :email, NOW())');
-			$addMembers->execute(array('pseudo' => $pseudo, 'password' => $pass_hash, 'email' => $email));
+			$addMembers = $db->prepare('INSERT INTO users( pseudo, password, email, registration_date, registration_key, confirm) VALUES (:pseudo, :password, :email, NOW(), :key, :confirm)');
+			$addMembers->execute(array('pseudo' => $pseudo, 'password' => $pass_hash, 'email' => $email, 'key' => $registration_key, 'confirm' => $confirm));
 
 			setcookie('pseudo', $pseudo, time()+120, null, null, false, true);
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=connexion';
@@ -47,6 +47,25 @@
 			$checkConnect = $req->fetch();
 
 			return $checkConnect;
+		}
+
+		public function checkRegistrationKey($registration_key)
+		{
+			$db = $this->dbConnect();
+
+			$checkRegistrationKey = $db->prepare('SELECT registration_key FROM users WHERE registration_key = :registration_key');
+			$checkRegistrationKey->execute(array('registration_key' => $registration_key));
+			$isSame = $checkRegistrationKey->fetch();
+
+			return $isSame;
+		}
+
+		public function updateConfirm($registration_key)
+		{
+			$db = $this->dbConnect();
+
+			$updateConfirm = $db->exec('UPDATE users SET confirm = 1 WHERE registration_key = :registration_key');
+			$updateConfirm->execute(array('registration_key' => $registration_key));
 		}
 
 		public function changePassword($password, $email)

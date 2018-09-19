@@ -137,6 +137,17 @@
 			}
 		}
 
+		//Vérifications pour confirmer une inscription
+		elseif (isset($_GET['key']) AND $_GET['key']!='')
+		{
+			$registration_key = strip_tags($_GET['key']);
+			
+			if (verifyRegistrationKey($registration_key)==$registration_key)
+			{
+				changeConfirm($registration_key);
+			}
+		}
+
 		//Système de vérification et de création de session pour la page de connexion + redirection interface admin
 		elseif (isset($_POST['id_connect']) AND isset($_POST['pass_connect']))
 		{

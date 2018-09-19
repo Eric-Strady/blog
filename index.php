@@ -51,7 +51,7 @@
 			}
 			else
 			{
-				throw new Exception('Impossible d\'ajouter de commentaire pour le moment !');
+				throw new Exception('Impossible d\'ajouter de commentaire pour le moment !<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 			}
 		}
 
@@ -65,7 +65,7 @@
 			}
 			else
 			{
-				throw new Exception('Impossible de modifier le commentaire pour le moment !');
+				throw new Exception('Impossible de modifier le commentaire pour le moment !<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 			}
 		}
 
@@ -84,7 +84,6 @@
 						$pseudo = strip_tags($_POST['pseudo']);
 						$password = strip_tags($_POST['password']);
 						$email = strip_tags($_POST['email']);
-						verifyPseudo($pseudo);
 
 						if (!verifyPseudo($pseudo))
 						{
@@ -94,8 +93,6 @@
 								{
 									if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email))
 									{
-										verifyEmail($email);
-
 										if(!verifyEmail($email))
 										{
 											$pass_hash = password_hash($password, PASSWORD_DEFAULT);
@@ -195,7 +192,7 @@
 			}
 			else
 			{
-				throw new Exception('Impossible de créer de billet pour le moment.');
+				throw new Exception('Impossible de créer de billet pour le moment.<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
 			}
 		}
 
@@ -210,7 +207,7 @@
 			}
 			else
 			{
-				throw new Exception('Le billet auquel vous souhaitez accéder n\'existe pas !');
+				throw new Exception('Le billet auquel vous souhaitez accéder n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
 			}
 		}
 
@@ -225,7 +222,7 @@
 			}
 			else
 			{
-				throw new Exception('Le billet auquel vous souhaitez accéder n\'existe pas !');
+				throw new Exception('Le billet auquel vous souhaitez accéder n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
 			}
 		}
 
@@ -242,7 +239,7 @@
 			}
 			else
 			{
-				throw new Exception('Impossible de modifier le billet pour le moment !');
+				throw new Exception('Impossible de modifier le billet pour le moment.<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
 			}
 		}
 
@@ -255,7 +252,7 @@
 			}
 			else
 			{
-				throw new Exception('Le billet auquel vous souhaitez accéder n\'existe pas !');
+				throw new Exception('Le billet auquel vous souhaitez accéder n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
 			}
 		}
 
@@ -274,7 +271,7 @@
 			}
 			else
 			{
-				throw new Exception('Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)');
+				throw new Exception('Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
 			}
 		}
 
@@ -283,12 +280,21 @@
 		{
 			if ($_GET['warnedId']!='')
 			{
+				$_GET['warnedId'] = (int)$_GET['warnedId'];
 				$warnedId = strip_tags($_GET['warnedId']);
-				addWarnedComments($warnedId);
+
+				if (!verifyWarning($warnedId))
+				{
+					addWarnedComments($warnedId);
+				}
+				else
+				{
+					throw new Exception('Ce commentaire a déjà été signalé et sera traité dans les plus brefs délais !<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
+				}
 			}
 			else
 			{
-				throw new Exception('Le système de signalement n\'est pas accessible pour le moment.');
+				throw new Exception('Le système de signalement n\'est pas accessible pour le moment.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 			}
 		}
 
@@ -302,6 +308,10 @@
 
 				eraseWarnedComment($eraseComment, $eraseWarning);
 			}
+			else
+			{
+				throw new Exception('Le système de suppression des commentaires signalés n\'est pas disponible pour le moment.<br/>Retour à la page de <a href="index.php?link=moderate">modération</a></p>');
+			}
 		}
 
 		//Vérifications pour conserver un commentaire signalé
@@ -312,6 +322,10 @@
 				$conserveWarning = strip_tags($_GET['conserve']);
 
 				justDeleteWarning($conserveWarning);
+			}
+			else
+			{
+				throw new Exception('Le système de suppression des commentaires signalés n\'est pas disponible pour le moment.<br/>Retour à la page de <a href="index.php?link=moderate">modération</a></p>');
 			}
 		}
 

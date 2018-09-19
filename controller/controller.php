@@ -223,6 +223,14 @@
 		$warningManager->insertWarnedComment($warnedComment['id'], $warnedComment['author'], $warnedComment['comment'], $warnedComment['id_post']);
 	}
 
+	function verifyWarning($id)
+	{
+		$warningManager = new WarningManager();
+		$verifyWarning = $warningManager->checkWarning($id);
+
+		return $verifyWarning;
+	}
+
 	function listWarnedComments()
 	{
 		$warningManager = new WarningManager();

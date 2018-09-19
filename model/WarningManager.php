@@ -16,6 +16,17 @@
 			header($path);
 		}
 
+		public function checkWarning($id)
+		{
+			$db = $this->dbConnect();
+
+			$req = $db->prepare('SELECT id_comment FROM warning WHERE id_comment = :id ');
+			$req->execute(array('id' => $id));
+			$checkWarning = $req->fetch();
+
+			return $checkWarning;
+		}
+
 		public function getWarningComments()
 		{
 			$db = $this->dbConnect();

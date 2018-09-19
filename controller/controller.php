@@ -230,3 +230,12 @@
 
 		require ('view/backend/warningCommentsView.php');
 	}
+
+	function eraseWarnedComment($id_comment, $id)
+	{
+		$commentsManager = new CommentsManager();
+		$warningManager = new WarningManager();
+
+		$commentsManager->deleteComment($id_comment);
+		$warningManager->deleteWarning($id);
+	}

@@ -52,4 +52,12 @@
 			$path = 'Location: http://127.0.0.1/blog/index.php?post=' . $id_post;
 			header($path);
 		}
+
+		public function deleteComment($id_comment)
+		{
+			$db = $this->dbConnect();
+
+			$deleteComment = $db->prepare('DELETE FROM comments WHERE id = :id');
+			$deleteComment->execute(array('id' => $id_comment));
+		}
 	}

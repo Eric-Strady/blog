@@ -292,6 +292,18 @@
 			}
 		}
 
+		//Vérifications pour supprimer un commentaire signalé
+		elseif (isset($_GET['eraseComment']) AND isset($_GET['eraseWarning']))
+		{
+			if ($_GET['eraseComment']!='' AND $_GET['eraseWarning']!='')
+			{
+				$eraseComment = strip_tags($_GET['eraseComment']);
+				$eraseWarning = strip_tags($_GET['eraseWarning']);
+
+				eraseWarnedComment($eraseComment, $eraseWarning);
+			}
+		}
+
 //SI RIEN NE CORRESPOND :
 
 		//Affichage par défaut (page d'accueil)

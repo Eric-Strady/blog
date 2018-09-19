@@ -28,4 +28,15 @@
 
 			return $warningComments;
 		}
+
+		public function deleteWarning($id)
+		{
+			$db = $this->dbConnect();
+
+			$deleteWarning = $db->prepare('DELETE FROM warning WHERE id = :id');
+			$deleteWarning->execute(array('id' => $id));
+
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=moderate';
+			header($path);
+		}
 	}

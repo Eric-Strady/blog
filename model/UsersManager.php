@@ -48,4 +48,12 @@
 
 			return $checkConnect;
 		}
+
+		public function changePassword($password, $email)
+		{
+			$db = $this->dbConnect();
+
+			$changePassword = $db->prepare('UPDATE users SET password = :password WHERE email = :email');
+			$changePassword->execute(array('password' => $password, 'email' => $email));
+		}
 	}

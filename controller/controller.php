@@ -137,6 +137,18 @@
 
 	function sendNewPassword($email)
 	{
+		$usersManager = new UsersManager();
+
+		$length = 10;
+		$string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$maxLength = strlen($string);
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++)
+		{
+		$randomString.= $string[rand(0, $maxLength - 1)];
+		}
+
+		$newPassword = $randomString;
 
 		$to = 'strady60@gmail.com';
 		$subject = 'Test d\'envoi d\'e-mail';
@@ -147,8 +159,9 @@
 					<div align="center">
 						<h3>Réinitialisation de votre mot de passe</h3>
 						<p>Vous êtes actuellement sur le point de changer votre mot de passe !<br/>
-						Voici votre nouveau mot de passe : ...</p>
-						<p>Votre prochaine étape est de vous connecter avec ce nouveau mot de passe et ensuite, si vous le désirez (conseillé), le personnaliser dans votre page "Profil".</p>
+						Voici votre nouveau mot de passe : ' . $newPassword . '</p>
+						<p>Pour des raisons de sécurité, il est impératif que vous changiez ce mot de passe lors de votre prochaine connexion.<br/>
+						Pour le personnaliser, allez dans votre page "Profil".</p>
 						<p>Accéder au <a href="127.0.0.1/blog/index.php?link=connexion" target="_blank">blog de Jean Forteroche</a></p>
 					</div>
 				</body>
@@ -161,6 +174,9 @@
 		$header.= "Content-Transfer-Encoding: 8bit";
 
 		mail($to, $subject, $message, $header);
+
+		$password = password_hash($newPassword, PASSWORD_DEFAULT);
+		$usersManager->changePassword($password, $email);
 
 		signinLink();
 	}

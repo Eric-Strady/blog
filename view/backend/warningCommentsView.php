@@ -9,8 +9,10 @@
 <?php
 	while ($comment = $listWarnedComments->fetch())
 	{
-		echo '<p><em>Le ' . $comment['d_warning'] . ' à ' . $comment['h_warning'] . '</em> - <strong>' . strip_tags($comment['author']) . '</strong>:';
-		echo '</br>' . strip_tags($comment['comment']) . '</p>';
+?>
+		<p><em>Le  <?= $comment['d_warning'] ?> à <?= $comment['h_warning'] ?></em> - <strong><?= strip_tags($comment['author']) ?></strong>:
+		</br><?= strip_tags($comment['comment'])?></p>
+<?php
 	}
 ?>
 

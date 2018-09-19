@@ -7,7 +7,8 @@
 <?php
 	if (isset($_COOKIE['pseudo']))
 	{
-		echo '<p>Votre inscription a bien été prise en compte ! Pour utiliser votre compte, veuillez vous connecter ci-dessous.</p>';
+		echo '<p>Votre inscription a bien été prise en compte !<br/>';
+		echo 'Un e-mail de confirmation vient de vous être envoyé. Merci de finaliser votre inscription avant de vous connecter :)</p>';
 	}
 ?>
 

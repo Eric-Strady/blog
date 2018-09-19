@@ -14,6 +14,10 @@
 			{
 				signinLink();
 			}
+			elseif ($_GET['link'] == 'confirmed')
+			{
+				confirmLink();
+			}
 			elseif ($_GET['link'] == 'new_password')
 			{
 				newPasswordLink();
@@ -141,8 +145,9 @@
 		elseif (isset($_GET['key']) AND $_GET['key']!='')
 		{
 			$registration_key = strip_tags($_GET['key']);
+			$isRegistrationKeyCorrect = verifyRegistrationKey($registration_key);
 			
-			if (verifyRegistrationKey($registration_key)==$registration_key)
+			if ($isRegistrationKeyCorrect['registration_key']==$registration_key)
 			{
 				changeConfirm($registration_key);
 			}
@@ -156,30 +161,37 @@
 				$id_connect = strip_tags($_POST['id_connect']);
 				$pass_connect = strip_tags($_POST['pass_connect']);
 				$isPassCorrect = verifyConnect($id_connect);
+				$isConfirmCorrect = verifyConfirm($id_connect);
 
-				if (password_verify($pass_connect, $isPassCorrect['password']))
+				if ($isConfirmCorrect['confirm']==1)
 				{
-					if ($_POST['id_connect']=='Coxus' OR $_POST['id_connect']=='coxus@gmail.com')
+					if (password_verify($pass_connect, $isPassCorrect['password']))
 					{
-						session_start();
-				        $_SESSION['id'] = $isPassCorrect['id'];
-				        $_SESSION['pseudo'] = $isPassCorrect['pseudo'];
+						if ($_POST['id_connect']=='Coxus' OR $_POST['id_connect']=='coxus@gmail.com')
+						{
+							session_start();
+					        $_SESSION['id'] = $isPassCorrect['id'];
+					        $_SESSION['pseudo'] = $isPassCorrect['pseudo'];
 
-				        listPostsAdmin();
+					        listPostsAdmin();
+						}
+						else
+						{
+							session_start();
+					        $_SESSION['id'] = $isPassCorrect['id'];
+					        $_SESSION['pseudo'] = $isPassCorrect['pseudo'];
+
+					        header('Location: index.php');
+						}
 					}
 					else
 					{
-						session_start();
-				        $_SESSION['id'] = $isPassCorrect['id'];
-				        $_SESSION['pseudo'] = $isPassCorrect['pseudo'];
-
-				        header('Location: index.php');
+						throw new Exception('<p>Mauvais identifiant ou mot de passe :/<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
 					}
-
 				}
 				else
 				{
-					throw new Exception('<p>Mauvais identifiant ou mot de passe :/<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
+					throw new Exception('<p>Vous devez d\'abord confirmer votre insciption avant de vous connecter.<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
 				}	
 			}
 		}

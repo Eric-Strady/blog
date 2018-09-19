@@ -71,6 +71,10 @@
 	{
 		require('view/frontend/signOutView.php');
 	}
+	function confirmLink()
+	{
+		require('view/frontend/confirmedRegistrationView.php');
+	}
 
 	//Affichage du post selectionné et de ses commentaires + ajout de commentaire + modification de commentaire
 	function post($postId)
@@ -181,8 +185,14 @@
 	{
 		$changeConfirm = new UsersManager();
 		$changeConfirm->updateConfirm($registration_key);
+	}
 
-		require('index.php');
+	function verifyConfirm($id_connect)
+	{
+		$verifyConfirm = new UsersManager();
+		$isConfirm = $verifyConfirm->checkConfirm($id_connect);
+
+		return $isConfirm;
 	}
 
 	function sendNewPassword($email)

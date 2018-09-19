@@ -64,8 +64,22 @@
 		{
 			$db = $this->dbConnect();
 
-			$updateConfirm = $db->exec('UPDATE users SET confirm = 1 WHERE registration_key = :registration_key');
+			$updateConfirm = $db->prepare('UPDATE users SET confirm = 1 WHERE registration_key = :registration_key');
 			$updateConfirm->execute(array('registration_key' => $registration_key));
+
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=confirmed';
+			header($path);
+		}
+
+		public function checkConfirm($id_connect)
+		{
+			$db = $this->dbConnect();
+
+			$checkConfirm = $db->prepare('SELECT confirm FROM users WHERE pseudo = :pseudo OR email = :email');
+			$checkConfirm->execute(array('pseudo' => $id_connect, 'email' => $id_connect));
+			$isOne = $checkConfirm->fetch();
+
+			return $isOne;
 		}
 
 		public function changePassword($password, $email)

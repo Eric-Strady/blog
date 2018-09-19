@@ -239,3 +239,9 @@
 		$commentsManager->deleteComment($id_comment);
 		$warningManager->deleteWarning($id);
 	}
+
+	function justDeleteWarning($id)
+	{
+		$warningManager = new WarningManager();
+		$warningManager->deleteWarning($id);
+	}

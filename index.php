@@ -304,6 +304,17 @@
 			}
 		}
 
+		//Vérifications pour conserver un commentaire signalé
+		elseif (isset($_GET['conserve']))
+		{
+			if ($_GET['conserve']!='')
+			{
+				$conserveWarning = strip_tags($_GET['conserve']);
+
+				justDeleteWarning($conserveWarning);
+			}
+		}
+
 //SI RIEN NE CORRESPOND :
 
 		//Affichage par défaut (page d'accueil)

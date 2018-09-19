@@ -63,6 +63,10 @@
 	{
 		require('view/frontend/signInView.php');
 	}
+	function newPasswordLink()
+	{
+		require('view/frontend/newPasswordView.php');
+	}
 	function signoutLink()
 	{
 		require('view/frontend/signOutView.php');
@@ -99,7 +103,7 @@
 		$commentsManager->updateComment($comment, $commentId, $id_post);
 	}
 
-	//Vérifications pour l'insciption d'un utilisateur
+	//Vérifications pour l'insciption d'un utilisateur + inscription
 	function verifyPseudo($pseudo)
 	{
 		$verifyPseudo = new UsersManager();
@@ -122,13 +126,43 @@
 		$registration->addMembers($pseudo, $pass_hash, $email);
 	}
 
-	//Vérifications pour la connexion d'un utilisateur
+	//Vérifications pour la connexion d'un utilisateur + envoi nouveau mot de passe
 	function verifyConnect($id_connect)
 	{
 		$verifyConnect = new UsersManager();
 		$verifyId = $verifyConnect->checkConnect($id_connect);
 
 		return $verifyId;
+	}
+
+	function sendNewPassword($email)
+	{
+
+		$to = 'strady60@gmail.com';
+		$subject = 'Test d\'envoi d\'e-mail';
+		$message = '
+			<html>
+				<head></head>
+				<body>
+					<div align="center">
+						<h3>Réinitialisation de votre mot de passe</h3>
+						<p>Vous êtes actuellement sur le point de changer votre mot de passe !<br/>
+						Voici votre nouveau mot de passe : ...</p>
+						<p>Votre prochaine étape est de vous connecter avec ce nouveau mot de passe et ensuite, si vous le désirez (conseillé), le personnaliser dans votre page "Profil".</p>
+						<p>Accéder au <a href="127.0.0.1/blog/index.php?link=connexion" target="_blank">blog de Jean Forteroche</a></p>
+					</div>
+				</body>
+			</html>
+		';
+		$header = "From: \"Blog de Jean Forteroche\"<test.coxus@gmail.com>\n";
+		$header.= "Reply-to: \"Blog de Jean Forteroche\" <test.coxus@gmail.com>\n";
+		$header.= "MIME-Version: 1.0\n";
+		$header.= "Content-Type: text/html; charset=\"UTF-8\"";
+		$header.= "Content-Transfer-Encoding: 8bit";
+
+		mail($to, $subject, $message, $header);
+
+		signinLink();
 	}
 
 //BACKEND :

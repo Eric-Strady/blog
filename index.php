@@ -14,6 +14,10 @@
 			{
 				signinLink();
 			}
+			elseif ($_GET['link'] == 'new_password')
+			{
+				newPasswordLink();
+			}
 			elseif ($_GET['link'] == 'admin')
 			{
 				listPostsAdmin();
@@ -166,6 +170,20 @@
 				{
 					throw new Exception('<p>Mauvais identifiant ou mot de passe :/<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
 				}	
+			}
+		}
+
+		//Vérifications pour envoi nouveau mot de passe
+		elseif (isset($_POST['new_password']) AND $_POST['new_password']!='')
+		{
+			$email = strip_tags($_POST['new_password']);
+			if (verifyEmail($email))
+			{
+				sendNewPassword($email);
+			}
+			else
+			{
+				throw new Exception('Le système de signalement de réinitialisation de mot de passe n\'est pas accessible pour le moment.<br/>Retour à la page de <a href="index.php">accueil</a></p>');
 			}
 		}
 

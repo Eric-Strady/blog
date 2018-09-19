@@ -169,12 +169,22 @@
 
 		$req = $postManager->getPosts($first_post, $max_nb_post);
 
+		$countWarning = new WarningManager();
+		$count = $countWarning->countWarning();
+		$nbWarning = $count->fetch();
+		$count->closeCursor();
+
 		require('view/backend/adminView.php');
 	}
 
 	//Lien vers la création d'un post + insertion d'un post
 	function newPost()
 	{
+		$countWarning = new WarningManager();
+		$count = $countWarning->countWarning();
+		$nbWarning = $count->fetch();
+		$count->closeCursor();
+
 		require ('view/backend/addPostView.php');
 	}
 
@@ -190,6 +200,11 @@
 		$postsManager = new PostsManager();
 		$post = $postsManager->getPost($postId);
 
+		$countWarning = new WarningManager();
+		$count = $countWarning->countWarning();
+		$nbWarning = $count->fetch();
+		$count->closeCursor();
+
 		require ('view/backend/updatePostView.php');
 	}
 
@@ -202,6 +217,11 @@
 	//Affichage du formulaire de suppression + suppression d'un post
 	function deleteForm()
 	{
+		$countWarning = new WarningManager();
+		$count = $countWarning->countWarning();
+		$nbWarning = $count->fetch();
+		$count->closeCursor();
+
 		require('view/backend/deletePostView.php');
 	}
 
@@ -236,6 +256,11 @@
 		$warningManager = new WarningManager();
 		$listWarnedComments = $warningManager->getWarningComments();
 
+		$countWarning = new WarningManager();
+		$count = $countWarning->countWarning();
+		$nbWarning = $count->fetch();
+		$count->closeCursor();
+
 		require ('view/backend/warningCommentsView.php');
 	}
 
@@ -246,10 +271,20 @@
 
 		$commentsManager->deleteComment($id_comment);
 		$warningManager->deleteWarning($id);
+
+		$countWarning = new WarningManager();
+		$count = $countWarning->countWarning();
+		$nbWarning = $count->fetch();
+		$count->closeCursor();
 	}
 
 	function justDeleteWarning($id)
 	{
 		$warningManager = new WarningManager();
 		$warningManager->deleteWarning($id);
+
+		$countWarning = new WarningManager();
+		$count = $countWarning->countWarning();
+		$nbWarning = $count->fetch();
+		$count->closeCursor();
 	}

@@ -4,7 +4,6 @@
 
 	class WarningManager extends \Eric\Blog\Model\Manager
 	{
-
 		public function insertWarnedComment($idComment, $author, $comment, $postId)
 		{
 			$db = $this->dbConnect();
@@ -25,6 +24,15 @@
 			$checkWarning = $req->fetch();
 
 			return $checkWarning;
+		}
+
+		public function countWarning()
+		{
+			$db = $this->dbConnect();
+
+			$req = $db->query('SELECT COUNT(*) AS nb_warning FROM warning');
+
+			return $req;
 		}
 
 		public function getWarningComments()

@@ -169,6 +169,29 @@
 			}
 		}
 
+		//Vérifications pour signaler un commentaire
+		elseif (isset($_GET['warnedId']))
+		{
+			if ($_GET['warnedId']!='')
+			{
+				$_GET['warnedId'] = (int)$_GET['warnedId'];
+				$warnedId = strip_tags($_GET['warnedId']);
+
+				if (!verifyWarning($warnedId))
+				{
+					addWarnedComments($warnedId);
+				}
+				else
+				{
+					throw new Exception('Ce commentaire a déjà été signalé et sera traité dans les plus brefs délais !<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
+				}
+			}
+			else
+			{
+				throw new Exception('Le système de signalement n\'est pas accessible pour le moment.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
+			}
+		}
+
 //BACKEND :
 
 		//Vérifications pour une pagination dans l'interface d'administration
@@ -272,29 +295,6 @@
 			else
 			{
 				throw new Exception('Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
-			}
-		}
-
-		//Vérifications pour signaler un commentaire
-		elseif (isset($_GET['warnedId']))
-		{
-			if ($_GET['warnedId']!='')
-			{
-				$_GET['warnedId'] = (int)$_GET['warnedId'];
-				$warnedId = strip_tags($_GET['warnedId']);
-
-				if (!verifyWarning($warnedId))
-				{
-					addWarnedComments($warnedId);
-				}
-				else
-				{
-					throw new Exception('Ce commentaire a déjà été signalé et sera traité dans les plus brefs délais !<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
-				}
-			}
-			else
-			{
-				throw new Exception('Le système de signalement n\'est pas accessible pour le moment.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 			}
 		}
 

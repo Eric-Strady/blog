@@ -378,6 +378,18 @@
 			}
 		}
 
+		//Vérifications pour changer de pseudo
+		elseif (isset($_POST['new_pseudo']) AND isset($_POST['pseudo']))
+		{
+			if ($_POST['new_pseudo']!='')
+			{
+				$new_pseudo = strip_tags($_POST['new_pseudo']);
+				$pseudo = $_POST['pseudo'];
+
+				newPseudo($new_pseudo, $pseudo);
+			}
+		}
+
 //SI RIEN NE CORRESPOND :
 
 		//Affichage par défaut (page d'accueil)

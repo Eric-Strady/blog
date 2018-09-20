@@ -89,4 +89,15 @@
 			$changePassword = $db->prepare('UPDATE users SET password = :password WHERE email = :email');
 			$changePassword->execute(array('password' => $password, 'email' => $email));
 		}
+
+		public function changePseudo($new_pseudo, $pseudo)
+		{
+			$db = $this->dbConnect();
+
+			$changePseudo = $db->prepare('UPDATE users SET pseudo = :new_pseudo WHERE pseudo = :pseudo');
+			$changePseudo->execute(array('pseudo' => $new_pseudo, 'pseudo' => $pseudo));
+
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account';
+			header($path);
+		}
 	}

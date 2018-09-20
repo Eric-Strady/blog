@@ -135,7 +135,6 @@
 						{
 							throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
 						}
-						
 					}
 				}
 			}
@@ -175,7 +174,7 @@
 				{
 					if (password_verify($pass_connect, $isPassCorrect['password']))
 					{
-						if ($_POST['id_connect']=='Coxus' OR $_POST['id_connect']=='coxus@gmail.com')
+						if ($_POST['id_connect']=='Coxus' OR $_POST['id_connect']=='coxus' OR $_POST['id_connect']=='coxus@gmail.com')
 						{
 							session_start();
 					        $_SESSION['id'] = $isPassCorrect['id'];
@@ -383,10 +382,20 @@
 		{
 			if ($_POST['new_pseudo']!='')
 			{
-				$new_pseudo = strip_tags($_POST['new_pseudo']);
-				$pseudo = $_POST['pseudo'];
+				if (!verifyPseudo($_POST['new_pseudo']))
+				{
+					$new_pseudo = strip_tags($_POST['new_pseudo']);
+					$pseudo = $_POST['pseudo'];
 
-				newPseudo($new_pseudo, $pseudo);
+					session_start();
+					$_SESSION['pseudo'] = $new_pseudo;
+
+					newPseudo($_SESSION['pseudo'], $pseudo);
+				}
+				else
+				{
+					throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à votre <a href="index.php?link=admin_account">profil</a></p>');
+				}
 			}
 		}
 

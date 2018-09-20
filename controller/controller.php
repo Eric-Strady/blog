@@ -399,13 +399,19 @@
 		$count->closeCursor();
 	}
 
-	//Lien vers la page du profil administrateur
+	//Lien vers la page du profil administrateur + paramétrage du profil
 	function adminAccountLink()
 	{
 		$countWarning = new WarningManager();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
-		
+
 		require('view/backend/adminAccountView.php');
+	}
+
+	function newPseudo($new_pseudo, $pseudo)
+	{
+		$newPseudo = new UsersManager();
+		$newPseudo->changePseudo($new_pseudo, $pseudo);
 	}

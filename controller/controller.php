@@ -398,3 +398,9 @@
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
 	}
+
+	//Lien vers la page du profil administrateur
+	function adminAccountLink()
+	{
+		require('view/backend/adminAccountView.php');
+	}

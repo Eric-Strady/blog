@@ -1,4 +1,4 @@
-<?php $title = 'Blog de Jean Forteroche'; ?>
+<?php $title = 'Interface d\'administration'; ?>
 
 <?php ob_start(); ?>
 

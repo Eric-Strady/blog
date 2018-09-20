@@ -1,10 +1,10 @@
 <?php session_start(); ?>
 
-<?php $title = 'Blog de Jean Forteroche'; ?>
+<?php $title = 'Commentaire(s) signalé(s)'; ?>
 
 <?php ob_start(); ?>
 
-<h2>Création d'un billet:</h2>
+<h2>Commentaire(s) signalé(s):</h2>
 
 <?php
 	while ($comment = $listWarnedComments->fetch())

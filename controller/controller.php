@@ -402,5 +402,10 @@
 	//Lien vers la page du profil administrateur
 	function adminAccountLink()
 	{
+		$countWarning = new WarningManager();
+		$count = $countWarning->countWarning();
+		$nbWarning = $count->fetch();
+		$count->closeCursor();
+		
 		require('view/backend/adminAccountView.php');
 	}

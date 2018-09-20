@@ -34,6 +34,10 @@
 			{
 				listWarnedComments();
 			}
+			elseif ($_GET['link'] == 'admin_account')
+			{
+				adminAccountLink();
+			}
 			elseif ($_GET['link'] == 'deconnexion')
 			{
 				signOutLink();

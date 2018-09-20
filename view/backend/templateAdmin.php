@@ -38,7 +38,7 @@
 				<li><a href="index.php?link=create">Ajouter un billet</a></li>
 				<li><a href="index.php?link=moderate">Modérer les commentaires</a><?php if ($nbWarning['nb_warning']!='0'){ echo' ( ' . $nbWarning['nb_warning'] . ' )'; } ?></li>
 				<li><a href="index.php">Visualiser le site</a></li>
-				<li><a href="#">Mon profil</a></li>
+				<li><a href="index.php?link=admin_account">Mon profil</a></li>
 				<li><a href="index.php?link=deconnexion">Déconnexion</a></li>
 			</ul>
 		</nav>

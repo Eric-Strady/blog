@@ -151,6 +151,10 @@
 			{
 				changeConfirm($registration_key);
 			}
+			else
+			{
+				throw new Exception('<p>Impossible de confirmer votre inscription pour le moment. Merci de prendre contact avec nous afin de vous apporter une solution.<br/>Retour à la page de <a href="index.php">accueil</a></p>');
+			}
 		}
 
 		//Système de vérification et de création de session pour la page de connexion + redirection interface admin
@@ -191,8 +195,8 @@
 				}
 				else
 				{
-					throw new Exception('<p>Vous devez d\'abord confirmer votre insciption avant de vous connecter.<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
-				}	
+					throw new Exception('<p>Vous devez d\'abord confirmer votre inscription avant de vous connecter.<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
+				}
 			}
 		}
 

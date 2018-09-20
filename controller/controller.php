@@ -145,7 +145,7 @@
 				<head></head>
 				<body>
 					<div align="center">
-						<h3>Bienvenue parmis les membres du blog de Jean Forteroche !</h3>
+						<h3>Bienvenue parmi les membres du blog de Jean Forteroche !</h3>
 						<p>Pour pouvoir vous connecter, merci de bien vouloir finaliser votre inscription en cliquant sur le lien ci-dessous:</p>
 						<p><a href="127.0.0.1/blog/index.php?key=' . $registration_key . '" target="_blank">Confirmer mon inscription</a></p>
 					</div>

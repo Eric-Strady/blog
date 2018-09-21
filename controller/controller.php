@@ -161,7 +161,7 @@
 		mail($to, $subject, $message, $header);
 
 		$confirm = 0;
-		$registration->addMembers($pseudo, $pass_hash, $email, $registration_key, $confirm);
+		$registration->addUser($pseudo, $pass_hash, $email, $registration_key, $confirm);
 	}
 
 	//Vérifications pour la connexion d'un utilisateur + envoi nouveau mot de passe

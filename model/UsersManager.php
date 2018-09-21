@@ -26,12 +26,12 @@
 			return $checkEmail;
 		}
 
-		public function addMembers($pseudo, $pass_hash, $email, $registration_key, $confirm)
+		public function addUser($pseudo, $pass_hash, $email, $registration_key, $confirm)
 		{
 			$db = $this->dbConnect();
 
-			$addMembers = $db->prepare('INSERT INTO users( pseudo, password, email, registration_date, registration_key, confirm) VALUES (:pseudo, :password, :email, NOW(), :key, :confirm)');
-			$addMembers->execute(array('pseudo' => $pseudo, 'password' => $pass_hash, 'email' => $email, 'key' => $registration_key, 'confirm' => $confirm));
+			$addUser = $db->prepare('INSERT INTO users( pseudo, password, email, registration_date, registration_key, confirm) VALUES (:pseudo, :password, :email, NOW(), :key, :confirm)');
+			$addUser->execute(array('pseudo' => $pseudo, 'password' => $pass_hash, 'email' => $email, 'key' => $registration_key, 'confirm' => $confirm));
 
 			setcookie('pseudo', $pseudo, time()+120, null, null, false, true);
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=connexion';

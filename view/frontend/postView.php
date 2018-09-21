@@ -20,10 +20,10 @@
 ?>
 
 		<form action="index.php" method="POST">
-        <textarea name="comment" id="comment" placeholder="Max 255 caractères" maxlength="255" row="4" cols="40" required></textarea></p>
-        <input type="hidden" name="postId" value="<?= $_GET['post'] ?>">
-        <input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
-        <input type="submit" value="Envoyer le commentaire"/>
+	        <textarea name="comment" id="comment" placeholder="Max 255 caractères" maxlength="255" row="4" cols="40" required></textarea></p>
+	        <input type="hidden" name="postId" value="<?= $_GET['post'] ?>">
+	        <input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
+	        <input type="submit" value="Envoyer le commentaire"/>
 		</form>
 		
 <?php
@@ -49,10 +49,10 @@
 				{
 ?>
 					<form action="index.php" method="POST">
-			        <textarea name="up_comment" id="up_comment" maxlength="255" row="4" cols="40" required><?= $comment['comment'] ?></textarea></p>
-			        <input type="hidden" name="commentId" value="<?= $comment['id'] ?>">
-			        <input type="hidden" name="id_post" value="<?= $comment['id_post'] ?>">
-			        <input type="submit" value="Modifier le commentaire"/>
+				        <textarea name="up_comment" id="up_comment" maxlength="255" row="4" cols="40" required><?= $comment['comment'] ?></textarea></p>
+				        <input type="hidden" name="commentId" value="<?= $comment['id'] ?>">
+				        <input type="hidden" name="id_post" value="<?= $comment['id_post'] ?>">
+				        <input type="submit" value="Modifier le commentaire"/>
 					</form>
 <?php
 				}

@@ -415,3 +415,9 @@
 		$newPseudo = new UsersManager();
 		$newPseudo->changePseudo($new_pseudo, $pseudo);
 	}
+
+	function newEmail($new_email, $pseudo)
+	{
+		$newEmail = new UsersManager();
+		$newEmail->changeEmail($new_email, $pseudo);
+	}

@@ -8,7 +8,16 @@
 <h4><?= strip_tags($post['title']) ?></h4>
 <em>le <?= $post['creation_date_fr'] ?></em>
 <p><?= nl2br($post['content']) ?></p>
-<em><a href="index.php?post=<?= $_GET['post'] ?>&amp;comment=add">Ajouter un commentaire</a></em>
+<?php
+	if (!isset($_GET['comment']))
+	{
+?>
+		<p><form action="index.php" method="POST">
+			<button type="submit" formaction="http://127.0.0.1/blog/index.php?post=<?= $_GET['post'] ?>&comment=add">Ajouter un commentaire</button>
+		</form></p>
+<?php
+	}
+?>
 
 <h2>Commentaires:</h2>
 

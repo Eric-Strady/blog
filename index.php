@@ -6,39 +6,39 @@
 	{
 		if (isset($_GET['link']) AND $_GET['link']!= '')
 		{
-			if ($_GET['link'] == 'inscription')
+			if ($_GET['link']=='inscription')
 			{
 				registrationLink();
 			}
-			elseif ($_GET['link'] == 'connexion')
+			elseif ($_GET['link']=='connexion')
 			{
 				signinLink();
 			}
-			elseif ($_GET['link'] == 'confirmed')
+			elseif ($_GET['link']=='confirmed')
 			{
 				confirmLink();
 			}
-			elseif ($_GET['link'] == 'new_password')
+			elseif ($_GET['link']=='new_password')
 			{
 				newPasswordLink();
 			}
-			elseif ($_GET['link'] == 'admin')
+			elseif ($_GET['link']=='admin')
 			{
 				listPostsAdmin();
 			}
-			elseif ($_GET['link'] == 'create')
+			elseif ($_GET['link']=='create')
 			{
 				newPost();
 			}
-			elseif ($_GET['link'] == 'moderate')
+			elseif ($_GET['link']=='moderate')
 			{
 				listWarnedComments();
 			}
-			elseif ($_GET['link'] == 'admin_account')
+			elseif ($_GET['link']=='admin_account')
 			{
 				adminAccountLink();
 			}
-			elseif ($_GET['link'] == 'deconnexion')
+			elseif ($_GET['link']=='deconnexion')
 			{
 				signOutLink();
 			}

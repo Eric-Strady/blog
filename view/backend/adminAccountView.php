@@ -12,6 +12,19 @@
 
 <h2>Paramètres de votre compte:</h2>
 
+<?php
+
+	if (isset($_GET['link'], $_GET['success']) AND $_GET['success']=='email')
+	{
+		echo '<p>Votre e-mail a bien été modifié !<br/>';
+		echo 'Un e-mail vous a été envoyé pour en attester.</p>';
+	}
+	elseif (isset($_GET['link'], $_GET['success']) AND $_GET['success']=='password')
+	{
+		echo '<p>Votre mot de passe a bien été modifié !</p>';
+	}
+?>
+
 <p><form action="index.php" method="POST">
 	<fieldset>
 		<legend>Changer de pseudo</legend>

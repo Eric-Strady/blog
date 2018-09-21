@@ -17,7 +17,7 @@
     <input type="submit" value="S'inscrire"/>
 </form>
 
-<p>* Pour votre sécuriser votre mot de passe, vous devez:<br/>
+<p>* Pour sécuriser votre mot de passe, vous devez:<br/>
     <ul>
     	<li>Utiliser au minimum 8 caractères</li>
     	<li>Utiliser au minimum un chiffre et une lettre</li>

@@ -378,23 +378,32 @@
 		}
 
 		//Vérifications pour changer de pseudo
-		elseif (isset($_POST['new_pseudo']) AND isset($_POST['pseudo']))
+		elseif (isset($_POST['new_pseudo'], $_POST['password'], $_POST['pseudo']))
 		{
-			if ($_POST['new_pseudo']!='')
+			if ($_POST['new_pseudo']!='' AND $_POST['password']!='')
 			{
-				if (!verifyPseudo($_POST['new_pseudo']))
+				$new_pseudo = strip_tags($_POST['new_pseudo']);
+				$password = strip_tags($_POST['password']);
+				$pseudo = $_POST['pseudo'];
+				$isPassCorrect = verifyConnect($pseudo);
+
+				if (password_verify($password, $isPassCorrect['password']))
 				{
-					$new_pseudo = strip_tags($_POST['new_pseudo']);
-					$pseudo = $_POST['pseudo'];
+					if (!verifyPseudo($_POST['new_pseudo']))
+					{
+						session_start();
+						$_SESSION['pseudo'] = $new_pseudo;
 
-					session_start();
-					$_SESSION['pseudo'] = $new_pseudo;
-
-					newPseudo($_SESSION['pseudo'], $pseudo);
+						newPseudo($_SESSION['pseudo'], $pseudo);
+					}
+					else
+					{
+						throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à votre <a href="index.php?link=admin_account">profil</a></p>');
+					}
 				}
 				else
 				{
-					throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à votre <a href="index.php?link=admin_account">profil</a></p>');
+					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à votre <a href="index.php?link=admin_account">profil</a></p>');
 				}
 			}
 		}

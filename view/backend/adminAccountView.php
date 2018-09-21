@@ -71,19 +71,40 @@
 	</fieldset>
 </form></p>
 
-<p><form action="index.php" method="POST">
-	<fieldset>
-		<legend>Supprimer un compte utilisateur</legend>
-		<p><label for="user_pseudo">Pseudo de l'utilisateur: </label>
-		<input type="text" name="user_pseudo" id="user_pseudo" maxlength="255" size="40" required/></p>
-		<p><label for="reasons_suppression">Motif de suppression:</label><br/>
-		<textarea name="reasons_suppression" id="reasons_suppression" placeholder="Limité à 255 caractères" maxlength="255" row="4" cols="40" required></textarea>
-		<p><label for="password">Merci de confirmer votre mot de passe: </label>
-	    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
-		<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
-	    <p><input type="submit" value="Supprimer"/></p>
-	</fieldset>
-</form></p>
+<?php
+
+	if (isset($_GET['admin']) AND $_GET['admin']=='delete_user')
+	{
+?>
+		<p>Souhaitez-vous vraiment procéder à la suppression de cette utilisateur ?</p>
+
+		<form action="index.php" method="POST">
+			<p><input type="radio" name="delete_user" value="confirm" id="confirm" /> <label for="confirm">Oui</label></p>
+		    <p><input type="radio" name="delete_user" value="cancel" id="cancel" /> <label for="cancel">Non</label></p>
+		    <input type="hidden" name="id" value="">
+			<input type="submit" value="Confirmer"/>
+		</form>
+<?php
+	}
+	else
+	{
+?>
+		<p><form action="index.php?admin=delete_user" method="POST">
+			<fieldset>
+				<legend>Supprimer un compte utilisateur</legend>
+				<p><label for="user_pseudo">Pseudo de l'utilisateur: </label>
+				<input type="text" name="user_pseudo" id="user_pseudo" maxlength="255" size="40" required/></p>
+				<p><label for="reasons_suppression">Motif de suppression:</label><br/>
+				<textarea name="reasons_suppression" id="reasons_suppression" placeholder="Limité à 255 caractères" maxlength="255" row="4" cols="40" required></textarea>
+				<p><label for="password">Merci de confirmer votre mot de passe: </label>
+			    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
+				<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
+			    <p><input type="submit" value="Supprimer"/></p>
+			</fieldset>
+		</form></p>
+<?php
+	}
+?>
 
 <?php $content = ob_get_clean(); ?>
 

@@ -408,6 +408,34 @@
 			}
 		}
 
+		//Vérifications pour changer d'adresse e-mail
+		elseif (isset($_POST['new_email'], $_POST['password'], $_POST['pseudo']))
+		{
+			if ($_POST['new_email']!='' AND $_POST['password']!='')
+			{
+				$new_email = strip_tags($_POST['new_email']);
+				$password = strip_tags($_POST['password']);
+				$pseudo = $_POST['pseudo'];
+				$isPassCorrect = verifyConnect($pseudo);
+
+				if (password_verify($password, $isPassCorrect['password']))
+				{
+					if (!verifyEmail($new_email))
+					{
+						newEmail($new_email, $pseudo);
+					}
+					else
+					{
+						throw new Exception('<p>L\'adresse e-mail indiqué existe déjà. Merci d\'en choisir une autre.<br/>Retour à votre <a href="index.php?link=admin_account">profil</a></p>');
+					}
+				}
+				else
+				{
+					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à votre <a href="index.php?link=admin_account">profil</a></p>');
+				}
+			}
+		}
+
 //SI RIEN NE CORRESPOND :
 
 		//Affichage par défaut (page d'accueil)

@@ -112,12 +112,12 @@
 			header($path);
 		}
 
-		public function changePassword($new_password, $pseudo)
+		public function changePassword($pass_hash, $pseudo)
 		{
 			$db = $this->dbConnect();
 
-			$changePassword = $db->prepare('UPDATE users SET password = :new_password WHERE pseudo = :pseudo');
-			$changePassword->execute(array('new_password' => $new_password, 'pseudo' => $pseudo));
+			$changePassword = $db->prepare('UPDATE users SET password = :pass_hash WHERE pseudo = :pseudo');
+			$changePassword->execute(array('pass_hash' => $pass_hash, 'pseudo' => $pseudo));
 
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account';
 			header($path);

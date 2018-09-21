@@ -213,7 +213,7 @@
 			}
 			else
 			{
-				throw new Exception('Le système de signalement de réinitialisation de mot de passe n\'est pas accessible pour le moment.<br/>Retour à la page de <a href="index.php">accueil</a></p>');
+				throw new Exception('Le système de réinitialisation de mot de passe n\'est pas accessible pour le moment.<br/>Retour à la page de <a href="index.php">accueil</a></p>');
 			}
 		}
 
@@ -432,6 +432,44 @@
 				else
 				{
 					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à votre <a href="index.php?link=admin_account">profil</a></p>');
+				}
+			}
+		}
+
+		//Vérifications pour changer de mot de passe
+		elseif (isset($_POST['old_password'], $_POST['change_password'], $_POST['confirm_change_password']))
+		{
+			if ($_POST['old_password']!='' AND $_POST['change_password']!='' AND $_POST['confirm_change_password']!='')
+			{
+				$old_password = strip_tags($_POST['old_password']);
+				$new_password = strip_tags($_POST['change_password']);
+				$confirm_new_password = strip_tags($_POST['confirm_change_password']);
+				$pseudo = $_POST['pseudo'];
+				$isPassCorrect = verifyConnect($pseudo);
+
+				if (password_verify($old_password, $isPassCorrect['password']))
+				{
+					if ($new_password==$confirm_new_password)
+					{
+						if (preg_match("#((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,255})#", $new_password))
+						{
+							$pass_hash = password_hash($new_password, PASSWORD_DEFAULT);
+
+							newPassword($pass_hash, $pseudo);
+						}
+						else
+						{
+							throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à votre <a href="index.php?link=admin_account">profil</a></p>');
+						}
+					}
+					else
+					{
+						throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à votre <a href="index.php?link=admin_account">profil</a></p>');
+					}
+				}
+				else
+				{
+					throw new Exception('<p>Le mot de passe indiqué comme étant votre ancien mot de passe n\'est pas correct.<br/>Retour à votre <a href="index.php?link=admin_account">profil</a></p>');
 				}
 			}
 		}

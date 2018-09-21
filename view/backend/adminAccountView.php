@@ -41,10 +41,10 @@
 		<legend>Changer de mot de passe</legend>
 		<p><label for="old_password">Ancien mot de passe: </label>
 		<input type="password" name="old_password" id="old_password" maxlength="255" size="40" required/></p>
-		<p><label for="new_password"> Nouveau mot de passe: </label>
-	    <input type="password" name="new_password" id="new_password" maxlength="255" size="40" required/></p>
-	    <p><label for="confirm_new_password"> Nouveau mot de passe: </label>
-	    <input type="password" name="confirm_new_password" id="confirm_new_password" maxlength="255" size="40" required/></p>
+		<p><label for="change_password"> Nouveau mot de passe: </label>
+	    <input type="password" name="change_password" id="change_password" maxlength="255" size="40" required/></p>
+	    <p><label for="confirm_change_password"> Nouveau mot de passe: </label>
+	    <input type="password" name="confirm_change_password" id="confirm_change_password" maxlength="255" size="40" required/></p>
 		<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
 	    <input type="submit" value="Soumettre"/></p>
 	</fieldset>

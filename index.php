@@ -105,15 +105,22 @@
 								{
 									if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email))
 									{
-										if(!verifyEmail($email))
+										if (!verifyEmail($email))
 										{
-											$pass_hash = password_hash($password, PASSWORD_DEFAULT);
+											if (!verifyBanned($email))
+											{
+												$pass_hash = password_hash($password, PASSWORD_DEFAULT);
 
-											registration($pseudo, $pass_hash, $email);
+												registration($pseudo, $pass_hash, $email);
+											}
+											else
+											{
+											throw new Exception('<p>L\'adresse e-mail renseignée fait l\'objet d\'un bannissement sur ce site. Merci d\'en indiqué une autre.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
+											}
 										}
 										else
 										{
-											throw new Exception('<p>L\'adresse e-mail renseigné existe déjà sur un autre compte. Merci d\'en indiqué une autre.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
+											throw new Exception('<p>L\'adresse e-mail renseignée existe déjà sur un autre compte. Merci d\'en indiqué une autre.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
 										}
 									}
 									else

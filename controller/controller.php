@@ -126,6 +126,14 @@
 		return $avaibleEmail;
 	}
 
+	function verifyBanned($email)
+	{
+		$verifyBanned = new BannedManager();
+		$avaibleAccount = $verifyBanned->checkBanned($email);
+
+		return $avaibleAccount;
+	}
+
 	function registration($pseudo, $pass_hash, $email)
 	{
 		$registration = new UsersManager();

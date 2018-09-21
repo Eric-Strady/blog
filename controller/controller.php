@@ -421,3 +421,9 @@
 		$newEmail = new UsersManager();
 		$newEmail->changeEmail($new_email, $pseudo);
 	}
+
+	function newPassword($new_password, $pseudo)
+	{
+		$newPassword = new UsersManager();
+		$newPassword->changePassword($new_password, $pseudo);
+	}

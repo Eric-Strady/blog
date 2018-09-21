@@ -4,17 +4,6 @@
 
 	class UsersManager extends \Eric\Blog\Model\Manager
 	{
-		public function getEmail($pseudo)
-		{
-			$db = $this->dbConnect();
-
-			$req = $db->prepare('SELECT email FROM users WHERE pseudo = :pseudo ');
-			$req->execute(array('pseudo' => $pseudo));
-			$getEmail = $req->fetch();
-
-			return $getEmail;
-		}
-
 		public function checkPseudo($pseudo)
 		{
 			$db = $this->dbConnect();

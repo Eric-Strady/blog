@@ -70,6 +70,17 @@
 			header($path);
 		}
 
+		public function getEmail($pseudo)
+		{
+			$db = $this->dbConnect();
+
+			$req = $db->prepare('SELECT email FROM users WHERE pseudo = :pseudo ');
+			$req->execute(array('pseudo' => $pseudo));
+			$getEmail = $req->fetch();
+
+			return $getEmail;
+		}
+
 		public function deleteUser($pseudo)
 		{
 			$db = $this->dbConnect();

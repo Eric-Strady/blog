@@ -37,7 +37,7 @@
 			header($path);
 		}
 
-		public function changePseudo($new_pseudo, $pseudo)
+		public function changePseudoAdmin($new_pseudo, $pseudo)
 		{
 			$db = $this->dbConnect();
 
@@ -48,7 +48,7 @@
 			header($path);
 		}
 
-		public function changeEmail($new_email, $pseudo)
+		public function changeEmailAdmin($new_email, $pseudo)
 		{
 			$db = $this->dbConnect();
 
@@ -59,7 +59,7 @@
 			header($path);
 		}
 
-		public function changePassword($pass_hash, $pseudo)
+		public function changePasswordAdmin($pass_hash, $pseudo)
 		{
 			$db = $this->dbConnect();
 
@@ -68,17 +68,6 @@
 
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account&success=password';
 			header($path);
-		}
-
-		public function getEmail($pseudo)
-		{
-			$db = $this->dbConnect();
-
-			$req = $db->prepare('SELECT email FROM users WHERE pseudo = :pseudo ');
-			$req->execute(array('pseudo' => $pseudo));
-			$getEmail = $req->fetch();
-
-			return $getEmail;
 		}
 
 		public function deleteUser($pseudo)

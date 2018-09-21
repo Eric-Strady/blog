@@ -36,8 +36,8 @@
 		<p><form action="index.php" method="POST">
 			<fieldset>
 				<legend>Changer de pseudo</legend>
-				<p><label for="new_pseudo">Nouveau pseudo: </label>
-				<input type="text" name="new_pseudo" id="new_pseudo" maxlength="255" size="40" required/></p>
+				<p><label for="new_pseudo_admin">Nouveau pseudo: </label>
+				<input type="text" name="new_pseudo_admin" id="new_pseudo_admin" maxlength="255" size="40" required/></p>
 				<p><label for="password">Merci de confirmer votre mot de passe: </label>
 			    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
 				<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
@@ -63,8 +63,8 @@
 		<p><form action="index.php" method="POST">
 			<fieldset>
 				<legend>Changer d'adresse e-mail</legend>
-				<p><label for="new_email">Nouvelle adresse e-mail: </label>
-				<input type="text" name="new_email" id="new_email" maxlength="255" size="40" required/></p>
+				<p><label for="new_email_admin">Nouvelle adresse e-mail: </label>
+				<input type="text" name="new_email_admin" id="new_email_admin" maxlength="255" size="40" required/></p>
 				<p><label for="password">Merci de confirmer votre mot de passe: </label>
 			    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
 				<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
@@ -90,8 +90,8 @@
 		<p><form action="index.php" method="POST">
 			<fieldset>
 				<legend>Changer de mot de passe</legend>
-				<p><label for="old_password">Ancien mot de passe: </label>
-				<input type="password" name="old_password" id="old_password" maxlength="255" size="40" required/></p>
+				<p><label for="old_password_admin">Ancien mot de passe: </label>
+				<input type="password" name="old_password_admin" id="old_password_admin" maxlength="255" size="40" required/></p>
 				<p><label for="change_password">Nouveau mot de passe *: </label>
 			    <input type="password" name="change_password" id="change_password" maxlength="255" size="40" required/></p>
 			    <p><label for="confirm_change_password">Confirmez votre nouveau mot de passe: </label>
@@ -156,8 +156,8 @@
 		<p><form action="index.php" method="POST">
 			<fieldset>
 				<legend>Supprimer son compte</legend>
-				<p><label for="password">Merci de confirmer votre mot de passe: </label>
-			    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
+				<p><label for="password_admin">Merci de confirmer votre mot de passe: </label>
+			    <input type="password" name="password_admin" id="password_admin" maxlength="255" size="40" required/></p>
 				<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
 			    <p><input type="submit" value="Supprimer"/></p>
 			</fieldset>

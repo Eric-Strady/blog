@@ -89,4 +89,15 @@
 			$changePassword = $db->prepare('UPDATE users SET password = :password WHERE email = :email');
 			$changePassword->execute(array('password' => $password, 'email' => $email));
 		}
+
+		public function deleteAccount($id)
+		{
+			$db = $this->dbConnect();
+
+			$deleteAccount = $db->prepare('DELETE FROM users WHERE id = :id');
+			$deleteAccount->execute(array('id' => $id));
+
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=deconnexion';
+			header($path);
+		}
 	}

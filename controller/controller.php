@@ -236,7 +236,7 @@
 		mail($to, $subject, $message, $header);
 
 		$password = password_hash($newPassword, PASSWORD_DEFAULT);
-		$usersManager->changePassword($password, $email);
+		$usersManager->forgottenPassword($password, $email);
 
 		signinLink();
 	}

@@ -82,7 +82,7 @@
 			return $isOne;
 		}
 
-		public function changePassword($password, $email)
+		public function forgottenPassword($password, $email)
 		{
 			$db = $this->dbConnect();
 

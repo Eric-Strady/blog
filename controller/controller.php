@@ -243,6 +243,13 @@
 		signinLink();
 	}
 
+	//Lien vers la page du profil administrateur + paramétrage du profil
+	function confirmDeleteAccount($id)
+	{
+		$confirmDeleteAccount = new UsersManager();
+		$confirmDeleteAccount->deleteAccount($id);
+	}
+
 //BACKEND :
 
 	//Affichage liste des posts + pagination pour adminView.php

@@ -85,10 +85,10 @@
 		{
 			$db = $this->dbConnect();
 
-			$deleteUser = $db->prepare('DELETE FROM users WHERE pseudo = :$pseudo');
+			$deleteUser = $db->prepare('DELETE FROM users WHERE pseudo = :pseudo');
 			$deleteUser->execute(array('pseudo' => $pseudo));
 
-			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account&succes=user_suppression';
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account&success=user_suppression';
 			header($path);
 		}
 	}

@@ -5,12 +5,14 @@
 	require_once('model/UsersManager.php');
 	require_once('model/AdminManager.php');
 	require_once('model/WarningManager.php');
+	require_once('model/BannedManager.php');
 
 	use \Eric\Blog\Model\Posts\PostsManager;
 	use \Eric\Blog\Model\Comments\CommentsManager;
 	use \Eric\Blog\Model\Users\UsersManager;
 	use \Eric\Blog\Model\Admin\AdminManager;
 	use \Eric\Blog\Model\Warning\WarningManager;
+	use \Eric\Blog\Model\Banned\BannedManager;
 
 //FRONTEND :
 
@@ -450,4 +452,46 @@
 	{
 		$newPassword = new AdminManager();
 		$newPassword->changePassword($pass_hash, $pseudo);
+	}
+
+	function selectEmail($pseudo)
+	{
+		$selectEmail = new AdminManager();
+		$user_email = $selectEmail->getEmail($pseudo);
+
+		return $user_email;
+	}
+
+	function bannedUser($pseudo, $email, $reasons)
+	{
+		$bannedUser = new BannedManager();
+		$deleteUser = new AdminManager();
+
+		$bannedUser->addBanned($pseudo, $email, $reasons);
+
+		$to = 'strady60@gmail.com';
+		$subject = 'Suppression de votre compte utilisateur';
+		$message = '
+			<html>
+				<head></head>
+				<body>
+					<div align="center">
+						<h3>Suppression de votre compte !</h3>
+						<p>Bonjour,<br/>
+						Votre compte utilisateur sur le blog de Jean Forteroche a fait l\'objet d\'une suppression par l\'administrateur.</p>
+						<p>En voici les raisons:<br/>
+						"' . $reasons . '"</p>
+					</div>
+				</body>
+			</html>
+		';
+		$header = "From: \"Jean Forteroche\"<test.coxus@gmail.com>\n";
+		$header.= "Reply-to: \"Jean Forteroche\" <test.coxus@gmail.com>\n";
+		$header.= "MIME-Version: 1.0\n";
+		$header.= "Content-Type: text/html; charset=\"UTF-8\"";
+		$header.= "Content-Transfer-Encoding: 8bit";
+
+		mail($to, $subject, $message, $header);
+
+		$deleteUser->deleteUser($pseudo);
 	}

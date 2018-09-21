@@ -23,6 +23,10 @@
 	{
 		echo '<p>Votre mot de passe a bien été modifié !</p>';
 	}
+	elseif (isset($_GET['link'], $_GET['success']) AND $_GET['success']=='user_suppression')
+	{
+		echo '<p>Le compte utilisateur a bien été supprimé !</p>';
+	}
 ?>
 
 <p><form action="index.php" method="POST">

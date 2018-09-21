@@ -36,4 +36,48 @@
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin';
 			header($path);
 		}
+
+		public function changePseudo($new_pseudo, $pseudo)
+		{
+			$db = $this->dbConnect();
+
+			$changePseudo = $db->prepare('UPDATE users SET pseudo = :new_pseudo WHERE pseudo = :pseudo');
+			$changePseudo->execute(array('new_pseudo' => $new_pseudo, 'pseudo' => $pseudo));
+
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account';
+			header($path);
+		}
+
+		public function changeEmail($new_email, $pseudo)
+		{
+			$db = $this->dbConnect();
+
+			$changePseudo = $db->prepare('UPDATE users SET email = :new_email WHERE pseudo = :pseudo');
+			$changePseudo->execute(array('new_email' => $new_email, 'pseudo' => $pseudo));
+
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account&success=email';
+			header($path);
+		}
+
+		public function changePassword($pass_hash, $pseudo)
+		{
+			$db = $this->dbConnect();
+
+			$changePassword = $db->prepare('UPDATE users SET password = :pass_hash WHERE pseudo = :pseudo');
+			$changePassword->execute(array('pass_hash' => $pass_hash, 'pseudo' => $pseudo));
+
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account&success=password';
+			header($path);
+		}
+
+		public function deleteUser($pseudo)
+		{
+			$db = $this->dbConnect();
+
+			$deleteUser = $db->prepare('DELETE FROM users WHERE pseudo = :$pseudo');
+			$deleteUser->execute(array('pseudo' => $pseudo));
+
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account&succes=user_suppression';
+			header($path);
+		}
 	}

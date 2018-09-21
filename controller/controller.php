@@ -412,13 +412,13 @@
 
 	function newPseudo($new_pseudo, $pseudo)
 	{
-		$newPseudo = new UsersManager();
+		$newPseudo = new AdminManager();
 		$newPseudo->changePseudo($new_pseudo, $pseudo);
 	}
 
 	function newEmail($new_email, $pseudo)
 	{
-		$newEmail = new UsersManager();
+		$newEmail = new AdminManager();
 
 		$to = 'strady60@gmail.com';
 		$subject = 'Changement d\'adresse e-mail';
@@ -448,6 +448,6 @@
 
 	function newPassword($pass_hash, $pseudo)
 	{
-		$newPassword = new UsersManager();
+		$newPassword = new AdminManager();
 		$newPassword->changePassword($pass_hash, $pseudo);
 	}

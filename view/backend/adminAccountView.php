@@ -68,9 +68,22 @@
 	    	<li>Utiliser au minimum une majuscule</li>
 	    	<li>Utiliser au minimum un caractère spécial</li>
 	    </ul></p>
-
 	</fieldset>
-</form>
+</form></p>
+
+<p><form action="index.php" method="POST">
+	<fieldset>
+		<legend>Supprimer un compte utilisateur</legend>
+		<p><label for="user_pseudo">Pseudo de l'utilisateur: </label>
+		<input type="text" name="user_pseudo" id="user_pseudo" maxlength="255" size="40" required/></p>
+		<p><label for="reasons_suppression">Motif de suppression:</label><br/>
+		<textarea name="reasons_suppression" id="reasons_suppression" placeholder="Limité à 255 caractères" maxlength="255" row="4" cols="40" required></textarea>
+		<p><label for="password">Merci de confirmer votre mot de passe: </label>
+	    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
+		<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
+	    <p><input type="submit" value="Supprimer"/></p>
+	</fieldset>
+</form></p>
 
 <?php $content = ob_get_clean(); ?>
 

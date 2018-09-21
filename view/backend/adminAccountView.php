@@ -12,9 +12,9 @@
 
 <h2>Paramètres de votre compte:</h2>
 
-<form action="index.php" method="POST">
+<p><form action="index.php" method="POST">
 	<fieldset>
-		<legend>Changer mon pseudo</legend>
+		<legend>Changer de pseudo</legend>
 		<p><label for="new_pseudo">Nouveau pseudo: </label>
 		<input type="text" name="new_pseudo" id="new_pseudo" maxlength="255" size="40" required/></p>
 		<p><label for="password"> Merci de confirmer votre mot de passe: </label>
@@ -22,7 +22,19 @@
 		<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
 	    <input type="submit" value="Soumettre"/></p>
 	</fieldset>
-</form>
+</form></p>
+
+<p><form action="index.php" method="POST">
+	<fieldset>
+		<legend>Changer d'adresse e-mail</legend>
+		<p><label for="new_email">Nouvelle adresse e-mail: </label>
+		<input type="text" name="new_email" id="new_email" maxlength="255" size="40" required/></p>
+		<p><label for="password"> Merci de confirmer votre mot de passe: </label>
+	    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
+		<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
+	    <input type="submit" value="Soumettre"/></p>
+	</fieldset>
+</form></p>
 
 <?php $content = ob_get_clean(); ?>
 

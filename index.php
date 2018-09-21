@@ -505,6 +505,42 @@
 			}
 		}
 
+		//Vérifications pour afficher la demande de suppression du compte
+		elseif (isset($_POST['password'], $_POST['pseudo']))
+		{
+			if ($_POST['password']!='' AND $_POST['pseudo']!='')
+			{
+				$password = strip_tags($_POST['password']);
+				$isPassCorrect = verifyConnect($_POST['pseudo']);
+
+				if (password_verify($password, $isPassCorrect['password']))
+				{
+					deleteAdminAccount();
+				}
+				else
+				{
+					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à votre <a href="index.php?link=admin_account">profil</a></p>');
+				}
+			}
+		}
+
+		//Vérifications pour supprimer son compte
+		elseif (isset($_POST['delete_admin_account'], $_POST['pseudo']))
+		{
+			if ($_POST['delete_admin_account']=='confirm')
+			{
+				confirmDeleteAccount($_POST['pseudo']);
+			}
+			elseif ($_POST['delete_admin_account']=='cancel')
+			{
+				adminAccountLink();
+			}
+			else
+			{
+				throw new Exception('Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
+			}
+		}
+
 //SI RIEN NE CORRESPOND :
 
 		//Affichage par défaut (page d'accueil)

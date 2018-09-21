@@ -14,7 +14,7 @@
 	use \Eric\Blog\Model\Warning\WarningManager;
 	use \Eric\Blog\Model\Banned\BannedManager;
 
-//FRONTEND :
+																					//FRONTEND :
 
 	//Affichage des posts + pagination pour listPostsView
 	function listPosts()
@@ -244,13 +244,13 @@
 	}
 
 	//Lien vers la page du profil administrateur + paramétrage du profil
-	function confirmDeleteAccount($id)
+	function confirmDeleteAccount($pseudo)
 	{
 		$confirmDeleteAccount = new UsersManager();
-		$confirmDeleteAccount->deleteAccount($id);
+		$confirmDeleteAccount->deleteAccount($pseudo);
 	}
 
-//BACKEND :
+																					//BACKEND :
 
 	//Affichage liste des posts + pagination pour adminView.php
 	function listPostsAdmin()
@@ -501,4 +501,14 @@
 		mail($to, $subject, $message, $header);
 
 		$deleteUser->deleteUser($pseudo);
+	}
+
+	function deleteAdminAccount()
+	{
+		$countWarning = new WarningManager();
+		$count = $countWarning->countWarning();
+		$nbWarning = $count->fetch();
+		$count->closeCursor();
+
+		require('view/backend/deleteAdminAccountView.php');
 	}

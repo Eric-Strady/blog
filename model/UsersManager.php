@@ -90,12 +90,12 @@
 			$changePassword->execute(array('password' => $password, 'email' => $email));
 		}
 
-		public function deleteAccount($id)
+		public function deleteAccount($pseudo)
 		{
 			$db = $this->dbConnect();
 
-			$deleteAccount = $db->prepare('DELETE FROM users WHERE id = :id');
-			$deleteAccount->execute(array('id' => $id));
+			$deleteAccount = $db->prepare('DELETE FROM users WHERE pseudo = :pseudo');
+			$deleteAccount->execute(array('pseudo' => $pseudo));
 
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=deconnexion';
 			header($path);

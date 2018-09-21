@@ -94,7 +94,7 @@
 		<legend>Supprimer son compte</legend>
 		<p><label for="password">Merci de confirmer votre mot de passe: </label>
 	    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
-		<input type="hidden" name="pseudo" value="<?= $_SESSION['id'] ?>">
+		<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
 	    <p><input type="submit" value="Supprimer"/></p>
 	</fieldset>
 </form></p>

@@ -100,4 +100,15 @@
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account';
 			header($path);
 		}
+
+		public function changeEmail($new_email, $pseudo)
+		{
+			$db = $this->dbConnect();
+
+			$changePseudo = $db->prepare('UPDATE users SET email = :new_email WHERE pseudo = :pseudo');
+			$changePseudo->execute(array('new_email' => $new_email, 'pseudo' => $pseudo));
+
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account';
+			header($path);
+		}
 	}

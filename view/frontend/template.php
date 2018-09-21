@@ -28,6 +28,7 @@
 				}
 				else
 				{
+					echo '<li><a href="index.php?link=user_account">Mon profil</a></li>';
 					echo '<li><a href="index.php?link=deconnexion">Déconnexion</a></li>';
 				}
 			?>

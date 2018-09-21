@@ -38,6 +38,10 @@
 			{
 				adminAccountLink();
 			}
+			elseif ($_GET['link']=='user_account')
+			{
+				userAccountLink();
+			}
 			elseif ($_GET['link']=='deconnexion')
 			{
 				signOutLink();

@@ -252,6 +252,11 @@
 	}
 
 	//Lien vers la page du profil administrateur + paramétrage du profil
+	function userAccountLink()
+	{
+		require('view/frontend/userAccountView.php');
+	}
+
 	function confirmDeleteAccount($pseudo)
 	{
 		$confirmDeleteAccount = new UsersManager();

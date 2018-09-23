@@ -21,7 +21,7 @@
 					echo '<li><a href="index.php?link=inscription">Inscription</a></li>';
 					echo '<li><a href="index.php?link=connexion">Connexion</a></li>';
 				}
-				elseif ($_SESSION['pseudo']=='Coxus' OR $_SESSION['pseudo']=='coxus@gmail.com')
+				elseif (isset($_SESSION['admin']) AND $_SESSION['admin']=='ok')
 				{
 					echo '<li><a href="index.php?link=admin">Retour à l\'interface d\'administration</a></li>';
 					echo '<li><a href="index.php?link=deconnexion">Déconnexion</a></li>';

@@ -26,12 +26,12 @@
 			return $checkEmail;
 		}
 
-		public function addUser($pseudo, $pass_hash, $email, $registration_key, $confirm)
+		public function addUser($pseudo, $pass_hash, $email, $registration_key, $confirm, $admin)
 		{
 			$db = $this->dbConnect();
 
-			$addUser = $db->prepare('INSERT INTO users( pseudo, password, email, registration_date, registration_key, confirm) VALUES (:pseudo, :password, :email, NOW(), :key, :confirm)');
-			$addUser->execute(array('pseudo' => $pseudo, 'password' => $pass_hash, 'email' => $email, 'key' => $registration_key, 'confirm' => $confirm));
+			$addUser = $db->prepare('INSERT INTO users( pseudo, password, email, registration_date, registration_key, confirm, admin) VALUES (:pseudo, :password, :email, NOW(), :key, :confirm, :admin)');
+			$addUser->execute(array('pseudo' => $pseudo, 'password' => $pass_hash, 'email' => $email, 'key' => $registration_key, 'confirm' => $confirm, 'admin' => $admin));
 
 			setcookie('pseudo', $pseudo, time()+120, null, null, false, true);
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=connexion';
@@ -42,7 +42,7 @@
 		{
 			$db = $this->dbConnect();
 
-			$req = $db->prepare('SELECT id, pseudo, password FROM users WHERE pseudo = :pseudo OR email = :email');
+			$req = $db->prepare('SELECT id, pseudo, password, admin FROM users WHERE pseudo = :pseudo OR email = :email');
 			$req->execute(array('pseudo' => $id_connect, 'email' => $id_connect));
 			$checkConnect = $req->fetch();
 

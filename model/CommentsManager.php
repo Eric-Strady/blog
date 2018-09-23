@@ -60,4 +60,12 @@
 			$deleteComment = $db->prepare('DELETE FROM comments WHERE id = :id');
 			$deleteComment->execute(array('id' => $id_comment));
 		}
+
+		public function deleteComments($pseudo)
+		{
+			$db = $this->dbConnect();
+
+			$deleteComments = $db->prepare('DELETE FROM comments WHERE author = :pseudo');
+			$deleteComments->execute(array('pseudo' => $pseudo));
+		}
 	}

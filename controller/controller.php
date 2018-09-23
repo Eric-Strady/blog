@@ -171,7 +171,8 @@
 		mail($to, $subject, $message, $header);
 
 		$confirm = 0;
-		$registration->addUser($pseudo, $pass_hash, $email, $registration_key, $confirm);
+		$admin = 0;
+		$registration->addUser($pseudo, $pass_hash, $email, $registration_key, $confirm, $admin);
 	}
 
 	//Vérifications pour la connexion d'un utilisateur + envoi nouveau mot de passe
@@ -578,5 +579,8 @@
 	function confirmDeleteUserAccount($pseudo)
 	{
 		$confirmDeleteUserAccount = new UsersManager();
+		$deleteAsloComments = new CommentsManager();
+
 		$confirmDeleteUserAccount->deleteAccount($pseudo);
+		$deleteAsloComments->deleteComments($pseudo);
 	}

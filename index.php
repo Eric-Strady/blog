@@ -178,26 +178,27 @@
 			{
 				$id_connect = strip_tags($_POST['id_connect']);
 				$pass_connect = strip_tags($_POST['pass_connect']);
-				$isPassCorrect = verifyConnect($id_connect);
+				$connect = verifyConnect($id_connect);
 				$isConfirmCorrect = verifyConfirm($id_connect);
 
 				if ($isConfirmCorrect['confirm']==1)
 				{
-					if (password_verify($pass_connect, $isPassCorrect['password']))
+					if (password_verify($pass_connect, $connect['password']))
 					{
-						if ($_POST['id_connect']=='Coxus' OR $_POST['id_connect']=='coxus' OR $_POST['id_connect']=='coxus@gmail.com')
+						if ($connect['admin']==1)
 						{
 							session_start();
-					        $_SESSION['id'] = $isPassCorrect['id'];
-					        $_SESSION['pseudo'] = $isPassCorrect['pseudo'];
+					        $_SESSION['id'] = $connect['id'];
+					        $_SESSION['pseudo'] = $connect['pseudo'];
+					        $_SESSION['admin'] = 'ok';
 
 					        listPostsAdmin();
 						}
 						else
 						{
 							session_start();
-					        $_SESSION['id'] = $isPassCorrect['id'];
-					        $_SESSION['pseudo'] = $isPassCorrect['pseudo'];
+					        $_SESSION['id'] = $connect['id'];
+					        $_SESSION['pseudo'] = $connect['pseudo'];
 
 					        header('Location: index.php');
 						}

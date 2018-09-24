@@ -57,6 +57,31 @@
 ?>
 
 <?php
+	if (isset($_GET['form']) AND $_GET['form']=='avatar')
+	{
+?>
+		<p><form action="index.php" method="POST" enctype="multipart/form-data">
+			<fieldset>
+				<legend>Changer d'avatar</legend>
+				<p><label for="avatar">Sélectionner une image (max 200Ko):</label></p>
+				<p><input type="file" name="avatar" required/></p>
+				<input type="hidden" name="id" value="<?= $_SESSION['id'] ?>"/>
+			    <p><input type="submit" value="Soumettre"/></p>
+			</fieldset>
+		</form></p>
+<?php
+	}
+	else
+	{
+?>
+		<p><form action="index.php" method="POST">
+	 		<button type="submit" formaction="http://127.0.0.1/blog/index.php?link=admin_account&form=avatar">Changer d'avatar</button>
+		</form></p>
+<?php
+	}
+?>
+
+<?php
 	if (isset($_GET['form']) AND $_GET['form']=='email')
 	{
 ?>

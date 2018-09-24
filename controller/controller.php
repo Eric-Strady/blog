@@ -423,22 +423,15 @@
 		require('view/backend/adminAccountView.php');
 	}
 
-	function newPseudoAdmin($new_pseudo, $pseudo)
+	function newPseudo($new_pseudo, $pseudo)
 	{
-		$newPseudoAdmin = new AdminManager();
-		$newPseudoAdmin->changePseudoAdmin($new_pseudo, $pseudo);
+		$newPseudo = new UsersManager();
+		$newPseudo->changePseudo($new_pseudo, $pseudo);
 	}
 
 	function thumbNails($id, $extension_upload)
 	{
-		if ($extension_upload == 'jpg' OR $extension_upload == 'jpeg')
-		{
-			$origin = imagecreatefromjpeg('public/images/avatars/' . $id . '.' . $extension_upload);
-		}
-		elseif ($extension_upload == 'png')
-		{
-			$origin = imagecreatefrompng('public/images/avatars/' . $id . '.' . $extension_upload);
-		}
+		$origin = imagecreatefrompng('public/images/avatars/' . $id . '.png');
 
 		$destination = imagecreatetruecolor(50, 50);
 
@@ -449,26 +442,20 @@
 
 		imagecopyresampled($destination, $origin, 0, 0, 0, 0, $destination_width, $destination_height, $origin_width, $origin_height);
 
-		if ($extension_upload == 'jpg' OR $extension_upload == 'jpeg')
-		{
-			imagejpeg($destination, 'public/images/thumbnails/' . $id . '.' . $extension_upload);
-		}
-		elseif ($extension_upload == 'png')
-		{
-			imagepng($destination, 'public/images/thumbnails/' . $id . '.' . $extension_upload);
-		}
+		imagepng($destination, 'public/images/thumbnails/' . $id . '.png');
 
 		$countWarning = new WarningManager();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
 
-		require('view/backend/adminAccountView.php');
+		$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account';
+		header($path);
 	}
 
-	function newEmailAdmin($new_email, $pseudo)
+	function newEmail($new_email, $pseudo)
 	{
-		$newEmailAdmin = new AdminManager();
+		$newEmail = new UsersManager();
 
 		$to = 'strady60@gmail.com';
 		$subject = 'Changement d\'adresse e-mail';
@@ -493,13 +480,13 @@
 
 		mail($to, $subject, $message, $header);
 
-		$newEmailAdmin->changeEmailAdmin($new_email, $pseudo);
+		$newEmail->changeEmail($new_email, $pseudo);
 	}
 
-	function newPasswordAdmin($pass_hash, $pseudo)
+	function newPassword($pass_hash, $pseudo)
 	{
-		$newPasswordAdmin = new AdminManager();
-		$newPasswordAdmin->changePasswordAdmin($pass_hash, $pseudo);
+		$newPassword = new UsersManager();
+		$newPassword->changePassword($pass_hash, $pseudo);
 	}
 
 	function selectEmail($pseudo)
@@ -544,7 +531,7 @@
 		$deleteUser->deleteUser($pseudo);
 	}
 
-	function deleteAdminAccount()
+	function confirmDeleteAccount()
 	{
 		$countWarning = new WarningManager();
 		$count = $countWarning->countWarning();
@@ -554,70 +541,14 @@
 		require('view/backend/deleteAdminAccountView.php');
 	}
 
-	function confirmDeleteAdminAccount($pseudo)
+	function eraseAccount($pseudo, $id)
 	{
-		$confirmDeleteAdminAccount = new UsersManager();
-		$confirmDeleteAdminAccount->deleteAccount($pseudo);
-	}
-
-	//Lien vers la page du profil + paramétrages du compte (utilisateur)
-	function userAccountLink()
-	{
-		require('view/frontend/userAccountView.php');
-	}
-
-	function newPseudoUser($new_pseudo, $pseudo)
-	{
-		$newPseudoUser = new UsersManager();
-		$newPseudoUser->changePseudoUser($new_pseudo, $pseudo);
-	}
-
-	function newEmailUser($new_email, $pseudo)
-	{
-		$newEmailUser = new UsersManager();
-
-		$to = 'strady60@gmail.com';
-		$subject = 'Changement d\'adresse e-mail';
-		$message = '
-			<html>
-				<head></head>
-				<body>
-					<div align="center">
-						<h3>Un petit pas pour l\'homme mais un grand pas pour le numérique !</h3>
-						<p>Bravo ! La modification de votre adresse e-mail a bien été prise en compte.</p>
-						<p>Lors de votre prochaine connexion vous pourrez renseigner cette adresse e-mail comme identifiant ;)</p>
-						<p>A bientôt sur le <a href="127.0.0.1/blog/index.php?link=connexion" target="_blank">blog de Jean Forteroche</a></p>
-					</div>
-				</body>
-			</html>
-		';
-		$header = "From: \"Jean Forteroche\"<test.coxus@gmail.com>\n";
-		$header.= "Reply-to: \"Jean Forteroche\" <test.coxus@gmail.com>\n";
-		$header.= "MIME-Version: 1.0\n";
-		$header.= "Content-Type: text/html; charset=\"UTF-8\"";
-		$header.= "Content-Transfer-Encoding: 8bit";
-
-		mail($to, $subject, $message, $header);
-
-		$newEmailUser->changeEmailUser($new_email, $pseudo);
-	}
-
-	function newPasswordUser($pass_hash, $pseudo)
-	{
-		$newPasswordUser = new UsersManager();
-		$newPasswordUser->changePasswordUser($pass_hash, $pseudo);
-	}
-
-	function deleteUserAccount()
-	{
-		require('view/frontend/deleteUserAccountView.php');
-	}
-
-	function confirmDeleteUserAccount($pseudo)
-	{
-		$confirmDeleteUserAccount = new UsersManager();
+		$eraseAccount = new UsersManager();
 		$deleteAsloComments = new CommentsManager();
 
-		$confirmDeleteUserAccount->deleteAccount($pseudo);
+		$eraseAccount->deleteAccount($pseudo);
 		$deleteAsloComments->deleteComments($pseudo);
+
+		unlink('public/images/avatars/' . $id . '.png');
+		unlink('public/images/thumbnails/' . $id . '.png');
 	}

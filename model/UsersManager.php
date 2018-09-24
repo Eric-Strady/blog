@@ -90,36 +90,36 @@
 			$changePassword->execute(array('password' => $password, 'email' => $email));
 		}
 
-		public function changePseudoUser($new_pseudo, $pseudo)
+		public function changePseudo($new_pseudo, $pseudo)
 		{
 			$db = $this->dbConnect();
 
 			$changePseudo = $db->prepare('UPDATE users SET pseudo = :new_pseudo WHERE pseudo = :pseudo');
 			$changePseudo->execute(array('new_pseudo' => $new_pseudo, 'pseudo' => $pseudo));
 
-			$path = 'Location: http://127.0.0.1/blog/index.php?link=user_account';
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account';
 			header($path);
 		}
 
-		public function changeEmailUser($new_email, $pseudo)
+		public function changeEmail($new_email, $pseudo)
 		{
 			$db = $this->dbConnect();
 
 			$changePseudo = $db->prepare('UPDATE users SET email = :new_email WHERE pseudo = :pseudo');
 			$changePseudo->execute(array('new_email' => $new_email, 'pseudo' => $pseudo));
 
-			$path = 'Location: http://127.0.0.1/blog/index.php?link=user_account&success=email';
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account&success=email';
 			header($path);
 		}
 
-		public function changePasswordUser($pass_hash, $pseudo)
+		public function changePassword($pass_hash, $pseudo)
 		{
 			$db = $this->dbConnect();
 
 			$changePassword = $db->prepare('UPDATE users SET password = :pass_hash WHERE pseudo = :pseudo');
 			$changePassword->execute(array('pass_hash' => $pass_hash, 'pseudo' => $pseudo));
 
-			$path = 'Location: http://127.0.0.1/blog/index.php?link=user_account&success=password';
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account&success=password';
 			header($path);
 		}
 

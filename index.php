@@ -389,13 +389,13 @@
 			}
 		}
 
-																				//PROFIL ADMINISTRATEUR:
+																				//PROFIL:
 		//Vérifications pour changer de pseudo
-		elseif (isset($_POST['new_pseudo_admin'], $_POST['password'], $_POST['pseudo']))
+		elseif (isset($_POST['new_pseudo'], $_POST['password'], $_POST['pseudo']))
 		{
-			if ($_POST['new_pseudo_admin']!='' AND $_POST['password']!='')
+			if ($_POST['new_pseudo']!='' AND $_POST['password']!='')
 			{
-				$new_pseudo = strip_tags($_POST['new_pseudo_admin']);
+				$new_pseudo = strip_tags($_POST['new_pseudo']);
 				$password = strip_tags($_POST['password']);
 				$pseudo = $_POST['pseudo'];
 
@@ -403,12 +403,12 @@
 
 				if (password_verify($password, $isPassCorrect['password']))
 				{
-					if (!verifyPseudo($_POST['new_pseudo_admin']))
+					if (!verifyPseudo($_POST['new_pseudo']))
 					{
 						session_start();
 						$_SESSION['pseudo'] = $new_pseudo;
 
-						newPseudoAdmin($_SESSION['pseudo'], $pseudo);
+						newPseudo($_SESSION['pseudo'], $pseudo);
 					}
 					else
 					{
@@ -431,12 +431,14 @@
 				{
 					$data_files = pathinfo($_FILES['avatar']['name']);
 					$extension_upload = $data_files['extension'];
-					$extension_authorized = array('jpg', 'jpeg', 'png');
 
 					$id = $_POST['id'];
 
-					if (in_array($extension_upload, $extension_authorized))
+					if ($extension_upload=='png')
 					{
+						session_start();
+						$_SESSION['id'] = $id;
+
 						move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/images/avatars/' . $id . '.' . $extension_upload);
 						thumbNails($id, $extension_upload);
 					}
@@ -457,11 +459,11 @@
 		}
 
 		//Vérifications pour changer d'adresse e-mail
-		elseif (isset($_POST['new_email_admin'], $_POST['password'], $_POST['pseudo']))
+		elseif (isset($_POST['new_email'], $_POST['password'], $_POST['pseudo']))
 		{
-			if ($_POST['new_email_admin']!='' AND $_POST['password']!='')
+			if ($_POST['new_email']!='' AND $_POST['password']!='')
 			{
-				$new_email = strip_tags($_POST['new_email_admin']);
+				$new_email = strip_tags($_POST['new_email']);
 				$password = strip_tags($_POST['password']);
 				$pseudo = $_POST['pseudo'];
 
@@ -471,7 +473,7 @@
 				{
 					if (!verifyEmail($new_email))
 					{
-						newEmailAdmin($new_email, $pseudo);
+						newEmail($new_email, $pseudo);
 					}
 					else
 					{
@@ -486,11 +488,11 @@
 		}
 
 		//Vérifications pour changer de mot de passe
-		elseif (isset($_POST['old_password_admin'], $_POST['change_password'], $_POST['confirm_change_password'], $_POST['pseudo']))
+		elseif (isset($_POST['old_password'], $_POST['change_password'], $_POST['confirm_change_password'], $_POST['pseudo']))
 		{
-			if ($_POST['old_password_admin']!='' AND $_POST['change_password']!='' AND $_POST['confirm_change_password']!='')
+			if ($_POST['old_password']!='' AND $_POST['change_password']!='' AND $_POST['confirm_change_password']!='')
 			{
-				$old_password = strip_tags($_POST['old_password_admin']);
+				$old_password = strip_tags($_POST['old_password']);
 				$new_password = strip_tags($_POST['change_password']);
 				$confirm_new_password = strip_tags($_POST['confirm_change_password']);
 				$pseudo = $_POST['pseudo'];
@@ -505,7 +507,7 @@
 						{
 							$pass_hash = password_hash($new_password, PASSWORD_DEFAULT);
 
-							newPasswordAdmin($pass_hash, $pseudo);
+							newPassword($pass_hash, $pseudo);
 						}
 						else
 						{
@@ -524,7 +526,7 @@
 			}
 		}
 
-		//Vérifications pour supprimer un compte utilisateur
+		//Vérifications pour supprimer un compte utilisateur (admin)
 		elseif (isset($_POST['user_pseudo'], $_POST['reasons_suppression'], $_POST['password'], $_POST['pseudo']))
 		{
 			if ($_POST['user_pseudo']!='' AND $_POST['reasons_suppression']!='' AND $_POST['password']!='')
@@ -556,16 +558,16 @@
 		}
 
 		//Vérifications pour afficher la demande de suppression du compte
-		elseif (isset($_POST['password_admin'], $_POST['pseudo']))
+		elseif (isset($_POST['password'], $_POST['pseudo']))
 		{
-			if ($_POST['password_admin']!='' AND $_POST['pseudo']!='')
+			if ($_POST['password']!='' AND $_POST['pseudo']!='')
 			{
-				$password = strip_tags($_POST['password_admin']);
+				$password = strip_tags($_POST['password']);
 				$isPassCorrect = verifyConnect($_POST['pseudo']);
 
 				if (password_verify($password, $isPassCorrect['password']))
 				{
-					deleteAdminAccount();
+					confirmDeleteAccount();
 				}
 				else
 				{
@@ -575,13 +577,13 @@
 		}
 
 		//Vérifications pour supprimer son compte
-		elseif (isset($_POST['delete_admin_account'], $_POST['pseudo']))
+		elseif (isset($_POST['delete_account'], $_POST['pseudo'], $_POST['id']))
 		{
-			if ($_POST['delete_admin_account']=='confirm')
+			if ($_POST['delete_account']=='confirm')
 			{
-				confirmDeleteAdminAccount($_POST['pseudo']);
+				eraseAccount($_POST['pseudo'], $_POST['id']);
 			}
-			elseif ($_POST['delete_admin_account']=='cancel')
+			elseif ($_POST['delete_account']=='cancel')
 			{
 				adminAccountLink();
 			}
@@ -592,143 +594,7 @@
 		}
 
 																						//PROFIL UTILISATEUR:
-		//Vérifications pour changer de pseudo
-		elseif (isset($_POST['new_pseudo_user'], $_POST['password'], $_POST['pseudo']))
-		{
-			if ($_POST['new_pseudo_user']!='' AND $_POST['password']!='')
-			{
-				$new_pseudo = strip_tags($_POST['new_pseudo_user']);
-				$password = strip_tags($_POST['password']);
-				$pseudo = $_POST['pseudo'];
-
-				$isPassCorrect = verifyConnect($pseudo);
-
-				if (password_verify($password, $isPassCorrect['password']))
-				{
-					if (!verifyPseudo($_POST['new_pseudo_user']))
-					{
-						session_start();
-						$_SESSION['pseudo'] = $new_pseudo;
-
-						newPseudoUser($_SESSION['pseudo'], $pseudo);
-					}
-					else
-					{
-						throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à votre <a href="index.php?link=user_account">profil</a></p>');
-					}
-				}
-				else
-				{
-					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à votre <a href="index.php?link=user_account">profil</a></p>');
-				}
-			}
-		}
-
-		//Vérifications pour changer d'adresse e-mail
-		elseif (isset($_POST['new_email_user'], $_POST['password'], $_POST['pseudo']))
-		{
-			if ($_POST['new_email_user']!='' AND $_POST['password']!='')
-			{
-				$new_email = strip_tags($_POST['new_email_user']);
-				$password = strip_tags($_POST['password']);
-				$pseudo = $_POST['pseudo'];
-
-				$isPassCorrect = verifyConnect($pseudo);
-
-				if (password_verify($password, $isPassCorrect['password']))
-				{
-					if (!verifyEmail($new_email))
-					{
-						newEmailUser($new_email, $pseudo);
-					}
-					else
-					{
-						throw new Exception('<p>L\'adresse e-mail indiqué existe déjà. Merci d\'en choisir une autre.<br/>Retour à votre <a href="index.php?link=user_account">profil</a></p>');
-					}
-				}
-				else
-				{
-					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à votre <a href="index.php?link=user_account">profil</a></p>');
-				}
-			}
-		}
-
-		//Vérifications pour changer de mot de passe
-		elseif (isset($_POST['old_password_user'], $_POST['change_password'], $_POST['confirm_change_password'], $_POST['pseudo']))
-		{
-			if ($_POST['old_password_user']!='' AND $_POST['change_password']!='' AND $_POST['confirm_change_password']!='')
-			{
-				$old_password = strip_tags($_POST['old_password_user']);
-				$new_password = strip_tags($_POST['change_password']);
-				$confirm_new_password = strip_tags($_POST['confirm_change_password']);
-				$pseudo = $_POST['pseudo'];
-
-				$isPassCorrect = verifyConnect($pseudo);
-
-				if (password_verify($old_password, $isPassCorrect['password']))
-				{
-					if ($new_password==$confirm_new_password)
-					{
-						if (preg_match("#((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,255})#", $new_password))
-						{
-							$pass_hash = password_hash($new_password, PASSWORD_DEFAULT);
-
-							newPasswordUser($pass_hash, $pseudo);
-						}
-						else
-						{
-							throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à votre <a href="index.php?link=user_account">profil</a></p>');
-						}
-					}
-					else
-					{
-						throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à votre <a href="index.php?link=user_account">profil</a></p>');
-					}
-				}
-				else
-				{
-					throw new Exception('<p>Le mot de passe indiqué comme étant votre ancien mot de passe n\'est pas correct.<br/>Retour à votre <a href="index.php?link=user_account">profil</a></p>');
-				}
-			}
-		}
-
-		//Vérifications pour afficher la demande de suppression du compte
-		elseif (isset($_POST['password_user'], $_POST['pseudo']))
-		{
-			if ($_POST['password_user']!='' AND $_POST['pseudo']!='')
-			{
-				$password = strip_tags($_POST['password_user']);
-				$isPassCorrect = verifyConnect($_POST['pseudo']);
-
-				if (password_verify($password, $isPassCorrect['password']))
-				{
-					deleteUserAccount();
-				}
-				else
-				{
-					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à votre <a href="index.php?link=user_account">profil</a></p>');
-				}
-			}
-		}
-
-		//Vérifications pour supprimer son compte
-		elseif (isset($_POST['delete_user_account'], $_POST['pseudo']))
-		{
-			if ($_POST['delete_user_account']=='confirm')
-			{
-				$pseudo = $_POST['pseudo'];
-				confirmDeleteUserAccount($pseudo);
-			}
-			elseif ($_POST['delete_user_account']=='cancel')
-			{
-				userAccountLink();
-			}
-			else
-			{
-				throw new Exception('Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)<br/>Retour à votre<a href="index.php?link=user_account">profil</a></p>');
-			}
-		}
-
+		
 //SI RIEN NE CORRESPOND :
 
 		//Affichage par défaut (page d'accueil)

@@ -1,19 +1,36 @@
 <?php session_start(); ?>
 
-<?php $title = 'Profil Administrateur'; ?>
+<?php 
+	if (isset($_SESSION['admin']) AND $_SESSION['admin']=='ok')
+ 	{
+ 		$title = 'Profil Administrateur';
+ 	}
+	else
+	{
+	 	$title = 'Profil Utilisateur';
+	}
+?>
 
 <?php ob_start(); ?>
 
-<h1>Profil Administrateur:</h1>
+<?php
+	if (isset($_SESSION['admin']) AND $_SESSION['admin']=='ok')
+ 	{
+ 		echo '<h1>Profil Administrateur:</h1>';
+ 	}
+	else
+	{
+	 	echo '<h1>Profil Utilisateur:</h1>';
+	}
+?>
 
 <p><?= $_SESSION['pseudo'] ?></p>
 
-<img src="public/images/univers.jpg" alt="Avatar" title="Avatar <?= $_SESSION['pseudo'] ?>" height="200" width="300">
+<img src="public/images/avatars/<?= $_SESSION['id'] ?>.png" alt="Avatar" title="Avatar de <?= $_SESSION['pseudo'] ?>" height="200" width="300">
 
 <h2>Paramètres de votre compte:</h2>
 
 <?php
-
 	if (isset($_GET['link'], $_GET['success']) AND $_GET['success']=='email')
 	{
 		echo '<p>Votre e-mail a bien été modifié !<br/>';
@@ -36,8 +53,8 @@
 		<p><form action="index.php" method="POST">
 			<fieldset>
 				<legend>Changer de pseudo</legend>
-				<p><label for="new_pseudo_admin">Nouveau pseudo: </label>
-				<input type="text" name="new_pseudo_admin" id="new_pseudo_admin" maxlength="255" size="40" required/></p>
+				<p><label for="new_pseudo">Nouveau pseudo: </label>
+				<input type="text" name="new_pseudo" id="new_pseudo" maxlength="255" size="40" required/></p>
 				<p><label for="password">Merci de confirmer votre mot de passe: </label>
 			    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
 				<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
@@ -63,7 +80,7 @@
 		<p><form action="index.php" method="POST" enctype="multipart/form-data">
 			<fieldset>
 				<legend>Changer d'avatar</legend>
-				<p><label for="avatar">Sélectionner une image au format "jpg" ou "png" (max 200Ko):</label></p>
+				<p><label for="avatar">Sélectionner une image au format "png" (max 200Ko):</label></p>
 				<p><input type="file" name="avatar" required/></p>
 				<input type="hidden" name="id" value="<?= $_SESSION['id'] ?>"/>
 			    <p><input type="submit" value="Soumettre"/></p>
@@ -88,8 +105,8 @@
 		<p><form action="index.php" method="POST">
 			<fieldset>
 				<legend>Changer d'adresse e-mail</legend>
-				<p><label for="new_email_admin">Nouvelle adresse e-mail: </label>
-				<input type="text" name="new_email_admin" id="new_email_admin" maxlength="255" size="40" required/></p>
+				<p><label for="new_email">Nouvelle adresse e-mail: </label>
+				<input type="text" name="new_email" id="new_email" maxlength="255" size="40" required/></p>
 				<p><label for="password">Merci de confirmer votre mot de passe: </label>
 			    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
 				<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
@@ -115,8 +132,8 @@
 		<p><form action="index.php" method="POST">
 			<fieldset>
 				<legend>Changer de mot de passe</legend>
-				<p><label for="old_password_admin">Ancien mot de passe: </label>
-				<input type="password" name="old_password_admin" id="old_password_admin" maxlength="255" size="40" required/></p>
+				<p><label for="old_password">Ancien mot de passe: </label>
+				<input type="password" name="old_password" id="old_password" maxlength="255" size="40" required/></p>
 				<p><label for="change_password">Nouveau mot de passe *: </label>
 			    <input type="password" name="change_password" id="change_password" maxlength="255" size="40" required/></p>
 			    <p><label for="confirm_change_password">Confirmez votre nouveau mot de passe: </label>
@@ -146,31 +163,34 @@
 ?>
 
 <?php
-	if (isset($_GET['form']) AND $_GET['form']=='delete_user')
+	if (isset($_SESSION['admin']) AND $_SESSION['admin']=='ok')
 	{
+		if (isset($_GET['form']) AND $_GET['form']=='delete_user')
+		{
 ?>
-		<p><form action="index.php" method="POST">
-			<fieldset>
-				<legend>Supprimer un compte utilisateur</legend>
-				<p><label for="user_pseudo">Pseudo de l'utilisateur: </label>
-				<input type="text" name="user_pseudo" id="user_pseudo" maxlength="255" size="40" required/></p>
-				<p><label for="reasons_suppression">Motif de suppression:</label><br/>
-				<textarea name="reasons_suppression" id="reasons_suppression" placeholder="Limité à 255 caractères" maxlength="255" row="4" cols="40" required></textarea>
-				<p><label for="password">Merci de confirmer votre mot de passe: </label>
-			    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
-				<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
-			    <p><input type="submit" value="Supprimer"/></p>
-			</fieldset>
-		</form></p>
+			<p><form action="index.php" method="POST">
+				<fieldset>
+					<legend>Supprimer un compte utilisateur</legend>
+					<p><label for="user_pseudo">Pseudo de l'utilisateur: </label>
+					<input type="text" name="user_pseudo" id="user_pseudo" maxlength="255" size="40" required/></p>
+					<p><label for="reasons_suppression">Motif de suppression:</label><br/>
+					<textarea name="reasons_suppression" id="reasons_suppression" placeholder="Limité à 255 caractères" maxlength="255" row="4" cols="40" required></textarea>
+					<p><label for="password">Merci de confirmer votre mot de passe: </label>
+				    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
+					<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
+				    <p><input type="submit" value="Supprimer"/></p>
+				</fieldset>
+			</form></p>
 <?php
-	}
-	else
-	{
+		}
+		else
+		{
 ?>
-		<p><form action="index.php" method="POST">
-	 		<button type="submit" formaction="http://127.0.0.1/blog/index.php?link=admin_account&form=delete_user">Supprimer un compte utilisateur</button>
-		</form></p>
+			<p><form action="index.php" method="POST">
+		 		<button type="submit" formaction="http://127.0.0.1/blog/index.php?link=admin_account&form=delete_user">Supprimer un compte utilisateur</button>
+			</form></p>
 <?php
+		}
 	}
 ?>
 
@@ -181,9 +201,9 @@
 		<p><form action="index.php" method="POST">
 			<fieldset>
 				<legend>Supprimer son compte</legend>
-				<p><label for="password_admin">Merci de confirmer votre mot de passe: </label>
-			    <input type="password" name="password_admin" id="password_admin" maxlength="255" size="40" required/></p>
-				<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
+				<p><label for="password">Merci de confirmer votre mot de passe: </label>
+			    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
+				<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>"/>
 			    <p><input type="submit" value="Supprimer"/></p>
 			</fieldset>
 		</form></p>
@@ -201,4 +221,13 @@
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('view/backend/templateAdmin.php'); ?>
+<?php 
+	if (isset($_SESSION['admin']) AND $_SESSION['admin']=='ok')
+	{
+		require('view/backend/templateAdmin.php'); 
+	}
+	else
+	{
+		require('view/frontend/template.php');
+	}
+?>

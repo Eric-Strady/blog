@@ -422,6 +422,40 @@
 			}
 		}
 
+		//Vérifications pour changer d'avatar
+		elseif (isset($_FILES['avatar'], $_POST['id']))
+		{
+			if ($_FILES['avatar']['error'] == 0)
+			{
+				if ($_FILES['avatar']['size']<=300000)
+				{
+					$data_files = pathinfo($_FILES['avatar']['name']);
+					$extension_upload = $data_files['extension'];
+					$extension_authorized = array('jpg', 'jpeg', 'png');
+
+					$id = $_POST['id'];
+
+					if (in_array($extension_upload, $extension_authorized))
+					{
+						move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/images/avatars/' . $id . '.' . $extension_upload);
+						thumbNails($id, $extension_upload);
+					}
+					else
+					{
+						throw new Exception('<p>Le format de l\'image n\'est pas conforme. Pour rappel, vous devez transmettre une image au format "JPG" ou "PNG".<br/>Retour à votre <a href="index.php?link=admin_account">profil</a></p>');
+					}
+				}
+				else
+				{
+					throw new Exception('<p>L\'image est trop volumineuse. Pour rappel, elle ne doit pas dépasser 200Ko.<br/>Retour à votre <a href="index.php?link=admin_account">profil</a></p>');
+				}
+			}
+			else
+			{
+				throw new Exception('<p>Une erreur est survenue lors du téléchargement.<br/>Retour à votre <a href="index.php?link=admin_account">profil</a></p>');
+			}
+		}
+
 		//Vérifications pour changer d'adresse e-mail
 		elseif (isset($_POST['new_email_admin'], $_POST['password'], $_POST['pseudo']))
 		{

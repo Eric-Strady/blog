@@ -63,7 +63,7 @@
 		<p><form action="index.php" method="POST" enctype="multipart/form-data">
 			<fieldset>
 				<legend>Changer d'avatar</legend>
-				<p><label for="avatar">Sélectionner une image (max 200Ko):</label></p>
+				<p><label for="avatar">Sélectionner une image au format "jpg" ou "png" (max 200Ko):</label></p>
 				<p><input type="file" name="avatar" required/></p>
 				<input type="hidden" name="id" value="<?= $_SESSION['id'] ?>"/>
 			    <p><input type="submit" value="Soumettre"/></p>

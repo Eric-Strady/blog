@@ -429,6 +429,43 @@
 		$newPseudoAdmin->changePseudoAdmin($new_pseudo, $pseudo);
 	}
 
+	function thumbNails($id, $extension_upload)
+	{
+		if ($extension_upload == 'jpg' OR $extension_upload == 'jpeg')
+		{
+			$origin = imagecreatefromjpeg('public/images/avatars/' . $id . '.' . $extension_upload);
+		}
+		elseif ($extension_upload == 'png')
+		{
+			$origin = imagecreatefrompng('public/images/avatars/' . $id . '.' . $extension_upload);
+		}
+
+		$destination = imagecreatetruecolor(50, 50);
+
+		$origin_width = imagesx($origin);
+		$origin_height = imagesy($origin);
+		$destination_width = imagesx($destination);
+		$destination_height = imagesy($destination);
+
+		imagecopyresampled($destination, $origin, 0, 0, 0, 0, $destination_width, $destination_height, $origin_width, $origin_height);
+
+		if ($extension_upload == 'jpg' OR $extension_upload == 'jpeg')
+		{
+			imagejpeg($destination, 'public/images/thumbnails/' . $id . '.' . $extension_upload);
+		}
+		elseif ($extension_upload == 'png')
+		{
+			imagepng($destination, 'public/images/thumbnails/' . $id . '.' . $extension_upload);
+		}
+
+		$countWarning = new WarningManager();
+		$count = $countWarning->countWarning();
+		$nbWarning = $count->fetch();
+		$count->closeCursor();
+
+		require('view/backend/adminAccountView.php');
+	}
+
 	function newEmailAdmin($new_email, $pseudo)
 	{
 		$newEmailAdmin = new AdminManager();

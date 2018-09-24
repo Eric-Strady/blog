@@ -413,14 +413,14 @@
 																					//PROFIL :
 
 	//Lien vers la page du profil + paramétrages du compte (administrateur)
-	function adminAccountLink()
+	function accountLink()
 	{
 		$countWarning = new WarningManager();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
 
-		require('view/backend/adminAccountView.php');
+		require('view/backend/accountView.php');
 	}
 
 	function newPseudo($new_pseudo, $pseudo)
@@ -449,7 +449,7 @@
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
 
-		$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account';
+		$path = 'Location: http://127.0.0.1/blog/index.php?link=account';
 		header($path);
 	}
 
@@ -538,7 +538,7 @@
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
 
-		require('view/backend/deleteAdminAccountView.php');
+		require('view/backend/deleteAccountView.php');
 	}
 
 	function eraseAccount($pseudo, $id)

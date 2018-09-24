@@ -25,11 +25,13 @@
 				{
 					echo '<li><a href="index.php?link=admin">Retour à l\'interface d\'administration</a></li>';
 					echo '<li><a href="index.php?link=deconnexion">Déconnexion</a></li>';
+					echo '<li><a href="index.php?link=account"><img src="public/images/thumbnails/' . $_SESSION['id'] .'.png" alt="Avatar de ' . $_SESSION['pseudo'] .'"/> ' . $_SESSION['pseudo'] . '</a></li>';
 				}
 				else
 				{
-					echo '<li><a href="index.php?link=admin_account">Mon profil</a></li>';
+					echo '<li><a href="index.php?link=account">Mon profil</a></li>';
 					echo '<li><a href="index.php?link=deconnexion">Déconnexion</a></li>';
+					echo '<li><a href="index.php?link=account"><img src="public/images/thumbnails/' . $_SESSION['id'] .'.png" alt="Avatar de ' . $_SESSION['pseudo'] .'"/> ' . $_SESSION['pseudo'] . '</a></li>';
 				}
 			?>
 			</ul>

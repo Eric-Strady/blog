@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <?php $title = 'Interface d\'administration'; ?>
 
 <?php ob_start(); ?>
@@ -17,7 +19,6 @@
 <?php
 	}
 	$req->closeCursor();
-
 	echo '<p>Page: ';
 	for ($i = 1; $i <= $nb_page; $i++)
 	{

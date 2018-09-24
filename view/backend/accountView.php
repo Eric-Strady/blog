@@ -26,7 +26,7 @@
 
 <p><?= $_SESSION['pseudo'] ?></p>
 
-<img src="public/images/avatars/<?= $_SESSION['id'] ?>.png" alt="Avatar" title="Avatar de <?= $_SESSION['pseudo'] ?>" height="200" width="300">
+<img src="public/images/avatars/<?= $_SESSION['id'] ?>.png" alt="Avatar" title="Avatar de <?= $_SESSION['pseudo'] ?>" height="200" width="300"/>
 
 <h2>Paramètres de votre compte:</h2>
 
@@ -67,7 +67,7 @@
 	{
 ?>
 		<p><form action="index.php" method="POST">
-	 		<button type="submit" formaction="http://127.0.0.1/blog/index.php?link=admin_account&form=pseudo">Changer de pseudo</button>
+	 		<button type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&form=pseudo">Changer de pseudo</button>
 		</form></p>
 <?php
 	}
@@ -92,7 +92,7 @@
 	{
 ?>
 		<p><form action="index.php" method="POST">
-	 		<button type="submit" formaction="http://127.0.0.1/blog/index.php?link=admin_account&form=avatar">Changer d'avatar</button>
+	 		<button type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&form=avatar">Changer d'avatar</button>
 		</form></p>
 <?php
 	}
@@ -119,7 +119,7 @@
 	{
 ?>
 		<p><form action="index.php" method="POST">
-	 		<button type="submit" formaction="http://127.0.0.1/blog/index.php?link=admin_account&form=email">Changer d'adresse e-mail</button>
+	 		<button type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&form=email">Changer d'adresse e-mail</button>
 		</form></p>
 <?php
 	}
@@ -156,7 +156,7 @@
 	{
 ?>
 		<p><form action="index.php" method="POST">
-	 		<button type="submit" formaction="http://127.0.0.1/blog/index.php?link=admin_account&form=password">Changer de mot de passe</button>
+	 		<button type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&form=password">Changer de mot de passe</button>
 		</form></p>
 <?php
 	}
@@ -187,7 +187,7 @@
 		{
 ?>
 			<p><form action="index.php" method="POST">
-		 		<button type="submit" formaction="http://127.0.0.1/blog/index.php?link=admin_account&form=delete_user">Supprimer un compte utilisateur</button>
+		 		<button type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&form=delete_user">Supprimer un compte utilisateur</button>
 			</form></p>
 <?php
 		}
@@ -213,7 +213,7 @@
 	{
 ?>
 		<p><form action="index.php" method="POST">
-	 		<button type="submit" formaction="http://127.0.0.1/blog/index.php?link=admin_account&form=delete">Supprimer son compte</button>
+	 		<button type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&form=delete">Supprimer son compte</button>
 		</form></p>
 <?php
 	}

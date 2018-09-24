@@ -97,7 +97,7 @@
 			$changePseudo = $db->prepare('UPDATE users SET pseudo = :new_pseudo WHERE pseudo = :pseudo');
 			$changePseudo->execute(array('new_pseudo' => $new_pseudo, 'pseudo' => $pseudo));
 
-			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account';
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=account';
 			header($path);
 		}
 
@@ -108,7 +108,7 @@
 			$changePseudo = $db->prepare('UPDATE users SET email = :new_email WHERE pseudo = :pseudo');
 			$changePseudo->execute(array('new_email' => $new_email, 'pseudo' => $pseudo));
 
-			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account&success=email';
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=account&success=email';
 			header($path);
 		}
 
@@ -119,7 +119,7 @@
 			$changePassword = $db->prepare('UPDATE users SET password = :pass_hash WHERE pseudo = :pseudo');
 			$changePassword->execute(array('pass_hash' => $pass_hash, 'pseudo' => $pseudo));
 
-			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin_account&success=password';
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=account&success=password';
 			header($path);
 		}
 

@@ -20,3 +20,7 @@ body{
 .navbar-dark .navbar-nav .nav-link{
   color: #454444
 }
+
+.portfolio-item {
+  margin-bottom: 30px;
+}

@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <?php $title = 'Interface d\'administration'; ?>
 
 <?php ob_start(); ?>

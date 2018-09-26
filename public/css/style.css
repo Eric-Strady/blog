@@ -1,8 +1,22 @@
 body{
-  padding-top: 90px;
+  padding-top: 90px
 }
 
 #mainNav{
   min-height: 80px;
-  background: url("../images/header.jpg");
+  font-size: 1.1em;
+  background: url("../images/header.jpg")
+}
+
+.navbar-brand{
+  padding-top: 0px;
+  font-weight: bold
+}
+
+.nav-item{
+  padding-right: 10px
+}
+
+.navbar-dark .navbar-nav .nav-link{
+  color: #454444
 }

@@ -48,7 +48,7 @@
 			            		</li>
 			            		<li class="nav-item dropdown">
 			              			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			                			<img src="public/images/thumbnails/<?= $_SESSION['id'] ?>.png" alt="Avatar" width="25" height="25"/> <?= $_SESSION['pseudo'] ?>
+			                			<?= $_SESSION['pseudo'] ?>
 			              			</a>
 			              			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAccount">
 			                			<a class="dropdown-item" href="index.php?link=account">Mon profil</a>
@@ -62,7 +62,7 @@
 			            ?>
 			            		<li class="nav-item dropdown">
 			              			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			                			<img src="public/images/thumbnails/<?= $_SESSION['id'] ?>.png" alt="Avatar" width="25" height="25"/> <?= $_SESSION['pseudo'] ?>
+			                			<?= $_SESSION['pseudo'] ?>
 			              			</a>
 			              			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAccount">
 			                			<a class="dropdown-item" href="index.php?link=account">Mon profil</a>
@@ -81,11 +81,11 @@
         	<?= $content ?>
         </div>
 
-    	<footer class="py-5 bg-dark">
-      		<div class="container">
-        		<p class="m-0 text-center text-white">Copyright &copy; Jean Forteroche 2018</p>
-      		</div>
-    	</footer>
+        <footer class="py-5 bg-dark">
+	  		<div class="container">
+	    		<p class="m-0 text-center text-white">Copyright &copy; Jean Forteroche 2018</p>
+	  		</div>
+		</footer>
 
     </body>
 </html>

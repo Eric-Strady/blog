@@ -39,7 +39,7 @@
         
     <body>
 
-    	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNav">
 		    <div class="container">
 		        <a class="navbar-brand" href="index.php?link=admin">Interface d'administration</a>
 		        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,22 +48,24 @@
 		        <div class="collapse navbar-collapse" id="navbarResponsive">
 		            <ul class="navbar-nav ml-auto">
 			            <li class="nav-item">
-			              <a class="nav-link" href="index.php?link=create">Ajouter un billet</a>
+			            	<a class="nav-link" href="index.php?link=create">Ajouter un billet</a>
 			            </li>
 			            <li class="nav-item">
-			              <a class="nav-link" href="index.php?link=moderate">Modérer les commentaires</a><?php if ($nbWarning['nb_warning']!='0'){ echo' ( ' . $nbWarning['nb_warning'] . ' )'; } ?></a>
+			            	<a class="nav-link" href="index.php?link=moderate">
+			            		Modérer les commentaires</a><?php if ($nbWarning['nb_warning']!='0'){ echo' ( ' . $nbWarning['nb_warning'] . ' )'; } ?>
+			            	</a>
 			            </li>
 			            <li class="nav-item">
-			              <a class="nav-link" href="index.php">Visualiser le site</a>
+			            	<a class="nav-link" href="index.php">Visualiser le site</a>
 			            </li>
 			            <li class="nav-item dropdown">
-			              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			                <img src="public/images/thumbnails/<?= $_SESSION['id'] ?>.png" alt="Avatar" width="25" height="25"/> <?= $_SESSION['pseudo'] ?>
-			              </a>
-			              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAccount">
-			                <a class="dropdown-item" href="index.php?link=account">Mon profil</a>
-			                <a class="dropdown-item" href="index.php?link=deconnexion">Déconnexion</a>
-			              </div>
+			            	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			            		<?= $_SESSION['pseudo'] ?>
+			            	</a>
+			            	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAccount">
+				            	<a class="dropdown-item" href="index.php?link=account">Mon profil</a>
+				            	<a class="dropdown-item" href="index.php?link=deconnexion">Déconnexion</a>
+			            	</div>
 			            </li>
 		            </ul>
 		        </div>

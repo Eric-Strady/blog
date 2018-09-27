@@ -184,6 +184,7 @@
 					{
 						if ($connect['admin']==1)
 						{
+							session_start();
 					        $_SESSION['id'] = $connect['id'];
 					        $_SESSION['pseudo'] = $connect['pseudo'];
 					        $_SESSION['admin'] = 'ok';
@@ -192,6 +193,7 @@
 						}
 						else
 						{
+							session_start();
 					        $_SESSION['id'] = $connect['id'];
 					        $_SESSION['pseudo'] = $connect['pseudo'];
 

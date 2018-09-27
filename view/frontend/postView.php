@@ -18,7 +18,7 @@
 		<hr>
 
 		<!-- Preview Image -->
-		<img class="img-fluid rounded" src="public/images/header.jpg" alt="En-tête billet" width="600" height="200"/>
+		<img id="imagePost" class="img-fluid rounded" src="public/images/header.jpg" alt="En-tête billet" width="600" height="200"/>
 
 		<hr>
 

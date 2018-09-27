@@ -10,7 +10,7 @@
 		{
 	?>
 		    <div class="col-lg-4 col-sm-6 portfolio-item">
-		      	<div class="card h-100">
+		      	<div class="card h-100 mt-4">
 		        	<a href="#"><img class="card-img-top" src="public/images/header.jpg" alt="En-tête billet"></a>
 		        	<div class="card-body">
 		      			<h4 class="card-title">

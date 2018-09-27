@@ -1,26 +1,26 @@
-body{
-  padding-top: 90px
-}
-
-#mainNav{
+#mainNav {
   min-height: 80px;
   font-size: 1.1em;
   background: url("../images/header.jpg")
 }
 
-.navbar-brand{
+.navbar-brand {
   padding-top: 0px;
   font-weight: bold
 }
 
-.nav-item{
+.nav-item {
   padding-right: 10px
 }
 
-.navbar-dark .navbar-nav .nav-link{
+.navbar-dark .navbar-nav .nav-link {
   color: #454444
 }
 
 .portfolio-item {
   margin-bottom: 30px;
+}
+
+#avatar {
+  float: left;
 }

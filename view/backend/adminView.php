@@ -11,7 +11,7 @@
 	?>
 		    <div class="col-lg-4 col-sm-6 portfolio-item">
 		      	<div class="card h-100">
-		        	<a href="#"><img class="card-img-top" src="public/images/header.jpg" alt="En-tête billet"></a>
+		        	<img class="card-img-top" src="public/images/header.jpg" alt="En-tête billet" width="200" height="100">
 		        	<div class="card-body">
 		      			<h4 class="card-title">
 		        			<a href="#"><?= strip_tags($data['title']) ?></a>

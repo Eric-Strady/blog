@@ -3,7 +3,7 @@
 #mainNav {
   min-height: 80px;
   font-size: 1.1em;
-  background: url("../images/header.jpg")
+  background: url("../images/header.jpg");
 }
 
 .navbar-brand {
@@ -12,11 +12,11 @@
 }
 
 .nav-item {
-  padding-right: 10px
+  padding-right: 10px;
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: #454444
+  color: #454444;
 }
 
 /* Liste posts */
@@ -31,11 +31,11 @@
   float: left;
 }
 
-/* Formulaire connexion */
+/* Formulaire connexion et inscription */
 
-.form-signin {
+.form-signin, .form-registration {
   width: 100%;
-  max-width: 330px;
+  max-width: 400px;
   padding: 15px;
   margin: 0 auto;
 }
@@ -46,4 +46,20 @@
   height: auto;
   padding: 10px;
   font-size: 16px;
+}
+
+.g-recaptcha {
+  transform:scale(1.23, 1);
+  -webkit-transform:scale(1.23, 1);
+  transform-origin:0 0;
+  -webkit-transform-origin:0 0;
+}
+
+@media all and (max-width : 400px){
+  .g-recaptcha {
+    transform:scale(1, 0.9);
+    -webkit-transform:scale(1, 0.9);
+    transform-origin:0 0;
+    -webkit-transform-origin:0 0;
+  }
 }

@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <?php 
 	if (isset($_SESSION['admin']) AND $_SESSION['admin']=='ok')
  	{
@@ -14,17 +16,21 @@
 <?php
 	if (isset($_SESSION['admin']) AND $_SESSION['admin']=='ok')
  	{
- 		echo '<h1>Profil Administrateur:</h1>';
+ 		echo '<h1 class="h3 mb-3 font-weight-normal">Profil Administrateur:</h1>';
  	}
 	else
 	{
-	 	echo '<h1>Profil Utilisateur:</h1>';
+	 	echo '<h1 class="h3 mb-3 font-weight-normal">Profil Utilisateur:</h1>';
 	}
 ?>
 
-<p><?= $_SESSION['pseudo'] ?></p>
+<div class="row mt-2" id="pseudo">
+	<p><?= $_SESSION['pseudo'] ?></p>
+</div>
 
-<img src="public/images/avatars/<?= $_SESSION['id'] ?>.png" alt="Avatar" title="Avatar de <?= $_SESSION['pseudo'] ?>" height="200" width="300"/>
+<div class="row mt-2" id="avatar">
+	<img class="d-flex rounded-circle"src="public/images/avatars/<?= $_SESSION['id'] ?>.png" alt="Avatar" title="Avatar de <?= $_SESSION['pseudo'] ?>" height="250" width="250"/>
+</div>
 
 <h2>Paramètres de votre compte:</h2>
 

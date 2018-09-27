@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <?php
 	require ('controller/controller.php');
 	require ('recaptcha/autoload.php');

@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <?php $title = 'Blog de Jean Forteroche'; ?>
 
 <?php ob_start(); ?>

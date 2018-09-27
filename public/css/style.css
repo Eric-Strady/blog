@@ -31,7 +31,7 @@
 
 /* Avatar commentaires */
 
-#avatar {
+#mini-avatar {
   float: left;
 }
 
@@ -66,4 +66,16 @@
     transform-origin:0 0;
     -webkit-transform-origin:0 0;
   }
+}
+
+/* Profil */
+
+#pseudo {
+  justify-content: center;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+#avatar {
+  justify-content: center;
 }

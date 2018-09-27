@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <?php $title = 'Suppression du compte'; ?>
 
 <?php ob_start(); ?>

@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <?php $title = 'Blog de Jean Forteroche'; ?>
 
 <?php ob_start(); ?>
@@ -78,7 +80,7 @@
 	      	while ($comment = $comments->fetch())
 			{
 		?>
-				<img class="d-flex mr-3 rounded-circle" id="avatar" src="public/images/header.jpg" alt="Avatar" width="50" height="50"/>
+				<img class="d-flex mr-3 rounded-circle" id="mini-avatar" src="public/images/header.jpg" alt="Avatar" width="50" height="50"/>
 				<em>Le <?= $comment['d_comment'] ?> à <?= $comment['h_comment'] ?> - </em><strong class="mt-0"><?= strip_tags($comment['author']) ?></strong>
 		<?php
 				if (isset($_SESSION['pseudo']))

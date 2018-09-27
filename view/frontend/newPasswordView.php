@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <?php $title = 'Réinitialiser son mot de passe'; ?>
 
 <?php ob_start(); ?>

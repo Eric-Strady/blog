@@ -1,3 +1,5 @@
+/* Navigation */
+
 #mainNav {
   min-height: 80px;
   font-size: 1.1em;
@@ -17,10 +19,31 @@
   color: #454444
 }
 
+/* Liste posts */
+
 .portfolio-item {
   margin-bottom: 30px;
 }
 
+/* Avatar commentaires */
+
 #avatar {
   float: left;
+}
+
+/* Formulaire connexion */
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
 }

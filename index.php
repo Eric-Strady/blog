@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <?php
 	require ('controller/controller.php');
 	require ('recaptcha/autoload.php');
@@ -6,6 +8,7 @@
 	{
 		if (isset($_GET['link']) AND $_GET['link']!= '')
 		{
+			
 			if ($_GET['link']=='inscription')
 			{
 				registrationLink();
@@ -183,7 +186,6 @@
 					{
 						if ($connect['admin']==1)
 						{
-							session_start();
 					        $_SESSION['id'] = $connect['id'];
 					        $_SESSION['pseudo'] = $connect['pseudo'];
 					        $_SESSION['admin'] = 'ok';
@@ -192,7 +194,6 @@
 						}
 						else
 						{
-							session_start();
 					        $_SESSION['id'] = $connect['id'];
 					        $_SESSION['pseudo'] = $connect['pseudo'];
 

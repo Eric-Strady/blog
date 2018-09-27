@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <?php $title = 'Page de connexion'; ?>
 
 <?php ob_start(); ?>

@@ -21,8 +21,12 @@
 
 /* Liste posts */
 
-.portfolio-item {
-  margin-bottom: 30px;
+.card-body {
+  padding-bottom: 0rem !important;
+}
+
+.card-footer {
+  text-align: center;
 }
 
 /* Avatar commentaires */

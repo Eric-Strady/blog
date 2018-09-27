@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <?php $script = '<script src=\'https://www.google.com/recaptcha/api.js\'></script>'; ?>
 <?php $title = 'Page de connexion'; ?>
 

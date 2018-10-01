@@ -69,6 +69,10 @@
 	{
 		require('view/frontend/newPasswordView.php');
 	}
+	function changePasswordLink()
+	{
+		require('view/frontend/changePasswordView.php');
+	}
 	function signoutLink()
 	{
 		require('view/frontend/signOutView.php');

@@ -10,8 +10,8 @@
 Lors de votre reconnexion, nous vous conseillons de personnaliser votre nouveau mot de passe.</p>
 
 <form action="index.php" method="post">
-	<p><label for="new_password">Adresse e-mail:</label><br/>
-	<input type="text" name="new_password" id="new_password" maxlength="255" size="30" required autofocus/></p>
+	<p><label for="get_email">Adresse e-mail:</label><br/>
+	<input type="text" name="get_email" id="get_email" maxlength="255" size="30" required autofocus/></p>
     <input type="submit" value="Réinitialiser mon mot de passe"/>
 </form>
 

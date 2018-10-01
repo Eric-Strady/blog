@@ -7,7 +7,7 @@
 <h1>Réinitialiser son mot de passe</h1>
 
 <p>Pour obtenir un nouveau mot de passe, vous devez renseigner l'adresse e-mail de votre compte pour recevoir un e-mail avec votre nouveau mot de passe.<br/>
-Lors de votre reconnexion, nous vous conseillons de personnaliser votre nouveau mot de passe.</p>
+Attention ! L'e-mail de réinitialisation sera valide durant 15 minutes.</p>
 
 <form action="index.php" method="post">
 	<p><label for="get_email">Adresse e-mail:</label><br/>

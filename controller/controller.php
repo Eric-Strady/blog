@@ -243,6 +243,7 @@
 
 		mail($to, $subject, $message, $header);
 
+		setcookie('email', $email, time()+60*15, null, null, false, true);
 		require('view/frontend/signInView.php');
 	}
 

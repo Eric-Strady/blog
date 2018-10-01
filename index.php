@@ -213,16 +213,23 @@
 		}
 
 		//Vérifications pour envoi nouveau mot de passe
-		elseif (isset($_POST['new_password']) AND $_POST['new_password']!='')
+		elseif (isset($_POST['get_email']))
 		{
-			$email = strip_tags($_POST['new_password']);
-			if (verifyEmail($email))
+			if ($_POST['get_email']!='')
 			{
-				sendNewPassword($email);
+				$email = strip_tags($_POST['get_email']);
+				if (verifyEmail($email))
+				{
+					sendNewPassword($email);
+				}
+				else
+				{
+					throw new Exception('L\'adresse e-mail renseignée est inconnue.<br/>Retour à la page de <a href="index.php">accueil</a></p>');
+				}
 			}
 			else
 			{
-				throw new Exception('Le système de réinitialisation de mot de passe n\'est pas accessible pour le moment.<br/>Retour à la page de <a href="index.php">accueil</a></p>');
+				throw new Exception('Veuillez saisir une adresse e-mail valide.<br/>Retour à la page de <a href="index.php">accueil</a></p>');
 			}
 		}
 

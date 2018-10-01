@@ -95,7 +95,6 @@
 			{
 				if (isset($_POST['pseudo']) AND isset($_POST['password']) AND isset($_POST['passwordVerify']) AND isset($_POST['email']) )
 				{
-
 					if ($_POST['pseudo']!='' AND $_POST['password']!='' AND $_POST['passwordVerify']!='' AND $_POST['email']!='')
 					{
 						$pseudo = strip_tags($_POST['pseudo']);
@@ -173,7 +172,7 @@
 		}
 
 		//Système de vérification et de création de session pour la page de connexion + redirection interface admin
-		elseif (isset($_POST['id_connect']) AND isset($_POST['pass_connect']))
+		elseif (isset($_POST['id_connect'], $_POST['pass_connect']))
 		{
 			if ($_POST['id_connect']!='' AND $_POST['pass_connect']!='')
 			{
@@ -193,6 +192,10 @@
 					        $_SESSION['pseudo'] = $connect['pseudo'];
 					        $_SESSION['admin'] = 'ok';
 
+					        if ($_POST['auto_connect'] == 'checked')
+							{
+								setcookie('id_user', $connect['pseudo'], time()+60*60*24*30, null, null, false, true);
+							}
 					        listPostsAdmin();
 						}
 						else
@@ -201,6 +204,10 @@
 					        $_SESSION['id'] = $connect['id'];
 					        $_SESSION['pseudo'] = $connect['pseudo'];
 
+					        if ($_POST['auto_connect'] == 'checked')
+							{
+								setcookie('id_user', $connect['pseudo'], time()+60*60*24*30, null, null, false, true);
+							}
 					        header('Location: index.php');
 						}
 					}

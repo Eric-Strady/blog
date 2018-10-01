@@ -226,7 +226,7 @@
 					<div align="center">
 						<h3>Réinitialisation de votre mot de passe</h3>
 						<p>Vous êtes actuellement sur le point de changer votre mot de passe !<br/>
-						Cliquez <a href="127.0.0.1/blog/index.php?link=new_password&amp;new=password" target="_blank">ici</a> pour réinitialiser votre mot de passe.</p>
+						Cliquez <a href="127.0.0.1/blog/index.php?link=change_password" target="_blank">ici</a> pour réinitialiser votre mot de passe.</p>
 					</div>
 				</body>
 			</html>

@@ -16,10 +16,10 @@
 
 		    <div class="text-center mt-5">
 		        <form class="form-registration" action="index.php" method="post">
-		        	<p><label for="password">Nouveau mot de passe *:</label><br/>
-		            <input class="form-control" type="password" name="password" id="password" maxlength="255" size="30" required autofocus/></p>
-		            <p><label for="passwordVerify">Confirmez votre nouveau mot de passe:</label><br/>
-		            <input class="form-control" type="password" name="passwordVerify" id="passwordVerify" maxlength="255" size="30" required/></p>
+		        	<p><label for="reset_password">Nouveau mot de passe *:</label><br/>
+		            <input class="form-control" type="password" name="reset_password" id="reset_password" maxlength="255" size="30" required autofocus/></p>
+		            <p><label for="confirm-reset-password">Confirmez votre nouveau mot de passe:</label><br/>
+		            <input class="form-control" type="password" name="confirm-reset-password" id="confirm-reset-password" maxlength="255" size="30" required/></p>
 		            <input type="hidden" name="email" value="<?= $_COOKIE['email'] ?>"/>
 		            <input class="btn btn-lg btn-primary btn-block" type="submit" value="S'inscrire"/>
 		        </form>

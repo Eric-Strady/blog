@@ -1,6 +1,6 @@
 <?php session_start(); ?>
 
-<?php $title = 'Réinitialiser son mot de passe'; ?>
+<?php $title = 'Inscription finalisée'; ?>
 
 <?php ob_start(); ?>
 

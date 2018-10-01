@@ -217,9 +217,7 @@
 
 	function sendNewPassword($email)
 	{
-		$usersManager = new UsersManager();
-
-		$to = 'strady60@gmail.com';
+		$to = $email;
 		$subject = 'Réinitialisation du mot de passe';
 		$message = '
 			<html>

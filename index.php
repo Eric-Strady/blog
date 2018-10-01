@@ -220,6 +220,7 @@
 				$email = strip_tags($_POST['get_email']);
 				if (verifyEmail($email))
 				{
+					addTokenPassword($email);
 					sendNewPassword($email);
 				}
 				else

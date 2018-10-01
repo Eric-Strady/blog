@@ -68,7 +68,7 @@
 			}
 			else
 			{
-				throw new Exception('Impossible d\'ajouter de commentaire pour le moment !<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
+				throw new Exception('<p>Impossible d\'ajouter de commentaire pour le moment !<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 			}
 		}
 
@@ -82,7 +82,7 @@
 			}
 			else
 			{
-				throw new Exception('Impossible de modifier le commentaire pour le moment !<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
+				throw new Exception('<p>Impossible de modifier le commentaire pour le moment !<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 			}
 		}
 
@@ -229,12 +229,12 @@
 				}
 				else
 				{
-					throw new Exception('L\'adresse e-mail renseignée est inconnue.<br/>Retour à la page de <a href="index.php">accueil</a></p>');
+					throw new Exception('<p>L\'adresse e-mail renseignée est inconnue.<br/>Retour à la page de <a href="index.php">accueil</a></p>');
 				}
 			}
 			else
 			{
-				throw new Exception('Veuillez saisir une adresse e-mail valide.<br/>Retour à la page de <a href="index.php">accueil</a></p>');
+				throw new Exception('<p>Veuillez saisir une adresse e-mail valide.<br/>Retour à la page de <a href="index.php">accueil</a></p>');
 			}
 		}
 
@@ -252,12 +252,12 @@
 				}
 				else
 				{
-					throw new Exception('Ce commentaire a déjà été signalé et sera traité dans les plus brefs délais !<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
+					throw new Exception('<p>Ce commentaire a déjà été signalé et sera traité dans les plus brefs délais !<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 				}
 			}
 			else
 			{
-				throw new Exception('Le système de signalement n\'est pas accessible pour le moment.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
+				throw new Exception('<p>Le système de signalement n\'est pas accessible pour le moment.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 			}
 		}
 
@@ -284,7 +284,7 @@
 			}
 			else
 			{
-				throw new Exception('Impossible de créer de billet pour le moment.<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
+				throw new Exception('<p>Impossible de créer de billet pour le moment.<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
 			}
 		}
 
@@ -299,7 +299,7 @@
 			}
 			else
 			{
-				throw new Exception('Le billet auquel vous souhaitez accéder n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
+				throw new Exception('<p>Le billet auquel vous souhaitez accéder n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
 			}
 		}
 
@@ -314,7 +314,7 @@
 			}
 			else
 			{
-				throw new Exception('Le billet auquel vous souhaitez accéder n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
+				throw new Exception('<p>Le billet auquel vous souhaitez accéder n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
 			}
 		}
 
@@ -331,7 +331,7 @@
 			}
 			else
 			{
-				throw new Exception('Impossible de modifier le billet pour le moment.<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
+				throw new Exception('<p>Impossible de modifier le billet pour le moment.<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
 			}
 		}
 
@@ -344,7 +344,7 @@
 			}
 			else
 			{
-				throw new Exception('Le billet auquel vous souhaitez accéder n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
+				throw new Exception('<p>Le billet auquel vous souhaitez accéder n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
 			}
 		}
 
@@ -363,7 +363,7 @@
 			}
 			else
 			{
-				throw new Exception('Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
+				throw new Exception('<p>Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
 			}
 		}
 
@@ -379,7 +379,7 @@
 			}
 			else
 			{
-				throw new Exception('Le système de suppression des commentaires signalés n\'est pas disponible pour le moment.<br/>Retour à la page de <a href="index.php?link=moderate">modération</a></p>');
+				throw new Exception('<p>Le système de suppression des commentaires signalés n\'est pas disponible pour le moment.<br/>Retour à la page de <a href="index.php?link=moderate">modération</a></p>');
 			}
 		}
 
@@ -394,7 +394,7 @@
 			}
 			else
 			{
-				throw new Exception('Le système de suppression des commentaires signalés n\'est pas disponible pour le moment.<br/>Retour à la page de <a href="index.php?link=moderate">modération</a></p>');
+				throw new Exception('<p>Le système de suppression des commentaires signalés n\'est pas disponible pour le moment.<br/>Retour à la page de <a href="index.php?link=moderate">modération</a></p>');
 			}
 		}
 
@@ -598,7 +598,7 @@
 			}
 			else
 			{
-				throw new Exception('Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
+				throw new Exception('<p>Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
 			}
 		}
 		

@@ -23,6 +23,10 @@
 			{
 				newPasswordLink();
 			}
+			elseif ($_GET['link']=='change_password')
+			{
+				changePasswordLink();
+			}
 			elseif ($_GET['link']=='admin')
 			{
 				listPostsAdmin();

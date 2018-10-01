@@ -207,6 +207,14 @@
 		return $isConfirm;
 	}
 
+	function addTokenPassword($email)
+	{
+		$addTokenPassword = new UsersManager();
+
+		$token_pass = 1;
+		$addTokenPassword->tokenPassword($token_pass, $email);
+	}
+
 	function sendNewPassword($email)
 	{
 		$usersManager = new UsersManager();

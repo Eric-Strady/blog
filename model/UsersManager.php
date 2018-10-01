@@ -82,6 +82,14 @@
 			return $isOne;
 		}
 
+		public function tokenPassword($token_pass, $email)
+		{
+			$db = $this->dbConnect();
+
+			$changeToken = $db->prepare('UPDATE users SET token_pass = :token_pass WHERE email = :email');
+			$changeToken->execute(array('token_pass' => $token_pass, 'email' => $email));
+		}
+
 		public function forgottenPassword($password, $email)
 		{
 			$db = $this->dbConnect();

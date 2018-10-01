@@ -172,7 +172,8 @@
 
 		$confirm = 0;
 		$admin = 0;
-		$registration->addUser($pseudo, $pass_hash, $email, $registration_key, $confirm, $admin);
+		$token_pass = 0;
+		$registration->addUser($pseudo, $pass_hash, $email, $registration_key, $confirm, $admin, $token_pass);
 	}
 
 	//Vérifications pour la connexion d'un utilisateur + envoi nouveau mot de passe

@@ -211,17 +211,6 @@
 	{
 		$usersManager = new UsersManager();
 
-		$length = 10;
-		$string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-		$maxLength = strlen($string);
-		$randomString = '';
-		for ($i = 0; $i < $length; $i++)
-		{
-		$randomString.= $string[rand(0, $maxLength - 1)];
-		}
-
-		$newPassword = $randomString;
-
 		$to = 'strady60@gmail.com';
 		$subject = 'Réinitialisation du mot de passe';
 		$message = '
@@ -231,10 +220,7 @@
 					<div align="center">
 						<h3>Réinitialisation de votre mot de passe</h3>
 						<p>Vous êtes actuellement sur le point de changer votre mot de passe !<br/>
-						Voici votre nouveau mot de passe : ' . $newPassword . '</p>
-						<p>Pour des raisons de sécurité, il est impératif que vous changiez ce mot de passe lors de votre prochaine connexion.<br/>
-						Pour le personnaliser, allez dans votre page "Profil".</p>
-						<p>Accéder au <a href="127.0.0.1/blog/index.php?link=connexion" target="_blank">blog de Jean Forteroche</a></p>
+						Cliquez <a href="127.0.0.1/blog/index.php?link=new_password&amp;new=password" target="_blank">ici</a> pour réinitialiser votre mot de passe.</p>
 					</div>
 				</body>
 			</html>
@@ -247,10 +233,7 @@
 
 		mail($to, $subject, $message, $header);
 
-		$password = password_hash($newPassword, PASSWORD_DEFAULT);
-		$usersManager->forgottenPassword($password, $email);
-
-		signinLink();
+		require('view/frontend/signInView.php');
 	}
 
 																					//BACKEND :

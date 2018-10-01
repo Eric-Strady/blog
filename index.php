@@ -229,12 +229,44 @@
 				}
 				else
 				{
-					throw new Exception('<p>L\'adresse e-mail renseignée est inconnue.<br/>Retour à la page de <a href="index.php">accueil</a></p>');
+					throw new Exception('<p>L\'adresse e-mail renseignée est inconnue.<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
 				}
 			}
 			else
 			{
-				throw new Exception('<p>Veuillez saisir une adresse e-mail valide.<br/>Retour à la page de <a href="index.php">accueil</a></p>');
+				throw new Exception('<p>Veuillez saisir une adresse e-mail valide.<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
+			}
+		}
+
+		//Vérifications pour réinitialiser son mot de passe
+		elseif (isset($_POST['reset_password'], $_POST['confirm_reset_password'], $_POST['email']))
+		{
+			if ($_POST['reset_password']!='' AND $_POST['confirm_reset_password']!='')
+			{
+				if ($_POST['reset_password'] == $_POST['confirm_reset_password'])
+				{
+					$reset_password = strip_tags($_POST['reset_password']);
+					$email = $_POST['email'];
+
+					if (preg_match("#((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,255})#", $reset_password))
+					{
+						$pass_hash = password_hash($reset_password, PASSWORD_DEFAULT);
+
+						resetPassword($pass_hash, $email);
+					}
+					else
+					{
+						throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à votre <a href="index.php?link=account">profil</a></p>');
+					}
+				}
+				else
+				{
+					throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à la page de <a href="index.php?link=change_password">réinitialisation</a></p>');
+				}
+			}
+			else
+			{
+				throw new Exception('<p>Veuillez saisir un mot de passe.<br/>Retour à la page de <a href="index.php?link=change_password">réinitialisation</a></p>');
 			}
 		}
 

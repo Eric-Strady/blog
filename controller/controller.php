@@ -176,8 +176,7 @@
 
 		$confirm = 0;
 		$admin = 0;
-		$token_pass = 0;
-		$registration->addUser($pseudo, $pass_hash, $email, $registration_key, $confirm, $admin, $token_pass);
+		$registration->addUser($pseudo, $pass_hash, $email, $registration_key, $confirm, $admin);
 	}
 
 	//Vérifications pour la connexion d'un utilisateur + envoi nouveau mot de passe
@@ -211,14 +210,6 @@
 		return $isConfirm;
 	}
 
-	function addTokenPassword($email)
-	{
-		$addTokenPassword = new UsersManager();
-
-		$token_pass = 1;
-		$addTokenPassword->tokenPassword($token_pass, $email);
-	}
-
 	function sendNewPassword($email)
 	{
 		$to = $email;
@@ -245,6 +236,12 @@
 
 		setcookie('email', $email, time()+60*15, null, null, false, true);
 		require('view/frontend/signInView.php');
+	}
+
+	function resetPassword($pass_hash, $email)
+	{
+		$resetPassword = new UsersManager();
+		$resetPassword->forgottenPassword($pass_hash, $email);
 	}
 
 																					//BACKEND :

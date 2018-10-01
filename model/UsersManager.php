@@ -26,12 +26,12 @@
 			return $checkEmail;
 		}
 
-		public function addUser($pseudo, $pass_hash, $email, $registration_key, $confirm, $admin, $token_pass)
+		public function addUser($pseudo, $pass_hash, $email, $registration_key, $confirm, $admin)
 		{
 			$db = $this->dbConnect();
 
-			$addUser = $db->prepare('INSERT INTO users( pseudo, password, email, registration_date, registration_key, confirm, admin, token_pass) VALUES (:pseudo, :password, :email, NOW(), :key, :confirm, :admin, :token_pass)');
-			$addUser->execute(array('pseudo' => $pseudo, 'password' => $pass_hash, 'email' => $email, 'key' => $registration_key, 'confirm' => $confirm, 'admin' => $admin, 'token_pass' => $token_pass));
+			$addUser = $db->prepare('INSERT INTO users( pseudo, password, email, registration_date, registration_key, confirm, admin) VALUES (:pseudo, :password, :email, NOW(), :key, :confirm, :admin)');
+			$addUser->execute(array('pseudo' => $pseudo, 'password' => $pass_hash, 'email' => $email, 'key' => $registration_key, 'confirm' => $confirm, 'admin' => $admin));
 
 			setcookie('pseudo', $pseudo, time()+120, null, null, false, true);
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=connexion';
@@ -82,20 +82,15 @@
 			return $isOne;
 		}
 
-		public function tokenPassword($token_pass, $email)
-		{
-			$db = $this->dbConnect();
-
-			$changeToken = $db->prepare('UPDATE users SET token_pass = :token_pass WHERE email = :email');
-			$changeToken->execute(array('token_pass' => $token_pass, 'email' => $email));
-		}
-
 		public function forgottenPassword($password, $email)
 		{
 			$db = $this->dbConnect();
 
 			$changePassword = $db->prepare('UPDATE users SET password = :password WHERE email = :email');
 			$changePassword->execute(array('password' => $password, 'email' => $email));
+
+			$path = 'Location: http://127.0.0.1/blog/index.php?link=connexion';
+			header($path);
 		}
 
 		public function changePseudo($new_pseudo, $pseudo)

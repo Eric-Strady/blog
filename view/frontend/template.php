@@ -79,11 +79,12 @@
 
         <?= $content ?>
 
-        <footer class="py-5 bg-dark">
-	  		<div class="container">
-	    		<p class="m-0 text-center text-white">Copyright &copy; Jean Forteroche 2018</p>
-	  		</div>
+		<footer class="footer">
+			<div class="container">
+				<span class="text-muted">Copyright &copy; Jean Forteroche 2018</span>
+			</div>
 		</footer>
 
     </body>
 </html>
+

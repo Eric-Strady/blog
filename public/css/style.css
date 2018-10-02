@@ -32,6 +32,10 @@ body {
     font-style: normal;
 }
 
+#post-title {
+  font-family: monospacetypewriterregular, "Times New Roman", Arial, sans-serif;
+}
+
 /* NAVIGATION */
 
 #mainNav {

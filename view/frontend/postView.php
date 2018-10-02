@@ -8,7 +8,7 @@
 
 	    <div class="col-lg-12">
 
-			<h1 class="mt-4"><?= strip_tags($post['title']) ?></h1>
+			<h1 class="mt-4" id="post-title"><?= strip_tags($post['title']) ?></h1>
 
 			<p>Posté le <?= $post['creation_date_fr'] ?></p>
 

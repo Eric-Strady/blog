@@ -19,7 +19,7 @@
 				theme: 'modern',
 				plugins: 'preview searchreplace autolink image link pagebreak nonbreaking advlist lists textcolor wordcount imagetools contextmenu colorpicker help',
 				block_formats: 'Paragraph=p;Heading 1=h1;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6',
-				toolbar: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | image | removeformat'
+				toolbar: 'formatselect | bold italic strikethrough forecolor | link | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | image | removeformat'
         	});
 		</script>
 		<script type="text/javascript">
@@ -29,7 +29,7 @@
 				theme: 'modern',
 				plugins: 'preview searchreplace autolink image link pagebreak nonbreaking advlist lists textcolor wordcount imagetools contextmenu colorpicker help',
 				block_formats: 'Paragraph=p;Heading 1=h1;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6',
-				toolbar: 'formatselect | bold italic strikethrough forecolor backcolor | link | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | image | removeformat'
+				toolbar: 'formatselect | bold italic strikethrough forecolor | link | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | image | removeformat'
         	});
 		</script>
 

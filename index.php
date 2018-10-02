@@ -282,6 +282,30 @@
 			}
 		}
 
+		//Vréifications pour contacter l'admin
+		elseif (isset($_POST['subject'], $_POST['email'], $_POST['message']))
+		{
+			if ($_POST['subject']!='' AND $_POST['email']!='' AND $_POST['message']!='')
+			{
+				if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email))
+				{
+					$subject = strip_tags($_POST['subject']);
+					$email = strip_tags($_POST['email']);
+					$message = strip_tags($_POST['message']);
+
+					contact($subject, $email, $message);
+				}
+				else
+				{
+					throw new Exception('<p>L\'adresse e-mail n\'est pas valide.<br/>Retour à la page de <a href="index.php?link=contact">contact</a></p>');
+				}
+			}
+			else
+			{
+				throw new Exception('<p>Vous devez remplir tous les champs.<br/>Retour à la page de <a href="index.php?link=contact">contact</a></p>');
+			}
+		}
+
 		//Vérifications pour signaler un commentaire
 		elseif (isset($_GET['warnedId']))
 		{

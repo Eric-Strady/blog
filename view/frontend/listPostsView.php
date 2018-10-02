@@ -31,14 +31,18 @@
 
 	<?php
 		$req->closeCursor();
-
-		echo '<p>Page: ';
-		for ($i = 1; $i <= $nb_page; $i++)
-		{
-			echo '<a href="index.php?page=' . $i . '">' . $i . '</a> > ';
-		}
-		echo '</p>';
 	?>
+	<nav id="pagination">
+		<ul class="pagination pagination-lg mt-3 mb-4">
+			<?php
+				for ($i = 1; $i <= $nb_page; $i++)
+				{
+					echo '<li class="page-item"><a class="page-link" href="index.php?page=' . $i . '">' . $i . '</a></li>';
+				}
+			?>
+		</ul>
+	</nav>
+
 </div>
 
 <?php $content = ob_get_clean(); ?>

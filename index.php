@@ -91,65 +91,62 @@
 		}
 
 		//Sytème de vérification et d'insertion dans la BDD pour la page d'inscription
-		elseif (isset($_POST['g-recaptcha-response']))
+		elseif (isset($_POST['pseudo']) AND isset($_POST['password']) AND isset($_POST['passwordVerify']) AND isset($_POST['email']) )
 		{
 			$recaptcha = new \ReCaptcha\ReCaptcha('6LfRh20UAAAAAIR3yJLwr3fZCFybqe6tpklXVixw');
 			$resp = $recaptcha->verify($_POST['g-recaptcha-response']);
 			if ($resp->isSuccess())
 			{
-				if (isset($_POST['pseudo']) AND isset($_POST['password']) AND isset($_POST['passwordVerify']) AND isset($_POST['email']) )
+				if ($_POST['pseudo']!='' AND $_POST['password']!='' AND $_POST['passwordVerify']!='' AND $_POST['email']!='')
 				{
-					if ($_POST['pseudo']!='' AND $_POST['password']!='' AND $_POST['passwordVerify']!='' AND $_POST['email']!='')
+					$pseudo = strip_tags($_POST['pseudo']);
+					$password = strip_tags($_POST['password']);
+					$email = strip_tags($_POST['email']);
+
+					if (!verifyPseudo($pseudo))
 					{
-						$pseudo = strip_tags($_POST['pseudo']);
-						$password = strip_tags($_POST['password']);
-						$email = strip_tags($_POST['email']);
-
-						if (!verifyPseudo($pseudo))
+						if ($password==$_POST['passwordVerify'])
 						{
-							if ($password==$_POST['passwordVerify'])
+							if (preg_match("#((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,255})#", $password))
 							{
-								if (preg_match("#((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,255})#", $password))
+								if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email))
 								{
-									if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email))
+									if (!verifyEmail($email))
 									{
-										if (!verifyEmail($email))
+										if (!verifyBanned($email))
 										{
-											if (!verifyBanned($email))
-											{
-												$pass_hash = password_hash($password, PASSWORD_DEFAULT);
+											$pass_hash = password_hash($password, PASSWORD_DEFAULT);
 
-												registration($pseudo, $pass_hash, $email);
-											}
-											else
-											{
-											throw new Exception('<p>L\'adresse e-mail renseignée fait l\'objet d\'un bannissement sur ce site. Merci d\'en indiqué une autre.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
-											}
+											registration($pseudo, $pass_hash, $email);
 										}
 										else
 										{
-											throw new Exception('<p>L\'adresse e-mail renseignée existe déjà sur un autre compte. Merci d\'en indiqué une autre.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
+										throw new Exception('<p>L\'adresse e-mail renseignée fait l\'objet d\'un bannissement sur ce site. Merci d\'en indiqué une autre.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
 										}
 									}
 									else
 									{
-										throw new Exception('<p>L\'adresse e-mail n\'est pas valide.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
+										throw new Exception('<p>L\'adresse e-mail renseignée existe déjà sur un autre compte. Merci d\'en indiqué une autre.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
 									}
 								}
 								else
 								{
-									throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
-								}					
+									throw new Exception('<p>L\'adresse e-mail n\'est pas valide.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
+								}
 							}
 							else
 							{
-								throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
-							}
+								throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
+							}					
 						}
 						else
 						{
-							throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
+							throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
 						}
+					}
+					else
+					{
+						throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à la page d\'<a href="index.php?link=inscription">inscription</a></p>');
 					}
 				}
 			}
@@ -285,24 +282,33 @@
 		//Vréifications pour contacter l'admin
 		elseif (isset($_POST['subject'], $_POST['email'], $_POST['message']))
 		{
-			if ($_POST['subject']!='' AND $_POST['email']!='' AND $_POST['message']!='')
+			$recaptcha = new \ReCaptcha\ReCaptcha('6LfRh20UAAAAAIR3yJLwr3fZCFybqe6tpklXVixw');
+			$resp = $recaptcha->verify($_POST['g-recaptcha-response']);
+			if ($resp->isSuccess())
 			{
-				if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email))
+				if ($_POST['subject']!='' AND $_POST['email']!='' AND $_POST['message']!='')
 				{
-					$subject = strip_tags($_POST['subject']);
-					$email = strip_tags($_POST['email']);
-					$message = strip_tags($_POST['message']);
+					$contact_subject = strip_tags($_POST['subject']);
+					$contact_email = strip_tags($_POST['email']);
+					$contact_message = strip_tags($_POST['message']);
 
-					contact($subject, $email, $message);
+					if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $contact_email))
+					{
+						contact($contact_subject, $contact_email, $contact_message);
+					}
+					else
+					{
+						throw new Exception('<p>L\'adresse e-mail n\'est pas valide.<br/>Retour à la page de <a href="index.php?link=contact">contact</a></p>');
+					}
 				}
 				else
 				{
-					throw new Exception('<p>L\'adresse e-mail n\'est pas valide.<br/>Retour à la page de <a href="index.php?link=contact">contact</a></p>');
+					throw new Exception('<p>Vous devez remplir tous les champs.<br/>Retour à la page de <a href="index.php?link=contact">contact</a></p>');
 				}
 			}
 			else
 			{
-				throw new Exception('<p>Vous devez remplir tous les champs.<br/>Retour à la page de <a href="index.php?link=contact">contact</a></p>');
+			    $errors = $resp->getErrorCodes();
 			}
 		}
 

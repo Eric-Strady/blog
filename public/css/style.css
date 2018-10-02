@@ -141,6 +141,15 @@ body {
 
 .account .col-lg-2 input {
   text-align: center;
+}
+
+#reasons_suppression {
   width: 100%;
 }
 
+@media all and (max-width : 600px){
+  .account .col-lg-2 input {
+  text-align: center;
+  max-width: 250px;
+  }
+}

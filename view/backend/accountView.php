@@ -170,42 +170,6 @@
 			?>
 		</div>
 
-		<?php
-			if (isset($_SESSION['admin']) AND $_SESSION['admin']=='ok')
-			{
-				if (isset($_GET['form']) AND $_GET['form']=='delete_user')
-				{
-		?>
-					<div class="col-lg-2">
-						<p><form action="index.php" method="POST">
-							<fieldset>
-								<legend>Supprimer un compte utilisateur</legend>
-								<p><label for="user_pseudo">Pseudo de l'utilisateur: </label>
-								<input type="text" name="user_pseudo" id="user_pseudo" maxlength="255" size="40" required/></p>
-								<p><label for="reasons_suppression">Motif de suppression:</label><br/>
-								<textarea name="reasons_suppression" id="reasons_suppression" placeholder="Limité à 255 caractères" maxlength="255" row="4" cols="40" required></textarea></p>
-								<p><label for="password">Merci de confirmer votre mot de passe: </label>
-							    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
-								<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>"/>
-							    <p><input class="btn btn-sm btn-outline-danger" type="submit" value="Supprimer"/></p>
-							</fieldset>
-						</form></p>
-					</div>
-		<?php
-				}
-				else
-				{
-		?>
-					<div class="col-lg-2">
-						<p><form action="index.php" method="POST">
-					 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&form=delete_user">Supprimer un compte utilisateur</button>
-						</form></p>
-					</div>
-		<?php
-				}
-			}
-		?>
-
 		<div class="col-lg-2">
 			<?php
 				if (isset($_GET['form']) AND $_GET['form']=='delete')
@@ -233,6 +197,46 @@
 			?>
 		</div>
 	</div>
+
+	<?php
+		if (isset($_SESSION['admin']) AND $_SESSION['admin']=='ok')
+		{
+			if (isset($_GET['form']) AND $_GET['form']=='delete_user')
+			{
+	?>			
+				<div class="row account">
+					<div class="col-lg-2">
+						<p><form action="index.php" method="POST">
+							<fieldset>
+								<legend>Supprimer un utilisateur</legend>
+								<p><label for="user_pseudo">Pseudo de l'utilisateur: </label>
+								<input type="text" name="user_pseudo" id="user_pseudo" maxlength="255" size="40" required/></p>
+								<p><label for="reasons_suppression">Motif de suppression:</label><br/>
+								<textarea name="reasons_suppression" id="reasons_suppression" placeholder="Limité à 255 caractères" maxlength="255" required></textarea></p>
+								<p><label for="password">Merci de confirmer votre mot de passe: </label>
+							    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
+								<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>"/>
+							    <p><input class="btn btn-sm btn-outline-danger" type="submit" value="Supprimer"/></p>
+							</fieldset>
+						</form></p>
+					</div>
+				</div>
+	<?php
+			}
+			else
+			{
+	?>
+				<div class="row account">
+					<div class="col-lg-2">
+						<p><form action="index.php" method="POST">
+					 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&form=delete_user">Supprimer un utilisateur</button>
+						</form></p>
+					</div>
+				</div>
+	<?php
+			}
+		}
+	?>
 </div>
 
 <?php $content = ob_get_clean(); ?>

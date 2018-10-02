@@ -15,6 +15,10 @@
 			{
 				signinLink();
 			}
+			elseif ($_GET['link']=='contact')
+			{
+				contactLink();
+			}
 			elseif ($_GET['link']=='confirmed')
 			{
 				confirmLink();

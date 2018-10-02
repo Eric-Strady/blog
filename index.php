@@ -196,7 +196,8 @@
 							{
 								setcookie('id_user', $connect['pseudo'], time()+60*60*24*30, null, null, false, true);
 							}
-					        listPostsAdmin();
+					        $path = 'Location: http://127.0.0.1/blog/index.php?link=admin';
+							header($path);
 						}
 						else
 						{

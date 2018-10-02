@@ -38,6 +38,9 @@
 			            		<li class="nav-item">
 			              			<a class="nav-link" href="index.php?link=connexion">Connexion</a>
 			            		</li>
+			            		<li class="nav-item">
+			              			<a class="nav-link" href="index.php?link=contact">Contact</a>
+			            		</li>
 			            <?php
 			            	}
 			            	elseif (isset($_SESSION['admin']) AND $_SESSION['admin']=='ok')
@@ -60,6 +63,9 @@
 			            	else
 			            	{
 			            ?>
+			            		<li class="nav-item">
+			              			<a class="nav-link" href="index.php?link=contact">Contact</a>
+			            		</li>
 			            		<li class="nav-item dropdown">
 			              			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			                			<?= $_SESSION['pseudo'] ?>

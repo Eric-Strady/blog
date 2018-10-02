@@ -18,7 +18,7 @@ body {
 
 .navbar-brand {
   padding-top: 0px;
-  font-weight: bold
+  font-weight: bold;
 }
 
 .nav-item {
@@ -27,6 +27,17 @@ body {
 
 .navbar-dark .navbar-nav .nav-link {
   color: #454444;
+}
+
+@media all and (max-width : 600px){
+  .navbar .container {
+    flex-direction: column;
+  }
+
+  .navbar-brand {
+    white-space: normal;
+    text-align: center;
+  }
 }
 
 /* FOOTER */

@@ -19,7 +19,9 @@
 
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNav">
 		    <div class="container">
-		        <a class="navbar-brand" href="index.php">Jean Forteroche - Un billet pour l'Alaska</a>
+		        <a class="navbar-brand" href="index.php">Jean Forteroche<br/>
+		        	<span id="slogan">Un billet pour l'Alaska</span>
+		        </a>
 		        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 		        	<span class="navbar-toggler-icon"></span>
 		        </button>

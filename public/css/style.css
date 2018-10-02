@@ -72,16 +72,16 @@ body {
   float: left;
 }
 
-/* Formulaire connexion et inscription */
+/* Formulaire connexion, inscription et contact*/
 
-.form-signin, .form-registration {
+.form-signin, .form-registration, .form-contact{
   width: 100%;
   max-width: 400px;
   padding: 15px;
   margin: 0 auto;
 }
 
-.form-signin .form-control {
+.form-signin, .form-contact, .form-control {
   position: relative;
   box-sizing: border-box;
   height: auto;

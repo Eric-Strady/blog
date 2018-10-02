@@ -65,6 +65,10 @@
 	{
 		require('view/frontend/signInView.php');
 	}
+	function contactLink()
+	{
+		require('view/frontend/contactView.php');
+	}
 	function newPasswordLink()
 	{
 		require('view/frontend/newPasswordView.php');

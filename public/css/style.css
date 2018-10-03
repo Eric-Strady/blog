@@ -53,18 +53,21 @@ body {
 /* NAVIGATION */
 
 #mainNav {
-  min-height: 80px;
+  min-height: 100px; 
   font-size: 1.1em;
   background-color: #454444;
 }
 
 #slogan {
   font-family: bloodynormal, "Times New Roman", Arial, sans-serif;
+  font-weight: normal;
+  font-size: 1.5em;
   color: red;
 }
 
 .navbar-brand {
   padding-top: 0px;
+  font-size: 1.3em;
   font-weight: bold;
 }
 
@@ -190,6 +193,17 @@ body {
     white-space: normal;
     text-align: center;
   }
+
+  .account .col-lg-2 input {
+  text-align: center;
+  max-width: 250px;
+  }
+
+  #transparency {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgba(50, 50, 50, 0.3);
+  }
 }
 
 @media all and (max-width : 400px){
@@ -198,12 +212,5 @@ body {
     -webkit-transform:scale(1, 0.9);
     transform-origin:0 0;
     -webkit-transform-origin:0 0;
-  }
-}
-
-@media all and (max-width : 600px){
-  .account .col-lg-2 input {
-  text-align: center;
-  max-width: 250px;
   }
 }

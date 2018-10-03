@@ -55,14 +55,14 @@ body {
 #mainNav {
   min-height: 100px; 
   font-size: 1.1em;
-  background-color: #454444;
+  background-color: #171717;
 }
 
 #slogan {
   font-family: bloodynormal, "Times New Roman", Arial, sans-serif;
   font-weight: normal;
   font-size: 1.5em;
-  color: red;
+  color: #BF0300;
 }
 
 .navbar-brand {
@@ -72,11 +72,22 @@ body {
 }
 
 .nav-item {
-  padding-right: 10px;
+  margin-left: 20px;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+.nav-item:hover {
+  color: #BF0300;
+  border: 2px solid #BF0300;
 }
 
 .navbar-dark .navbar-nav .nav-link {
   color: white;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: red;
 }
 
 /* FOOTER */
@@ -87,7 +98,7 @@ body {
   width: 100%;
   height: 80px;
   line-height: 80px;
-  background-color: #454444;
+  background-color: #262626;
   text-align: center;
 }
 

@@ -85,7 +85,7 @@ body {
   text-align: center;
 }
 
-/* Liste posts */
+/* Liste posts et commentaires*/
 
 .card-body {
   padding-bottom: 0rem !important;
@@ -98,8 +98,6 @@ body {
 .pagination {
   justify-content: center;
 }
-
-/* Avatar commentaires */
 
 #mini-avatar {
   float: left;
@@ -185,4 +183,10 @@ body {
   text-align: center;
   max-width: 250px;
   }
+}
+
+/* ERROR */
+
+#error {
+  text-align: center;
 }

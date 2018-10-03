@@ -2,7 +2,10 @@
 
 <?php ob_start() ?>
 
-<?= $errorMessage ?>
+<div class="container" id="error">
+	<h1 class="mt-4 mb-4">Erreur</h1>
+	<?= $errorMessage ?>
+</div>
 
 <?php $content = ob_get_clean(); ?>
 

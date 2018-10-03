@@ -13,7 +13,7 @@
 
 <?php ob_start(); ?>
 <div class="container">
-	<div class="row mt-4" id="pseudo">
+	<div class="row mt-4" id="pseudo_account">
 		<p><?= $_SESSION['pseudo'] ?></p>
 	</div>
 

@@ -41,7 +41,7 @@ body {
 #mainNav {
   min-height: 80px;
   font-size: 1.1em;
-  background: url("../images/header.jpg");
+  background-color: #454444;
 }
 
 #slogan {
@@ -59,7 +59,7 @@ body {
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: #454444;
+  color: white;
 }
 
 @media all and (max-width : 600px){

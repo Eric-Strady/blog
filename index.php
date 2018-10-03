@@ -233,8 +233,10 @@
 				$email = strip_tags($_POST['get_email']);
 				if (verifyEmail($email))
 				{
-					addTokenPassword($email);
-					sendNewPassword($email);
+					$id = verifyEmail($email);
+					$token = newTokenPassword($email);
+
+					sendNewPassword($email, $id['id'], $token);
 				}
 				else
 				{
@@ -244,6 +246,30 @@
 			else
 			{
 				throw new Exception('<p>Veuillez saisir une adresse e-mail valide.<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
+			}
+		}
+
+		//Vérifications pour afficher la page de réinitialisation de mot de passe
+		elseif (isset($_GET['id'], $_GET['token']))
+		{
+			if ($_GET['id']!='' AND $_GET['token']!='')
+			{
+				$_GET['id'] = (int) $_GET['id'];
+				$id = strip_tags($_GET['id']);
+				$token = $_GET['token'];
+				if (verifyTokenPassword($id, $token))
+				{
+					$path = 'Location: http://127.0.0.1/blog/index.php?link=change_password';
+					header($path);
+				}
+				else
+				{
+				throw new Exception('<p>Le temps limite est dépassé. Merci de renouveler votre demande de réinitialisation de mot de passe<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
+				}
+			}
+			else
+			{
+			throw new Exception('<p>Vous n\'avez pas le droit d\'accéder à cette page.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 			}
 		}
 

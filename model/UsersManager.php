@@ -19,7 +19,7 @@
 		{
 			$db = $this->dbConnect();
 
-			$req = $db->prepare('SELECT email FROM users WHERE email = :email ');
+			$req = $db->prepare('SELECT id, email FROM users WHERE email = :email ');
 			$req->execute(array('email' => $email));
 			$checkEmail = $req->fetch();
 
@@ -58,6 +58,25 @@
 			$isSame = $checkRegistrationKey->fetch();
 
 			return $isSame;
+		}
+
+		public function addTokenPassword($token_key, $email)
+		{
+			$db = $this->dbConnect();
+
+			$addToken = $db->prepare('UPDATE users SET token_pass = :token_key, token_pass_date = NOW() WHERE email = :email');
+			$addToken->execute(array('token_key' => $token_key, 'email' => $email));
+		}
+
+		public function checkTokenPassword($id, $token)
+		{
+			$db = $this->dbConnect();
+
+			$checkTokenPassword = $db->prepare('SELECT id FROM users WHERE id = :id AND token_pass = :token AND token_pass_date > DATE_SUB(NOW(), INTERVAL 15 MINUTE)');
+			$checkTokenPassword->execute(array('id' => $id, 'token' => $token));
+			$isInTime = $checkTokenPassword->fetch();
+
+			return $isInTime;
 		}
 
 		public function updateConfirm($registration_key)

@@ -214,7 +214,25 @@
 		return $isConfirm;
 	}
 
-	function sendNewPassword($email)
+	function newTokenPassword($email)
+	{
+		$newToken = new UsersManager();
+
+		$length = 60;
+		$string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$maxLength = strlen($string);
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++)
+		{
+		$randomString.= $string[rand(0, $maxLength - 1)];
+		}
+		$token_key = $randomString;
+
+		$newToken->addTokenPassword($token_key, $email);
+		return $token_key;
+	}
+
+	function sendNewPassword($email, $id, $token)
 	{
 		$to = $email;
 		$subject = 'Réinitialisation du mot de passe';
@@ -225,7 +243,7 @@
 					<div align="center">
 						<h3>Réinitialisation de votre mot de passe</h3>
 						<p>Vous êtes actuellement sur le point de changer votre mot de passe !<br/>
-						Cliquez <a href="127.0.0.1/blog/index.php?link=change_password" target="_blank">ici</a> pour réinitialiser votre mot de passe.</p>
+						Cliquez <a href="127.0.0.1/blog/index.php?id=' . $id . '&amp;token=' . $token . '" target="_blank">ici</a> pour réinitialiser votre mot de passe.</p>
 					</div>
 				</body>
 			</html>
@@ -240,6 +258,14 @@
 
 		setcookie('email', $email, time()+60*15, null, null, false, true);
 		require('view/frontend/signInView.php');
+	}
+
+	function verifyTokenPassword($id, $token)
+	{
+		$verifyToken = new UsersManager();
+		$avaibleToken = $verifyToken->checkTokenPassword($id, $token);
+
+		return $avaibleToken;
 	}
 
 	function resetPassword($pass_hash, $email)

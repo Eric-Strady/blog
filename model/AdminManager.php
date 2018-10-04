@@ -26,6 +26,17 @@
 			header($path);
 		}
 
+		public function updateImage($description, $extension, $id)
+		{
+			$db = $this->dbConnect();
+
+			$updateImage = $db->prepare('UPDATE posts SET image_description = :description, image_extension = :extension WHERE id = :id');
+			$updateImage->execute(array('description' => $description, 'extension' => $extension, 'id' => $id));
+
+			$path = 'Location: http://127.0.0.1/blog/index.php?read=' . $id;
+			header($path);
+		}
+
 		public function deletePost($id)
 		{
 			$db = $this->dbConnect();

@@ -380,6 +380,12 @@
 		$adminManager->updatePost($title, $content, $id);
 	}
 
+	function changeImage($description, $extension, $id)
+	{
+		$changeImage = new AdminManager();
+		$changeImage->updateImage($description, $extension, $id);
+	}
+
 	//Affichage du formulaire de suppression + suppression d'un post
 	function deleteForm()
 	{

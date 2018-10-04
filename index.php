@@ -436,23 +436,23 @@
 		}
 
 		//Vérifications pour changer d'illustration
-		elseif (isset($_FILES['cover'], $_POST['id']))
+		elseif (isset($_POST['description'], $_FILES['image'], $_POST['id']))
 		{
-			if ($_FILES['cover']['error'] == 0)
+			if ($_FILES['image']['error'] == 0)
 			{
-				if ($_FILES['cover']['size']<=500000)
+				if ($_FILES['image']['size']<=500000)
 				{
+					$description = strip_tags($_POST['description']);
 					$id = $_POST['id'];
 
-					$data_files = pathinfo($_FILES['cover']['name']);
+					$data_files = pathinfo($_FILES['image']['name']);
 					$extension_upload = $data_files['extension'];
 					$authorized_extensions = array('jpg', 'jpeg', 'png');
 
 					if (in_array($extension_upload, $authorized_extensions))
 					{
-						move_uploaded_file($_FILES['cover']['tmp_name'], 'public/images/cover/' . $id . '.' . $extension_upload);
-						$path = 'Location: http://127.0.0.1/blog/index.php?read=' . $id . '';
-						header($path);
+						move_uploaded_file($_FILES['image']['tmp_name'], 'public/images/cover/' . $id . '.' . $extension_upload);
+						changeImage($description, $extension_upload, $id);
 					}
 					else
 					{

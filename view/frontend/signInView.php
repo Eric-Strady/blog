@@ -25,7 +25,7 @@
 		    <input class="form-control" type="password" name="pass_connect" id="pass_connect" maxlength="255" required/></p>
 		    <p><input type="checkbox" name="auto_connect" id="auto_connect" value="checked"/> <label for="auto_connect">Se rappeler de moi (identifiant)</label></p>
 		    <p><a href="index.php?link=new_password">Mot de passe oublié</a></p>
-		    <input class="btn btn-lg btn-primary btn-block mb-5" type="submit" value="Se connecter"/>
+		    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Se connecter"/>
 		</form>
 	</div>
 </div>

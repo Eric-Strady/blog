@@ -46,10 +46,6 @@ body {
   background-color: rgba(250, 250, 250, 0.7);
 }
 
-#post-title {
-  font-family: monospacetypewriterregular, "Times New Roman", Arial, sans-serif;
-}
-
 /* NAVIGATION */
 
 #mainNav {
@@ -82,12 +78,16 @@ body {
   border: 2px solid #BF0300;
 }
 
+.dropdown-item:hover {
+  color: #BF0300;
+}
+
 .navbar-dark .navbar-nav .nav-link {
   color: white;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
-  color: red;
+  color: #BF0300;
 }
 
 /* FOOTER */
@@ -103,6 +103,10 @@ body {
 }
 
 /* Liste posts et commentaires*/
+
+#post-title {
+  font-family: monospacetypewriterregular, "Times New Roman", Arial, sans-serif;
+}
 
 .card-body {
   padding-bottom: 0rem !important;
@@ -195,6 +199,24 @@ body {
 
 /* MEDIA */
 
+@media all and (max-width : 992px){
+  .nav-item {
+    border: none;
+  }
+
+  .nav-item:hover {
+    border: none;
+  }
+
+  .dropdown-item:hover {
+    color: initial;
+  }
+
+  .navbar-dark .navbar-nav .nav-link:hover {
+  color: white;
+  }
+}
+
 @media all and (max-width : 600px){
   .navbar .container {
     flex-direction: column;
@@ -203,6 +225,10 @@ body {
   .navbar-brand {
     white-space: normal;
     text-align: center;
+  }
+
+  #navbarResponsive {
+    width: 100%;
   }
 
   .account .col-lg-2 input {

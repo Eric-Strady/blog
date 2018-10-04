@@ -116,6 +116,10 @@ body {
   padding-bottom: 0rem !important;
 }
 
+.card-img-top {
+  height: 230px;
+}
+
 .card-footer {
   text-align: center;
 }

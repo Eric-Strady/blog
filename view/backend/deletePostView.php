@@ -8,16 +8,20 @@
 	if (isset($_SESSION['admin']) AND $_SESSION['admin']=='ok')
  	{
 ?>
-		<h2>Suppression du billet:</h2>
+		<div class="container">
+			<div id="transparency">
+				<h3 id="post-title" class="mb-4">Suppression du billet:</h3>
 
-		<p>Souhaitez-vous vraiment procéder à la suppression de ce billet ?</p>
+				<p>Souhaitez-vous vraiment procéder à la suppression de ce billet ?</p>
 
-		<form action="index.php" method="POST">
-			<p><input type="radio" name="delete" value="confirm" id="confirm" /> <label for="confirm">Oui</label></p>
-		    <p><input type="radio" name="delete" value="cancel" id="cancel" /> <label for="cancel">Non</label></p>
-		    <input type="hidden" name="id" value="<?= $_GET['delete'] ?>">
-			<input type="submit" value="Confirmer"/>
-		</form>
+				<form action="index.php" method="POST">
+					<p><input type="radio" name="delete" value="confirm" id="confirm" /> <label for="confirm">Oui</label></p>
+				    <p><input type="radio" name="delete" value="cancel" id="cancel" /> <label for="cancel">Non</label></p>
+				    <input type="hidden" name="id" value="<?= $_GET['delete'] ?>">
+					<input class="btn btn-primary" type="submit" value="Confirmer"/>
+				</form>
+			</div>
+		</div>
 <?php
 	}
 	else

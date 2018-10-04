@@ -435,6 +435,41 @@
 			}
 		}
 
+		//Vérifications pour changer d'illustration
+		elseif (isset($_FILES['cover'], $_POST['id']))
+		{
+			if ($_FILES['cover']['error'] == 0)
+			{
+				if ($_FILES['cover']['size']<=500000)
+				{
+					$id = $_POST['id'];
+
+					$data_files = pathinfo($_FILES['cover']['name']);
+					$extension_upload = $data_files['extension'];
+					$authorized_extensions = array('jpg', 'jpeg', 'png');
+
+					if (in_array($extension_upload, $authorized_extensions))
+					{
+						move_uploaded_file($_FILES['cover']['tmp_name'], 'public/images/cover/' . $id . '.' . $extension_upload);
+						$path = 'Location: http://127.0.0.1/blog/index.php?read=' . $id . '';
+						header($path);
+					}
+					else
+					{
+						throw new Exception('<p>Le format de l\'image n\'est pas conforme. Pour rappel, vous devez transmettre une image au format "JPG", "JPEG" ou "PNG".<br/>Retour à l\' <a href="index.php?link=admin">interface d\'administration</a></p>');
+					}
+				}
+				else
+				{
+					throw new Exception('<p>L\'image est trop volumineuse. Pour rappel, elle ne doit pas dépasser 500Ko.<br/>Retour à l\' <a href="index.php?link=admin">interface d\'administration</a></p>');
+				}
+			}
+			else
+			{
+				throw new Exception('<p>Une erreur est survenue lors du téléchargement.<br/>Retour à l\' <a href="index.php?link=admin">interface d\'administration</a></p>');
+			}
+		}
+
 		//Vérifications pour afficher la demande de suppression d'un post
 		elseif (isset($_GET['delete']))
 		{

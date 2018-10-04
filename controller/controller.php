@@ -499,30 +499,6 @@
 		$newPseudo->changePseudo($new_pseudo, $pseudo);
 	}
 
-	function thumbNails($id, $extension_upload)
-	{
-		$origin = imagecreatefrompng('public/images/avatars/' . $id . '.png');
-
-		$destination = imagecreatetruecolor(50, 50);
-
-		$origin_width = imagesx($origin);
-		$origin_height = imagesy($origin);
-		$destination_width = imagesx($destination);
-		$destination_height = imagesy($destination);
-
-		imagecopyresampled($destination, $origin, 0, 0, 0, 0, $destination_width, $destination_height, $origin_width, $origin_height);
-
-		imagepng($destination, 'public/images/thumbnails/' . $id . '.png');
-
-		$countWarning = new WarningManager();
-		$count = $countWarning->countWarning();
-		$nbWarning = $count->fetch();
-		$count->closeCursor();
-
-		$path = 'Location: http://127.0.0.1/blog/index.php?link=account';
-		header($path);
-	}
-
 	function newEmail($new_email, $pseudo)
 	{
 		$newEmail = new UsersManager();

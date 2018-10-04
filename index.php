@@ -736,7 +736,8 @@
 			}
 			elseif ($_POST['delete_account']=='cancel' AND $_POST['pseudo']!='' AND $_POST['id']!='')
 			{
-				adminAccountLink();
+				$path = 'Location: http://127.0.0.1/blog/index.php';
+				header($path);
 			}
 			else
 			{

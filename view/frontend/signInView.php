@@ -13,7 +13,7 @@
 	?>
 
 	<div class="text-center mt-5">
-		<form class="form-signin" action="index.php" method="post">
+		<form id="form-signin" action="index.php" method="post">
 			<h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
 			<p><label for="id_connect">Pseudo ou adresse e-mail:</label><br/>
 			<input class="form-control" type="text" name="id_connect" id="id_connect"

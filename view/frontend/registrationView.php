@@ -6,7 +6,7 @@
 <?php ob_start(); ?>
 <div class="container">
     <div class="text-center mt-5">
-        <form class="form-registration" action="index.php" method="post">
+        <form id="form-registration" action="index.php" method="post">
             <h1 class="h3 mb-3 font-weight-normal">Inscription</h1>
         	<p><label for="pseudo">Votre pseudo:</label><br/>
         	<input class="form-control" type="text" name="pseudo" id="pseudo" maxlength="255" size="30" required autofocus/></p>

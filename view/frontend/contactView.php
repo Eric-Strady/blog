@@ -6,7 +6,7 @@
 <?php ob_start(); ?>
 <div class="container">
 	<div class="text-center mt-5">
-		<form class="form-contact" action="index.php" method="post">
+		<form id="form-contact" action="index.php" method="post">
 			<h1 class="h3 mb-3 font-weight-normal">Contact</h1>
 			<p><label for="subject">Sujet:</label><br/>
 			<input class="form-control" type="text" name="subject" id="subject" maxlength="60" required autofocus/></p>

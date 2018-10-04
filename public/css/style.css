@@ -106,7 +106,7 @@ body {
   text-align: center;
 }
 
-/* Liste posts et commentaires*/
+/* LIST POSTS, COMMENTS*/
 
 #post-title {
   font-family: monospacetypewriterregular, "Times New Roman", Arial, sans-serif;
@@ -133,16 +133,16 @@ body {
   float: left;
 }
 
-/* Formulaire connexion, inscription et contact*/
+/* SIGNIN FORM, REGISTRATION FORM, CONTACT FORM */
 
-.form-signin, .form-registration, .form-contact{
+#form-signin, #form-registration, #form-contact {
   width: 100%;
   max-width: 400px;
   padding: 15px;
   margin: 0 auto;
 }
 
-.form-signin, .form-contact, .form-control {
+#form-signin, #form-contact, .form-control {
   position: relative;
   box-sizing: border-box;
   height: auto;
@@ -157,7 +157,13 @@ body {
   -webkit-transform-origin:0 0;
 }
 
-/* Profil */
+/* UPDATE POST */
+
+h3 {
+  text-align: center;
+}
+
+/* PROFIL */
 
 #pseudo_account {
   justify-content: center;

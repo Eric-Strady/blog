@@ -63,7 +63,7 @@
 			            		<?= $_SESSION['pseudo'] ?>
 			            	</a>
 			            	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAccount">
-				            	<a class="dropdown-item" href="index.php?link=account">Mon profil</a>
+				            	<a class="dropdown-item" href="index.php?link=account&id=<?= $_SESSION['id'] ?>">Mon profil</a>
 				            	<a class="dropdown-item" href="index.php?link=deconnexion">Déconnexion</a>
 			            	</div>
 			            </li>

@@ -145,15 +145,26 @@
 			header($path);
 		}
 
-		public function getEmail($pseudo)
+		public function getEmail($id_user)
 		{
 			$db = $this->dbConnect();
 
-			$req = $db->prepare('SELECT email FROM users WHERE pseudo = :pseudo ');
-			$req->execute(array('pseudo' => $pseudo));
+			$req = $db->prepare('SELECT email FROM users WHERE pseudo = :pseudo OR id = :id');
+			$req->execute(array('pseudo' => $id_user, 'id' => $id_user));
 			$getEmail = $req->fetch();
 
 			return $getEmail;
+		}
+
+		public function getGravatar($email, $size)
+		{
+			$db = $this->dbConnect();
+
+			$url = 'https://www.gravatar.com/avatar/';
+			$url .= md5(strtolower(trim($email)));
+			$url .= '?s=' . $size . '&d=retro&r=g';
+
+			return $url;
 		}
 
 		public function deleteAccount($pseudo)

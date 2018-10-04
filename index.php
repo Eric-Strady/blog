@@ -45,11 +45,26 @@
 			}
 			elseif ($_GET['link']=='account')
 			{
-				accountLink();
+				if (isset($_GET['id']) AND $_GET['id']!='')
+				{
+					$_GET['id'] = (int) $_GET['id'];
+					$id = $_GET['id'];
+					$forGravatar = selectEmail($id);
+
+					accountLink($forGravatar['email']);
+				}
+				else
+				{
+					throw new Exception('<p>Impossible d\'accéder à votre profil pour le moment !<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
+				}
 			}
 			elseif ($_GET['link']=='deconnexion')
 			{
 				signOutLink();
+			}
+			else
+			{
+				throw new Exception('<p>Cette page n\'existe pas !<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 			}
 		}
 

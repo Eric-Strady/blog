@@ -18,7 +18,7 @@
 	</div>
 
 	<div class="row mt-3" id="avatar">
-		<img class="d-flex rounded-circle" src="public/images/avatars/<?= $_SESSION['id'] ?>.png" alt="Avatar" title="Avatar de <?= $_SESSION['pseudo'] ?>" height="250" width="250"/>
+		<img class="d-flex rounded-circle" src="<?= $gravatar ?>"/>
 	</div>
 
 	<div class="row mt-4" id="param">

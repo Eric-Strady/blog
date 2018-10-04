@@ -477,8 +477,13 @@
 																					//PROFIL :
 
 	//Lien vers la page du profil + paramétrages du compte (administrateur)
-	function accountLink()
+	function accountLink($email)
 	{
+		$searchGravatar = new UsersManager();
+
+		$size = 200;
+		$gravatar = $searchGravatar->getGravatar($email, $size);
+
 		$countWarning = new WarningManager();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
@@ -553,10 +558,10 @@
 		$newPassword->changePassword($pass_hash, $pseudo);
 	}
 
-	function selectEmail($pseudo)
+	function selectEmail($id_user)
 	{
 		$selectEmail = new UsersManager();
-		$user_email = $selectEmail->getEmail($pseudo);
+		$user_email = $selectEmail->getEmail($id_user);
 
 		return $user_email;
 	}

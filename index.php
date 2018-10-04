@@ -596,12 +596,12 @@
 					}
 					else
 					{
-						throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à votre <a href="index.php?link=account">profil</a></p>');
+						throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 					}
 				}
 				else
 				{
-					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à votre <a href="index.php?link=account">profil</a></p>');
+					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 				}
 			}
 		}
@@ -628,17 +628,17 @@
 					}
 					else
 					{
-						throw new Exception('<p>Le format de l\'image n\'est pas conforme. Pour rappel, vous devez transmettre une image au format "JPG" ou "PNG".<br/>Retour à votre <a href="index.php?link=account">profil</a></p>');
+						throw new Exception('<p>Le format de l\'image n\'est pas conforme. Pour rappel, vous devez transmettre une image au format "JPG" ou "PNG".<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 					}
 				}
 				else
 				{
-					throw new Exception('<p>L\'image est trop volumineuse. Pour rappel, elle ne doit pas dépasser 200Ko.<br/>Retour à votre <a href="index.php?link=account">profil</a></p>');
+					throw new Exception('<p>L\'image est trop volumineuse. Pour rappel, elle ne doit pas dépasser 200Ko.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 				}
 			}
 			else
 			{
-				throw new Exception('<p>Une erreur est survenue lors du téléchargement.<br/>Retour à votre <a href="index.php?link=account">profil</a></p>');
+				throw new Exception('<p>Une erreur est survenue lors du téléchargement.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 			}
 		}
 
@@ -661,12 +661,12 @@
 					}
 					else
 					{
-						throw new Exception('<p>L\'adresse e-mail indiqué existe déjà. Merci d\'en choisir une autre.<br/>Retour à votre <a href="index.php?link=account">profil</a></p>');
+						throw new Exception('<p>L\'adresse e-mail indiqué existe déjà. Merci d\'en choisir une autre.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 					}
 				}
 				else
 				{
-					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à votre <a href="index.php?link=account">profil</a></p>');
+					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 				}
 			}
 		}
@@ -695,17 +695,17 @@
 						}
 						else
 						{
-							throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à votre <a href="index.php?link=account">profil</a></p>');
+							throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 						}
 					}
 					else
 					{
-						throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à votre <a href="index.php?link=account">profil</a></p>');
+						throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 					}
 				}
 				else
 				{
-					throw new Exception('<p>Le mot de passe indiqué comme étant votre ancien mot de passe n\'est pas correct.<br/>Retour à votre <a href="index.php?link=account">profil</a></p>');
+					throw new Exception('<p>Le mot de passe indiqué comme étant votre ancien mot de passe n\'est pas correct.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 				}
 			}
 		}
@@ -731,12 +731,12 @@
 					}
 					else
 					{
-						throw new Exception('<p>Le pseudo renseigné n\'existe pas.<br/>Retour à votre <a href="index.php?link=account">profil</a></p>');
+						throw new Exception('<p>Le pseudo renseigné n\'existe pas.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 					}
 				}
 				else
 				{
-					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à votre <a href="index.php?link=account">profil</a></p>');
+					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 				}
 			}
 		}
@@ -755,7 +755,7 @@
 				}
 				else
 				{
-					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à votre <a href="index.php?link=account">profil</a></p>');
+					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 				}
 			}
 		}
@@ -776,7 +776,7 @@
 			}
 			else
 			{
-				throw new Exception('<p>Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
+				throw new Exception('<p>Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 			}
 		}
 		

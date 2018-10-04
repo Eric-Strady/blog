@@ -68,7 +68,7 @@
 				{
 			?>
 					<p><form action="index.php" method="POST">
-				 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&form=pseudo">Changer de pseudo</button>
+				 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;id=<?= $_SESSION['id'] ?>&form=pseudo">Changer de pseudo</button>
 					</form></p>
 			<?php
 				}
@@ -95,7 +95,7 @@
 				{
 			?>
 					<p><form action="index.php" method="POST">
-				 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&form=avatar">Changer d'avatar</button>
+				 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;id=<?= $_SESSION['id'] ?>&form=avatar">Changer d'avatar</button>
 					</form></p>
 			<?php
 				}
@@ -124,7 +124,7 @@
 				{
 			?>
 					<p><form action="index.php" method="POST">
-				 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&form=email">Changer d'adresse e-mail</button>
+				 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;id=<?= $_SESSION['id'] ?>&form=email">Changer d'adresse e-mail</button>
 					</form></p>
 			<?php
 				}
@@ -163,7 +163,7 @@
 				{
 			?>
 					<p><form action="index.php" method="POST">
-				 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&form=password">Changer de mot de passe</button>
+				 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;id=<?= $_SESSION['id'] ?>&form=password">Changer de mot de passe</button>
 					</form></p>
 			<?php
 				}
@@ -229,7 +229,7 @@
 				<div class="row account">
 					<div class="col-lg-2">
 						<p><form action="index.php" method="POST">
-					 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&form=delete_user">Supprimer un utilisateur</button>
+					 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;id=<?= $_SESSION['id'] ?>&form=delete_user">Supprimer un utilisateur</button>
 						</form></p>
 					</div>
 				</div>

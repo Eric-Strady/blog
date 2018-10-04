@@ -82,6 +82,10 @@ body {
   color: #BF0300;
 }
 
+.dropdown-item:focus {
+  background-color: white;
+}
+
 .navbar-dark .navbar-nav .nav-link {
   color: white;
 }

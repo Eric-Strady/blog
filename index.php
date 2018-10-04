@@ -79,12 +79,17 @@
 		}
 
 		//Vérifications pour l'ajout d'un commentaire
-		elseif (isset($_POST['comment']))
+		elseif (isset($_POST['comment'], $_POST['postId'], $_POST['pseudo'], $_POST['email']))
 		{
-			if ($_POST['comment']!='')
+			if ($_POST['comment']!='' AND $_POST['postId']!='' AND $_POST['pseudo']!='' AND $_POST['email']!='')
 			{
+				$_POST['postId'] = (int) $_POST['postId'];
+				$postId = strip_tags($_POST['postId']);
+				$pseudo = strip_tags($_POST['pseudo']);
+				$email = strip_tags($_POST['email']);
 				$comment = strip_tags($_POST['comment']);
-				insertComment($_POST['postId'], $_POST['pseudo'], $_POST['email'], $comment);
+
+				insertComment($postId, $pseudo, $email, $comment);
 			}
 			else
 			{
@@ -93,12 +98,17 @@
 		}
 
 		//Vérifications pour modifier un commentaire
-		elseif (isset($_POST['up_comment']))
+		elseif (isset($_POST['up_comment'], $_POST['commentId'], $_POST['id_post']))
 		{
-			if ($_POST['up_comment']!='')
+			if ($_POST['up_comment']!='' AND $_POST['commentId']!='' AND $_POST['id_post']!='')
 			{
 				$comment = strip_tags($_POST['up_comment']);
-				reComment($comment, $_POST['commentId'], $_POST['id_post']);
+				$_POST['commentId'] = (int) $_POST['commentId'];
+				$commentId = strip_tags($_POST['commentId']);
+				$_POST['id_post'] = (int) $_POST['id_post'];
+				$id_post = strip_tags($_POST['id_post']);
+
+				reComment($comment, $commentId, $id_post);
 			}
 			else
 			{
@@ -107,7 +117,7 @@
 		}
 
 		//Sytème de vérification et d'insertion dans la BDD pour la page d'inscription
-		elseif (isset($_POST['pseudo']) AND isset($_POST['password']) AND isset($_POST['passwordVerify']) AND isset($_POST['email']) )
+		elseif (isset($_POST['pseudo'], $_POST['password'], $_POST['passwordVerify'], $_POST['email']))
 		{
 			$recaptcha = new \ReCaptcha\ReCaptcha('6LfRh20UAAAAAIR3yJLwr3fZCFybqe6tpklXVixw');
 			$resp = $recaptcha->verify($_POST['g-recaptcha-response']);
@@ -294,12 +304,12 @@
 		//Vérifications pour réinitialiser son mot de passe
 		elseif (isset($_POST['reset_password'], $_POST['confirm_reset_password'], $_POST['email']))
 		{
-			if ($_POST['reset_password']!='' AND $_POST['confirm_reset_password']!='')
+			if ($_POST['reset_password']!='' AND $_POST['confirm_reset_password']!='' AND $_POST['email']!='')
 			{
 				if ($_POST['reset_password'] == $_POST['confirm_reset_password'])
 				{
 					$reset_password = strip_tags($_POST['reset_password']);
-					$email = $_POST['email'];
+					$email = strip_tags($_POST['email']);
 
 					if (preg_match("#((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,255})#", $reset_password))
 					{
@@ -391,7 +401,7 @@
 		}
 
 		//Vérifications pour ajouter un post (Crud)
-		elseif (isset($_POST['add_title']) AND isset($_POST['add_content']))
+		elseif (isset($_POST['add_title'], $_POST['add_content']))
 		{
 			if ($_POST['add_title']!='' AND $_POST['add_content']!='')
 			{
@@ -411,6 +421,7 @@
 		{
 			if ($_GET['read']!='')
 			{
+				$_GET['read'] = (int) $_GET['read'];
 				$postId = strip_tags($_GET['read']);
 
 				readPost($postId);
@@ -426,6 +437,7 @@
 		{
 			if ($_GET['update']!='')
 			{
+				$_GET['update'] = (int) $_GET['update'];
 				$postId = strip_tags($_GET['update']);
 
 				changePost($postId);
@@ -437,12 +449,13 @@
 		}
 
 		//Vérifications pour modifier un post
-		elseif (isset($_POST['up_title']) AND isset($_POST['up_content']))
+		elseif (isset($_POST['up_title'], $_POST['up_content'], $_POST['id']))
 		{
-			if ($_POST['up_title']!='' AND $_POST['up_content']!='')
+			if ($_POST['up_title']!='' AND $_POST['up_content']!='' AND $_POST['id']!='')
 			{
 				$title = strip_tags($_POST['up_title']);
-				$content = ($_POST['up_content']);
+				$content = strip_tags($_POST['up_content']);
+				$_POST['id'] = (int) $_POST['id'];
 				$id = $_POST['id'];
 
 				rePost($title, $content, $id);
@@ -456,36 +469,44 @@
 		//Vérifications pour changer d'illustration
 		elseif (isset($_POST['description'], $_FILES['image'], $_POST['id']))
 		{
-			if ($_FILES['image']['error'] == 0)
+			if ($_POST['description']!='' AND !empty($_FILES['image']) AND $_POST['id']!='')
 			{
-				if ($_FILES['image']['size']<=500000)
+				if ($_FILES['image']['error'] == 0)
 				{
-					$description = strip_tags($_POST['description']);
-					$id = $_POST['id'];
-
-					$data_files = pathinfo($_FILES['image']['name']);
-					$extension_upload = $data_files['extension'];
-					$authorized_extensions = array('jpg', 'jpeg', 'png');
-
-					if (in_array($extension_upload, $authorized_extensions))
+					if ($_FILES['image']['size']<=500000)
 					{
-						move_uploaded_file($_FILES['image']['tmp_name'], 'public/images/cover/' . $id . '.' . $extension_upload);
-						changeImage($description, $extension_upload, $id);
+						$description = strip_tags($_POST['description']);
+						$_POST['id'] = (int) $_POST['id'];
+						$id = strip_tags($_POST['id']);
+
+						$data_files = pathinfo($_FILES['image']['name']);
+						$extension_upload = $data_files['extension'];
+						$authorized_extensions = array('jpg', 'jpeg', 'png');
+
+						if (in_array($extension_upload, $authorized_extensions))
+						{
+							move_uploaded_file($_FILES['image']['tmp_name'], 'public/images/cover/' . $id . '.' . $extension_upload);
+							changeImage($description, $extension_upload, $id);
+						}
+						else
+						{
+							throw new Exception('<p>Le format de l\'image n\'est pas conforme. Pour rappel, vous devez transmettre une image au format "JPG", "JPEG" ou "PNG".<br/>Retour à l\' <a href="index.php?link=admin">interface d\'administration</a></p>');
+						}
 					}
 					else
 					{
-						throw new Exception('<p>Le format de l\'image n\'est pas conforme. Pour rappel, vous devez transmettre une image au format "JPG", "JPEG" ou "PNG".<br/>Retour à l\' <a href="index.php?link=admin">interface d\'administration</a></p>');
+						throw new Exception('<p>L\'image est trop volumineuse. Pour rappel, elle ne doit pas dépasser 500Ko.<br/>Retour à l\' <a href="index.php?link=admin">interface d\'administration</a></p>');
 					}
 				}
 				else
 				{
-					throw new Exception('<p>L\'image est trop volumineuse. Pour rappel, elle ne doit pas dépasser 500Ko.<br/>Retour à l\' <a href="index.php?link=admin">interface d\'administration</a></p>');
+					throw new Exception('<p>Une erreur est survenue lors du téléchargement.<br/>Retour à l\' <a href="index.php?link=admin">interface d\'administration</a></p>');
 				}
 			}
 			else
 			{
-				throw new Exception('<p>Une erreur est survenue lors du téléchargement.<br/>Retour à l\' <a href="index.php?link=admin">interface d\'administration</a></p>');
-			}
+				throw new Exception('<p>Vous devez renseigné tous les champs !<br/>Retour à l\' <a href="index.php?link=admin">interface d\'administration</a></p>');
+			}	
 		}
 
 		//Vérifications pour afficher la demande de suppression d'un post
@@ -502,15 +523,16 @@
 		}
 
 		//Vérifications pour suppression du post
-		elseif (isset($_POST['delete']) AND isset($_POST['id']))
+		elseif (isset($_POST['delete'], $_POST['id']))
 		{
-			if ($_POST['delete']=='confirm')
+			if ($_POST['delete']=='confirm' AND $_POST['id']!='')
 			{
+				$_POST['id'] = (int) $_POST['id'];
 				$id = strip_tags($_POST['id']);
 
 				erasePost($id);
 			}
-			elseif ($_POST['delete']=='cancel')
+			elseif ($_POST['delete']=='cancel' AND $_POST['id']!='')
 			{
 				listPostsAdmin();
 			}
@@ -521,7 +543,7 @@
 		}
 
 		//Vérifications pour supprimer un commentaire signalé
-		elseif (isset($_GET['eraseComment']) AND isset($_GET['eraseWarning']))
+		elseif (isset($_GET['eraseComment'], $_GET['eraseWarning']))
 		{
 			if ($_GET['eraseComment']!='' AND $_GET['eraseWarning']!='')
 			{
@@ -555,11 +577,11 @@
 		//Vérifications pour changer de pseudo
 		elseif (isset($_POST['new_pseudo'], $_POST['password'], $_POST['pseudo']))
 		{
-			if ($_POST['new_pseudo']!='' AND $_POST['password']!='')
+			if ($_POST['new_pseudo']!='' AND $_POST['password']!='' AND $_POST['pseudo']!='')
 			{
 				$new_pseudo = strip_tags($_POST['new_pseudo']);
 				$password = strip_tags($_POST['password']);
-				$pseudo = $_POST['pseudo'];
+				$pseudo = strip_tags($_POST['pseudo']);
 
 				$isPassCorrect = verifyConnect($pseudo);
 
@@ -623,11 +645,11 @@
 		//Vérifications pour changer d'adresse e-mail
 		elseif (isset($_POST['new_email'], $_POST['password'], $_POST['pseudo']))
 		{
-			if ($_POST['new_email']!='' AND $_POST['password']!='')
+			if ($_POST['new_email']!='' AND $_POST['password']!='' AND $_POST['pseudo']!='')
 			{
 				$new_email = strip_tags($_POST['new_email']);
 				$password = strip_tags($_POST['password']);
-				$pseudo = $_POST['pseudo'];
+				$pseudo = strip_tags($_POST['pseudo']);
 
 				$isPassCorrect = verifyConnect($pseudo);
 
@@ -652,12 +674,12 @@
 		//Vérifications pour changer de mot de passe
 		elseif (isset($_POST['old_password'], $_POST['change_password'], $_POST['confirm_change_password'], $_POST['pseudo']))
 		{
-			if ($_POST['old_password']!='' AND $_POST['change_password']!='' AND $_POST['confirm_change_password']!='')
+			if ($_POST['old_password']!='' AND $_POST['change_password']!='' AND $_POST['confirm_change_password']!='' AND $_POST['pseudo']!='')
 			{
 				$old_password = strip_tags($_POST['old_password']);
 				$new_password = strip_tags($_POST['change_password']);
 				$confirm_new_password = strip_tags($_POST['confirm_change_password']);
-				$pseudo = $_POST['pseudo'];
+				$pseudo = strip_tags($_POST['pseudo']);
 
 				$isPassCorrect = verifyConnect($pseudo);
 
@@ -691,12 +713,12 @@
 		//Vérifications pour supprimer un compte utilisateur (admin)
 		elseif (isset($_POST['user_pseudo'], $_POST['reasons_suppression'], $_POST['password'], $_POST['pseudo']))
 		{
-			if ($_POST['user_pseudo']!='' AND $_POST['reasons_suppression']!='' AND $_POST['password']!='')
+			if ($_POST['user_pseudo']!='' AND $_POST['reasons_suppression']!='' AND $_POST['password']!='' AND $_POST['pseudo']!='')
 			{
 				$user_pseudo = strip_tags($_POST['user_pseudo']);
 				$reasons = strip_tags($_POST['reasons_suppression']);
 				$password = strip_tags($_POST['password']);
-				$pseudo = $_POST['pseudo'];
+				$pseudo = strip_tags($_POST['pseudo']);
 				$isPassCorrect = verifyConnect($pseudo);
 
 				if (password_verify($password, $isPassCorrect['password']))
@@ -741,11 +763,14 @@
 		//Vérifications pour supprimer son compte
 		elseif (isset($_POST['delete_account'], $_POST['pseudo'], $_POST['id']))
 		{
-			if ($_POST['delete_account']=='confirm')
+			if ($_POST['delete_account']=='confirm' AND $_POST['pseudo']!='' AND $_POST['id']!='')
 			{
-				eraseAccount($_POST['pseudo'], $_POST['id']);
+				$pseudo = strip_tags($_POST['pseudo']);
+				$_POST['id'] = (int) $_POST['id'];
+				$id = strip_tags($_POST['id']);
+				eraseAccount($pseudo, $id);
 			}
-			elseif ($_POST['delete_account']=='cancel')
+			elseif ($_POST['delete_account']=='cancel' AND $_POST['pseudo']!='' AND $_POST['id']!='')
 			{
 				adminAccountLink();
 			}

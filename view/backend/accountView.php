@@ -190,7 +190,7 @@
 				{
 			?>
 					<p><form action="index.php" method="POST">
-				 		<button class="btn btn-lg btn-dark mb-4" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&form=delete">Supprimer son compte</button>
+				 		<button class="btn btn-lg btn-dark mb-4" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;id=<?= $_SESSION['id'] ?>&amp;form=delete">Supprimer son compte</button>
 					</form></p>
 			<?php
 				}

@@ -133,16 +133,16 @@ body {
   float: left;
 }
 
-/* REGISTRATION FORM, SIGNIN FORM, RESET FORM,  CONTACT FORM */
+/* REGISTRATION FORM, SIGNIN FORM, RESET FORM, NEW-PASS FORM, CONTACT FORM */
 
-#form-registration, #form-signin, #form-reset, #form-contact {
+#form-registration, #form-signin, #form-reset, #form-new-pass, #form-contact {
   width: 100%;
   max-width: 400px;
   padding: 15px;
   margin: 0 auto;
 }
 
-#form-contact, #form-signin, #form-reset, .form-control {
+#form-contact, #form-signin, #form-reset, #form-new-pass, .form-control {
   position: relative;
   box-sizing: border-box;
   height: auto;

@@ -1,12 +1,12 @@
 <?php session_start(); ?>
 
-<?php $title = 'Réinitialiser son mot de passe'; ?>
+<?php $title = 'Demande de réinitialisation'; ?>
 
 <?php ob_start(); ?>
 
 <div class="container">
 	<div class="text-center mt-5">
-		<h1 class="h3 mb-3 font-weight-normal">Réinitialiser son mot de passe</h1>
+		<h1 class="h3 mb-3 font-weight-normal">Demande de réinitialisation</h1>
 
 		<p>Pour obtenir un nouveau mot de passe, vous devez renseigner l'adresse e-mail de votre compte pour recevoir un e-mail avec votre nouveau mot de passe.<br/>
 		Attention ! L'e-mail de réinitialisation sera valide durant 15 minutes.</p>

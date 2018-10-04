@@ -17,9 +17,9 @@
         		selector: '#add_content',
         		height: 500,
 				theme: 'modern',
-				plugins: 'preview searchreplace autolink image link pagebreak nonbreaking advlist lists textcolor wordcount imagetools contextmenu colorpicker help',
+				plugins: 'preview searchreplace autolink link pagebreak nonbreaking advlist lists textcolor wordcount contextmenu colorpicker help',
 				block_formats: 'Paragraph=p;Heading 1=h1;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6',
-				toolbar: 'formatselect | bold italic strikethrough forecolor | link | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | image | removeformat'
+				toolbar: 'formatselect | bold italic strikethrough forecolor | link | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat'
         	});
 		</script>
 		<script type="text/javascript">
@@ -27,9 +27,9 @@
         		selector: '#up_content',
         		height: 500,
 				theme: 'modern',
-				plugins: 'preview searchreplace autolink image link pagebreak nonbreaking advlist lists textcolor wordcount imagetools contextmenu colorpicker help',
+				plugins: 'preview searchreplace autolink link pagebreak nonbreaking advlist lists textcolor wordcount contextmenu colorpicker help',
 				block_formats: 'Paragraph=p;Heading 1=h1;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6',
-				toolbar: 'formatselect | bold italic strikethrough forecolor | link | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | image | removeformat'
+				toolbar: 'formatselect | bold italic strikethrough forecolor | link | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat'
         	});
 		</script>
 
@@ -63,7 +63,7 @@
 			            		<?= $_SESSION['pseudo'] ?>
 			            	</a>
 			            	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAccount">
-				            	<a class="dropdown-item" href="index.php?link=account&id=<?= $_SESSION['id'] ?>">Mon profil</a>
+				            	<a class="dropdown-item" href="index.php?link=account&amp;id=<?= $_SESSION['id'] ?>">Mon profil</a>
 				            	<a class="dropdown-item" href="index.php?link=deconnexion">Déconnexion</a>
 			            	</div>
 			            </li>

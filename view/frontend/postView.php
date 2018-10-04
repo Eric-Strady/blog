@@ -49,6 +49,7 @@
 							        <textarea class="form-control" name="comment" id="comment" placeholder="Max 255 caractères" maxlength="255" rows="3" required></textarea></p>
 							        <input type="hidden" name="postId" value="<?= $_GET['post'] ?>">
 							        <input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
+							        <input type="hidden" name="email" value="<?= $_SESSION['email'] ?>">
 							        <input type="submit" class="btn btn-primary" value="Envoyer le commentaire"/>
 								</form>
 					        	</div>
@@ -72,7 +73,7 @@
 			      	while ($comment = $comments->fetch())
 					{
 				?>
-						<img class="d-flex mr-3 rounded-circle" id="mini-avatar" src="public/images/header.jpg" alt="Avatar" width="50" height="50"/>
+						<img class="d-flex mr-3 rounded-circle" id="mini-avatar" src="https://www.gravatar.com/avatar/<?= md5(strtolower(trim($comment['email']))) ?>?s=50&amp;d=retro" alt="Gravatar"/>
 						<em>Le <?= $comment['d_comment'] ?> à <?= $comment['h_comment'] ?> - </em><strong class="mt-0"><?= strip_tags($comment['author']) ?></strong>
 				<?php
 						if (isset($_SESSION['pseudo']))

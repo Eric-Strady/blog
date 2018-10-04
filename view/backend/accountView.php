@@ -18,7 +18,7 @@
 	</div>
 
 	<div class="row mt-3" id="avatar">
-		<img class="d-flex rounded-circle" src="<?= $gravatar ?>"/>
+		<img class="d-flex rounded-circle" src="<?= $gravatar ?>" alt="Gravatar"/>
 	</div>
 
 	<div class="row mt-4" id="param">

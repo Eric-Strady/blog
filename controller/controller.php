@@ -97,6 +97,7 @@
 		if (!empty($postId))
 		{
 			$comments = $commentsManager->getComments($postId);
+
 			require('view/frontend/postView.php');
 		}
 		else
@@ -105,10 +106,10 @@
 		}
 	}
 
-	function insertComment($postId, $pseudo, $comment)
+	function insertComment($postId, $pseudo, $email, $comment)
 	{
 		$commentsManager = new CommentsManager();
-		$commentsManager->addComment($postId, $pseudo, $comment);
+		$commentsManager->addComment($postId, $pseudo, $email, $comment);
 	}
 
 	function reComment($comment, $commentId, $id_post)

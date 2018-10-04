@@ -42,7 +42,7 @@
 		{
 			$db = $this->dbConnect();
 
-			$req = $db->prepare('SELECT id, pseudo, password, admin FROM users WHERE pseudo = :pseudo OR email = :email');
+			$req = $db->prepare('SELECT id, pseudo, password, admin, email FROM users WHERE pseudo = :pseudo OR email = :email');
 			$req->execute(array('pseudo' => $id_connect, 'email' => $id_connect));
 			$checkConnect = $req->fetch();
 

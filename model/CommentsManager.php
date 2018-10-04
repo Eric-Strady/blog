@@ -9,7 +9,7 @@
 			$db = $this->dbConnect();
 
 			$comments = $db->prepare('
-			SELECT id, id_post, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS d_comment, DATE_FORMAT(comment_date, \'%Hh%imin%ss\') AS h_comment
+			SELECT id, id_post, author, email, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS d_comment, DATE_FORMAT(comment_date, \'%Hh%imin%ss\') AS h_comment
 			FROM comments 
 			WHERE id_post = :postId 
 			ORDER BY comment_date DESC
@@ -29,14 +29,14 @@
 			return $comment;
 		}
 
-		public function addComment($postId, $pseudo, $comment)
+		public function addComment($postId, $pseudo, $email, $comment)
 		{
 			$db = $this->dbConnect();
 
 			strip_tags($comment);
 
-			$addComment = $db->prepare('INSERT INTO comments(id_post, author, comment, comment_date) VALUES (:id_post, :author, :comment, NOW())');
-			$addComment->execute(array('id_post' => $postId, 'author' => $pseudo, 'comment' => $comment));
+			$addComment = $db->prepare('INSERT INTO comments(id_post, author, email, comment, comment_date) VALUES (:id_post, :author, :email, :comment, NOW())');
+			$addComment->execute(array('id_post' => $postId, 'author' => $pseudo, 'email' => $email, 'comment' => $comment));
 
 			$path = 'Location: http://127.0.0.1/blog/index.php?post=' . $postId;
 			header($path);

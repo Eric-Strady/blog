@@ -74,6 +74,7 @@
 		elseif (isset($_GET['post']) AND $_GET['post']!= '')
 		{
 			$postId = strip_tags($_GET['post']);
+
 			post($postId);
 		}
 
@@ -83,7 +84,7 @@
 			if ($_POST['comment']!='')
 			{
 				$comment = strip_tags($_POST['comment']);
-				insertComment($_POST['postId'], $_POST['pseudo'], $comment);
+				insertComment($_POST['postId'], $_POST['pseudo'], $_POST['email'], $comment);
 			}
 			else
 			{
@@ -206,6 +207,7 @@
 							session_start();
 					        $_SESSION['id'] = $connect['id'];
 					        $_SESSION['pseudo'] = $connect['pseudo'];
+					        $_SESSION['email'] = $connect['email'];
 					        $_SESSION['admin'] = 'ok';
 
 					        if ($_POST['auto_connect'] == 'checked')
@@ -220,6 +222,7 @@
 							session_start();
 					        $_SESSION['id'] = $connect['id'];
 					        $_SESSION['pseudo'] = $connect['pseudo'];
+					        $_SESSION['email'] = $connect['email'];
 
 					        if ($_POST['auto_connect'] == 'checked')
 							{

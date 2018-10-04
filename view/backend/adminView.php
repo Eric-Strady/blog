@@ -15,7 +15,7 @@
 				?>
 					    <div class="col-lg-4 col-sm-6 portfolio-item">
 					      	<div class="card mt-4">
-					        	<a href="index.php?read=<?= $data['id'] ?>"><img class="card-img-top" src="public/images/header.jpg" alt="En-tête billet"/></a>
+					        	<a href="index.php?read=<?= $data['id'] ?>"><img class="card-img-top" src="public/images/cover/<?= $data['id'] ?>.<?= $data['image_extension'] ?>" alt="<?= $data['image_description'] ?>"/></a>
 					        	<div class="card-body">
 					      			<h4 class="card-title">
 					        			<a href="index.php?read=<?= $data['id'] ?>"><?= strip_tags($data['title']) ?></a>

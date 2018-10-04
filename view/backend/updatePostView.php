@@ -10,8 +10,8 @@
 ?>
 		<h2>Billet:</h2>
 		<h4><?= strip_tags($post['title']) ?></h4>
-		<em>le <?= $post['creation_date_fr'] ?></em>
-		<img id="imagePost" class="img-fluid rounded" src="public/cover/header.jpg" alt="En-tête billet" width="600" height="200"/>
+		<p>le <?= $post['creation_date_fr'] ?></p>
+		<img class="img-fluid rounded" src="public/images/cover/<?= $post['id'] ?>.<?= $post['image_extension'] ?>" alt="<?= $post['image_description'] ?>" width="600" height="200"/>
 		<p><?= nl2br($post['content']) ?></p>
 
 		<?php

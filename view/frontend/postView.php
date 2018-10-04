@@ -14,7 +14,7 @@
 
 				<hr>
 
-				<img id="imagePost" class="img-fluid rounded" src="public/images/header.jpg" alt="En-tête billet" width="600" height="200"/>
+				<img id="imagePost" class="img-fluid rounded" src="public/images/cover/<?= $post['id'] ?>.<?= $post['image_extension'] ?>" alt="<?= $post['image_description'] ?>" width="600" height="200"/>
 
 				<hr>
 

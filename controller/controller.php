@@ -371,6 +371,19 @@
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
 
+		require ('view/backend/readPostView.php');
+	}
+
+	function changePost($postId)
+	{
+		$postsManager = new PostsManager();
+		$post = $postsManager->getPost($postId);
+
+		$countWarning = new WarningManager();
+		$count = $countWarning->countWarning();
+		$nbWarning = $count->fetch();
+		$count->closeCursor();
+
 		require ('view/backend/updatePostView.php');
 	}
 

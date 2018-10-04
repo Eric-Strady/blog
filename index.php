@@ -410,7 +410,7 @@
 			{
 				$postId = strip_tags($_GET['update']);
 
-				readPost($postId);
+				changePost($postId);
 			}
 			else
 			{

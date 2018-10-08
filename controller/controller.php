@@ -1,26 +1,26 @@
 <?php
 
-	require_once('model/PostsManager.php');
-	require_once('model/CommentsManager.php');
-	require_once('model/UsersManager.php');
+	require_once('model/Posts.php');
+	require_once('model/Comments.php');
+	require_once('model/Users.php');
 	require_once('model/AdminManager.php');
-	require_once('model/WarningManager.php');
-	require_once('model/BannedManager.php');
+	require_once('model/Warning.php');
+	require_once('model/Banned.php');
 
-	use \Eric\Blog\Model\Posts\PostsManager;
-	use \Eric\Blog\Model\Comments\CommentsManager;
-	use \Eric\Blog\Model\Users\UsersManager;
+	use \Eric\Blog\Model\Posts\Posts;
+	use \Eric\Blog\Model\Comments\Comments;
+	use \Eric\Blog\Model\Users\Users;
 	use \Eric\Blog\Model\Admin\AdminManager;
-	use \Eric\Blog\Model\Warning\WarningManager;
-	use \Eric\Blog\Model\Banned\BannedManager;
+	use \Eric\Blog\Model\Warning\Warning;
+	use \Eric\Blog\Model\Banned\Banned;
 
 																					//FRONTEND :
 
 	//Affichage des posts + pagination pour listPostsView
 	function listPosts()
 	{
-		$count = new PostsManager();
-		$postManager = new PostsManager();
+		$count = new Posts();
+		$postManager = new Posts();
 
 		$max_nb_post = 5;
 		$req = $count->countPosts();
@@ -89,8 +89,8 @@
 	//Affichage du post selectionné et de ses commentaires + ajout de commentaire + modification de commentaire
 	function post($postId)
 	{
-		$postsManager = new PostsManager();
-		$commentsManager = new CommentsManager();
+		$postsManager = new Posts();
+		$commentsManager = new Comments();
 
 		$post = $postsManager->getPost($postId);
 
@@ -108,20 +108,20 @@
 
 	function insertComment($postId, $pseudo, $email, $comment)
 	{
-		$commentsManager = new CommentsManager();
+		$commentsManager = new Comments();
 		$commentsManager->addComment($postId, $pseudo, $email, $comment);
 	}
 
 	function reComment($comment, $commentId, $id_post)
 	{
-		$commentsManager = new CommentsManager();
+		$commentsManager = new Comments();
 		$commentsManager->updateComment($comment, $commentId, $id_post);
 	}
 
 	//Vérifications pour l'insciption d'un utilisateur + inscription et confirmation par e-mail
 	function verifyPseudo($pseudo)
 	{
-		$verifyPseudo = new UsersManager();
+		$verifyPseudo = new Users();
 		$avaiblePseudo = $verifyPseudo->checkPseudo($pseudo);
 
 		return $avaiblePseudo;
@@ -129,7 +129,7 @@
 
 	function verifyEmail($email)
 	{
-		$verifyEmail = new UsersManager();
+		$verifyEmail = new Users();
 		$avaibleEmail = $verifyEmail->checkEmail($email);
 
 		return $avaibleEmail;
@@ -137,7 +137,7 @@
 
 	function verifyBanned($email)
 	{
-		$verifyBanned = new BannedManager();
+		$verifyBanned = new Banned();
 		$avaibleAccount = $verifyBanned->checkBanned($email);
 
 		return $avaibleAccount;
@@ -145,7 +145,7 @@
 
 	function registration($pseudo, $pass_hash, $email)
 	{
-		$registration = new UsersManager();
+		$registration = new Users();
 
 		$length = 10;
 		$string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -187,7 +187,7 @@
 	//Vérifications pour la connexion d'un utilisateur + envoi nouveau mot de passe
 	function verifyConnect($id_connect)
 	{
-		$verifyConnect = new UsersManager();
+		$verifyConnect = new Users();
 		$verifyId = $verifyConnect->checkConnect($id_connect);
 
 		return $verifyId;
@@ -195,7 +195,7 @@
 
 	function verifyRegistrationKey($registration_key)
 	{
-		$verifyRegistrationKey = new UsersManager();
+		$verifyRegistrationKey = new Users();
 		$isKeyExist = $verifyRegistrationKey->checkRegistrationKey($registration_key);
 
 		return $isKeyExist;
@@ -203,13 +203,13 @@
 
 	function changeConfirm($registration_key)
 	{
-		$changeConfirm = new UsersManager();
+		$changeConfirm = new Users();
 		$changeConfirm->updateConfirm($registration_key);
 	}
 
 	function verifyConfirm($id_connect)
 	{
-		$verifyConfirm = new UsersManager();
+		$verifyConfirm = new Users();
 		$isConfirm = $verifyConfirm->checkConfirm($id_connect);
 
 		return $isConfirm;
@@ -217,7 +217,7 @@
 
 	function newTokenPassword($email)
 	{
-		$newToken = new UsersManager();
+		$newToken = new Users();
 
 		$length = 60;
 		$string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -263,7 +263,7 @@
 
 	function verifyTokenPassword($id, $token)
 	{
-		$verifyToken = new UsersManager();
+		$verifyToken = new Users();
 		$avaibleToken = $verifyToken->checkTokenPassword($id, $token);
 
 		return $avaibleToken;
@@ -271,7 +271,7 @@
 
 	function resetPassword($pass_hash, $email)
 	{
-		$resetPassword = new UsersManager();
+		$resetPassword = new Users();
 		$resetPassword->forgottenPassword($pass_hash, $email);
 	}
 
@@ -303,8 +303,8 @@
 	//Affichage liste des posts + pagination pour adminView.php
 	function listPostsAdmin()
 	{
-		$count = new PostsManager();
-		$postManager = new PostsManager();
+		$count = new Posts();
+		$postManager = new Posts();
 
 		$max_nb_post = 5;
 		$req = $count->countPosts();
@@ -336,7 +336,7 @@
 
 		$req = $postManager->getPosts($first_post, $max_nb_post);
 
-		$countWarning = new WarningManager();
+		$countWarning = new Warning();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -347,7 +347,7 @@
 	//Lien vers la création d'un post + insertion d'un post
 	function newPost()
 	{
-		$countWarning = new WarningManager();
+		$countWarning = new Warning();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -367,7 +367,7 @@
 		$postsManager = new PostsManager();
 		$post = $postsManager->getPost($postId);
 
-		$countWarning = new WarningManager();
+		$countWarning = new Warning();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -377,10 +377,10 @@
 
 	function changePost($postId)
 	{
-		$postsManager = new PostsManager();
+		$postsManager = new Posts();
 		$post = $postsManager->getPost($postId);
 
-		$countWarning = new WarningManager();
+		$countWarning = new Warning();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -403,7 +403,7 @@
 	//Affichage du formulaire de suppression + suppression d'un post
 	function deleteForm()
 	{
-		$countWarning = new WarningManager();
+		$countWarning = new Warning();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -420,8 +420,8 @@
 	//Commentaires signalés
 	function addWarnedComments($id)
 	{
-		$commentsManager = new CommentsManager();
-		$warningManager = new WarningManager();
+		$commentsManager = new Comments();
+		$warningManager = new Warning();
 
 		$careComment = $commentsManager->getComment($id);
 		$warnedComment = $careComment->fetch();
@@ -431,7 +431,7 @@
 
 	function verifyWarning($id)
 	{
-		$warningManager = new WarningManager();
+		$warningManager = new Warning();
 		$verifyWarning = $warningManager->checkWarning($id);
 
 		return $verifyWarning;
@@ -439,10 +439,10 @@
 
 	function listWarnedComments()
 	{
-		$warningManager = new WarningManager();
+		$warningManager = new Warning();
 		$listWarnedComments = $warningManager->getWarningComments();
 
-		$countWarning = new WarningManager();
+		$countWarning = new Warning();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -452,13 +452,13 @@
 
 	function eraseWarnedComment($id_comment, $id)
 	{
-		$commentsManager = new CommentsManager();
-		$warningManager = new WarningManager();
+		$commentsManager = new Comments();
+		$warningManager = new Warning();
 
 		$commentsManager->deleteComment($id_comment);
 		$warningManager->deleteWarning($id);
 
-		$countWarning = new WarningManager();
+		$countWarning = new Warning();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -466,10 +466,10 @@
 
 	function justDeleteWarning($id)
 	{
-		$warningManager = new WarningManager();
+		$warningManager = new Warning();
 		$warningManager->deleteWarning($id);
 
-		$countWarning = new WarningManager();
+		$countWarning = new Warning();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -480,12 +480,12 @@
 	//Lien vers la page du profil + paramétrages du compte (administrateur)
 	function accountLink($email)
 	{
-		$searchGravatar = new UsersManager();
+		$searchGravatar = new Users();
 
 		$size = 200;
 		$gravatar = $searchGravatar->getGravatar($email, $size);
 
-		$countWarning = new WarningManager();
+		$countWarning = new Warning();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -495,13 +495,13 @@
 
 	function newPseudo($new_pseudo, $pseudo)
 	{
-		$newPseudo = new UsersManager();
+		$newPseudo = new Users();
 		$newPseudo->changePseudo($new_pseudo, $pseudo);
 	}
 
 	function newEmail($new_email, $pseudo)
 	{
-		$newEmail = new UsersManager();
+		$newEmail = new Users();
 
 		$to = 'strady60@gmail.com';
 		$subject = 'Changement d\'adresse e-mail';
@@ -531,13 +531,13 @@
 
 	function newPassword($pass_hash, $pseudo)
 	{
-		$newPassword = new UsersManager();
+		$newPassword = new Users();
 		$newPassword->changePassword($pass_hash, $pseudo);
 	}
 
 	function selectEmail($id_user)
 	{
-		$selectEmail = new UsersManager();
+		$selectEmail = new Users();
 		$user_email = $selectEmail->getEmail($id_user);
 
 		return $user_email;
@@ -545,7 +545,7 @@
 
 	function bannedUser($pseudo, $email, $reasons)
 	{
-		$bannedUser = new BannedManager();
+		$bannedUser = new Banned();
 		$deleteUser = new AdminManager();
 
 		$bannedUser->addBanned($pseudo, $email, $reasons);
@@ -579,7 +579,7 @@
 
 	function confirmDeleteAccount()
 	{
-		$countWarning = new WarningManager();
+		$countWarning = new Warning();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -589,8 +589,8 @@
 
 	function eraseAccount($pseudo, $id)
 	{
-		$eraseAccount = new UsersManager();
-		$deleteAsloComments = new CommentsManager();
+		$eraseAccount = new Users();
+		$deleteAsloComments = new Comments();
 
 		$eraseAccount->deleteAccount($pseudo);
 		$deleteAsloComments->deleteComments($pseudo);

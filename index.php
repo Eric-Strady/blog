@@ -1,15 +1,15 @@
 <?php
 	require ('controller/controller.php');
+	require ('controller/homeController.php');
+	require ('controller/postController.php');
+	require ('controller/registrationController.php');
+	require ('controller/signinController.php');
+	require ('controller/adminController.php');
+	require ('controller/crudController.php');
+	require ('controller/warningController.php');
+	require ('controller/accountController.php');
+	require ('controller/contactController.php');
 	require ('recaptcha/autoload.php');
-	require_once('controller/homeController.php');
-	require_once('controller/postController.php');
-	require_once('controller/registrationController.php');
-	require_once('controller/signinController.php');
-	require_once('controller/adminController.php');
-	require_once('controller/crudController.php');
-	require_once('controller/warningController.php');
-	require_once('controller/accountController.php');
-	require_once('controller/contactController.php');
 
 	try
 	{

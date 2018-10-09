@@ -49,14 +49,6 @@
 		return $verifyWarning;
 	}
 
-	function alreadyWarned($id)
-	{
-		$alreadyWarned = new Warning();
-		$isAlreadyWarned = $alreadyWarned->checkWarnedComment($id);
-
-		return $isAlreadyWarned;
-	}
-
 	function addWarnedComments($id, $informer)
 	{
 		$commentsManager = new Comments();
@@ -66,14 +58,4 @@
 		$warnedComment = $careComment->fetch();
 
 		$warningManager->insertWarnedComment($warnedComment['id'], $warnedComment['author'], $warnedComment['comment'], $warnedComment['id_post'], $informer);
-	}
-
-	function updateNbTimes($informer, $idComment)
-	{
-		$commentsManager = new Comments();
-		$updateNbTimes = new Warning();
-
-		$careComment = $commentsManager->getComment($idComment);
-		$warnedComment = $careComment->fetch();
-		$updateNbTimes->giveImportance($informer, $idComment, $warnedComment['id_post']);
 	}

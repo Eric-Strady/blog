@@ -137,14 +137,7 @@
 
 				if (!verifyWarning($warnedId, $informerId))
 				{
-					if (alreadyWarned($warnedId))
-					{
-						updateNbTimes($informerId, $warnedId);
-					}
-					else
-					{
-						addWarnedComments($warnedId, $informerId);
-					}
+					addWarnedComments($warnedId, $informerId);
 				}
 				else
 				{

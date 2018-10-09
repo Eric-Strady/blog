@@ -61,6 +61,10 @@ body {
   color: #BF0300;
 }
 
+.badge {
+  background-color: #3D3D3D; 
+}
+
 .navbar-brand {
   padding-top: 0px;
   font-size: 1.3em;

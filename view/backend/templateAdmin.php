@@ -53,7 +53,7 @@
 			            </li>
 			            <li class="nav-item">
 			            	<a class="nav-link" href="index.php?link=moderate">
-			            		Modérer les commentaires</a><?php if ($nbWarning['nb_warning']!='0'){ echo' ( ' . $nbWarning['nb_warning'] . ' )'; } ?>
+			            		Modérer les commentaires <?php if ($nbWarning['nb_warning']!='0'){ echo'<span class="badge">' . $nbWarning['nb_warning'] . '</span>'; } ?>
 			            	</a>
 			            </li>
 			            <li class="nav-item">

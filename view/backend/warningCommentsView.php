@@ -17,7 +17,7 @@
 					{
 				?>
 						<p>Signalé <?= $comment['nTimes'] ?> fois:</p>
-						<p><em>Le <?= $comment['d_warning'] ?> à <?= $comment['h_warning'] ?></em> - <strong><?= strip_tags($comment['author']) ?></strong>: ( <a href="index.php?eraseComment=<?= $comment['id_comment'] ?>&amp;eraseWarning=<?= $comment['id'] ?>">Supprimer</a> - <a href="index.php?conserve=<?= $comment['id'] ?>">Conserver</a> )<br/>
+						<p><em>Le <?= $comment['d_warning'] ?> à <?= $comment['h_warning'] ?></em> - <strong><?= strip_tags($comment['author']) ?></strong>: ( <a href="index.php?eraseComment=<?= $comment['id_comment'] ?>&amp;eraseWarning=<?= $comment['id'] ?>">Supprimer</a> - <a href="index.php?conserve=<?= $comment['id_comment'] ?>">Conserver</a> )<br/>
 						<?= strip_tags($comment['comment'])?></p>
 				<?php
 					}

@@ -2,7 +2,7 @@
 
 	require_once('model/Posts.php');
 	require_once('model/Comments.php');
-	require_once('model/Comments.php');
+	require_once('model/Warning.php');
 
 	use \Eric\Blog\Model\Posts\Posts;
 	use \Eric\Blog\Model\Comments\Comments;

@@ -49,12 +49,12 @@
 			return $warningComments;
 		}
 
-		public function deleteWarning($id)
+		public function deleteWarning($id_comment)
 		{
 			$db = $this->dbConnect();
 
-			$deleteWarning = $db->prepare('DELETE FROM warning WHERE id = :id');
-			$deleteWarning->execute(array('id' => $id));
+			$deleteWarning = $db->prepare('DELETE FROM warning WHERE id_comment = :id_comment');
+			$deleteWarning->execute(array('id_comment' => $id_comment));
 
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=moderate';
 			header($path);

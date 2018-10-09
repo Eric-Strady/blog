@@ -1,9 +1,9 @@
 <?php
 
-	require_once('model/Posts.php');
+	require_once('model/Comments.php');
 	require_once('model/Warning.php');
 
-	use \Eric\Blog\Model\Posts\Posts;
+	use \Eric\Blog\Model\Comments\Comments;
 	use \Eric\Blog\Model\Warning\Warning;
 
 	//Commentaires signalés
@@ -20,13 +20,13 @@
 		require ('view/backend/warningCommentsView.php');
 	}
 
-	function eraseWarnedComment($id_comment, $id)
+	function eraseWarnedComment($id_comment)
 	{
 		$commentsManager = new Comments();
 		$warningManager = new Warning();
 
 		$commentsManager->deleteComment($id_comment);
-		$warningManager->deleteWarning($id);
+		$warningManager->deleteWarning($id_comment);
 
 		$countWarning = new Warning();
 		$count = $countWarning->countWarning();
@@ -34,10 +34,10 @@
 		$count->closeCursor();
 	}
 
-	function justDeleteWarning($id)
+	function justDeleteWarning($id_comment)
 	{
 		$warningManager = new Warning();
-		$warningManager->deleteWarning($id);
+		$warningManager->deleteWarning($id_comment);
 
 		$countWarning = new Warning();
 		$count = $countWarning->countWarning();

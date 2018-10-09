@@ -125,6 +125,38 @@
 			}
 		}
 
+		//Vérifications pour signaler un commentaire
+		elseif (isset($_GET['warnedId'], $_GET['informerId']))
+		{
+			if ($_GET['warnedId']!='' AND $_GET['informerId']!='')
+			{
+				$_GET['warnedId'] = (int)$_GET['warnedId'];
+				$warnedId = strip_tags($_GET['warnedId']);
+				$_GET['informerId'] = (int)$_GET['informerId'];
+				$informerId = strip_tags($_GET['informerId']);
+
+				if (!verifyWarning($warnedId, $informerId))
+				{
+					if (alreadyWarned($warnedId))
+					{
+						updateNbTimes($informerId, $warnedId);
+					}
+					else
+					{
+						addWarnedComments($warnedId, $informerId);
+					}
+				}
+				else
+				{
+					throw new Exception('<p>Vous avez déjà signalé ce commentaire. Il sera traité dans les plus brefs délais !<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
+				}
+			}
+			else
+			{
+				throw new Exception('<p>Le système de signalement n\'est pas accessible pour le moment.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
+			}
+		}
+
 		//Sytème de vérification et d'insertion dans la BDD pour la page d'inscription
 		elseif (isset($_POST['pseudo'], $_POST['password'], $_POST['passwordVerify'], $_POST['email']))
 		{
@@ -372,29 +404,6 @@
 			else
 			{
 			    $errors = $resp->getErrorCodes();
-			}
-		}
-
-		//Vérifications pour signaler un commentaire
-		elseif (isset($_GET['warnedId']))
-		{
-			if ($_GET['warnedId']!='')
-			{
-				$_GET['warnedId'] = (int)$_GET['warnedId'];
-				$warnedId = strip_tags($_GET['warnedId']);
-
-				if (!verifyWarning($warnedId))
-				{
-					addWarnedComments($warnedId);
-				}
-				else
-				{
-					throw new Exception('<p>Ce commentaire a déjà été signalé et sera traité dans les plus brefs délais !<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
-				}
-			}
-			else
-			{
-				throw new Exception('<p>Le système de signalement n\'est pas accessible pour le moment.<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
 			}
 		}
 

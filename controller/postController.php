@@ -41,7 +41,23 @@
 	}
 
 	//Commentaires signalés
-	function addWarnedComments($id)
+	function verifyWarning($id, $informer)
+	{
+		$warningManager = new Warning();
+		$verifyWarning = $warningManager->checkWarning($id, $informer);
+
+		return $verifyWarning;
+	}
+
+	function alreadyWarned($id)
+	{
+		$alreadyWarned = new Warning();
+		$isAlreadyWarned = $alreadyWarned->checkWarnedComment($id);
+
+		return $isAlreadyWarned;
+	}
+
+	function addWarnedComments($id, $informer)
 	{
 		$commentsManager = new Comments();
 		$warningManager = new Warning();
@@ -49,13 +65,15 @@
 		$careComment = $commentsManager->getComment($id);
 		$warnedComment = $careComment->fetch();
 
-		$warningManager->insertWarnedComment($warnedComment['id'], $warnedComment['author'], $warnedComment['comment'], $warnedComment['id_post']);
+		$warningManager->insertWarnedComment($warnedComment['id'], $warnedComment['author'], $warnedComment['comment'], $warnedComment['id_post'], $informer);
 	}
 
-	function verifyWarning($id)
+	function updateNbTimes($informer, $idComment)
 	{
-		$warningManager = new Warning();
-		$verifyWarning = $warningManager->checkWarning($id);
+		$commentsManager = new Comments();
+		$updateNbTimes = new Warning();
 
-		return $verifyWarning;
+		$careComment = $commentsManager->getComment($idComment);
+		$warnedComment = $careComment->fetch();
+		$updateNbTimes->giveImportance($informer, $idComment, $warnedComment['id_post']);
 	}

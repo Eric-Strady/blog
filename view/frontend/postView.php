@@ -104,7 +104,7 @@
 							else
 							{
 				?>
-								<em>( <a href="index.php?warnedId=<?= $comment['id'] ?>">Signaler</a> )</em>
+								<em>( <a href="index.php?warnedId=<?= $comment['id'] ?>&amp;informerId=<?= $_SESSION['id'] ?>">Signaler</a> )</em>
 				<?php
 							}
 						}

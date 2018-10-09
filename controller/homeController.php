@@ -10,7 +10,7 @@
 		$count = new Posts();
 		$postManager = new Posts();
 
-		$max_nb_post = 5;
+		$max_nb_post = 6;
 		$req = $count->countPosts();
 		$total_post = $req->fetch();
 		$req->closeCursor();

@@ -45,8 +45,16 @@
 			GROUP BY id_comment
 			ORDER BY nTimes DESC
 			');
+			$affectedLines = $warningComments->rowcount();
 
-			return $warningComments;
+			if ($affectedLines == 0)
+			{
+				return $affectedLines;
+			}
+			else
+			{
+				return $warningComments;
+			}	
 		}
 
 		public function deleteWarning($id_comment)

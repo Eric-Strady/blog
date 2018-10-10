@@ -132,12 +132,12 @@
 			header($path);
 		}
 
-		public function changePseudo($new_pseudo, $id)
+		public function changePseudo($new_pseudo, $pseudo)
 		{
 			$db = $this->dbConnect();
 
-			$changePseudo = $db->prepare('UPDATE users SET pseudo = :new_pseudo WHERE id = :id');
-			$changePseudo->execute(array('new_pseudo' => $new_pseudo, 'id' => $id));
+			$changePseudo = $db->prepare('UPDATE users, comments SET pseudo = :new_pseudo, author = :new_pseudo WHERE pseudo = :pseudo AND author = :pseudo');
+			$changePseudo->execute(array('new_pseudo' => $new_pseudo, 'pseudo' => $pseudo));
 
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=account';
 			header($path);

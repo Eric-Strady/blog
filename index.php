@@ -235,6 +235,7 @@
 		//Système de vérification et de création de session pour la page de connexion + redirection interface admin
 		elseif (isset($_POST['id_connect'], $_POST['pass_connect']))
 		{
+
 			if ($_POST['id_connect']!='' AND $_POST['pass_connect']!='')
 			{
 				$id_connect = strip_tags($_POST['id_connect']);
@@ -242,48 +243,59 @@
 				$connect = verifyConnect($id_connect);
 				$isConfirmCorrect = verifyConfirm($id_connect);
 
-				if ($isConfirmCorrect['confirm']==1)
+				if (verifyToken($id_connect))
 				{
-					if (password_verify($pass_connect, $connect['password']))
+					if ($isConfirmCorrect['confirm']==1)
 					{
-						if ($connect['admin']==1)
+						if (password_verify($pass_connect, $connect['password']))
 						{
-							session_start();
-					        $_SESSION['id'] = $connect['id'];
-					        $_SESSION['pseudo'] = $connect['pseudo'];
-					        $_SESSION['email'] = $connect['email'];
-					        $_SESSION['admin'] = 'ok';
-
-					        if ($_POST['auto_connect'] == 'checked')
+							if ($connect['admin']==1)
 							{
-								setcookie('id_user', $connect['pseudo'], time()+60*60*24*30, null, null, false, true);
+								session_start();
+						        $_SESSION['id'] = $connect['id'];
+						        $_SESSION['pseudo'] = $connect['pseudo'];
+						        $_SESSION['email'] = $connect['email'];
+						        $_SESSION['admin'] = 'ok';
+
+						        if ($_POST['auto_connect'] == 'checked')
+								{
+									setcookie('id_user', $connect['pseudo'], time()+60*60*24*30, null, null, false, true);
+								}
+						        $path = 'Location: http://127.0.0.1/blog/index.php?link=admin';
+								header($path);
 							}
-					        $path = 'Location: http://127.0.0.1/blog/index.php?link=admin';
-							header($path);
+							else
+							{
+								session_start();
+						        $_SESSION['id'] = $connect['id'];
+						        $_SESSION['pseudo'] = $connect['pseudo'];
+						        $_SESSION['email'] = $connect['email'];
+
+						        if ($_POST['auto_connect'] == 'checked')
+								{
+									setcookie('id_user', $connect['pseudo'], time()+60*60*24*30, null, null, false, true);
+								}
+						        header('Location: index.php');
+							}
 						}
 						else
 						{
-							session_start();
-					        $_SESSION['id'] = $connect['id'];
-					        $_SESSION['pseudo'] = $connect['pseudo'];
-					        $_SESSION['email'] = $connect['email'];
-
-					        if ($_POST['auto_connect'] == 'checked')
-							{
-								setcookie('id_user', $connect['pseudo'], time()+60*60*24*30, null, null, false, true);
-							}
-					        header('Location: index.php');
+							throw new Exception('<p>Mauvais identifiant ou mot de passe :/<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
 						}
 					}
 					else
 					{
-						throw new Exception('<p>Mauvais identifiant ou mot de passe :/<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
+						throw new Exception('<p>Vous devez d\'abord confirmer votre inscription avant de vous connecter.<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
 					}
 				}
 				else
 				{
-					throw new Exception('<p>Vous devez d\'abord confirmer votre inscription avant de vous connecter.<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
+					throw new Exception('<p>Vous avez effectué une demande de réinitialisation de mot de passe. Tant que la réinitialisation ne sera pas effectuée, vous ne pourrez pas vous connecter.<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
 				}
+			}
+			else
+			{
+				throw new Exception('<p>Vous devez renseigner votre pseudo et votre mot de passe pour vous connecter.<br/>Retour à la page de <a href="index.php?link=connexion">connexion</a></p>');
 			}
 		}
 
@@ -321,8 +333,7 @@
 				$token = $_GET['token'];
 				if (verifyTokenPassword($id, $token))
 				{
-					$path = 'Location: http://127.0.0.1/blog/index.php?link=change_password';
-					header($path);
+					changePasswordLink();
 				}
 				else
 				{
@@ -349,6 +360,7 @@
 					{
 						$pass_hash = password_hash($reset_password, PASSWORD_DEFAULT);
 
+						deleteToken($email);
 						resetPassword($pass_hash, $email);
 					}
 					else

@@ -60,25 +60,6 @@
 			return $isSame;
 		}
 
-		public function addTokenPassword($token_key, $email)
-		{
-			$db = $this->dbConnect();
-
-			$addToken = $db->prepare('UPDATE users SET token_pass = :token_key, token_pass_date = NOW() WHERE email = :email');
-			$addToken->execute(array('token_key' => $token_key, 'email' => $email));
-		}
-
-		public function checkTokenPassword($id, $token)
-		{
-			$db = $this->dbConnect();
-
-			$checkTokenPassword = $db->prepare('SELECT id FROM users WHERE id = :id AND token_pass = :token AND token_pass_date > DATE_SUB(NOW(), INTERVAL 15 MINUTE)');
-			$checkTokenPassword->execute(array('id' => $id, 'token' => $token));
-			$isInTime = $checkTokenPassword->fetch();
-
-			return $isInTime;
-		}
-
 		public function updateConfirm($registration_key)
 		{
 			$db = $this->dbConnect();
@@ -99,6 +80,45 @@
 			$isOne = $checkConfirm->fetch();
 
 			return $isOne;
+		}
+
+		public function checkTokenPresence($id_connect)
+		{
+			$db = $this->dbConnect();
+
+			$checkTokenPresence = $db->prepare('SELECT token_pass FROM users WHERE pseudo = :pseudo OR email = :email');
+			$checkTokenPresence->execute(array('pseudo' => $id_connect, 'email' => $id_connect));
+
+			$presence = $checkTokenPresence->fetch();
+
+			return $presence;
+		}
+
+		public function addTokenPassword($token_key, $email)
+		{
+			$db = $this->dbConnect();
+
+			$addToken = $db->prepare('UPDATE users SET token_pass = :token_key, token_pass_date = NOW() WHERE email = :email');
+			$addToken->execute(array('token_key' => $token_key, 'email' => $email));
+		}
+
+		public function checkTokenPassword($id, $token)
+		{
+			$db = $this->dbConnect();
+
+			$checkTokenPassword = $db->prepare('SELECT id FROM users WHERE id = :id AND token_pass = :token AND token_pass_date > DATE_SUB(NOW(), INTERVAL 15 MINUTE)');
+			$checkTokenPassword->execute(array('id' => $id, 'token' => $token));
+			$isInTime = $checkTokenPassword->fetch();
+
+			return $isInTime;
+		}
+
+		public function deleteTokenPassword($email)
+		{
+			$db = $this->dbConnect();
+
+			$changePassword = $db->prepare('UPDATE users SET token_pass = NULL WHERE email = :email');
+			$changePassword->execute(array('email' => $email));
 		}
 
 		public function forgottenPassword($password, $email)

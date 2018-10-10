@@ -27,6 +27,14 @@
 		$changeConfirm->updateConfirm($registration_key);
 	}
 
+	function verifyToken($id_connect)
+	{
+		$verifyToken = new Users();
+		$isPresent = $verifyToken->checkTokenPresence($id_connect);
+
+		return $isPresent;
+	}
+
 	function verifyConfirm($id_connect)
 	{
 		$verifyConfirm = new Users();
@@ -87,6 +95,12 @@
 		$avaibleToken = $verifyToken->checkTokenPassword($id, $token);
 
 		return $avaibleToken;
+	}
+
+	function deleteToken($email)
+	{
+		$deleteToken = new Users();
+		$deleteToken->deleteTokenPassword($email);
 	}
 
 	function resetPassword($pass_hash, $email)

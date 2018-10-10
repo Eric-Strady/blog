@@ -4,15 +4,21 @@
 
 	class AdminManager extends \Eric\Blog\Model\Manager
 	{
-		public function createPost($title, $content)
+		public function createPost($title, $content, $description, $extension)
 		{
 			$db = $this->dbConnect();
 
-			$createPost = $db->prepare('INSERT INTO posts(title, content, creation_date) VALUES( :title, :content , NOW())');
-			$createPost->execute(array('title' => $title, 'content' => $content));
+			$createPost = $db->prepare('INSERT INTO posts(title, content, creation_date, image_description, image_extension) VALUES( :title, :content , NOW(), :description, :extension)');
+			$createPost->execute(array('title' => $title, 'content' => $content, 'description' => $description, 'extension' => $extension));
+		}
 
-			$path = 'Location: http://127.0.0.1/blog/index.php?link=admin';
-			header($path);
+		public function getLastpost()
+		{
+			$db = $this->dbConnect();
+
+			$getLastPost = $db->query('SELECT MAX(id) AS last FROM posts');
+
+			return $getLastPost;
 		}
 
 		public function updatePost($title, $content, $id)

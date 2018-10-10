@@ -412,18 +412,50 @@
 		}
 
 		//Vérifications pour ajouter un post (Crud)
-		elseif (isset($_POST['add_title'], $_POST['add_content']))
+		elseif (isset($_POST['add_title'], $_POST['add_content'], $_POST['description'], $_FILES['image']))
 		{
-			if ($_POST['add_title']!='' AND $_POST['add_content']!='')
+			if ($_POST['add_title']!='' AND $_POST['add_content']!='' AND $_POST['description']!='' AND !empty($_FILES['image']))
 			{
-				$title = strip_tags($_POST['add_title']);
-				$content = strip_tags($_POST['add_content']);
+				if ($_FILES['image']['error'] == 0)
+				{
+					if ($_FILES['image']['size']<=500000)
+					{
+						$data_files = pathinfo($_FILES['image']['name']);
+						$extension_upload = $data_files['extension'];
+						$authorized_extensions = array('jpg', 'jpeg', 'png');
 
-				addPost($title, $content);
+						if (in_array($extension_upload, $authorized_extensions))
+						{
+							$description = strip_tags($_POST['description']);
+							$title = strip_tags($_POST['add_title']);
+							$content = strip_tags($_POST['add_content']);
+
+							addPost($title, $content, $description, $extension_upload);
+							$lastId = lastId();
+							$id = $lastId->fetch();
+							move_uploaded_file($_FILES['image']['tmp_name'], 'public/images/cover/' . $id['last'] . '.' . $extension_upload);
+
+							$path = 'Location: http://127.0.0.1/blog/index.php?link=admin';
+							header($path);
+						}
+						else
+						{
+							throw new Exception('<p>Le format de l\'image n\'est pas conforme. Pour rappel, vous devez transmettre une image au format "JPG", "JPEG" ou "PNG".<br/>Retour à l\' <a href="index.php?link=admin">interface d\'administration</a></p>');
+						}
+					}
+					else
+					{
+						throw new Exception('<p>L\'image est trop volumineuse. Pour rappel, elle ne doit pas dépasser 500Ko.<br/>Retour à l\' <a href="index.php?link=admin">interface d\'administration</a></p>');
+					}
+				}
+				else
+				{
+					throw new Exception('<p>Une erreur est survenue lors du téléchargement.<br/>Retour à l\' <a href="index.php?link=admin">interface d\'administration</a></p>');
+				}
 			}
 			else
 			{
-				throw new Exception('<p>Impossible de créer de billet pour le moment.<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
+				throw new Exception('<p>Vous devez renseigné tous les champs !<br/>Retour à l\'<a href="index.php?link=admin">interface d\'administration</a></p>');
 			}
 		}
 

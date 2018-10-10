@@ -19,10 +19,18 @@
 		require ('view/backend/addPostView.php');
 	}
 
-	function addPost($title, $content)
+	function addPost($title, $content, $description, $extension_upload)
 	{
 		$adminManager = new AdminManager();
-		$adminManager->createPost($title, $content);
+		$adminManager->createPost($title, $content, $description, $extension_upload);
+	}
+
+	function lastId()
+	{
+		$adminManager = new AdminManager();
+		$lastId = $adminManager->getLastPost();
+
+		return $lastId;
 	}
 
 	//Affichage d'un post + modification d'un post

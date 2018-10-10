@@ -240,10 +240,11 @@
 			{
 				$id_connect = strip_tags($_POST['id_connect']);
 				$pass_connect = strip_tags($_POST['pass_connect']);
+				$isTokenPresence = verifyToken($id_connect);
 				$connect = verifyConnect($id_connect);
 				$isConfirmCorrect = verifyConfirm($id_connect);
 
-				if (verifyToken($id_connect))
+				if ($isTokenPresence['token_pass']== NULL)
 				{
 					if ($isConfirmCorrect['confirm']==1)
 					{

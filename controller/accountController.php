@@ -20,10 +20,10 @@
 		require('view/backend/accountView.php');
 	}
 
-	function newPseudo($new_pseudo, $id)
+	function newPseudo($new_pseudo, $pseudo)
 	{
 		$newPseudo = new Users();
-		$newPseudo->changePseudo($new_pseudo, $id);
+		$newPseudo->changePseudo($new_pseudo, $pseudo);
 	}
 
 	function newEmail($new_email, $id)

@@ -25,7 +25,7 @@
 							      			<em> le <?= $data['creation_date_fr'] ?></em>
 							      			<em><a href="index.php?read=<?= $data['id'] ?>">Lire</a></em>
 							     			- <em><a href="index.php?update=<?= $data['id'] ?>">Mettre à jour</a></em>
-							     			- <em><a href="index.php?delete=<?= $data['id'] ?>">Supprimer</a></em></p>
+							     			- <em><a href="index.php?delete=<?= $data['id'] ?>&amp;pic=<?= $data['image_extension'] ?>">Supprimer</a></em></p>
 							      			<p class="card-text"><?= substr($data['content'], 0, 45) . '...' ?></p>
 							        	</div>
 							      	</div>

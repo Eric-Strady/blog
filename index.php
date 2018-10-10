@@ -566,13 +566,14 @@
 		}
 
 		//Vérifications pour suppression du post
-		elseif (isset($_POST['delete'], $_POST['id']))
+		elseif (isset($_POST['delete'], $_POST['id'], $_POST['extension']))
 		{
-			if ($_POST['delete']=='confirm' AND $_POST['id']!='')
+			if ($_POST['delete']=='confirm' AND $_POST['id']!='' AND $_POST['extension']!='')
 			{
 				$_POST['id'] = (int) $_POST['id'];
 				$id = strip_tags($_POST['id']);
-
+				$extension = strip_tags($_POST['extension']);
+				eraseImage($id, $extension);
 				erasePost($id);
 			}
 			elseif ($_POST['delete']=='cancel' AND $_POST['id']!='')

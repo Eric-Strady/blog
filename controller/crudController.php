@@ -83,6 +83,11 @@
 		require('view/backend/deletePostView.php');
 	}
 
+	function eraseImage($id, $extension)
+	{
+		unlink('public/images/cover/' . $id . '.' . $extension);
+	}
+
 	function erasePost($id)
 	{
 		$adminManager = new AdminManager();

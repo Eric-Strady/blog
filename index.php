@@ -637,7 +637,7 @@
 						session_start();
 						$_SESSION['pseudo'] = $new_pseudo;
 
-						newPseudo($_SESSION['pseudo'], $id);
+						newPseudo($_SESSION['pseudo'], $isPassCorrect['pseudo']);
 					}
 					else
 					{
@@ -736,7 +736,7 @@
 					{
 						$email = selectEmail($user_pseudo);
 
-						bannedUser($user_pseudo, $email['email'], $reasons);
+						bannedUser($user_pseudo, $email['email'], $reasonspseudo);
 					}
 					else
 					{

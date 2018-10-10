@@ -54,18 +54,7 @@
 			}
 			elseif ($_GET['link']=='account')
 			{
-				if (isset($_GET['id']) AND $_GET['id']!='')
-				{
-					$_GET['id'] = (int) $_GET['id'];
-					$id = $_GET['id'];
-					$forGravatar = selectEmail($id);
-
-					accountLink($forGravatar['email']);
-				}
-				else
-				{
-					throw new Exception('<p>Impossible d\'accéder à votre profil pour le moment !<br/>Retour à la page d\'<a href="index.php">accueil</a></p>');
-				}
+				accountLink();
 			}
 			elseif ($_GET['link']=='deconnexion')
 			{
@@ -631,15 +620,15 @@
 
 																				//PROFIL:
 		//Vérifications pour changer de pseudo
-		elseif (isset($_POST['new_pseudo'], $_POST['password'], $_POST['pseudo']))
+		elseif (isset($_POST['new_pseudo'], $_POST['password'], $_POST['id']))
 		{
-			if ($_POST['new_pseudo']!='' AND $_POST['password']!='' AND $_POST['pseudo']!='')
+			if ($_POST['new_pseudo']!='' AND $_POST['password']!='' AND $_POST['id']!='')
 			{
 				$new_pseudo = strip_tags($_POST['new_pseudo']);
 				$password = strip_tags($_POST['password']);
-				$pseudo = strip_tags($_POST['pseudo']);
+				$id = strip_tags($_POST['id']);
 
-				$isPassCorrect = verifyConnect($pseudo);
+				$isPassCorrect = verifyConnect($id);
 
 				if (password_verify($password, $isPassCorrect['password']))
 				{
@@ -648,7 +637,7 @@
 						session_start();
 						$_SESSION['pseudo'] = $new_pseudo;
 
-						newPseudo($_SESSION['pseudo'], $pseudo);
+						newPseudo($_SESSION['pseudo'], $id);
 					}
 					else
 					{
@@ -663,21 +652,21 @@
 		}
 
 		//Vérifications pour changer d'adresse e-mail
-		elseif (isset($_POST['new_email'], $_POST['password'], $_POST['pseudo']))
+		elseif (isset($_POST['new_email'], $_POST['password'], $_POST['id']))
 		{
-			if ($_POST['new_email']!='' AND $_POST['password']!='' AND $_POST['pseudo']!='')
+			if ($_POST['new_email']!='' AND $_POST['password']!='' AND $_POST['id']!='')
 			{
 				$new_email = strip_tags($_POST['new_email']);
 				$password = strip_tags($_POST['password']);
-				$pseudo = strip_tags($_POST['pseudo']);
+				$id = strip_tags($_POST['id']);
 
-				$isPassCorrect = verifyConnect($pseudo);
+				$isPassCorrect = verifyConnect($id);
 
 				if (password_verify($password, $isPassCorrect['password']))
 				{
 					if (!verifyEmail($new_email))
 					{
-						newEmail($new_email, $pseudo);
+						newEmail($new_email, $id);
 					}
 					else
 					{
@@ -692,16 +681,16 @@
 		}
 
 		//Vérifications pour changer de mot de passe
-		elseif (isset($_POST['old_password'], $_POST['change_password'], $_POST['confirm_change_password'], $_POST['pseudo']))
+		elseif (isset($_POST['old_password'], $_POST['change_password'], $_POST['confirm_change_password'], $_POST['id']))
 		{
-			if ($_POST['old_password']!='' AND $_POST['change_password']!='' AND $_POST['confirm_change_password']!='' AND $_POST['pseudo']!='')
+			if ($_POST['old_password']!='' AND $_POST['change_password']!='' AND $_POST['confirm_change_password']!='' AND $_POST['id']!='')
 			{
 				$old_password = strip_tags($_POST['old_password']);
 				$new_password = strip_tags($_POST['change_password']);
 				$confirm_new_password = strip_tags($_POST['confirm_change_password']);
-				$pseudo = strip_tags($_POST['pseudo']);
+				$id = strip_tags($_POST['id']);
 
-				$isPassCorrect = verifyConnect($pseudo);
+				$isPassCorrect = verifyConnect($id);
 
 				if (password_verify($old_password, $isPassCorrect['password']))
 				{
@@ -711,7 +700,7 @@
 						{
 							$pass_hash = password_hash($new_password, PASSWORD_DEFAULT);
 
-							newPassword($pass_hash, $pseudo);
+							newPassword($pass_hash, $id);
 						}
 						else
 						{
@@ -731,15 +720,15 @@
 		}
 
 		//Vérifications pour supprimer un compte utilisateur (admin)
-		elseif (isset($_POST['user_pseudo'], $_POST['reasons_suppression'], $_POST['password'], $_POST['pseudo']))
+		elseif (isset($_POST['user_pseudo'], $_POST['reasons_suppression'], $_POST['password'], $_POST['id']))
 		{
-			if ($_POST['user_pseudo']!='' AND $_POST['reasons_suppression']!='' AND $_POST['password']!='' AND $_POST['pseudo']!='')
+			if ($_POST['user_pseudo']!='' AND $_POST['reasons_suppression']!='' AND $_POST['password']!='' AND $_POST['id']!='')
 			{
 				$user_pseudo = strip_tags($_POST['user_pseudo']);
 				$reasons = strip_tags($_POST['reasons_suppression']);
 				$password = strip_tags($_POST['password']);
-				$pseudo = strip_tags($_POST['pseudo']);
-				$isPassCorrect = verifyConnect($pseudo);
+				$id = strip_tags($_POST['id']);
+				$isPassCorrect = verifyConnect($id);
 
 				if (password_verify($password, $isPassCorrect['password']))
 				{
@@ -762,12 +751,12 @@
 		}
 
 		//Vérifications pour afficher la demande de suppression du compte
-		elseif (isset($_POST['password'], $_POST['pseudo']))
+		elseif (isset($_POST['password'], $_POST['id']))
 		{
-			if ($_POST['password']!='' AND $_POST['pseudo']!='')
+			if ($_POST['password']!='' AND $_POST['id']!='')
 			{
 				$password = strip_tags($_POST['password']);
-				$isPassCorrect = verifyConnect($_POST['pseudo']);
+				$isPassCorrect = verifyConnect($_POST['id']);
 
 				if (password_verify($password, $isPassCorrect['password']))
 				{

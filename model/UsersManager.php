@@ -42,8 +42,8 @@
 		{
 			$db = $this->dbConnect();
 
-			$req = $db->prepare('SELECT id, pseudo, password, admin, email FROM users WHERE pseudo = :pseudo OR email = :email');
-			$req->execute(array('pseudo' => $id_connect, 'email' => $id_connect));
+			$req = $db->prepare('SELECT id, pseudo, password, admin, email FROM users WHERE pseudo = :pseudo OR email = :email OR id = :id');
+			$req->execute(array('pseudo' => $id_connect, 'email' => $id_connect, 'id' => $id_connect));
 			$checkConnect = $req->fetch();
 
 			return $checkConnect;
@@ -132,34 +132,34 @@
 			header($path);
 		}
 
-		public function changePseudo($new_pseudo, $pseudo)
+		public function changePseudo($new_pseudo, $id)
 		{
 			$db = $this->dbConnect();
 
-			$changePseudo = $db->prepare('UPDATE users SET pseudo = :new_pseudo WHERE pseudo = :pseudo');
-			$changePseudo->execute(array('new_pseudo' => $new_pseudo, 'pseudo' => $pseudo));
+			$changePseudo = $db->prepare('UPDATE users SET pseudo = :new_pseudo WHERE id = :id');
+			$changePseudo->execute(array('new_pseudo' => $new_pseudo, 'id' => $id));
 
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=account';
 			header($path);
 		}
 
-		public function changeEmail($new_email, $pseudo)
+		public function changeEmail($new_email, $id)
 		{
 			$db = $this->dbConnect();
 
-			$changePseudo = $db->prepare('UPDATE users SET email = :new_email WHERE pseudo = :pseudo');
-			$changePseudo->execute(array('new_email' => $new_email, 'pseudo' => $pseudo));
+			$changePseudo = $db->prepare('UPDATE users SET email = :new_email WHERE id = :id');
+			$changePseudo->execute(array('new_email' => $new_email, 'id' => $id));
 
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=account&success=email';
 			header($path);
 		}
 
-		public function changePassword($pass_hash, $pseudo)
+		public function changePassword($pass_hash, $id)
 		{
 			$db = $this->dbConnect();
 
-			$changePassword = $db->prepare('UPDATE users SET password = :pass_hash WHERE pseudo = :pseudo');
-			$changePassword->execute(array('pass_hash' => $pass_hash, 'pseudo' => $pseudo));
+			$changePassword = $db->prepare('UPDATE users SET password = :pass_hash WHERE id = :id');
+			$changePassword->execute(array('pass_hash' => $pass_hash, 'id' => $id));
 
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=account&success=password';
 			header($path);
@@ -174,17 +174,6 @@
 			$getEmail = $req->fetch();
 
 			return $getEmail;
-		}
-
-		public function getGravatar($email, $size)
-		{
-			$db = $this->dbConnect();
-
-			$url = 'https://www.gravatar.com/avatar/';
-			$url .= md5(strtolower(trim($email)));
-			$url .= '?s=' . $size . '&d=retro&r=g';
-
-			return $url;
 		}
 
 		public function deleteAccount($pseudo)

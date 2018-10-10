@@ -18,7 +18,7 @@
 	</div>
 
 	<div class="row mt-3" id="avatar">
-		<img class="d-flex rounded-circle" src="<?= $gravatar ?>" alt="Gravatar"/>
+		<img class="d-flex rounded-circle" src="https://www.gravatar.com/avatar/<?= md5(strtolower(trim($_SESSION['email']))) ?>?s=200&amp;d=retro&r=g" alt="Gravatar"/>
 	</div>
 
 	<div class="row mt-4" id="param">
@@ -58,7 +58,7 @@
 							<input type="text" name="new_pseudo" id="new_pseudo" maxlength="255" required/></p>
 							<p><label for="password">Merci de confirmer votre mot de passe: </label>
 						    <input type="password" name="password" id="password" maxlength="255" required/></p>
-							<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>"/>
+							<input type="hidden" name="id" value="<?= $_SESSION['id'] ?>"/>
 						    <p><input class="btn btn-sm btn-outline-dark" type="submit" value="Soumettre"/></p>
 						</fieldset>
 					</form></p>
@@ -87,7 +87,7 @@
 							<input type="text" name="new_email" id="new_email" maxlength="255" size="40" required/></p>
 							<p><label for="password">Merci de confirmer votre mot de passe: </label>
 						    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
-							<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>"/>
+							<input type="hidden" name="id" value="<?= $_SESSION['id'] ?>"/>
 						    <p><input class="btn btn-sm btn-outline-dark" type="submit" value="Soumettre"/></p>
 						</fieldset>
 					</form></p>
@@ -118,7 +118,7 @@
 						    <input type="password" name="change_password" id="change_password" maxlength="255" size="40" required/></p>
 						    <p><label for="confirm_change_password">Confirmez votre nouveau mot de passe: </label>
 						    <input type="password" name="confirm_change_password" id="confirm_change_password" maxlength="255" size="40" required/></p>
-							<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>"/>
+							<input type="hidden" name="id" value="<?= $_SESSION['id'] ?>"/>
 						    <p><input class="btn btn-sm btn-outline-dark" type="submit" value="Soumettre"/></p>
 
 						    <p>* Pour rappel, votre mot de passe doit:<br/>
@@ -153,7 +153,7 @@
 							<legend>Supprimer son compte</legend>
 							<p><label for="password">Merci de confirmer votre mot de passe: </label>
 						    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
-							<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>"/>
+							<input type="hidden" name="id" value="<?= $_SESSION['id'] ?>"/>
 						    <p><input class="btn btn-sm btn-outline-danger" type="submit" value="Supprimer"/></p>
 						</fieldset>
 					</form></p>
@@ -188,7 +188,7 @@
 								<textarea name="reasons_suppression" id="reasons_suppression" placeholder="Limité à 255 caractères" maxlength="255" required></textarea></p>
 								<p><label for="password">Merci de confirmer votre mot de passe: </label>
 							    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
-								<input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>"/>
+								<input type="hidden" name="id" value="<?= $_SESSION['id'] ?>"/>
 							    <p><input class="btn btn-sm btn-outline-danger" type="submit" value="Supprimer"/></p>
 							</fieldset>
 						</form></p>

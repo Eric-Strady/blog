@@ -9,12 +9,8 @@
 	use \Eric\Blog\Model\Banned\Banned;
 
 	//Lien vers la page du profil + paramétrages du compte (administrateur)
-	function accountLink($email)
+	function accountLink()
 	{
-		$searchGravatar = new Users();
-
-		$size = 200;
-		$gravatar = $searchGravatar->getGravatar($email, $size);
 
 		$countWarning = new Warning();
 		$count = $countWarning->countWarning();
@@ -24,13 +20,13 @@
 		require('view/backend/accountView.php');
 	}
 
-	function newPseudo($new_pseudo, $pseudo)
+	function newPseudo($new_pseudo, $id)
 	{
 		$newPseudo = new Users();
-		$newPseudo->changePseudo($new_pseudo, $pseudo);
+		$newPseudo->changePseudo($new_pseudo, $id);
 	}
 
-	function newEmail($new_email, $pseudo)
+	function newEmail($new_email, $id)
 	{
 		$newEmail = new Users();
 
@@ -57,13 +53,13 @@
 
 		mail($to, $subject, $message, $header);
 
-		$newEmail->changeEmail($new_email, $pseudo);
+		$newEmail->changeEmail($new_email, $id);
 	}
 
-	function newPassword($pass_hash, $pseudo)
+	function newPassword($pass_hash, $id)
 	{
 		$newPassword = new Users();
-		$newPassword->changePassword($pass_hash, $pseudo);
+		$newPassword->changePassword($pass_hash, $id);
 	}
 
 	function selectEmail($id_user)

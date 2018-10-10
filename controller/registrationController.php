@@ -1,9 +1,9 @@
 <?php
 
-	require_once('model/Posts.php');
+	require_once('model/Users.php');
 	require_once('model/Banned.php');
 
-	use \Eric\Blog\Model\Posts\Posts;
+	use \Eric\Blog\Model\Users\Users;
 	use \Eric\Blog\Model\Banned\Banned;
 
 	//Vérifications pour l'insciption d'un utilisateur + inscription et confirmation par e-mail

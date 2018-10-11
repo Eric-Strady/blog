@@ -46,6 +46,10 @@ body {
   background-color: rgba(250, 250, 250, 0.7);
 }
 
+.alert {
+  margin-left: 15px;
+}
+
 /* NAVIGATION */
 
 #mainNav {
@@ -193,7 +197,7 @@ h3 {
 }
 
 .account .btn-lg {
-  width: 250px;
+  width: 100%;
 }
 
 .account .col-lg-2 {
@@ -247,6 +251,10 @@ h3 {
 
   #navbarResponsive {
     width: 100%;
+  }
+
+  .card-body {
+    text-align: center;
   }
 
   .account .col-lg-2 input {

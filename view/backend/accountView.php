@@ -29,16 +29,27 @@
 		<?php
 			if (isset($_GET['link'], $_GET['success']) AND $_GET['success']=='email')
 			{
-				echo '<p>Votre e-mail a bien été modifié !<br/>';
-				echo 'Un e-mail vous a été envoyé pour en attester.</p>';
+		?>
+				<div class="alert alert-success">
+					Votre e-mail a bien été modifié ! Un e-mail vous a été envoyé pour en attester.
+				</div>
+		<?php
 			}
 			elseif (isset($_GET['link'], $_GET['success']) AND $_GET['success']=='password')
 			{
-				echo '<p>Votre mot de passe a bien été modifié !</p>';
+		?>
+				<div class="alert alert-success">
+					Votre mot de passe a bien été modifié !
+				</div>
+		<?php
 			}
 			elseif (isset($_GET['link'], $_GET['success']) AND $_GET['success']=='user_suppression')
 			{
-				echo '<p>Le compte utilisateur a bien été supprimé !</p>';
+		?>
+				<div class="alert alert-success">
+					Le compte utilisateur a bien été supprimé !
+				</div>
+		<?php
 			}
 		?>
 	</div>
@@ -46,7 +57,7 @@
 
 <div class="container-fluid mt-3">
 	<div class="row account">
-		<div class="col-lg-2">
+		<div class="col-lg-2 col-sm-6 col-xs-12">
 			<?php
 				if (isset($_GET['form']) AND $_GET['form']=='pseudo')
 				{
@@ -75,7 +86,7 @@
 			?>
 		</div>
 
-		<div class="col-lg-2">
+		<div class="col-lg-2 col-sm-6 col-xs-12">
 			<?php
 				if (isset($_GET['form']) AND $_GET['form']=='email')
 				{
@@ -104,7 +115,7 @@
 			?>
 		</div>
 
-		<div class="col-lg-2">
+		<div class="col-lg-2 col-sm-6 col-xs-12">
 			<?php
 				if (isset($_GET['form']) AND $_GET['form']=='password')
 				{
@@ -143,7 +154,7 @@
 			?>
 		</div>
 
-		<div class="col-lg-2">
+		<div class="col-lg-2 col-sm-6 col-xs-12">
 			<?php
 				if (isset($_GET['form']) AND $_GET['form']=='delete')
 				{
@@ -178,7 +189,7 @@
 			{
 	?>			
 				<div class="row account">
-					<div class="col-lg-2">
+					<div class="col-lg-2 col-sm-6 col-xs-12">
 						<p><form action="index.php" method="POST">
 							<fieldset>
 								<legend>Supprimer un utilisateur</legend>
@@ -200,7 +211,7 @@
 			{
 	?>
 				<div class="row account">
-					<div class="col-lg-2">
+					<div class="col-lg-2 col-sm-6 col-xs-12">
 						<p><form action="index.php" method="POST">
 					 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;id=<?= $_SESSION['id'] ?>&form=delete_user">Supprimer un utilisateur</button>
 						</form></p>

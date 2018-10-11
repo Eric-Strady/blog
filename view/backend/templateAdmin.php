@@ -42,7 +42,7 @@
 
     	<nav class="navbar navbar-expand-lg navbar-dark" id="mainNav">
 		    <div class="container">
-		        <a class="navbar-brand" href="index.php?link=admin" title="Page d\'administration">Interface d'administration</a>
+		        <a class="navbar-brand" href="index.php?link=admin" title="Page d'administration">Interface d'administration</a>
 		        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 		        	<span class="navbar-toggler-icon"></span>
 		        </button>
@@ -57,7 +57,7 @@
 			            	</a>
 			            </li>
 			            <li class="nav-item">
-			            	<a class="nav-link" href="index.php" title="Page d\'accueil">Visualiser le site</a>
+			            	<a class="nav-link" href="index.php" title="Page d'accueil">Visualiser le site</a>
 			            </li>
 			            <li class="nav-item dropdown">
 			            	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccount" title="Menu déroulant" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

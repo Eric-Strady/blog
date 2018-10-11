@@ -30,7 +30,7 @@
 			if (isset($_GET['link'], $_GET['success']) AND $_GET['success']=='email')
 			{
 		?>
-				<div class="alert alert-success">
+				<div class="alert alert-success" id="accountAlert">
 					Votre e-mail a bien été modifié ! Un e-mail vous a été envoyé pour en attester.
 				</div>
 		<?php
@@ -38,7 +38,7 @@
 			elseif (isset($_GET['link'], $_GET['success']) AND $_GET['success']=='password')
 			{
 		?>
-				<div class="alert alert-success">
+				<div class="alert alert-success" id="accountAlert">
 					Votre mot de passe a bien été modifié !
 				</div>
 		<?php
@@ -46,7 +46,7 @@
 			elseif (isset($_GET['link'], $_GET['success']) AND $_GET['success']=='user_suppression')
 			{
 		?>
-				<div class="alert alert-success">
+				<div class="alert alert-success" id="accountAlert">
 					Le compte utilisateur a bien été supprimé !
 				</div>
 		<?php

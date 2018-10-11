@@ -62,7 +62,7 @@
 			}
 			else
 			{
-				throw new Exception('<p>Cette page n\'existe pas !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+				throw new Exception('<p>Cette page n\'existe pas !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 			}
 		}
 
@@ -91,7 +91,7 @@
 			}
 			else
 			{
-				throw new Exception('<p>Impossible d\'ajouter de commentaire pour le moment !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+				throw new Exception('<p>Impossible d\'ajouter de commentaire pour le moment !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 			}
 		}
 
@@ -110,7 +110,7 @@
 			}
 			else
 			{
-				throw new Exception('<p>Impossible de modifier le commentaire pour le moment !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+				throw new Exception('<p>Impossible de modifier le commentaire pour le moment !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 			}
 		}
 
@@ -130,12 +130,12 @@
 				}
 				else
 				{
-					throw new Exception('<p>Vous avez déjà signalé ce commentaire. Il sera traité dans les plus brefs délais !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+					throw new Exception('<p>Vous avez déjà signalé ce commentaire. Il sera traité dans les plus brefs délais !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 				}
 			}
 			else
 			{
-				throw new Exception('<p>Le système de signalement n\'est pas accessible pour le moment.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+				throw new Exception('<p>Le système de signalement n\'est pas accessible pour le moment.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 			}
 		}
 
@@ -170,32 +170,32 @@
 										}
 										else
 										{
-										throw new Exception('<p>L\'adresse e-mail renseignée fait l\'objet d\'un bannissement sur ce site. Merci d\'en indiqué une autre.<br/>Retour à la page d\'<a href="index.php?link=inscription" title="Page d\'inscription">inscription</a></p>');
+										throw new Exception('<p>L\'adresse e-mail renseignée fait l\'objet d\'un bannissement sur ce site. Merci d\'en indiqué une autre.<br/>Retour à la page d\'<a href="index.php?link=inscription" title="Page d\'inscription" class="alert-link">inscription</a></p>');
 										}
 									}
 									else
 									{
-										throw new Exception('<p>L\'adresse e-mail renseignée existe déjà sur un autre compte. Merci d\'en indiqué une autre.<br/>Retour à la page d\'<a href="index.php?link=inscription" title="Page d\'inscription">inscription</a></p>');
+										throw new Exception('<p>L\'adresse e-mail renseignée existe déjà sur un autre compte. Merci d\'en indiqué une autre.<br/>Retour à la page d\'<a href="index.php?link=inscription" title="Page d\'inscription" class="alert-link">inscription</a></p>');
 									}
 								}
 								else
 								{
-									throw new Exception('<p>L\'adresse e-mail n\'est pas valide.<br/>Retour à la page d\'<a href="index.php?link=inscription" title="Page d\'inscription">inscription</a></p>');
+									throw new Exception('<p>L\'adresse e-mail n\'est pas valide.<br/>Retour à la page d\'<a href="index.php?link=inscription" title="Page d\'inscription" class="alert-link">inscription</a></p>');
 								}
 							}
 							else
 							{
-								throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à la page d\'<a href="index.php?link=inscription" title="Page d\'inscription">inscription</a></p>');
+								throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à la page d\'<a href="index.php?link=inscription" title="Page d\'inscription" class="alert-link">inscription</a></p>');
 							}					
 						}
 						else
 						{
-							throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à la page d\'<a href="index.php?link=inscription" title="Page d\'inscription">inscription</a></p>');
+							throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à la page d\'<a href="index.php?link=inscription" title="Page d\'inscription" class="alert-link">inscription</a></p>');
 						}
 					}
 					else
 					{
-						throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à la page d\'<a href="index.php?link=inscription" title="Page d\'inscription">inscription</a></p>');
+						throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à la page d\'<a href="index.php?link=inscription" title="Page d\'inscription" class="alert-link">inscription</a></p>');
 					}
 				}
 			}
@@ -217,7 +217,7 @@
 			}
 			else
 			{
-				throw new Exception('<p>Impossible de confirmer votre inscription pour le moment. Merci de prendre contact avec nous afin de vous apporter une solution.<br/>Retour à la page de <a href="index.php" title="Page d\'accueil">accueil</a></p>');
+				throw new Exception('<p>Impossible de confirmer votre inscription pour le moment. Merci de prendre contact avec nous afin de vous apporter une solution.<br/>Retour à la page de <a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 			}
 		}
 
@@ -270,22 +270,22 @@
 						}
 						else
 						{
-							throw new Exception('<p>Mauvais identifiant ou mot de passe :/<br/>Retour à la page de <a href="index.php?link=connexion" title="Page de connexion">connexion</a></p>');
+							throw new Exception('<p>Mauvais identifiant ou mot de passe :/<br/>Retour à la page de <a href="index.php?link=connexion" title="Page de connexion" class="alert-link">connexion</a></p>');
 						}
 					}
 					else
 					{
-						throw new Exception('<p>Vous devez d\'abord confirmer votre inscription avant de vous connecter.<br/>Retour à la page de <a href="index.php?link=connexion" title="Page de connexion">connexion</a></p>');
+						throw new Exception('<p>Vous devez d\'abord confirmer votre inscription avant de vous connecter.<br/>Retour à la page de <a href="index.php?link=connexion" title="Page de connexion" class="alert-link">connexion</a></p>');
 					}
 				}
 				else
 				{
-					throw new Exception('<p>Vous avez effectué une demande de réinitialisation de mot de passe. Tant que la réinitialisation ne sera pas effectuée, vous ne pourrez pas vous connecter.<br/>Retour à la page de <a href="index.php?link=connexion" title="Page de connexion">connexion</a></p>');
+					throw new Exception('<p>Vous avez effectué une demande de réinitialisation de mot de passe. Tant que la réinitialisation ne sera pas effectuée, vous ne pourrez pas vous connecter.<br/>Retour à la page de <a href="index.php?link=connexion" title="Page de connexion" class="alert-link">connexion</a></p>');
 				}
 			}
 			else
 			{
-				throw new Exception('<p>Vous devez renseigner votre pseudo et votre mot de passe pour vous connecter.<br/>Retour à la page de <a href="index.php?link=connexion" title="Page de connexion">connexion</a></p>');
+				throw new Exception('<p>Vous devez renseigner votre pseudo et votre mot de passe pour vous connecter.<br/>Retour à la page de <a href="index.php?link=connexion" title="Page de connexion" class="alert-link">connexion</a></p>');
 			}
 		}
 
@@ -304,12 +304,12 @@
 				}
 				else
 				{
-					throw new Exception('<p>L\'adresse e-mail renseignée est inconnue.<br/>Retour à la page de <a href="index.php?link=connexion" title="Page de connexion">connexion</a></p>');
+					throw new Exception('<p>L\'adresse e-mail renseignée est inconnue.<br/>Retour à la page de <a href="index.php?link=connexion" title="Page de connexion" class="alert-link">connexion</a></p>');
 				}
 			}
 			else
 			{
-				throw new Exception('<p>Veuillez saisir une adresse e-mail valide.<br/>Retour à la page de <a href="index.php?link=connexion" title="Page de connexion">connexion</a></p>');
+				throw new Exception('<p>Veuillez saisir une adresse e-mail valide.<br/>Retour à la page de <a href="index.php?link=connexion" title="Page de connexion" class="alert-link">connexion</a></p>');
 			}
 		}
 
@@ -327,12 +327,12 @@
 				}
 				else
 				{
-				throw new Exception('<p>Le temps limite est dépassé. Merci de renouveler votre demande de réinitialisation de mot de passe<br/>Retour à la page de <a href="index.php?link=connexion" title="Page de connexion">connexion</a></p>');
+				throw new Exception('<p>Le temps limite est dépassé. Merci de renouveler votre demande de réinitialisation de mot de passe<br/>Retour à la page de <a href="index.php?link=connexion" title="Page de connexion" class="alert-link">connexion</a></p>');
 				}
 			}
 			else
 			{
-			throw new Exception('<p>Vous n\'avez pas le droit d\'accéder à cette page.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+			throw new Exception('<p>Vous n\'avez pas le droit d\'accéder à cette page.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 			}
 		}
 
@@ -355,17 +355,17 @@
 					}
 					else
 					{
-						throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à la page de <a href="index.php?link=change_password" title="Page de réinitialisation">réinitialisation</a></p>');
+						throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à la page de <a href="index.php?link=change_password" title="Page de réinitialisation" class="alert-link">réinitialisation</a></p>');
 					}
 				}
 				else
 				{
-					throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à la page de <a href="index.php?link=change_password" title="Page de réinitialisation">réinitialisation</a></p>');
+					throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à la page de <a href="index.php?link=change_password" title="Page de réinitialisation" class="alert-link">réinitialisation</a></p>');
 				}
 			}
 			else
 			{
-				throw new Exception('<p>Veuillez saisir un mot de passe.<br/>Retour à la page de <a href="index.php?link=change_password" title="Page de réinitialisation">réinitialisation</a></p>');
+				throw new Exception('<p>Veuillez saisir un mot de passe.<br/>Retour à la page de <a href="index.php?link=change_password" title="Page de réinitialisation" class="alert-link">réinitialisation</a></p>');
 			}
 		}
 
@@ -388,12 +388,12 @@
 					}
 					else
 					{
-						throw new Exception('<p>L\'adresse e-mail n\'est pas valide.<br/>Retour à la page de <a href="index.php?link=contact" title="Page de contact">contact</a></p>');
+						throw new Exception('<p>L\'adresse e-mail n\'est pas valide.<br/>Retour à la page de <a href="index.php?link=contact" title="Page de contact" class="alert-link">contact</a></p>');
 					}
 				}
 				else
 				{
-					throw new Exception('<p>Vous devez remplir tous les champs.<br/>Retour à la page de <a href="index.php?link=contact" title="Page de contact">contact</a></p>');
+					throw new Exception('<p>Vous devez remplir tous les champs.<br/>Retour à la page de <a href="index.php?link=contact" title="Page de contact" class="alert-link">contact</a></p>');
 				}
 			}
 			else
@@ -442,22 +442,22 @@
 						}
 						else
 						{
-							throw new Exception('<p>Le format de l\'image n\'est pas conforme. Pour rappel, vous devez transmettre une image au format "JPG", "JPEG" ou "PNG".<br/>Retour à l\' <a href="index.php?link=admin" title="Page d\'administration">interface d\'administration</a></p>');
+							throw new Exception('<p>Le format de l\'image n\'est pas conforme. Pour rappel, vous devez transmettre une image au format "JPG", "JPEG" ou "PNG".<br/>Retour à l\' <a href="index.php?link=admin" title="Page d\'administration" class="alert-link">interface d\'administration</a></p>');
 						}
 					}
 					else
 					{
-						throw new Exception('<p>L\'image est trop volumineuse. Pour rappel, elle ne doit pas dépasser 500Ko.<br/>Retour à l\' <a href="index.php?link=admin" title="Page d\'administration">interface d\'administration</a></p>');
+						throw new Exception('<p>L\'image est trop volumineuse. Pour rappel, elle ne doit pas dépasser 500Ko.<br/>Retour à l\' <a href="index.php?link=admin" title="Page d\'administration" class="alert-link">interface d\'administration</a></p>');
 					}
 				}
 				else
 				{
-					throw new Exception('<p>Une erreur est survenue lors du téléchargement.<br/>Retour à l\' <a href="index.php?link=admin" title="Page d\'administration">interface d\'administration</a></p>');
+					throw new Exception('<p>Une erreur est survenue lors du téléchargement.<br/>Retour à l\' <a href="index.php?link=admin" title="Page d\'administration" class="alert-link">interface d\'administration</a></p>');
 				}
 			}
 			else
 			{
-				throw new Exception('<p>Vous devez renseigné tous les champs !<br/>Retour à l\'<a href="index.php?link=admin" title="Page d\'administration">interface d\'administration</a></p>');
+				throw new Exception('<p>Vous devez renseigné tous les champs !<br/>Retour à l\'<a href="index.php?link=admin" title="Page d\'administration" class="alert-link">interface d\'administration</a></p>');
 			}
 		}
 
@@ -473,7 +473,7 @@
 			}
 			else
 			{
-				throw new Exception('<p>Le billet auquel vous souhaitez accéder n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin" title="Page d\'administration">interface d\'administration</a></p>');
+				throw new Exception('<p>Le billet auquel vous souhaitez accéder n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin" title="Page d\'administration" class="alert-link">interface d\'administration</a></p>');
 			}
 		}
 
@@ -489,7 +489,7 @@
 			}
 			else
 			{
-				throw new Exception('<p>Le billet auquel vous souhaitez accéder n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin" title="Page d\'administration">interface d\'administration</a></p>');
+				throw new Exception('<p>Le billet auquel vous souhaitez accéder n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin" title="Page d\'administration" class="alert-link">interface d\'administration</a></p>');
 			}
 		}
 
@@ -507,7 +507,7 @@
 			}
 			else
 			{
-				throw new Exception('<p>Impossible de modifier le billet pour le moment.<br/>Retour à l\'<a href="index.php?link=admin" title="Page d\'administration">interface d\'administration</a></p>');
+				throw new Exception('<p>Impossible de modifier le billet pour le moment.<br/>Retour à l\'<a href="index.php?link=admin" title="Page d\'administration" class="alert-link">interface d\'administration</a></p>');
 			}
 		}
 
@@ -535,22 +535,22 @@
 						}
 						else
 						{
-							throw new Exception('<p>Le format de l\'image n\'est pas conforme. Pour rappel, vous devez transmettre une image au format "JPG", "JPEG" ou "PNG".<br/>Retour à l\' <a href="index.php?link=admin" title="Page d\'administration">interface d\'administration</a></p>');
+							throw new Exception('<p>Le format de l\'image n\'est pas conforme. Pour rappel, vous devez transmettre une image au format "JPG", "JPEG" ou "PNG".<br/>Retour à l\' <a href="index.php?link=admin" title="Page d\'administration" class="alert-link">interface d\'administration</a></p>');
 						}
 					}
 					else
 					{
-						throw new Exception('<p>L\'image est trop volumineuse. Pour rappel, elle ne doit pas dépasser 500Ko.<br/>Retour à l\' <a href="index.php?link=admin" title="Page d\'administration">interface d\'administration</a></p>');
+						throw new Exception('<p>L\'image est trop volumineuse. Pour rappel, elle ne doit pas dépasser 500Ko.<br/>Retour à l\' <a href="index.php?link=admin" title="Page d\'administration" class="alert-link">interface d\'administration</a></p>');
 					}
 				}
 				else
 				{
-					throw new Exception('<p>Une erreur est survenue lors du téléchargement.<br/>Retour à l\' <a href="index.php?link=admin" title="Page d\'administration">interface d\'administration</a></p>');
+					throw new Exception('<p>Une erreur est survenue lors du téléchargement.<br/>Retour à l\' <a href="index.php?link=admin" title="Page d\'administration" class="alert-link">interface d\'administration</a></p>');
 				}
 			}
 			else
 			{
-				throw new Exception('<p>Vous devez renseigné tous les champs !<br/>Retour à l\' <a href="index.php?link=admin" title="Page d\'administration">interface d\'administration</a></p>');
+				throw new Exception('<p>Vous devez renseigné tous les champs !<br/>Retour à l\' <a href="index.php?link=admin" title="Page d\'administration" class="alert-link">interface d\'administration</a></p>');
 			}	
 		}
 
@@ -563,7 +563,7 @@
 			}
 			else
 			{
-				throw new Exception('<p>Le billet auquel vous souhaitez accéder n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin" title="Page d\'administration">interface d\'administration</a></p>');
+				throw new Exception('<p>Le billet auquel vous souhaitez accéder n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin" title="Page d\'administration" class="alert-link">interface d\'administration</a></p>');
 			}
 		}
 
@@ -584,7 +584,7 @@
 			}
 			else
 			{
-				throw new Exception('<p>Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)<br/>Retour à l\'<a href="index.php?link=admin" title="Page d\'administration">interface d\'administration</a></p>');
+				throw new Exception('<p>Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)<br/>Retour à l\'<a href="index.php?link=admin" title="Page d\'administration" class="alert-link">interface d\'administration</a></p>');
 			}
 		}
 
@@ -599,7 +599,7 @@
 			}
 			else
 			{
-				throw new Exception('<p>Le système de suppression des commentaires signalés n\'est pas disponible pour le moment.<br/>Retour à la page de <a href="index.php?link=moderate" title="Page de modération">modération</a></p>');
+				throw new Exception('<p>Le système de suppression des commentaires signalés n\'est pas disponible pour le moment.<br/>Retour à la page de <a href="index.php?link=moderate" title="Page de modération" class="alert-link">modération</a></p>');
 			}
 		}
 
@@ -614,7 +614,7 @@
 			}
 			else
 			{
-				throw new Exception('<p>Le système de suppression des commentaires signalés n\'est pas disponible pour le moment.<br/>Retour à la page de <a href="index.php?link=moderate" title="Page de modération">modération</a></p>');
+				throw new Exception('<p>Le système de suppression des commentaires signalés n\'est pas disponible pour le moment.<br/>Retour à la page de <a href="index.php?link=moderate" title="Page de modération" class="alert-link">modération</a></p>');
 			}
 		}
 
@@ -641,12 +641,12 @@
 					}
 					else
 					{
-						throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+						throw new Exception('<p>Le pseudo indiqué existe déjà. Merci d\'en choisir un autre.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 					}
 				}
 				else
 				{
-					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 				}
 			}
 		}
@@ -670,12 +670,12 @@
 					}
 					else
 					{
-						throw new Exception('<p>L\'adresse e-mail indiqué existe déjà. Merci d\'en choisir une autre.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+						throw new Exception('<p>L\'adresse e-mail indiqué existe déjà. Merci d\'en choisir une autre.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 					}
 				}
 				else
 				{
-					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 				}
 			}
 		}
@@ -704,17 +704,17 @@
 						}
 						else
 						{
-							throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+							throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 						}
 					}
 					else
 					{
-						throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+						throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 					}
 				}
 				else
 				{
-					throw new Exception('<p>Le mot de passe indiqué comme étant votre ancien mot de passe n\'est pas correct.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+					throw new Exception('<p>Le mot de passe indiqué comme étant votre ancien mot de passe n\'est pas correct.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 				}
 			}
 		}
@@ -740,12 +740,12 @@
 					}
 					else
 					{
-						throw new Exception('<p>Le pseudo renseigné n\'existe pas.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+						throw new Exception('<p>Le pseudo renseigné n\'existe pas.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 					}
 				}
 				else
 				{
-					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 				}
 			}
 		}
@@ -764,7 +764,7 @@
 				}
 				else
 				{
-					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+					throw new Exception('<p>Le mot de passe indiqué n\'est pas correct.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 				}
 			}
 		}
@@ -786,7 +786,7 @@
 			}
 			else
 			{
-				throw new Exception('<p>Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil">accueil</a></p>');
+				throw new Exception('<p>Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 			}
 		}
 		

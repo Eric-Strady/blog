@@ -6,7 +6,9 @@
 
 <div class="container" id="error">
 	<h1 class="mt-4 mb-4">Erreur</h1>
-	<?= $errorMessage ?>
+	<div class="alert alert-danger">
+		<?= $errorMessage ?>
+	</div>
 </div>
 
 <?php $content = ob_get_clean(); ?>

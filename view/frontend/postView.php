@@ -50,7 +50,7 @@
 							        <input type="hidden" name="postId" value="<?= $_GET['post'] ?>">
 							        <input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
 							        <input type="hidden" name="email" value="<?= $_SESSION['email'] ?>">
-							        <input type="submit" class="btn btn-primary" value="Envoyer le commentaire"/>
+							        <input type="submit" class="btn btn-dark mb-3" value="Envoyer le commentaire"/>
 								</form>
 					        	</div>
 					      	</div>
@@ -60,7 +60,9 @@
 					    else
 						{
 				?>
-							<h5>Vous devez être connecté(e) pour ajouter un commentaire !</h5>
+							<div class="alert alert-danger">
+								Vous devez être connecté(e) pour ajouter un commentaire !
+							</div>
 							<hr>
 				<?php
 						}
@@ -94,7 +96,7 @@
 										        <textarea class="form-control" name="up_comment" id="up_comment" maxlength="255" rows="3" required><?= $comment['comment'] ?></textarea></p>
 										        <input type="hidden" name="commentId" value="<?= $comment['id'] ?>">
 										        <input type="hidden" name="id_post" value="<?= $comment['id_post'] ?>">
-										        <input type="submit" class="btn btn-success" value="Modifier le commentaire"/>
+										        <input type="submit" class="btn btn-dark mb-3" value="Modifier le commentaire"/>
 											</form>
 										</div>
 									</div>

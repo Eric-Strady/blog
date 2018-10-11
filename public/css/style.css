@@ -114,7 +114,7 @@ body {
   text-align: center;
 }
 
-/* LIST POSTS, COMMENTS*/
+/* LIST POSTS */
 
 #post-title {
   font-family: monospacetypewriterregular, "Times New Roman", Arial, sans-serif;
@@ -151,6 +151,14 @@ body {
   margin-bottom: 0px;
 }
 
+/* POST AND COMMENTS*/
+
+#imagePost {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #mini-avatar {
   float: left;
 }
@@ -179,7 +187,7 @@ body {
   -webkit-transform-origin:0 0;
 }
 
-/* UPDATE POST */
+/* UPDATE POST AND ADD POST*/
 
 h3 {
   text-align: center;

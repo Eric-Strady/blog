@@ -28,7 +28,7 @@
 				?>
 						<p>
 							<form action="index.php" method="POST">
-								<button type="submit" class="btn btn-primary" formaction="http://127.0.0.1/blog/index.php?post=<?= $_GET['post'] ?>&comment=add">Ajouter un commentaire</button>
+								<button type="submit" class="btn btn-dark" formaction="http://127.0.0.1/blog/index.php?post=<?= $_GET['post'] ?>&comment=add">Ajouter un commentaire</button>
 							</form>
 						</p>
 						<hr>
@@ -110,6 +110,7 @@
 						}
 				?>
 						<p><?= strip_tags($comment['comment']) ?></p>
+						<hr>
 				<?php
 					}
 				?>

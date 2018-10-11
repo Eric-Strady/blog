@@ -15,17 +15,9 @@
 		$commentsManager = new Comments();
 
 		$post = $postsManager->getPost($postId);
+		$comments = $commentsManager->getComments($postId);
 
-		if (!empty($postId))
-		{
-			$comments = $commentsManager->getComments($postId);
-
-			require('view/frontend/postView.php');
-		}
-		else
-		{
-			throw new Exception('Le billet auquel vous souhaitez accéder n\'existe pas !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
-		}
+		require('view/frontend/postView.php');	
 	}
 
 	function insertComment($postId, $pseudo, $email, $comment)

@@ -71,6 +71,7 @@
 		//Vérifications pour l'affichage d'un post et de ses commentaires
 		elseif (isset($_GET['post']) AND $_GET['post']!= '')
 		{
+			$_GET['post'] = (int) $_GET['post'];
 			$postId = strip_tags($_GET['post']);
 
 			post($postId);

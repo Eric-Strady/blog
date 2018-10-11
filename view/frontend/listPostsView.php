@@ -15,12 +15,12 @@
 				        	<a href="index.php?post=<?= $data['id'] ?>"><img class="card-img-top" src="public/images/cover/<?= $data['id'] ?>.<?= $data['image_extension'] ?>" alt="<?= $data['image_description'] ?>"/></a>
 				        	<div class="card-body">
 				      			<h4 class="card-title" id="post-title">
-				        			<a href="index.php?post=<?= $data['id'] ?>"><?= strip_tags($data['title']) ?></a>
+				        			<a href="index.php?post=<?= $data['id'] ?>" title="Page du billet"><?= strip_tags($data['title']) ?></a>
 				      			</h4>
 				      			<em> le <?= $data['creation_date_fr'] ?></em>
 				      			<p class="card-text"><?= substr($data['content'], 0, 45) . '...' ?></p>
 				      			<div class="card-footer">
-				      				<a class="btn btn-dark" href="index.php?post=<?= $data['id'] ?>">Lire la suite</a>
+				      				<a class="btn btn-dark" href="index.php?post=<?= $data['id'] ?>" title="Lecture du billet">Lire la suite</a>
 				      			</div>
 				        	</div>
 				      	</div>
@@ -38,7 +38,7 @@
 				<?php
 					for ($i = 1; $i <= $nb_page; $i++)
 					{
-						echo '<li class="page-item"><a class="page-link" href="index.php?page=' . $i . '">' . $i . '</a></li>';
+						echo '<li class="page-item"><a class="page-link" href="index.php?page=' . $i . '" title="Liens vers la page ' . $i . '">' . $i . '</a></li>';
 					}
 				?>
 			</ul>

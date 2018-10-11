@@ -20,7 +20,7 @@
 
 		<nav class="navbar navbar-expand-lg navbar-dark" id="mainNav">
 		    <div class="container">
-		        <a class="navbar-brand" href="index.php">Jean Forteroche<br/>
+		        <a class="navbar-brand" href="index.php" title="Page d\'accueil">Jean Forteroche<br/>
 		        	<span id="slogan">Un billet pour l'Alaska</span>
 		        </a>
 		        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,20 +30,20 @@
 		            <ul class="navbar-nav ml-auto">
 		            	
 			            <li class="nav-item">
-			              	<a class="nav-link" href="index.php"><span class="fas fa-home"></span> Accueil</a>
+			              	<a class="nav-link" href="index.php" title="Page d\'accueil"><span class="fas fa-home"></span> Accueil</a>
 			            </li>
 			            <?php
 							if (!isset($_SESSION['id']) AND !isset($_SESSION['pseudo']))
 							{
 						?>
 			            		<li class="nav-item">
-			              			<a class="nav-link" href="index.php?link=inscription">Inscription</a>
+			              			<a class="nav-link" href="index.php?link=inscription" title="Page d\'inscription">Inscription</a>
 			            		</li>
 			            		<li class="nav-item">
-			              			<a class="nav-link" href="index.php?link=connexion">Connexion</a>
+			              			<a class="nav-link" href="index.php?link=connexion" title="Page de connexion">Connexion</a>
 			            		</li>
 			            		<li class="nav-item">
-			              			<a class="nav-link" href="index.php?link=contact">Contact</a>
+			              			<a class="nav-link" href="index.php?link=contact" title="Page de contact">Contact</a>
 			            		</li>
 			            <?php
 			            	}
@@ -51,15 +51,15 @@
 							{
 			        	?>
 			        			<li class="nav-item">
-			              			<a class="nav-link" href="index.php?link=admin">Retour à l'interface d'administration</a>
+			              			<a class="nav-link" href="index.php?link=admin" title="Page d\'administration">Retour à l'interface d'administration</a>
 			            		</li>
 			            		<li class="nav-item dropdown">
-			              			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			              			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccount" title="Menu déroulant" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			                			<?= $_SESSION['pseudo'] ?>
 			              			</a>
 			              			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAccount">
-			                			<a class="dropdown-item" href="index.php?link=account">Mon profil</a>
-			                			<a class="dropdown-item" href="index.php?link=deconnexion">Déconnexion</a>
+			                			<a class="dropdown-item" href="index.php?link=account" title="Page de profil">Mon profil</a>
+			                			<a class="dropdown-item" href="index.php?link=deconnexion" title="Lien de déconnexion">Déconnexion</a>
 			              			</div>
 			            		</li>
 			            <?php
@@ -68,15 +68,15 @@
 			            	{
 			            ?>
 			            		<li class="nav-item">
-			              			<a class="nav-link" href="index.php?link=contact">Contact</a>
+			              			<a class="nav-link" href="index.php?link=contact" title="Page de contact">Contact</a>
 			            		</li>
 			            		<li class="nav-item dropdown">
-			              			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			              			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAccount" title="Menu déroulant" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			                			<?= $_SESSION['pseudo'] ?>
 			              			</a>
 			              			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAccount">
-			                			<a class="dropdown-item" href="index.php?link=account">Mon profil</a>
-			                			<a class="dropdown-item" href="index.php?link=deconnexion">Déconnexion</a>
+			                			<a class="dropdown-item" href="index.php?link=account" title="Page de profil">Mon profil</a>
+			                			<a class="dropdown-item" href="index.php?link=deconnexion" title="Lien de déconnexion">Déconnexion</a>
 			              			</div>
 			            		</li>
 			            <?php

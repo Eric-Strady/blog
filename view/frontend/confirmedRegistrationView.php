@@ -9,7 +9,7 @@
 		<h1 class="h3 mb-3 font-weight-normal">Inscription finalisée</h1>
 
 		<p>Félicitation !<br/>
-		Votre inscription est désormais finalisée. Vous pouvez dès à présent vous <a href="index.php?link=connexion">connecter</a> ;)</p>
+		Votre inscription est désormais finalisée. Vous pouvez dès à présent vous <a href="index.php?link=connexion" title="Page de connexion">connecter</a> ;)</p>
 	</div>
 </div>
 

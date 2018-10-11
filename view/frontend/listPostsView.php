@@ -20,7 +20,7 @@
 				      			<em> le <?= $data['creation_date_fr'] ?></em>
 				      			<p class="card-text"><?= substr($data['content'], 0, 45) . '...' ?></p>
 				      			<div class="card-footer">
-				      				<a class="btn btn-primary" href="index.php?post=<?= $data['id'] ?>">Lire la suite</a>
+				      				<a class="btn btn-dark" href="index.php?post=<?= $data['id'] ?>">Lire la suite</a>
 				      			</div>
 				        	</div>
 				      	</div>

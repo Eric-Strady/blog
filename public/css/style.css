@@ -132,6 +132,20 @@ body {
   text-align: center;
 }
 
+.card .btn-dark {
+  background-color: #262626;
+  border-color: #262626;
+}
+
+.card .btn-dark:hover {
+  background-color: #151515;
+  border-color: #262626;
+  font-family: bloodynormal, "Times New Roman", Arial, sans-serif;
+  font-weight: normal;
+  font-size: 1em;
+  color: #BF0300;
+}
+
 .pagination {
   justify-content: center;
   margin-bottom: 0px;

@@ -84,7 +84,7 @@
 							if ($comment['author']==$sessionPseudo)
 							{	
 				?>
-								<em>( <a href="index.php?post=<?= $_GET['post'] ?>&amp;commentId=<?= $comment['id'] ?>">Modifier</a> )</em>
+								<a href="index.php?post=<?= $_GET['post'] ?>&amp;commentId=<?= $comment['id'] ?>"><span class="fas fa-pen-fancy"></span></a>
 				<?php
 								if (isset($_GET['commentId']) AND $_GET['commentId']==$comment['id'])
 								{
@@ -106,7 +106,7 @@
 							else
 							{
 				?>
-								<em>( <a href="index.php?warnedId=<?= $comment['id'] ?>&amp;informerId=<?= $_SESSION['id'] ?>">Signaler</a> )</em>
+								<a href="index.php?warnedId=<?= $comment['id'] ?>&amp;informerId=<?= $_SESSION['id'] ?>"><span class="fas fa-exclamation-triangle"></span></a>
 				<?php
 							}
 						}

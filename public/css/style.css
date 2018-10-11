@@ -147,6 +147,16 @@ body {
   color: #BF0300;
 }
 
+.fa-pen-fancy{
+  margin-left: 10px;
+  color: green;
+}
+
+.fa-exclamation-triangle{
+  margin-left: 10px;
+  color: red;
+}
+
 .pagination {
   justify-content: center;
   margin-bottom: 0px;

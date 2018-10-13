@@ -1,13 +1,13 @@
 <?php
 
-	require_once('model/Users.php');
+	require_once('model/UsersManager.php');
 
-	use \Eric\Blog\Model\Users\Users;
+	use \Eric\Blog\Model\Users\UsersManager;
 
 	//Vérifications pour la connexion d'un utilisateur + envoi nouveau mot de passe
 	function verifyConnect($id_connect)
 	{
-		$verifyConnect = new Users();
+		$verifyConnect = new UsersManager();
 		$verifyId = $verifyConnect->checkConnect($id_connect);
 
 		return $verifyId;
@@ -15,7 +15,7 @@
 
 	function verifyRegistrationKey($registration_key)
 	{
-		$verifyRegistrationKey = new Users();
+		$verifyRegistrationKey = new UsersManager();
 		$isKeyExist = $verifyRegistrationKey->checkRegistrationKey($registration_key);
 
 		return $isKeyExist;
@@ -23,13 +23,13 @@
 
 	function changeConfirm($registration_key)
 	{
-		$changeConfirm = new Users();
+		$changeConfirm = new UsersManager();
 		$changeConfirm->updateConfirm($registration_key);
 	}
 
 	function verifyToken($id_connect)
 	{
-		$verifyToken = new Users();
+		$verifyToken = new UsersManager();
 		$isPresent = $verifyToken->checkTokenPresence($id_connect);
 
 		return $isPresent;
@@ -37,7 +37,7 @@
 
 	function verifyConfirm($id_connect)
 	{
-		$verifyConfirm = new Users();
+		$verifyConfirm = new UsersManager();
 		$isConfirm = $verifyConfirm->checkConfirm($id_connect);
 
 		return $isConfirm;
@@ -45,7 +45,7 @@
 
 	function newTokenPassword($email)
 	{
-		$newToken = new Users();
+		$newToken = new UsersManager();
 
 		$length = 60;
 		$string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -91,7 +91,7 @@
 
 	function verifyTokenPassword($id, $token)
 	{
-		$verifyToken = new Users();
+		$verifyToken = new UsersManager();
 		$avaibleToken = $verifyToken->checkTokenPassword($id, $token);
 
 		return $avaibleToken;
@@ -99,12 +99,12 @@
 
 	function deleteToken($email)
 	{
-		$deleteToken = new Users();
+		$deleteToken = new UsersManager();
 		$deleteToken->deleteTokenPassword($email);
 	}
 
 	function resetPassword($pass_hash, $email)
 	{
-		$resetPassword = new Users();
+		$resetPassword = new UsersManager();
 		$resetPassword->forgottenPassword($pass_hash, $email);
 	}

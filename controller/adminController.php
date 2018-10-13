@@ -1,16 +1,16 @@
 <?php
 
-	require_once('model/Posts.php');
-	require_once('model/Warning.php');
+	require_once('model/PostsManager.php');
+	require_once('model/WarningManager.php');
 
-	use \Eric\Blog\Model\Posts\Posts;
-	use \Eric\Blog\Model\Warning\Warning;
+	use \Eric\Blog\Model\Posts\PostsManager;
+	use \Eric\Blog\Model\Warning\WarningManager;
 
 		//Affichage liste des posts + pagination pour adminView.php
 	function listPostsAdmin()
 	{
-		$count = new Posts();
-		$postManager = new Posts();
+		$count = new PostsManager();
+		$postManager = new PostsManager();
 
 		$max_nb_post = 6;
 		$req = $count->countPosts();
@@ -42,7 +42,7 @@
 
 		$req = $postManager->getPosts($first_post, $max_nb_post);
 
-		$countWarning = new Warning();
+		$countWarning = new WarningManager();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();

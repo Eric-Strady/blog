@@ -1,7 +1,5 @@
 <?php
 
-	require_once('model/Posts.php');
-
 	function contact($contact_subject, $contact_email, $contact_message)
 	{
 		$to = 'strady60@gmail.com';

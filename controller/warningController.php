@@ -1,18 +1,18 @@
 <?php
 
-	require_once('model/Comments.php');
-	require_once('model/Warning.php');
+	require_once('model/CommentsManager.php');
+	require_once('model/WarningManager.php');
 
-	use \Eric\Blog\Model\Comments\Comments;
-	use \Eric\Blog\Model\Warning\Warning;
+	use \Eric\Blog\Model\Comments\CommentsManager;
+	use \Eric\Blog\Model\Warning\WarningManager;
 
 	//Commentaires signalés
 	function listWarnedComments()
 	{
-		$warningManager = new Warning();
+		$warningManager = new WarningManager();
 		$listWarnedComments = $warningManager->getWarningComments();
 
-		$countWarning = new Warning();
+		$countWarning = new WarningManager();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -22,13 +22,13 @@
 
 	function eraseWarnedComment($id_comment)
 	{
-		$commentsManager = new Comments();
-		$warningManager = new Warning();
+		$commentsManager = new CommentsManager();
+		$warningManager = new WarningManager();
 
 		$commentsManager->deleteComment($id_comment);
 		$warningManager->deleteWarning($id_comment);
 
-		$countWarning = new Warning();
+		$countWarning = new WarningManager();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -36,10 +36,10 @@
 
 	function justDeleteWarning($id_comment)
 	{
-		$warningManager = new Warning();
+		$warningManager = new WarningManager();
 		$warningManager->deleteWarning($id_comment);
 
-		$countWarning = new Warning();
+		$countWarning = new WarningManager();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();

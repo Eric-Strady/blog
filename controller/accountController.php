@@ -1,18 +1,18 @@
 <?php
 
-	require_once('model/Users.php');
-	require_once('model/Warning.php');
-	require_once('model/Banned.php');
+	require_once('model/UsersManager.php');
+	require_once('model/WarningManager.php');
+	require_once('model/BannedManager.php');
 
-	use \Eric\Blog\Model\Users\Users;
-	use \Eric\Blog\Model\Warning\Warning;
-	use \Eric\Blog\Model\Banned\Banned;
+	use \Eric\Blog\Model\Users\UsersManager;
+	use \Eric\Blog\Model\Warning\WarningManager;
+	use \Eric\Blog\Model\Banned\BannedManager;
 
 	//Lien vers la page du profil + paramétrages du compte (administrateur)
 	function accountLink()
 	{
 
-		$countWarning = new Warning();
+		$countWarning = new WarningManager();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -22,13 +22,13 @@
 
 	function newPseudo($new_pseudo, $pseudo)
 	{
-		$newPseudo = new Users();
+		$newPseudo = new UsersManager();
 		$newPseudo->changePseudo($new_pseudo, $pseudo);
 	}
 
 	function newEmail($new_email, $id)
 	{
-		$newEmail = new Users();
+		$newEmail = new UsersManager();
 
 		$to = 'strady60@gmail.com';
 		$subject = 'Changement d\'adresse e-mail';
@@ -64,7 +64,7 @@
 
 	function selectEmail($id_user)
 	{
-		$selectEmail = new Users();
+		$selectEmail = new UsersManager();
 		$user_email = $selectEmail->getEmail($id_user);
 
 		return $user_email;
@@ -72,7 +72,7 @@
 
 	function bannedUser($pseudo, $email, $reasons)
 	{
-		$bannedUser = new Banned();
+		$bannedUser = new BannedManager();
 		$deleteUser = new AdminManager();
 
 		$bannedUser->addBanned($pseudo, $email, $reasons);
@@ -106,7 +106,7 @@
 
 	function confirmDeleteAccount()
 	{
-		$countWarning = new Warning();
+		$countWarning = new WarningManager();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -116,8 +116,8 @@
 
 	function eraseAccount($pseudo, $id)
 	{
-		$eraseAccount = new Users();
-		$deleteAsloComments = new Comments();
+		$eraseAccount = new UsersManager();
+		$deleteAsloComments = new CommentsManager();
 
 		$eraseAccount->deleteAccount($pseudo);
 		$deleteAsloComments->deleteComments($pseudo);

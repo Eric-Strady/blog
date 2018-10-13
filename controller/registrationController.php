@@ -1,15 +1,15 @@
 <?php
 
-	require_once('model/Users.php');
-	require_once('model/Banned.php');
+	require_once('model/UsersManager.php');
+	require_once('model/BannedManager.php');
 
-	use \Eric\Blog\Model\Users\Users;
-	use \Eric\Blog\Model\Banned\Banned;
+	use \Eric\Blog\Model\Users\UsersManager;
+	use \Eric\Blog\Model\Banned\BannedManager;
 
 	//Vérifications pour l'insciption d'un utilisateur + inscription et confirmation par e-mail
 	function verifyPseudo($pseudo)
 	{
-		$verifyPseudo = new Users();
+		$verifyPseudo = new UsersManager();
 		$avaiblePseudo = $verifyPseudo->checkPseudo($pseudo);
 
 		return $avaiblePseudo;
@@ -17,7 +17,7 @@
 
 	function verifyEmail($email)
 	{
-		$verifyEmail = new Users();
+		$verifyEmail = new UsersManager();
 		$avaibleEmail = $verifyEmail->checkEmail($email);
 
 		return $avaibleEmail;
@@ -25,7 +25,7 @@
 
 	function verifyBanned($email)
 	{
-		$verifyBanned = new Banned();
+		$verifyBanned = new BannedManager();
 		$avaibleAccount = $verifyBanned->checkBanned($email);
 
 		return $avaibleAccount;
@@ -33,7 +33,7 @@
 
 	function registration($pseudo, $pass_hash, $email)
 	{
-		$registration = new Users();
+		$registration = new UsersManager();
 
 		$length = 10;
 		$string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

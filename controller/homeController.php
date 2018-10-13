@@ -1,14 +1,14 @@
 <?php
 
-	require_once('model/Posts.php');
+	require_once('model/PostsManager.php');
 
-	use \Eric\Blog\Model\Posts\Posts;
+	use \Eric\Blog\Model\Posts\PostsManager;
 
 	//Affichage des posts + pagination pour listPostsView
 	function listPosts()
 	{
-		$count = new Posts();
-		$postManager = new Posts();
+		$count = new PostsManager();
+		$postManager = new PostsManager();
 
 		$max_nb_post = 6;
 		$req = $count->countPosts();

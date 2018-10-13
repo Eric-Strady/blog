@@ -1,17 +1,17 @@
 <?php
 
-	require_once('model/Posts.php');
+	require_once('model/PostsManager.php');
 	require_once('model/AdminManager.php');
-	require_once('model/Warning.php');
+	require_once('model/WarningManager.php');
 
-	use \Eric\Blog\Model\Posts\Posts;
+	use \Eric\Blog\Model\Posts\PostsManager;
 	use \Eric\Blog\Model\Admin\AdminManager;
-	use \Eric\Blog\Model\Warning\Warning;
+	use \Eric\Blog\Model\Warning\WarningManager;
 
 	//Lien vers la création d'un post + insertion d'un post
 	function newPost()
 	{
-		$countWarning = new Warning();
+		$countWarning = new WarningManager();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -36,10 +36,10 @@
 	//Affichage d'un post + modification d'un post
 	function readPost($postId)
 	{
-		$postsManager = new Posts();
+		$postsManager = new PostsManager();
 		$post = $postsManager->getPost($postId);
 
-		$countWarning = new Warning();
+		$countWarning = new WarningManager();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -49,10 +49,10 @@
 
 	function changePost($postId)
 	{
-		$postsManager = new Posts();
+		$postsManager = new PostsManager();
 		$post = $postsManager->getPost($postId);
 
-		$countWarning = new Warning();
+		$countWarning = new WarningManager();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();
@@ -75,7 +75,7 @@
 	//Affichage du formulaire de suppression + suppression d'un post
 	function deleteForm()
 	{
-		$countWarning = new Warning();
+		$countWarning = new WarningManager();
 		$count = $countWarning->countWarning();
 		$nbWarning = $count->fetch();
 		$count->closeCursor();

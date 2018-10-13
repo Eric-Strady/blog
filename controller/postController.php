@@ -1,18 +1,18 @@
 <?php
 
-	require_once('model/Posts.php');
-	require_once('model/Comments.php');
-	require_once('model/Warning.php');
+	require_once('model/PostsManager.php');
+	require_once('model/CommentsManager.php');
+	require_once('model/WarningManager.php');
 
-	use \Eric\Blog\Model\Posts\Posts;
-	use \Eric\Blog\Model\Comments\Comments;
-	use \Eric\Blog\Model\Warning\Warning;
+	use \Eric\Blog\Model\Posts\PostsManager;
+	use \Eric\Blog\Model\Comments\CommentsManager;
+	use \Eric\Blog\Model\Warning\WarningManager;
 
 	//Affichage du post selectionné et de ses commentaires + ajout de commentaire + modification de commentaire
 	function post($postId)
 	{
-		$postsManager = new Posts();
-		$commentsManager = new Comments();
+		$postsManager = new PostsManager();
+		$commentsManager = new CommentsManager();
 
 		$post = $postsManager->getPost($postId);
 		$comments = $commentsManager->getComments($postId);
@@ -22,20 +22,20 @@
 
 	function insertComment($postId, $pseudo, $email, $comment)
 	{
-		$commentsManager = new Comments();
+		$commentsManager = new CommentsManager();
 		$commentsManager->addComment($postId, $pseudo, $email, $comment);
 	}
 
 	function reComment($comment, $commentId, $id_post)
 	{
-		$commentsManager = new Comments();
+		$commentsManager = new CommentsManager();
 		$commentsManager->updateComment($comment, $commentId, $id_post);
 	}
 
 	//Commentaires signalés
 	function verifyWarning($id, $informer)
 	{
-		$warningManager = new Warning();
+		$warningManager = new WarningManager();
 		$verifyWarning = $warningManager->checkWarning($id, $informer);
 
 		return $verifyWarning;
@@ -43,8 +43,8 @@
 
 	function addWarnedComments($id, $informer)
 	{
-		$commentsManager = new Comments();
-		$warningManager = new Warning();
+		$commentsManager = new CommentsManager();
+		$warningManager = new WarningManager();
 
 		$careComment = $commentsManager->getComment($id);
 		$warnedComment = $careComment->fetch();

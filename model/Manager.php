@@ -3,10 +3,15 @@
 
 	class Manager
 	{
-		protected function dbConnect()
+		protected $_db;
+
+		public function __CONSTRUCT()
 		{
-		    $db = new \PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
-		    
-		    return $db;
+			$this->_db = new \PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
+		}
+
+		protected function getDb()
+		{
+			return $this->_db;
 		}
 	}

@@ -6,9 +6,7 @@
 	{
 		public function checkWarning($id, $informer)
 		{
-			$db = $this->dbConnect();
-
-			$req = $db->prepare('SELECT id_comment FROM warning WHERE id_comment = :id AND id_informer = :informer');
+			$req = $this->getDB()->prepare('SELECT id_comment FROM warning WHERE id_comment = :id AND id_informer = :informer');
 			$req->execute(array('id' => $id, 'informer' => $informer));
 			$checkWarning = $req->fetch();
 
@@ -17,9 +15,7 @@
 
 		public function insertWarnedComment($idComment, $author, $comment, $postId, $informer)
 		{
-			$db = $this->dbConnect();
-
-			$insertWarnedComment = $db->prepare('INSERT INTO warning(id_comment, author, comment, warning_date, id_informer, nb_times) VALUES (:idComment, :author, :comment, NOW(), :informer, +1)');
+			$insertWarnedComment = $this->getDB()->prepare('INSERT INTO warning(id_comment, author, comment, warning_date, id_informer, nb_times) VALUES (:idComment, :author, :comment, NOW(), :informer, +1)');
 			$insertWarnedComment->execute(array('idComment' => $idComment, 'author' => $author, 'comment' => $comment, 'informer' => $informer));
 
 			$path = 'Location: http://127.0.0.1/blog/index.php?post=' . $postId ;
@@ -28,18 +24,14 @@
 
 		public function countWarning()
 		{
-			$db = $this->dbConnect();
-
-			$req = $db->query('SELECT COUNT(*) AS nb_warning FROM warning');
+			$req = $this->getDB()->query('SELECT COUNT(*) AS nb_warning FROM warning');
 
 			return $req;
 		}
 
 		public function getWarningComments()
 		{
-			$db = $this->dbConnect();
-
-			$warningComments = $db->query('
+			$warningComments = $this->getDB()->query('
 			SELECT SUM(nb_times) AS nTimes, id, id_comment, author, comment, DATE_FORMAT(warning_date, \'%d/%m/%Y\') AS d_warning, DATE_FORMAT(warning_date, \'%Hh%imin%ss\') AS h_warning
 			FROM warning
 			GROUP BY id_comment
@@ -59,9 +51,7 @@
 
 		public function deleteWarning($id_comment)
 		{
-			$db = $this->dbConnect();
-
-			$deleteWarning = $db->prepare('DELETE FROM warning WHERE id_comment = :id_comment');
+			$deleteWarning = $this->getDB()->prepare('DELETE FROM warning WHERE id_comment = :id_comment');
 			$deleteWarning->execute(array('id_comment' => $id_comment));
 
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=moderate';

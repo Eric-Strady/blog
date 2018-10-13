@@ -6,17 +6,13 @@
 	{
 		public function addBanned($pseudo, $email, $reasons)
 		{
-			$db = $this->dbConnect();
-
-			$addBanned = $db->prepare('INSERT INTO banned(pseudo, email, reasons, suppression_date) VALUES( :pseudo, :email, :reasons , NOW())');
+			$addBanned = $this->getDB()->prepare('INSERT INTO banned(pseudo, email, reasons, suppression_date) VALUES( :pseudo, :email, :reasons , NOW())');
 			$addBanned->execute(array('pseudo' => $pseudo, 'email' => $email, 'reasons' => $reasons));
 		}
 
 		public function checkBanned($email)
 		{
-			$db = $this->dbConnect();
-
-			$checkBanned= $db->prepare('SELECT email FROM banned WHERE email = :email');
+			$checkBanned= $this->getDB()->prepare('SELECT email FROM banned WHERE email = :email');
 			$checkBanned->execute(array('email' => $email));
 			$isBanned = $checkBanned->fetch();
 

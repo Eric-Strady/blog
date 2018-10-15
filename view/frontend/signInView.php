@@ -5,8 +5,12 @@
 	<?php
 		if (isset($_COOKIE['pseudo']))
 		{
-			echo '<p>Votre inscription a bien été prise en compte !<br/>';
-			echo 'Un e-mail de confirmation vient de vous être envoyé. Merci de finaliser votre inscription avant de vous connecter :)</p>';
+	?>
+			<div class="alert alert-danger">
+				<p>Votre inscription a bien été prise en compte !<br/>
+				Un e-mail de confirmation vient de vous être envoyé. Merci de finaliser votre inscription avant de vous connecter :)</p>
+			</div>
+	<?php
 		}
 	?>
 
@@ -22,7 +26,7 @@
 			<p><label for="pass_connect">Mot de passe:</label><br/>
 		    <input class="form-control" type="password" name="pass_connect" id="pass_connect" maxlength="255" required/></p>
 		    <p><input type="checkbox" name="auto_connect" id="auto_connect" value="checked"/> <label for="auto_connect">Se rappeler de moi (identifiant)</label></p>
-		    <p><a href="index.php?link=new_password" title="Page de réinitialisation">>Mot de passe oublié</a></p>
+		    <p><a href="index.php?link=new_password" title="Page de réinitialisation">Mot de passe oublié</a></p>
 		    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Se connecter"/>
 		</form>
 	</div>

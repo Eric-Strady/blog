@@ -1,4 +1,12 @@
 <?php
+	
+	require 'controller/controller.php';
+
+	$url = new Router();
+	$url->loadCtrl();
+
+	/*
+
 	require ('controller/controller.php');
 	require ('controller/homeController.php');
 	require ('controller/postController.php');
@@ -72,7 +80,7 @@
 		elseif (isset($_GET['post']) AND $_GET['post']!= '')
 		{
 			$_GET['post'] = (int) $_GET['post'];
-			$postId = strip_tags($_GET['post']);
+			$postId = ($_GET['post']);
 
 			post($postId);
 		}
@@ -83,7 +91,7 @@
 			if ($_POST['comment']!='' AND $_POST['postId']!='' AND $_POST['pseudo']!='' AND $_POST['email']!='')
 			{
 				$_POST['postId'] = (int) $_POST['postId'];
-				$postId = strip_tags($_POST['postId']);
+				$postId = ($_POST['postId']);
 				$pseudo = strip_tags($_POST['pseudo']);
 				$email = strip_tags($_POST['email']);
 				$comment = strip_tags($_POST['comment']);
@@ -103,9 +111,9 @@
 			{
 				$comment = strip_tags($_POST['up_comment']);
 				$_POST['commentId'] = (int) $_POST['commentId'];
-				$commentId = strip_tags($_POST['commentId']);
+				$commentId = ($_POST['commentId']);
 				$_POST['id_post'] = (int) $_POST['id_post'];
-				$id_post = strip_tags($_POST['id_post']);
+				$id_post = ($_POST['id_post']);
 
 				reComment($comment, $commentId, $id_post);
 			}
@@ -121,9 +129,9 @@
 			if ($_GET['warnedId']!='' AND $_GET['informerId']!='')
 			{
 				$_GET['warnedId'] = (int)$_GET['warnedId'];
-				$warnedId = strip_tags($_GET['warnedId']);
+				$warnedId = ($_GET['warnedId']);
 				$_GET['informerId'] = (int)$_GET['informerId'];
-				$informerId = strip_tags($_GET['informerId']);
+				$informerId = ($_GET['informerId']);
 
 				if (!verifyWarning($warnedId, $informerId))
 				{
@@ -320,7 +328,7 @@
 			if ($_GET['id']!='' AND $_GET['token']!='')
 			{
 				$_GET['id'] = (int) $_GET['id'];
-				$id = strip_tags($_GET['id']);
+				$id = ($_GET['id']);
 				$token = $_GET['token'];
 				if (verifyTokenPassword($id, $token))
 				{
@@ -468,7 +476,7 @@
 			if ($_GET['read']!='')
 			{
 				$_GET['read'] = (int) $_GET['read'];
-				$postId = strip_tags($_GET['read']);
+				$postId = ($_GET['read']);
 
 				readPost($postId);
 			}
@@ -484,7 +492,7 @@
 			if ($_GET['update']!='')
 			{
 				$_GET['update'] = (int) $_GET['update'];
-				$postId = strip_tags($_GET['update']);
+				$postId = ($_GET['update']);
 
 				changePost($postId);
 			}
@@ -523,7 +531,7 @@
 					{
 						$description = strip_tags($_POST['description']);
 						$_POST['id'] = (int) $_POST['id'];
-						$id = strip_tags($_POST['id']);
+						$id = ($_POST['id']);
 
 						$data_files = pathinfo($_FILES['image']['name']);
 						$extension_upload = $data_files['extension'];
@@ -574,7 +582,7 @@
 			if ($_POST['delete']=='confirm' AND $_POST['id']!='' AND $_POST['extension']!='')
 			{
 				$_POST['id'] = (int) $_POST['id'];
-				$id = strip_tags($_POST['id']);
+				$id = ($_POST['id']);
 				$extension = strip_tags($_POST['extension']);
 				eraseImage($id, $extension);
 				erasePost($id);
@@ -627,7 +635,8 @@
 			{
 				$new_pseudo = strip_tags($_POST['new_pseudo']);
 				$password = strip_tags($_POST['password']);
-				$id = strip_tags($_POST['id']);
+				$_POST['id'] = (int) $_POST['id'];
+				$id = ($_POST['id']);
 
 				$isPassCorrect = verifyConnect($id);
 
@@ -659,7 +668,8 @@
 			{
 				$new_email = strip_tags($_POST['new_email']);
 				$password = strip_tags($_POST['password']);
-				$id = strip_tags($_POST['id']);
+				$_POST['id'] = (int) $_POST['id'];
+				$id = ($_POST['id']);
 
 				$isPassCorrect = verifyConnect($id);
 
@@ -689,7 +699,8 @@
 				$old_password = strip_tags($_POST['old_password']);
 				$new_password = strip_tags($_POST['change_password']);
 				$confirm_new_password = strip_tags($_POST['confirm_change_password']);
-				$id = strip_tags($_POST['id']);
+				$_POST['id'] = (int) $_POST['id'];
+				$id = ($_POST['id']);
 
 				$isPassCorrect = verifyConnect($id);
 
@@ -728,7 +739,8 @@
 				$user_pseudo = strip_tags($_POST['user_pseudo']);
 				$reasons = strip_tags($_POST['reasons_suppression']);
 				$password = strip_tags($_POST['password']);
-				$id = strip_tags($_POST['id']);
+				$_POST['id'] = (int) $_POST['id'];
+				$id = ($_POST['id']);
 				$isPassCorrect = verifyConnect($id);
 
 				if (password_verify($password, $isPassCorrect['password']))
@@ -757,6 +769,7 @@
 			if ($_POST['password']!='' AND $_POST['id']!='')
 			{
 				$password = strip_tags($_POST['password']);
+				$_POST['id'] = (int) $_POST['id'];
 				$isPassCorrect = verifyConnect($_POST['id']);
 
 				if (password_verify($password, $isPassCorrect['password']))
@@ -777,7 +790,7 @@
 			{
 				$pseudo = strip_tags($_POST['pseudo']);
 				$_POST['id'] = (int) $_POST['id'];
-				$id = strip_tags($_POST['id']);
+				$id = ($_POST['id']);
 				eraseAccount($pseudo, $id);
 			}
 			elseif ($_POST['delete_account']=='cancel' AND $_POST['pseudo']!='' AND $_POST['id']!='')
@@ -805,3 +818,4 @@
 
     	require ('view/frontend/errorView.php');
 	}
+*/

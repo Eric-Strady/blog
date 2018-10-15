@@ -4,6 +4,26 @@
 
 	class CommentsManager extends \Eric\Blog\Model\Manager
 	{
+
+		public function listComments($idPost)
+		{
+			$comments = [];
+			$req = $this->_db->query('
+				SELECT c.id, c.id_user, c.comment, DATE_FORMAT(c.comment_date, \'%d/%m/%Y\') AS d_comment, DATE_FORMAT(c.comment_date, \'%Hh%imin%ss\') AS h_comment, u.pseudo, u.email
+				FROM comments AS c
+				INNER JOIN users AS u
+				ON c.id_user = u.id
+				WHERE c.id_post = ' . $idPost);
+
+			while ($data = $req->fetch(\PDO::FETCH_ASSOC))
+            {
+                $comments[] = new Comment($data);
+            }
+            
+            return $comments;
+		}
+
+		/*
 		public function getComments($postId)
 		{
 			$comments = $this->getDB()->prepare('
@@ -54,4 +74,5 @@
 			$deleteComments = $this->getDB()->prepare('DELETE FROM comments WHERE author = :pseudo');
 			$deleteComments->execute(array('pseudo' => $pseudo));
 		}
+		*/
 	}

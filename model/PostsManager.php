@@ -3,11 +3,17 @@
 	require_once("model/Manager.php");
 
 	class PostsManager extends \Eric\Blog\Model\Manager
-	{     
-        public function listPosts()
+	{
+		public function count()
+  		{
+    		$req = $this->_db->query('SELECT COUNT(*) FROM posts');
+    		return $req->fetchColumn();
+  		}
+
+        public function listPosts($first_post, $max_nb_post)
         {
             $posts = [];
-            $req = $this->_db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM posts ORDER BY id DESC LIMIT 0, 6');
+            $req = $this->_db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM posts ORDER BY id DESC LIMIT ' . $first_post . ', ' . $max_nb_post);
             
             while ($data = $req->fetch(\PDO::FETCH_ASSOC))
             {
@@ -72,7 +78,7 @@
         
         public function deletePost(Post $post)
         {
-            $deletePost = $this->getDB()->prepare('DELETE FROM posts WHERE id =' . $post->getId());
+            $deletePost = $this->_db->prepare('DELETE FROM posts WHERE id =' . $post->getId());
         }
 
         /*

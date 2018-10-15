@@ -91,7 +91,7 @@
             }
             else
             {
-                throw new Exception('<p>Cet utilisateur n\'existe pas<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+                throw new \Exception('<p>Cet utilisateur n\'existe pas<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
             } 
         }
         
@@ -101,11 +101,26 @@
             {
                 if (strlen($pseudo) <= 255)
                 {
-                    $this->_title = $pseudo; 
+                    $this->_pseudo = $pseudo; 
                 }
                 else
                 {
-                    throw new Exception('<p>La taille du pseudo ne doit pas dépasser 255 caractères.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+                    throw new \Exception('<p>La taille du pseudo ne doit pas dépasser 255 caractères.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+                }
+            }
+        }
+
+        public function setPassword($pass)
+        {
+            if (is_string($pass))
+            {
+                if (strlen($pass) <= 255)
+                {
+                    $this->_password = $pass; 
+                }
+                else
+                {
+                    throw new \Exception('<p>La taille du mot de passe ne doit pas dépasser 255 caractères.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
                 }
             }
         }
@@ -120,24 +135,24 @@
                 }
                 else
                 {
-                    throw new Exception('<p>La taille de l\'adresse e-mail ne doit pas dépasser 255 caractères.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+                    throw new \Exception('<p>La taille de l\'adresse e-mail ne doit pas dépasser 255 caractères.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
                 }
             }
         }
 
-        public function setRegistration_key($key)
+        public function setRegistration_key()
         {
-            if (is_string($key))
+            $length = 10;
+            $string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $maxLength = strlen($string);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++)
             {
-                if (strlen($key) == 10)
-                {
-                    $this->_registration_key = $key; 
-                }
-                else
-                {
-                    throw new Exception('<p>Le format de votre clé d\'inscription n\'est pas conforme.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
-                }
+            $randomString.= $string[rand(0, $maxLength - 1)];
             }
+            $registration_key = $randomString;
+
+            $this->_registration_key = $registration_key;
         }
         
         public function setRegistration_date($date)
@@ -169,7 +184,7 @@
                 }
                 else
                 {
-                    throw new Exception('<p>Le format de votre clé de réinitialisation de mot de passe n\'est pas conforme.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+                    throw new \Exception('<p>Le format de votre clé de réinitialisation de mot de passe n\'est pas conforme.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
                 }
             }
         }
@@ -177,5 +192,30 @@
         public function setToken_pass_date($date)
         {
             $this->_token_pass_date = $date;
+        }
+
+        public function sendRegistrationKey()
+        {
+            $to = $this->getEmail();
+            $subject = 'Confirmation d\'inscription';
+            $message = '
+                <html>
+                    <head></head>
+                    <body>
+                        <div align="center">
+                            <h3>Bienvenue parmi les membres du blog de Jean Forteroche !</h3>
+                            <p>Pour pouvoir vous connecter, merci de bien vouloir finaliser votre inscription en cliquant sur le lien ci-dessous:</p>
+                            <p><a href="127.0.0.1/blog/index.php?key=' . $this->getRegistrationKey() . '" target="_blank">Confirmer mon inscription</a></p>
+                        </div>
+                    </body>
+                </html>
+            ';
+            $header = "From: \"Jean Forteroche\"<test.coxus@gmail.com>\n";
+            $header.= "Reply-to: \"Jean Forteroche\" <test.coxus@gmail.com>\n";
+            $header.= "MIME-Version: 1.0\n";
+            $header.= "Content-Type: text/html; charset=\"UTF-8\"";
+            $header.= "Content-Transfer-Encoding: 8bit";
+
+            mail($to, $subject, $message, $header);
         }
     }

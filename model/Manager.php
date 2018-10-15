@@ -7,11 +7,6 @@
 
 		public function __CONSTRUCT()
 		{
-			$this->_db = new \PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
-		}
-
-		protected function getDb()
-		{
-			return $this->_db;
+			$this->_db = new \PDO('mysql:host=localhost;dbname=projet;charset=utf8', 'root', '');
 		}
 	}

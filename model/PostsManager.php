@@ -41,8 +41,8 @@
 			$req->execute(array(
 				'title' => $post->getTitle(),
 				'content' => $post->getContent(),
-				'description' => $post->getImage_description(),
-				'extension' => $post->getImage_extension()
+				'description' => $post->getImgDesc(),
+				'extension' => $post->getImgExt()
 			));
             
             $post->hydrate([
@@ -64,8 +64,8 @@
         {
             $req = $this->_db->prepare('UPDATE posts SET image_description = :description, image_extension = :extension WHERE id = :id');
 			$req->execute(array(
-				'description' => $post->getImage_description(),
-				'extension' => $post->getImage_extension(),
+				'description' => $post->getImgDesc(),
+				'extension' => $post->getImgExt(),
 				'id' => $post->getId()
 			));
         }

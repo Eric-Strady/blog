@@ -43,12 +43,12 @@
             return $this->_creation_date;
         }
         
-        public function getImage_desc()
+        public function getImgDesc()
         {
             return $this->_image_description;
         }
         
-        public function getImage_extension()
+        public function getImgExt()
         {
             return $this->_image_extension;
         }
@@ -98,7 +98,7 @@
         {
             if (is_string($imgDesc))
             {   
-            	if (strlen($title) <= 30)
+            	if (strlen($imgDesc) <= 30)
             	{
                 	$this->_image_description = $imgDesc; 
             	}
@@ -113,7 +113,7 @@
         {
             if (is_string($imgExt))
             {
-            	if (strlen($title) <= 30)
+            	if (strlen($imgExt) <= 30)
             	{
 	                $this->_image_extension = $imgExt;
 	            }

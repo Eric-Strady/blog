@@ -49,10 +49,10 @@
 		        <div class="collapse navbar-collapse" id="navbarResponsive">
 		            <ul class="navbar-nav ml-auto">
 			            <li class="nav-item">
-			            	<a class="nav-link" href="index.php?link=create" title="Page de création">Ajouter un billet</a>
+			            	<a class="nav-link" href="index.php?link=crud&amp;action=create" title="Page de création">Ajouter un billet</a>
 			            </li>
 			            <li class="nav-item">
-			            	<a class="nav-link" href="index.php?link=moderate" title="Page de modération">
+			            	<a class="nav-link" href="index.php?link=crud&amp;action=moderate" title="Page de modération">
 			            		Modérer les commentaires <?php if ($nbWarning['nb_warning']!='0'){ echo'<span class="badge">' . $nbWarning['nb_warning'] . '</span>'; } ?>
 			            	</a>
 			            </li>
@@ -65,7 +65,7 @@
 			            	</a>
 			            	<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAccount">
 				            	<a class="dropdown-item" href="index.php?link=account" title="Page de profil">Mon profil</a>
-				            	<a class="dropdown-item" href="index.php?link=deconnexion" title="Lien de déconnexion">Déconnexion</a>
+				            	<a class="dropdown-item" href="index.php?link=signout" title="Lien de déconnexion">Déconnexion</a>
 			            	</div>
 			            </li>
 		            </ul>

@@ -37,10 +37,10 @@
 							{
 						?>
 			            		<li class="nav-item">
-			              			<a class="nav-link" href="index.php?link=inscription" title="Page d'inscription">Inscription</a>
+			              			<a class="nav-link" href="index.php?link=registration" title="Page d'inscription">Inscription</a>
 			            		</li>
 			            		<li class="nav-item">
-			              			<a class="nav-link" href="index.php?link=connexion" title="Page de connexion">Connexion</a>
+			              			<a class="nav-link" href="index.php?link=signin" title="Page de connexion">Connexion</a>
 			            		</li>
 			            		<li class="nav-item">
 			              			<a class="nav-link" href="index.php?link=contact" title="Page de contact">Contact</a>
@@ -59,7 +59,7 @@
 			              			</a>
 			              			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAccount">
 			                			<a class="dropdown-item" href="index.php?link=account" title="Page de profil">Mon profil</a>
-			                			<a class="dropdown-item" href="index.php?link=deconnexion" title="Lien de déconnexion">Déconnexion</a>
+			                			<a class="dropdown-item" href="index.php?link=signout" title="Lien de déconnexion">Déconnexion</a>
 			              			</div>
 			            		</li>
 			            <?php
@@ -76,7 +76,7 @@
 			              			</a>
 			              			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownAccount">
 			                			<a class="dropdown-item" href="index.php?link=account" title="Page de profil">Mon profil</a>
-			                			<a class="dropdown-item" href="index.php?link=deconnexion" title="Lien de déconnexion">Déconnexion</a>
+			                			<a class="dropdown-item" href="index.php?link=signout" title="Lien de déconnexion">Déconnexion</a>
 			              			</div>
 			            		</li>
 			            <?php

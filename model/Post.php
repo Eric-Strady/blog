@@ -4,7 +4,7 @@
 
 	class Post
 	{
-		private $_id, $_title, $_content, $_creation_date, $_image_description, $_image_extension;
+		private $_id, $_title, $_content, $_creation_date_fr, $_image_description, $_image_extension;
 
 		public function __construct(array $data)
 		{
@@ -38,7 +38,7 @@
             return $this->_content;
         }
         
-        public function getCreation_date()
+        public function getCreationDate()
         {
             return $this->_creation_date;
         }
@@ -89,9 +89,9 @@
             }
         }
         
-        public function setCreation_date($date)
+        public function setCreation_date_fr($date)
         {
-            $this->_date = $date;
+            $this->_creation_date = $date;
         }
         
         public function setImage_description($imgDesc)

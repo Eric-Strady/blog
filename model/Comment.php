@@ -72,7 +72,7 @@
             }
             else
             {
-                throw new Exception('<p>Ce commentaire n\'existe pas !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+                throw new \Exception('<p>Ce commentaire n\'existe pas !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
             } 
         }
         
@@ -85,7 +85,7 @@
             }
             else
             {
-                throw new Exception('<p>Cette utilisateur n\'existe pas !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+                throw new \Exception('<p>Cette utilisateur n\'existe pas !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
             } 
         }
 
@@ -98,7 +98,7 @@
             }
             else
             {
-                throw new Exception('<p>Ce billet n\'existe pas !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+                throw new \Exception('<p>Ce billet n\'existe pas !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
             } 
         }
         
@@ -112,7 +112,7 @@
             	}
             	else
 	            {
-	                throw new Exception('<p>La description de l\'image ne doit pas dépasser 30 caractères.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+	                throw new \Exception('<p>La description de l\'image ne doit pas dépasser 30 caractères.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 	            }
             }
         }

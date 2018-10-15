@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <?php $title = 'Blog de Jean Forteroche'; ?>
 
 <?php ob_start(); ?>
@@ -8,17 +6,17 @@
 		<div class="row">
 		    <div class="col-lg-12">
 
-				<h1 id="post-title"><?= strip_tags($post['title']) ?></h1>
+				<h1 id="post-title"><?= $post->getTitle() ?></h1>
 
-				<p>Posté le <?= $post['creation_date_fr'] ?></p>
-
-				<hr>
-
-				<img id="imagePost" class="img-fluid rounded" src="public/images/cover/<?= $post['id'] ?>.<?= $post['image_extension'] ?>" alt="<?= $post['image_description'] ?>" width="600" height="200"/>
+				<p>Posté le <?= $post->getCreationDate() ?></p>
 
 				<hr>
 
-				<p><?= nl2br($post['content']) ?></p>
+				<img id="imagePost" class="img-fluid rounded" src="public/images/cover/<?= $post->getId() ?>.<?= $post->getImgExt() ?>" alt="<?= $post->getImgDesc() ?>" width="600" height="200"/>
+
+				<hr>
+
+				<p><?= nl2br($post->getContent()) ?></p>
 
 				<hr>
 
@@ -28,7 +26,7 @@
 				?>
 						<p>
 							<form action="index.php" method="POST">
-								<button type="submit" class="btn btn-dark" formaction="http://127.0.0.1/blog/index.php?post=<?= $_GET['post'] ?>&comment=add">Ajouter un commentaire</button>
+								<button type="submit" class="btn btn-dark" formaction="http://127.0.0.1/blog/index.php?link=post&amp;action=read&amp;id=<?= $post->getId() ?>&comment=add">Ajouter un commentaire</button>
 							</form>
 						</p>
 						<hr>
@@ -72,11 +70,11 @@
 		      	<div class="media mb-4">
 					<div class="media-body">
 		      	<?php
-			      	while ($comment = $comments->fetch())
+			      	foreach ($comments as $oneComment)
 					{
 				?>
-						<img class="d-flex mr-3 rounded-circle" id="mini-avatar" src="https://www.gravatar.com/avatar/<?= md5(strtolower(trim($comment['email']))) ?>?s=50&amp;d=retro" alt="Gravatar"/>
-						<em>Le <?= $comment['d_comment'] ?> à <?= $comment['h_comment'] ?> - </em><strong class="mt-0"><?= strip_tags($comment['author']) ?></strong>
+						<img class="d-flex mr-3 rounded-circle" id="mini-avatar" src="https://www.gravatar.com/avatar/<?= md5(strtolower(trim($oneComment->getEmail()))) ?>?s=50&amp;d=retro" alt="Gravatar"/>
+						<em>Le <?= $oneComment->getCommentDay() ?> à <?= $oneComment->getCommentHour() ?> - </em><strong class="mt-0"><?= $oneComment->getPseudo() ?></strong>
 				<?php
 						if (isset($_SESSION['pseudo']))
 						{
@@ -111,7 +109,7 @@
 							}
 						}
 				?>
-						<p><?= strip_tags($comment['comment']) ?></p>
+						<p><?= $oneComment->getComment() ?></p>
 						<hr>
 				<?php
 					}

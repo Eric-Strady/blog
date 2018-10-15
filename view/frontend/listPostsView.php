@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <?php $title = 'Blog de Jean Forteroche'; ?>
 
 <?php ob_start(); ?>
@@ -7,20 +5,20 @@
 	<div id="transparency">
 		<div class="row">
 			<?php
-				while ($data = $req->fetch())
+				foreach ($posts as $onePost)
 				{
 			?>
 				    <div class="col-lg-4 col-sm-6 portfolio-item">
 				      	<div class="card mb-4">
-				        	<a href="index.php?post=<?= $data['id'] ?>"><img class="card-img-top" src="public/images/cover/<?= $data['id'] ?>.<?= $data['image_extension'] ?>" alt="<?= $data['image_description'] ?>"/></a>
+				        	<a href="index.php?link=post&amp;action=read&amp;id=<?= $onePost->getId() ?>"><img class="card-img-top" src="public/images/cover/<?= $onePost->getId() ?>.<?= $onePost->getImgExt() ?>" alt="<?= $onePost->getImgDesc() ?>"/></a>
 				        	<div class="card-body">
 				      			<h4 class="card-title" id="post-title">
-				        			<a href="index.php?post=<?= $data['id'] ?>" title="Page du billet"><?= strip_tags($data['title']) ?></a>
+				        			<a href="index.php?link=post&amp;action=read&amp;id=<?= $onePost->getId() ?>" title="Page du billet"><?= $onePost->getTitle() ?></a>
 				      			</h4>
-				      			<em> le <?= $data['creation_date_fr'] ?></em>
-				      			<p class="card-text"><?= substr($data['content'], 0, 45) . '...' ?></p>
+				      			<em> le <?= $onePost->getCreationDate() ?></em>
+				      			<p class="card-text"><?= substr($onePost->getContent(), 0, 45) . '...' ?></p>
 				      			<div class="card-footer">
-				      				<a class="btn btn-dark" href="index.php?post=<?= $data['id'] ?>" title="Lecture du billet">Lire la suite</a>
+				      				<a class="btn btn-dark" href="index.php?link=post&amp;action=read&amp;id=<?= $onePost->getId() ?>" title="Lecture du billet">Lire la suite</a>
 				      			</div>
 				        	</div>
 				      	</div>
@@ -30,9 +28,6 @@
 			?>
 		</div>
 
-		<?php
-			$req->closeCursor();
-		?>
 		<nav id="pagination" class="mt-4">
 			<ul class="pagination pagination-lg">
 				<?php

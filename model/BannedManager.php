@@ -4,6 +4,15 @@
 
 	class BannedManager extends \Eric\Blog\Model\Manager
 	{
+		public function checkBanned($email)
+		{
+			$req = $this->_db->prepare('SELECT COUNT(*) FROM banned WHERE email = :email ');
+			$req->execute(array('email' => $email));
+			
+			return (bool) $req->fetchcolumn();
+		}
+
+		/*
 		public function addBanned($pseudo, $email, $reasons)
 		{
 			$addBanned = $this->getDB()->prepare('INSERT INTO banned(pseudo, email, reasons, suppression_date) VALUES( :pseudo, :email, :reasons , NOW())');
@@ -18,4 +27,5 @@
 
 			return $isBanned;
 		}
+		*/
 	}

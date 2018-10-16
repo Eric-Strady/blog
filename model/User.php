@@ -13,7 +13,8 @@
                 $_confirm,
                 $_admin,
                 $_token_pass,
-                $_token_pass_date;
+                $_token_pass_date,
+                $_connect;
 
 		public function __construct(array $data)
 		{
@@ -80,6 +81,11 @@
         public function getTokenPassDate()
         {
             return $this->_token_pass_date;
+        }
+
+        public function getConnect()
+        {
+            return $this->_connect;
         }
 
         public function setId($id)
@@ -207,6 +213,21 @@
         public function setToken_pass_date($date)
         {
             $this->_token_pass_date = $date;
+        }
+
+        public function setConnect($connect)
+        {
+            if (is_string($connect))
+            {
+                if (strlen($connect) <= 255)
+                {
+                    $this->_connect = $connect; 
+                }
+                else
+                {
+                    throw new \Exception('<p>La taille de votre identifiant ne doit pas dépasser 255 caractères.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+                }
+            }
         }
 
         public function sendRegistrationKey()

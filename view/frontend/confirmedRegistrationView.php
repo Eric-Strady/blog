@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <?php $title = 'Inscription finalisée'; ?>
 
 <?php ob_start(); ?>
@@ -8,8 +6,10 @@
 	<div class="text-center mt-5">
 		<h1 class="h3 mb-3 font-weight-normal">Inscription finalisée</h1>
 
-		<p>Félicitation !<br/>
-		Votre inscription est désormais finalisée. Vous pouvez dès à présent vous <a href="index.php?link=connexion" title="Page de connexion">connecter</a> ;)</p>
+		<div class="alert alert-success">
+			<strong>Félicitation !</strong><br/>
+			Votre inscription est désormais finalisée. Vous pouvez dès à présent vous <a href="index.php?link=connexion" title="Page de connexion" class="alert-link">connecter</a> ;)
+		</div>
 	</div>
 </div>
 

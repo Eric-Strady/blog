@@ -79,7 +79,7 @@
 											$user->setNewRegistrationKey();
 
 											$usersManager->addUser($user);
-											$user->sendRegistrationKey($user->getRegistrationKey());
+											$user->sendRegistrationKey();
 
 											setcookie('pseudo', $pseudo, time()+120, null, null, false, true);
 											$path = 'Location: http://127.0.0.1/blog/index.php?link=signin';

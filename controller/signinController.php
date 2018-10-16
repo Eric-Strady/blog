@@ -25,6 +25,14 @@
 				resetPass();
 			break;
 
+			case 'choose_password':
+				verifyToken();
+			break;
+
+			case 'change_password':
+				newPass();
+			break;
+
 			default:
 				throw new Exception('<p>Cette page n\'existe pas.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 			break;
@@ -146,6 +154,100 @@
 		else
 		{
 			throw new Exception('<p>Vous devez renseigné tous les champs.<br/>Retour à la page de <a href="index.php?link=signin&amp;action=forgot_password" title="Page de réinitialisation" class="alert-link">réinitialisation</a></p>');
+		}
+	}
+
+	function verifyToken()
+	{
+		if (isset($_GET['id'], $_GET['token']))
+		{
+			if ($_GET['id']!='' AND $_GET['token']!='')
+			{
+				$id = $_GET['id'];
+				$token = strip_tags($_GET['token']);
+
+				$user = new User(['id' => $id, 'token_pass' => $token]);
+				$usersManager = new UsersManager();
+
+				if ($usersManager->isExist($user->getId()))
+				{
+					if ($usersManager->isExist($user->getTokenPass()))
+					{
+						$user = $usersManager->findUser($user->getId());
+
+						if ($usersManager->checkTokenDate($user->getId(), $user->getTokenPass()))
+						{
+							$_SESSION['resetPassId'] = $user->getId();
+							require 'view/frontend/changePasswordView.php';
+						}
+						else
+						{
+							throw new Exception('<p>Le délai pour la réinitialisation du mot de passe est dépassé. Veuillez renouveler votre demande.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+						}
+					}
+					else
+					{
+						throw new Exception('<p>La clé de réinitialisation n\'est pas valide !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+					}
+				}
+				else
+				{
+					throw new Exception('<p>Cet utilisateur n\'existe pas !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+				}
+			}
+			else
+			{
+				throw new Exception('<p>Vous n\'êtes pas autorisé à accéder à cette page !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous n\'êtes pas autorisé à accéder à cette page !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+		}
+	}
+
+	function newPass()
+	{
+		if (isset($_POST['reset_password'], $_POST['confirm_reset_password']))
+		{
+			if ($_POST['reset_password']!='' AND $_POST['confirm_reset_password']!='')
+			{
+				if ($_POST['reset_password'] == $_POST['confirm_reset_password'])
+				{
+					$newPass = strip_tags($_POST['reset_password']);
+
+					if (preg_match("#((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,255})#", $newPass))
+					{
+						$user = new User(['id' => $_SESSION['resetPassId'], 'password' => $newPass]);
+						$pass_hash = password_hash($user->getPassword(), PASSWORD_DEFAULT);
+						$user->setPassword($pass_hash);
+
+						$usersManager = new UsersManager();
+						$usersManager->updatePassword($user->getPassword(), $user->getId());
+						$usersManager->resetTokenPass($user->getId());
+
+						unset($_SESSION['forgotPass']);
+						$_SESSION['changedPass'] = 'yes';
+						require 'view/frontend/signInView.php';
+					}
+					else
+					{
+						throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+					}
+				}
+				else
+				{
+					throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+				}
+			}
+			else
+			{
+				throw new Exception('<p>Vous devez renseigné tous les champs.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseigné tous les champs.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 		}
 	}
 

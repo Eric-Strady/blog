@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <?php $title = 'Demande de réinitialisation'; ?>
 
 <?php ob_start(); ?>
@@ -8,12 +6,14 @@
 	<div class="text-center mt-5">
 		<h1 class="h3 mb-3 font-weight-normal">Demande de réinitialisation</h1>
 
-		<p>Pour obtenir un nouveau mot de passe, vous devez renseigner l'adresse e-mail de votre compte pour recevoir un e-mail avec votre nouveau mot de passe.<br/>
-		Attention ! L'e-mail de réinitialisation sera valide durant 15 minutes.</p>
+		<div class="alert alert-warning mt-3">
+			Pour obtenir un nouveau mot de passe, vous devez renseigner l'adresse e-mail de votre compte pour recevoir un e-mail de réinitialisation.<br/>
+			<strong>Attention, l'e-mail de réinitialisation sera valide durant 15 minutes.</strong>
+		</div>
 
-		<form id="form-reset" action="index.php" method="post">
-			<p><label for="get_email">Adresse e-mail:</label><br/>
-			<input class="form-control" type="text" name="get_email" id="get_email" maxlength="255" size="30" required autofocus/></p>
+		<form id="form-reset" action="index.php?link=signin&amp;action=reset_password" method="post">
+			<p><label for="email">Adresse e-mail:</label><br/>
+			<input class="form-control" type="text" name="email" id="email" maxlength="255" size="30" required autofocus/></p>
 		    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Réinitialiser mon mot de passe"/>
 		</form>
 	</div>

@@ -21,6 +21,15 @@
 			</div>
 	<?php
 		}
+		elseif (isset($_SESSION['changedPass']) AND $_SESSION['changedPass'] == 'yes')
+		{
+	?>
+			<div class="alert alert-success mt-5">
+				<strong>Réinitialisation effectuée !</strong><br/>
+				Vous pouvez maintenant vous connecter avec votre nouveau mot de passe.
+			</div>
+	<?php
+		}
 	?>
 
 	<div class="text-center mt-5">

@@ -116,14 +116,18 @@
 					}
 				}
 				else
-					{
-						throw new Exception('<p>Vous devez renseigné tous les champs.<br/>Retour à la page d\'<a href="index.php?link=registration" title="Page d\'inscription" class="alert-link">inscription</a></p>');
-					}
+				{
+					throw new Exception('<p>Vous devez renseigné tous les champs.<br/>Retour à la page d\'<a href="index.php?link=registration" title="Page d\'inscription" class="alert-link">inscription</a></p>');
+				}
 			}
 			else
 			{
 			    $errors = $resp->getErrorCodes();
 			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseigné tous les champs.<br/>Retour à la page d\'<a href="index.php?link=registration" title="Page d\'inscription" class="alert-link">inscription</a></p>');
 		}
 	}
 

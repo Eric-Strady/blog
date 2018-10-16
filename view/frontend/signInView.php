@@ -6,7 +6,7 @@
 		if (isset($_COOKIE['pseudo']))
 		{
 	?>
-			<div class="alert alert-danger">
+			<div class="alert alert-success mt-5">
 				<p>Votre inscription a bien été prise en compte !<br/>
 				Un e-mail de confirmation vient de vous être envoyé. Merci de finaliser votre inscription avant de vous connecter :)</p>
 			</div>
@@ -15,7 +15,7 @@
 	?>
 
 	<div class="text-center mt-5">
-		<form id="form-signin" action="index.php" method="post">
+		<form id="form-signin" action="index.php?link=signin&amp;action=signed" method="post">
 			<h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
 			<p><label for="id_connect">Pseudo ou adresse e-mail:</label><br/>
 			<input class="form-control" type="text" name="id_connect" id="id_connect"

@@ -1,5 +1,155 @@
 <?php
 
+	require_once('model/User.php');
+	require_once('model/UsersManager.php');
+
+	use \Eric\Blog\Model\Users\User;
+	use \Eric\Blog\Model\Users\UsersManager;
+
+												//DEFINE ACTION
+
+	if (isset($_GET['action']) AND !empty($_GET['action']))
+	{
+		$action = strip_tags($_GET['action']);
+		switch ($action)
+		{
+			case 'signed':
+				signin();
+			break;
+
+			case 'forgot_password':
+				require 'view/frontend/newPasswordView.php';
+			break;
+
+			case 'reset_password':
+				resetPass();
+			break;
+
+			default:
+				throw new Exception('<p>Cette page n\'existe pas.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+			break;
+		}
+	}
+	else
+	{
+		require 'view/frontend/signInView.php';
+	}
+
+												//FUNCTIONS
+
+	function signin()
+	{
+		if (isset($_POST['id_connect'], $_POST['pass_connect']))
+		{
+			if ($_POST['id_connect']!='' AND $_POST['pass_connect']!='')
+			{
+				$id_connect = strip_tags($_POST['id_connect']);
+				$pass_connect = strip_tags($_POST['pass_connect']);
+				$user = new User([
+					'connect' => $id_connect,
+					'password' => $pass_connect
+				]);
+				$usersManager = new UsersManager();
+
+				if ($usersManager->isExist($user->getConnect()))
+				{
+					$user = $usersManager->findUser($user->getConnect());
+
+					if (!$usersManager->isExist($user->getTokenPass()))
+					{
+						if ($user->getConfirm() == 1)
+						{
+							if (password_verify($pass_connect, $user->getPassword()))
+							{
+								if ($user->getAdmin() == 1)
+								{
+							        $_SESSION['id'] = $user->getId();
+							        $_SESSION['pseudo'] = $user->getPseudo();
+							        $_SESSION['email'] = $user->getEmail();
+							        $_SESSION['admin'] = 'ok';
+
+							        if ($_POST['auto_connect'] == 'checked')
+									{
+										setcookie('id_user', $user->getPseudo(), time()+60*60*24*30, null, null, false, true);
+									}
+							        $path = 'Location: http://127.0.0.1/blog/index.php?link=admin';
+									header($path);
+								}
+								else
+								{
+							        $_SESSION['id'] = $user->getId();
+							        $_SESSION['pseudo'] = $user->getPseudo();
+							        $_SESSION['email'] = $user->getEmail();
+
+							        if ($_POST['auto_connect'] == 'checked')
+									{
+										setcookie('id_user', $user->getPseudo(), time()+60*60*24*30, null, null, false, true);
+									}
+							        header('Location: index.php');
+								}
+							}
+							else
+							{
+								throw new Exception('<p>Mauvais identifiant ou mot de passe !<br/>Retour à la page de <a href="index.php?link=signin" title="Page de connexion" class="alert-link">connexion</a></p>');
+							}
+						}
+						else
+						{
+							throw new Exception('<p>Vous devez d\'abord confirmer votre inscription avant de vous connecter.<br/>Retour à la page de <a href="index.php?link=signin" title="Page de connexion" class="alert-link">connexion</a></p>');
+						}
+					}
+					else
+					{
+						throw new Exception('<p>Vous avez effectué une demande de réinitialisation de mot de passe. Tant que la réinitialisation ne sera pas effectuée, vous ne pourrez pas vous connecter.<br/>Retour à la page de <a href="index.php?link=signin" title="Page de connexion" class="alert-link">connexion</a></p>');
+					}
+				}
+				else
+				{
+					throw new Exception('<p>Mauvais identifiant ou mot de passe !<br/>Retour à la page de <a href="index.php?link=signin" title="Page de connexion" class="alert-link">connexion</a></p>');
+				}
+			}
+			else
+			{
+				throw new Exception('<p>Vous devez renseigné tous les champs.<br/>Retour à la page de <a href="index.php?link=signin" title="Page de connexion" class="alert-link">connexion</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseigné tous les champs.<br/>Retour à la page de <a href="index.php?link=signin" title="Page de connexion" class="alert-link">connexion</a></p>');
+		}
+	}
+
+	function resetPass()
+	{
+		if (isset($_POST['email']) AND $_POST['email']!='')
+		{
+			$email = strip_tags($_POST['email']);
+			$user = new User(['email' => $email]);
+			$usersManager = new UsersManager();
+
+			if ($usersManager->isExist($user->getEmail()))
+			{
+				$user = $usersManager->findUser($user->getEmail());
+				$user->setNewTokenPass();
+
+				$usersManager->updateTokenPass($user->getTokenPass(), $user->getId());
+				$user->sendResetPassword();
+
+				$_SESSION['forgotPass'] = 'yes';
+				require 'view/frontend/signInView.php';
+			}
+			else
+			{
+				throw new Exception('<p>Cette adresse e-mail ne correspond à aucuns comptes.<br/>Retour à la page de <a href="index.php?link=signin&amp;action=forgot_password" title="Page de réinitialisation" class="alert-link">réinitialisation</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseigné tous les champs.<br/>Retour à la page de <a href="index.php?link=signin&amp;action=forgot_password" title="Page de réinitialisation" class="alert-link">réinitialisation</a></p>');
+		}
+	}
+
+	/*
 	require_once('model/UsersManager.php');
 
 	use \Eric\Blog\Model\Users\UsersManager;
@@ -108,3 +258,4 @@
 		$resetPassword = new UsersManager();
 		$resetPassword->forgottenPassword($pass_hash, $email);
 	}
+	*/

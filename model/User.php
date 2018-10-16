@@ -150,7 +150,7 @@
         {
             if (is_string($key))
             {
-                if (strlen($key) <= 255)
+                if (strlen($key) <= 10)
                 {
                     $this->_registration_key = $key; 
                 }
@@ -210,6 +210,21 @@
             }
         }
 
+        public function setNewTokenPass()
+        {
+            $length = 60;
+            $string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $maxLength = strlen($string);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++)
+            {
+            $randomString.= $string[rand(0, $maxLength - 1)];
+            }
+            $token_key = $randomString;
+
+            $this->_token_pass = $token_key;
+        }
+
         public function setToken_pass_date($date)
         {
             $this->_token_pass_date = $date;
@@ -253,5 +268,32 @@
             $header.= "Content-Transfer-Encoding: 8bit";
 
             mail($to, $subject, $message, $header);
+        }
+
+        public function sendResetPassword()
+        {
+            $to = $this->getEmail();
+            $subject = 'Réinitialisation du mot de passe';
+            $message = '
+                <html>
+                    <head></head>
+                    <body>
+                        <div align="center">
+                            <h3>Réinitialisation de votre mot de passe</h3>
+                            <p>Vous êtes actuellement sur le point de changer votre mot de passe !<br/>
+                            Cliquez <a href="127.0.0.1/blog/index.php?link=signin&amp;action=new_password&amp;id=' . $this->getId() . '&amp;token=' . $this->getTokenPass() . '" target="_blank">ici</a> pour réinitialiser votre mot de passe.</p>
+                        </div>
+                    </body>
+                </html>
+            ';
+            $header = "From: \"Jean Forteroche\"<test.coxus@gmail.com>\n";
+            $header.= "Reply-to: \"Jean Forteroche\" <test.coxus@gmail.com>\n";
+            $header.= "MIME-Version: 1.0\n";
+            $header.= "Content-Type: text/html; charset=\"UTF-8\"";
+            $header.= "Content-Transfer-Encoding: 8bit";
+
+            mail($to, $subject, $message, $header);
+
+            setcookie('email', $this->getEmail(), time()+60*15, null, null, false, true);
         }
     }

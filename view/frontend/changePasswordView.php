@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <?php $title = 'Réinitialiser son mot de passe'; ?>
 
 <?php ob_start(); ?>
@@ -10,7 +8,7 @@
 
     	<p>Vous pouvez désormais choisir un nouveau mot de passe pour votre compte. Merci de respecter les règles de sécurité pour votre nouveau mot de passe.</p>
 
-        <form id="form-new-pass" action="index.php" method="post">
+        <form id="form-new-pass" action="index.php?link=signin&amp;action=change_password" method="post">
         	<p><label for="reset_password">Nouveau mot de passe *:</label><br/>
             <input class="form-control" type="password" name="reset_password" id="reset_password" maxlength="255" size="30" required autofocus/></p>
             <p><label for="confirm_reset_password">Confirmez votre nouveau mot de passe:</label><br/>

@@ -20,6 +20,10 @@
 				registration();
 			break;
 
+			case 'confirm':
+				verifyRegistrationKey();
+			break;
+
 			default:
 				throw new Exception('<p>Cette page n\'existe pas.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 			break;
@@ -72,7 +76,7 @@
 										{
 											$pass_hash = password_hash($password, PASSWORD_DEFAULT);
 											$user->setPassword($pass_hash);
-											$user->setRegistration_key();
+											$user->setNewRegistrationKey();
 
 											$usersManager->addUser($user);
 											$user->sendRegistrationKey($user->getRegistrationKey());
@@ -123,11 +127,28 @@
 		}
 	}
 
-	function sendRegistrationKey()
+	function verifyRegistrationKey()
 	{
+		if (isset($_GET['key']) AND $_GET['key']!='')
+		{
+			$key = strip_tags($_GET['key']);
+			$user = new User(['registration_key' => $key]);
+			$userManager = new UsersManager();
 
-		$path = 'Location: http://127.0.0.1/blog/index.php?link=signin';
-		header($path);
+			if ($userManager->isExist($user->getRegistrationKey()))
+			{
+				$userManager->updateConfirm($user->getRegistrationKey());
+				require 'view/frontend/confirmedRegistrationView.php';
+			}
+			else
+			{
+				throw new Exception('<p>Impossible de confirmer votre inscription pour le moment. Merci de prendre contact avec nous afin de vous apporter une solution.<br/>Retour à la page de <a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+			}			
+		}
+		else
+		{
+			throw new Exception('<p>Cette page n\'existe pas.<br/>Retour à la page de <a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+		}
 	}
 
 	/*

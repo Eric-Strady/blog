@@ -4,24 +4,64 @@
 
 	class UsersManager extends \Eric\Blog\Model\Manager
 	{
-		public function checkPseudo($pseudo)
+		public function isExist($infos)
 		{
-			$req = $this->getDB()->prepare('SELECT pseudo FROM users WHERE pseudo = :pseudo ');
-			$req->execute(array('pseudo' => $pseudo));
-			$checkPseudo = $req->fetch();
-
-			return $checkPseudo;
+			$req = $this->_db->prepare('SELECT COUNT(*) FROM users WHERE pseudo = :infos OR email = :infos OR registration_key = :infos');
+			$req->execute(array('infos' => $infos));
+			
+			return (bool) $req->fetchcolumn();
 		}
 
-		public function checkEmail($email)
-		{
-			$req = $this->getDB()->prepare('SELECT id, email FROM users WHERE email = :email ');
-			$req->execute(array('email' => $email));
-			$checkEmail = $req->fetch();
+		public function addUser(User $user)
+        {
+            $req = $this->_db->prepare('INSERT INTO  users( pseudo, password, email, registration_key, registration_date, confirm, admin) VALUES (:pseudo, :password, :email, :key, NOW(), :confirm, :admin)');
+			$req->execute(array(
+				'pseudo' => $user->getPseudo(),
+				'password' => $user->getPassword(),
+				'email' => $user->getEmail(),
+				'key' => $user->getRegistrationKey(),
+				'confirm' => $user->getConfirm(),
+				'admin' => $user->getAdmin()
+			));
+            
+            $user->hydrate([
+                'id' => $this->_db->lastInsertId()
+            ]);
+        }
 
-			return $checkEmail;
-		}
+        public function updateConfirm($key)
+        {
+        	$req= $this->_db->prepare('UPDATE users SET confirm = 1 WHERE registration_key = :key');
+        	$req->execute(array('key' => $key));
+        }
+        
+        public function updatePost(Post $post)
+        {
+            $req = $this->_db->prepare('UPDATE posts SET title = :title, content = :content, creation_date = NOW() WHERE id = :id');
+			$req->execute(array(
+				'title' => $post->getTitle(),
+				'content' => $post->getContent(),
+				'id' => $post->getId()
+			));
+        }
+        
+        public function updateImage(Post $post)
+        {
+            $req = $this->_db->prepare('UPDATE posts SET image_description = :description, image_extension = :extension WHERE id = :id');
+			$req->execute(array(
+				'description' => $post->getImgDesc(),
+				'extension' => $post->getImgExt(),
+				'id' => $post->getId()
+			));
+        }
+        
+        public function deletePost(Post $post)
+        {
+            $deletePost = $this->getDB()->prepare('DELETE FROM posts WHERE id =' . $post->getId());
+        }
 
+
+        /*
 		public function addUser($pseudo, $pass_hash, $email, $registration_key, $confirm, $admin)
 		{
 			$addUser = $this->getDB()->prepare('INSERT INTO users( pseudo, password, email, registration_date, registration_key, confirm, admin) VALUES (:pseudo, :password, :email, NOW(), :key, :confirm, :admin)');
@@ -152,4 +192,5 @@
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=deconnexion';
 			header($path);
 		}
+		*/
 	}

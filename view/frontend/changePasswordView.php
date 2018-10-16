@@ -13,7 +13,6 @@
             <input class="form-control" type="password" name="reset_password" id="reset_password" maxlength="255" size="30" required autofocus/></p>
             <p><label for="confirm_reset_password">Confirmez votre nouveau mot de passe:</label><br/>
             <input class="form-control" type="password" name="confirm_reset_password" id="confirm_reset_password" maxlength="255" size="30" required/></p>
-            <input type="hidden" name="email" value="<?= $_COOKIE['email'] ?>"/>
             <input class="btn btn-lg btn-primary btn-block" type="submit" value="S'inscrire"/>
         </form>
 

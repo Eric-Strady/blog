@@ -6,7 +6,7 @@
 	{
 		public function isExist($infos)
 		{
-			$req = $this->_db->prepare('SELECT COUNT(*) FROM users WHERE pseudo = :infos OR email = :infos OR registration_key = :infos');
+			$req = $this->_db->prepare('SELECT COUNT(*) FROM users WHERE pseudo = :infos OR email = :infos OR registration_key = :infos OR token_pass = :infos');
 			$req->execute(array('infos' => $infos));
 			
 			return (bool) $req->fetchcolumn();
@@ -31,28 +31,22 @@
 
         public function updateConfirm($key)
         {
-        	$req= $this->_db->prepare('UPDATE users SET confirm = 1 WHERE registration_key = :key');
+        	$req = $this->_db->prepare('UPDATE users SET confirm = 1 WHERE registration_key = :key');
         	$req->execute(array('key' => $key));
         }
         
-        public function updatePost(Post $post)
-        {
-            $req = $this->_db->prepare('UPDATE posts SET title = :title, content = :content, creation_date = NOW() WHERE id = :id');
-			$req->execute(array(
-				'title' => $post->getTitle(),
-				'content' => $post->getContent(),
-				'id' => $post->getId()
-			));
+        public function findUser($id_connect)
+        {            
+            $req = $this->_db->prepare('SELECT id, pseudo, password, email, confirm, admin, token_pass, token_pass_date FROM users WHERE pseudo = :id_connect OR email = :id_connect');
+            $req->execute(array('id_connect' => $id_connect));
+            $data = $req->fetch(\PDO::FETCH_ASSOC);
+            return new User($data);
         }
-        
-        public function updateImage(Post $post)
+
+        public function updateTokenPass($token, $id)
         {
-            $req = $this->_db->prepare('UPDATE posts SET image_description = :description, image_extension = :extension WHERE id = :id');
-			$req->execute(array(
-				'description' => $post->getImgDesc(),
-				'extension' => $post->getImgExt(),
-				'id' => $post->getId()
-			));
+        	$req = $this->_db->prepare('UPDATE users SET token_pass = :token, token_pass_date = NOW() WHERE id = :id');
+        	$req->execute(array('token' => $token, 'id' => $id));
         }
         
         public function deletePost(Post $post)

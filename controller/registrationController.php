@@ -62,11 +62,11 @@
 
 					if (!$usersManager->isExist($user->getPseudo()))
 					{
-						if ($password==$_POST['passwordVerify'])
+						if ($user->getPassword()==$_POST['passwordVerify'])
 						{
-							if (preg_match("#((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,255})#", $password))
+							if (preg_match("#((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,255})#", $user->getPassword()))
 							{
-								if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email))
+								if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $user->getEmail()))
 								{
 									if (!$usersManager->isExist($user->getEmail()))
 									{
@@ -74,14 +74,14 @@
 
 										if (!$bannedManager->checkBanned($user->getEmail()))
 										{
-											$pass_hash = password_hash($password, PASSWORD_DEFAULT);
+											$pass_hash = password_hash($user->getPassword(), PASSWORD_DEFAULT);
 											$user->setPassword($pass_hash);
 											$user->setNewRegistrationKey();
 
 											$usersManager->addUser($user);
 											$user->sendRegistrationKey();
 
-											setcookie('pseudo', $pseudo, time()+120, null, null, false, true);
+											setcookie('pseudo', $user->getPseudo(), time()+120, null, null, false, true);
 											$path = 'Location: http://127.0.0.1/blog/index.php?link=signin';
 											header($path);
 										}

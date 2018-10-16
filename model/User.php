@@ -140,7 +140,22 @@
             }
         }
 
-        public function setRegistration_key()
+        public function setRegistration_key($key)
+        {
+            if (is_string($key))
+            {
+                if (strlen($key) <= 255)
+                {
+                    $this->_registration_key = $key; 
+                }
+                else
+                {
+                    throw new \Exception('<p>La clé de confirmation n\'a pas le bon format.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+                }
+            }
+        }
+
+        public function setNewRegistrationKey()
         {
             $length = 10;
             $string = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -205,7 +220,7 @@
                         <div align="center">
                             <h3>Bienvenue parmi les membres du blog de Jean Forteroche !</h3>
                             <p>Pour pouvoir vous connecter, merci de bien vouloir finaliser votre inscription en cliquant sur le lien ci-dessous:</p>
-                            <p><a href="127.0.0.1/blog/index.php?key=' . $this->getRegistrationKey() . '" target="_blank">Confirmer mon inscription</a></p>
+                            <p><a href="127.0.0.1/blog/index.php?link=registration&amp;action=confirm&amp;key=' . $this->getRegistrationKey() . '" target="_blank">Confirmer mon inscription</a></p>
                         </div>
                     </body>
                 </html>

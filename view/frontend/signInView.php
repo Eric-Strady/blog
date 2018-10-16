@@ -12,6 +12,15 @@
 			</div>
 	<?php
 		}
+		elseif (isset($_SESSION['forgotPass']) AND $_SESSION['forgotPass'] == 'yes')
+		{
+	?>
+			<div class="alert alert-success mt-5">
+				Un e-mail de réinitialisation vient de vous être envoyé !<br/>
+				Merci de réinitialiser votre mot de passe avant votre prochaine connexion.
+			</div>
+	<?php
+		}
 	?>
 
 	<div class="text-center mt-5">

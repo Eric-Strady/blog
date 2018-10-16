@@ -195,7 +195,7 @@
             $this->_admin = $admin;
         }
         
-        public function setToken_Pass($token)
+        public function setToken_pass($token)
         {
             if (is_string($token))
             {   
@@ -205,7 +205,7 @@
                 }
                 else
                 {
-                    throw new \Exception('<p>Le format de votre clé de réinitialisation de mot de passe n\'est pas conforme.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+                    throw new \Exception('<p>Le format de votre clé de réinitialisation n\'est pas conforme.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
                 }
             }
         }
@@ -293,7 +293,5 @@
             $header.= "Content-Transfer-Encoding: 8bit";
 
             mail($to, $subject, $message, $header);
-
-            setcookie('email', $this->getEmail(), time()+60*15, null, null, false, true);
         }
     }

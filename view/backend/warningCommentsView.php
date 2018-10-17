@@ -7,7 +7,7 @@
 			<h3 id="post-title" class="mb-4">Commentaire(s) signalé(s):</h3>
 
 			<?php
-				if ($listWarnedComments === 0)
+				if (!$warningManager->count())
 				{
 			?>
 					<div class="alert alert-secondary">
@@ -17,17 +17,17 @@
 				}
 				else
 				{
-					while ($comment = $listWarnedComments->fetch())
+					foreach ($warning as $oneWarning)
 					{
 			?>
 						<div class="card my-4">
-							<h5 class="card-header">Signalé <?= $comment['nTimes'] ?> fois:</h5>
+							<h5 class="card-header">Signalé <?= $oneWarning->getNbTimes() ?> fois:</h5>
 							<div class="card-body">
-								<p><em>Le <?= $comment['d_warning'] ?> à <?= $comment['h_warning'] ?></em> - Commentaire de "<strong><?= strip_tags($comment['author']) ?></strong>" :
-								<a href="index.php?eraseComment=<?= $comment['id_comment'] ?>&amp;eraseWarning=<?= $comment['id'] ?>" title="Supprimer le commentaire"><span class="fas fa-times fa-lg"></a>
+								<p><em>Le <?= $oneWarning->getWarningDay() ?> à <?= $oneWarning->getWarningHour() ?></em> - Commentaire de <strong><?= $oneWarning->getPseudo() ?></strong>:
+								<a href="index.php?eraseComment=<?= $oneWarning->getId() ?>" title="Supprimer le commentaire"><span class="fas fa-times fa-lg"></a>
 								 - 
-								<a href="index.php?conserve=<?= $comment['id_comment'] ?>" title="Conserver le commentaire"><span class="fas fa-check fa-lg"></a><br/>
-								<?= strip_tags($comment['comment'])?></p>
+								<a href="index.php?conserve=<?= $oneWarning->getPseudo() ?>" title="Conserver le commentaire"><span class="fas fa-check fa-lg"></a><br/>
+								" <?= $oneWarning->getComment() ?> "</p>
 							</div>
 						</div>
 			<?php

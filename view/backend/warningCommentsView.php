@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <?php $title = 'Commentaire(s) signalé(s)'; ?>
 
 <?php ob_start(); ?>

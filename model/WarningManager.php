@@ -26,6 +26,34 @@
 			$req->execute(array('id_user' => $id_user, 'id_comment' => $id_comment, 'id_post' => $id_post));
 		}
 
+		public function count()
+		{
+			$req = $this->_db->query('SELECT COUNT(*) FROM warning');
+			
+			return (bool) $req->fetchcolumn();
+		}
+
+		public function listWarned()
+        {
+            $warning = [];
+            $req = $this->_db->query('
+            	SELECT SUM(w.nb_times) AS nbTimes, w.id, w.id_user, w.id_comment, u.pseudo, c.comment, 
+            	DATE_FORMAT(w.warning_date, \'%d/%m/%Y\') AS d_warning, 
+            	DATE_FORMAT(w.warning_date, \'%Hh%imin%ss\') AS h_warning 
+            	FROM warning AS w 
+            	INNER JOIN users AS u ON w.id_user = u.id 
+            	INNER JOIN comments AS c ON w.id_comment = c.id 
+            	GROUP BY w.id_comment 
+            	ORDER BY nbTimes DESC');
+            
+            while ($data = $req->fetch(\PDO::FETCH_ASSOC))
+            {
+                $warning[] = new Warning($data);
+            }
+            
+            return $warning;
+        }
+
 		/*
 		public function checkWarning($id, $informer)
 		{

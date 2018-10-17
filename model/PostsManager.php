@@ -13,7 +13,7 @@
         public function listPosts($first_post, $max_nb_post)
         {
             $posts = [];
-            $req = $this->_db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM posts ORDER BY id DESC LIMIT ' . $first_post . ', ' . $max_nb_post);
+            $req = $this->_db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr, image_description, image_extension FROM posts ORDER BY id DESC LIMIT ' . $first_post . ', ' . $max_nb_post);
             
             while ($data = $req->fetch(\PDO::FETCH_ASSOC))
             {
@@ -33,7 +33,7 @@
         
         public function findPost($id_post)
         {          
-            $req = $this->_db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM posts WHERE id = :id');
+            $req = $this->_db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr, image_description, image_extension FROM posts WHERE id = :id');
             $req->execute(array('id' => $id_post));
             
             $data = $req->fetch(\PDO::FETCH_ASSOC);

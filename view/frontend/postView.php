@@ -88,9 +88,10 @@
 									<hr>
 									<div class="card my-4" id="update">
 										<div class="card-body">
-											<form action="index.php" method="POST">
+											<form action="index.php?link=post&amp;action=update_comment" method="POST">
 										        <textarea class="form-control" name="up_comment" id="up_comment" maxlength="255" rows="3" required><?= $oneComment->getComment() ?></textarea></p>
-										        <input type="hidden" name="commentId" value="<?= $oneComment->getId() ?>">
+										        <input type="hidden" name="id_comment" value="<?= $oneComment->getId() ?>">
+										        <input type="hidden" name="id_post" value="<?= $post->getId() ?>">
 										        <input type="submit" class="btn btn-dark mb-3" value="Modifier le commentaire"/>
 											</form>
 										</div>

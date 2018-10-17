@@ -82,19 +82,19 @@
 
 	function newComment()
 	{
-		if (isset($_POST['comment'], $_POST['id_post'], $_POST['id_user']))
+		if (isset($_POST['comment'], $_POST['id_post'], $_SESSION['id']))
 		{
-			if ($_POST['comment']!='' AND $_POST['id_post']!='' AND $_POST['id_user']!='')
+			if ($_POST['comment']!='' AND $_POST['id_post']!='' AND $_SESSION['id']!='')
 			{
 				$new_comment = strip_tags($_POST['comment']);
 				$id_post = $_POST['id_post'];
-				$id_user = $_POST['id_user'];
+				$id_user = $_SESSION['id'];
 
 				$comment = new Comment(['comment' => $new_comment, 'id_post' => $id_post, 'id_user' => $id_user]);
 				$commentsManager = new CommentsManager();
 				$commentsManager->addComment($comment->getIdUser(), $comment->getIdPost(), $comment->getComment());
 
-				$path = 'Location: http://127.0.0.1/blog/index.php?link=post&action=read&id=' . $id_post . '#comments';
+				$path = 'Location: http://127.0.0.1/blog/index.php?link=post&action=read&id=' . $comment->getIdPost() . '#comments';
 				header($path);
 			}
 			else
@@ -110,21 +110,22 @@
 
 	function changeComment()
 	{
-		if (isset($_POST['up_comment'], $_POST['id_comment']))
+		if (isset($_POST['up_comment'], $_POST['id_comment'], $_POST['id_post']))
 		{
-			if ($_POST['up_comment']!='' AND $_POST['id_comment']!='')
+			if ($_POST['up_comment']!='' AND $_POST['id_comment']!='' AND $_POST['id_post']!='')
 			{
 				$up_comment = strip_tags($_POST['up_comment']);
 				$id = $_POST['id_comment'];
+				$id_post = $_POST['id_post'];
 
-				$comment = new Comment(['comment' => $up_comment, 'id' => $id]);
+				$comment = new Comment(['comment' => $up_comment, 'id' => $id, 'id_post' => $id_post]);
 				$commentsManager = new CommentsManager();
 
 				if ($commentsManager->isExist($comment->getId()))
 				{
 					$commentsManager->updateComment($comment->getComment(), $comment->getId());
 
-					$path = 'Location: http://127.0.0.1/blog/index.php?link=post&action=read&id=' . $id_post . '#comments';
+					$path = 'Location: http://127.0.0.1/blog/index.php?link=post&action=read&id=' . $comment->getIdPost() . '#comments';
 					header($path);
 				}
 				else
@@ -145,12 +146,12 @@
 
 	function reportComment()
 	{
-		if (isset($_GET['id_comment'], $_GET['id_user'], $_GET['id_post']))
+		if (isset($_GET['id_comment'], $_SESSION['id'], $_GET['id_post']))
 		{
-			if ($_GET['id_comment']!='' AND $_GET['id_user']!='' AND $_GET['id_post']!='')
+			if ($_GET['id_comment']!='' AND $_SESSION['id']!='' AND $_GET['id_post']!='')
 			{
 				$id_comment = $_GET['id_comment'];
-				$id_user = $_GET['id_user'];
+				$id_user = $_SESSION['id'];
 				$id_post = $_GET['id_post'];
 
 				$warning = new Warning(['id_comment' => $id_comment, 'id_user' => $id_user, 'id_post' => $id_post]);

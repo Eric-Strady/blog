@@ -16,8 +16,7 @@
 
 	if (isset($_GET['page']))
 	{
-		strip_tags($_GET['page']);
-		$_GET['page'] = (int)$_GET['page'];
+		$_GET['page'] = (int) $_GET['page'];
 		$current_page = $_GET['page'];
 		if ($current_page == 0)
 		{

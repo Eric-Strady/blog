@@ -4,6 +4,29 @@
 
 	class WarningManager extends \Eric\Blog\Model\Manager
 	{
+		public function isExist($infos)
+        {
+        	$req = $this->_db->prepare('SELECT COUNT(*) FROM warning WHERE id_comment = :infos');
+			$req->execute(array('infos' => $infos));
+			
+			return (bool) $req->fetchcolumn();
+        }
+
+        public function alreadyWarned($id_user, $id_comment)
+        {
+        	$req = $this->_db->prepare('SELECT COUNT(*) FROM warning WHERE id_user = :id_user AND id_comment = :id_comment');
+			$req->execute(array('id_user' => $id_user, 'id_comment' => $id_comment));
+			
+			return (bool) $req->fetchcolumn();
+        }
+
+		public function addWarning($id_user, $id_comment, $id_post)
+		{
+			$req = $this->_db->prepare('INSERT INTO warning(id_user, id_comment, id_post, warning_date) VALUES (:id_user, :id_comment, :id_post, NOW())');
+			$req->execute(array('id_user' => $id_user, 'id_comment' => $id_comment, 'id_post' => $id_post));
+		}
+
+		/*
 		public function checkWarning($id, $informer)
 		{
 			$req = $this->getDB()->prepare('SELECT id_comment FROM warning WHERE id_comment = :id AND id_informer = :informer');
@@ -57,4 +80,5 @@
 			$path = 'Location: http://127.0.0.1/blog/index.php?link=moderate';
 			header($path);
 		}
+		*/
 	}

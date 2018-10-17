@@ -52,7 +52,7 @@
 			            	<a class="nav-link" href="index.php?link=crud&amp;action=create" title="Page de création">Ajouter un billet</a>
 			            </li>
 			            <li class="nav-item">
-			            	<a class="nav-link" href="index.php?link=moderate" title="Page de modération">
+			            	<a class="nav-link" href="index.php?link=moderate&amp;action=list" title="Page de modération">
 			            		Modérer les commentaires <!-- <?php //if ($nbWarning['nb_warning']!='0'){ echo'<span class="badge">' . $nbWarning['nb_warning'] . '</span>'; } ?> -->
 			            	</a>
 			            </li>

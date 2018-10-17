@@ -29,6 +29,10 @@
 							require  $link . 'Controller.php';
 						break;
 
+						case 'moderate':
+							require  $link . 'Controller.php';
+						break;
+
 						case 'post':
 							require  $link . 'Controller.php';
 						break;

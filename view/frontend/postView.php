@@ -26,7 +26,7 @@
 				?>
 						<p>
 							<form action="index.php" method="POST">
-								<button type="submit" class="btn btn-dark" formaction="http://127.0.0.1/blog/index.php?link=post&amp;action=read&amp;id=<?= $post->getId() ?>&comment=add">Ajouter un commentaire</button>
+								<button type="submit" class="btn btn-dark" formaction="http://127.0.0.1/blog/index.php?link=post&amp;action=read&amp;id=<?= $post->getId() ?>&comment=add#add">Ajouter un commentaire</button>
 							</form>
 						</p>
 						<hr>
@@ -39,15 +39,14 @@
 					{
 						if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
 						{
-				?>
-							<div class="card my-4">
+				?>			
+							<div class="card my-4" id="add">
 					        	<h5 class="card-header">Commentaire:</h5>
 					        	<div class="card-body">
-					          	<form action="index.php" method="POST">
+					          	<form action="index.php?link=post&amp;action=add_comment" method="POST">
 							        <textarea class="form-control" name="comment" id="comment" placeholder="Max 255 caractères" maxlength="255" rows="3" required></textarea></p>
-							        <input type="hidden" name="postId" value="<?= $_GET['post'] ?>">
-							        <input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>">
-							        <input type="hidden" name="email" value="<?= $_SESSION['email'] ?>">
+							        <input type="hidden" name="id_post" value="<?= $post->getId() ?>">
+							        <input type="hidden" name="id_user" value="<?= $_SESSION['id'] ?>">
 							        <input type="submit" class="btn btn-dark mb-3" value="Envoyer le commentaire"/>
 								</form>
 					        	</div>
@@ -58,7 +57,7 @@
 					    else
 						{
 				?>
-							<div class="alert alert-danger">
+							<div class="alert alert-danger" id="add">
 								Vous devez être connecté(e) pour ajouter un commentaire !
 							</div>
 							<hr>
@@ -67,7 +66,7 @@
 					}
 				?>
 
-		      	<div class="media mb-4">
+		      	<div class="media mb-4" id="comments">
 					<div class="media-body">
 		      	<?php
 			      	foreach ($comments as $oneComment)
@@ -78,22 +77,20 @@
 				<?php
 						if (isset($_SESSION['pseudo']))
 						{
-							$sessionPseudo = $_SESSION['pseudo'];
-							if ($comment['author']==$sessionPseudo)
+							if ($oneComment->getPseudo() == $_SESSION['pseudo'])
 							{	
 				?>
-								<a href="index.php?post=<?= $_GET['post'] ?>&amp;commentId=<?= $comment['id'] ?>" title="Modifier son commentaire"><span class="fas fa-pen-fancy fa-lg"></span></a>
+								<a href="index.php?link=post&amp;action=read&amp;id=<?= $post->getId() ?>&commentId=update#update" title="Modifier son commentaire"><span class="fas fa-pen-fancy fa-lg"></span></a>
 				<?php
-								if (isset($_GET['commentId']) AND $_GET['commentId']==$comment['id'])
+								if (isset($_GET['commentId']) AND $_GET['commentId']=='update')
 								{
 				?>
 									<hr>
-									<div class="card my-4">
+									<div class="card my-4" id="update">
 										<div class="card-body">
 											<form action="index.php" method="POST">
-										        <textarea class="form-control" name="up_comment" id="up_comment" maxlength="255" rows="3" required><?= $comment['comment'] ?></textarea></p>
-										        <input type="hidden" name="commentId" value="<?= $comment['id'] ?>">
-										        <input type="hidden" name="id_post" value="<?= $comment['id_post'] ?>">
+										        <textarea class="form-control" name="up_comment" id="up_comment" maxlength="255" rows="3" required><?= $oneComment->getComment() ?></textarea></p>
+										        <input type="hidden" name="commentId" value="<?= $oneComment->getId() ?>">
 										        <input type="submit" class="btn btn-dark mb-3" value="Modifier le commentaire"/>
 											</form>
 										</div>
@@ -104,7 +101,7 @@
 							else
 							{
 				?>
-								<a href="index.php?warnedId=<?= $comment['id'] ?>&amp;informerId=<?= $_SESSION['id'] ?>" title="Signaler un commentaire"><span class="fas fa-exclamation-triangle fa-lg"></span></a>
+								<a href="index.php?link=post&amp;action=warning&amp;comment_id=<?= $oneComment->getId() ?>&amp;informerId=<?= $_SESSION['id'] ?>" title="Signaler un commentaire"><span class="fas fa-exclamation-triangle fa-lg"></span></a>
 				<?php
 							}
 						}

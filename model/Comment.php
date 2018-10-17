@@ -35,7 +35,7 @@
         
         public function getIdPost()
         {
-            return $this->_is_post;
+            return $this->_id_post;
         }
         
         public function getComment()
@@ -112,7 +112,7 @@
             	}
             	else
 	            {
-	                throw new \Exception('<p>La description de l\'image ne doit pas dépasser 30 caractères.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+	                throw new \Exception('<p>Le commentaire ne doit pas dépasser 255 caractères.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 	            }
             }
         }

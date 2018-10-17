@@ -69,12 +69,6 @@
         	$req->execute(array('id' => $id));
         }
         
-        public function deletePost(Post $post)
-        {
-            $deletePost = $this->getDB()->prepare('DELETE FROM posts WHERE id =' . $post->getId());
-        }
-
-
         /*
 		public function addUser($pseudo, $pass_hash, $email, $registration_key, $confirm, $admin)
 		{

@@ -46,7 +46,6 @@
 					          	<form action="index.php?link=post&amp;action=add_comment" method="POST">
 							        <textarea class="form-control" name="comment" id="comment" placeholder="Max 255 caractères" maxlength="255" rows="3" required></textarea></p>
 							        <input type="hidden" name="id_post" value="<?= $post->getId() ?>">
-							        <input type="hidden" name="id_user" value="<?= $_SESSION['id'] ?>">
 							        <input type="submit" class="btn btn-dark mb-3" value="Envoyer le commentaire"/>
 								</form>
 					        	</div>
@@ -111,7 +110,7 @@
 							else
 							{
 				?>
-								<a href="index.php?link=post&amp;action=warning&amp;id_comment=<?= $oneComment->getId() ?>&amp;id_user=<?= $_SESSION['id'] ?>&amp;id_post=<?= $post->getId() ?>" title="Signaler un commentaire"><span class="fas fa-exclamation-triangle fa-lg"></span></a>
+								<a href="index.php?link=post&amp;action=warning&amp;id_comment=<?= $oneComment->getId() ?>&amp;id_post=<?= $post->getId() ?>" title="Signaler un commentaire"><span class="fas fa-exclamation-triangle fa-lg"></span></a>
 				<?php
 							}
 						}

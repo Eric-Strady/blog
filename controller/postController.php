@@ -21,6 +21,10 @@
 				post();
 			break;
 
+			case 'add_comment':
+				newComment();
+			break;
+
 			default:
 				throw new Exception('<p>Cette page n\'existe pas.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 			break;
@@ -37,14 +41,24 @@
 	{
 		if (isset($_GET['id']) AND !empty($_GET['id']))
 		{
+			$id = $_GET['id'];
+
+			$post = new Post(['id' => $id]);
 			$postsManager = new PostsManager();
 			$comments = new Comment([]);
 			$commentsManager = new CommentsManager();
 
-			$post = $postsManager->findPost($_GET['id']);
-			$comments = $commentsManager->listComments($_GET['id']);
+			if ($postsManager->isExist($post->getId()))
+			{
+				$post = $postsManager->findPost($post->getId());
+				$comments = $commentsManager->listComments($post->getId());
 
-			require 'view/frontend/postView.php';
+				require 'view/frontend/postView.php';
+			}
+			else
+			{
+				throw new Exception('<p>Ce billet n\'existe pas !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+			}
 		}
 		else
 		{
@@ -52,7 +66,33 @@
 		}
 	}
 
+	function newComment()
+	{
+		if (isset($_POST['comment'], $_POST['id_post'], $_POST['id_user']))
+		{
+			if ($_POST['comment']!='' AND $_POST['id_post']!='' AND $_POST['id_user']!='')
+			{
+				$new_comment = strip_tags($_POST['comment']);
+				$id_post = $_POST['id_post'];
+				$id_user = $_POST['id_user'];
 
+				$comment = new Comment(['comment' => $new_comment, 'id_post' => $id_post, 'id_user' => $id_user]);
+				$commentsManager = new CommentsManager();
+				$commentsManager->addComment($comment->getIdUser(), $comment->getIdPost(), $comment->getComment());
+
+				$path = 'Location: http://127.0.0.1/blog/index.php?link=post&action=read&id=' . $id_post . '#comments';
+				header($path);
+			}
+			else
+			{
+				throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+		}
+	}
 
 
 	/*

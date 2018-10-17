@@ -8,23 +8,35 @@
 
 												//DEFINE ACTION
 
-	if (isset($_GET['action']) AND !empty($_GET['action']))
+	if (isset($_SESSION['admin']) AND $_SESSION['admin']=='ok')
 	{
-		$action = strip_tags($_GET['action']);
-		switch ($action)
+		if (isset($_GET['action']) AND !empty($_GET['action']))
 		{
-			case '#':
-				
-			break;
+			$action = strip_tags($_GET['action']);
+			switch ($action)
+			{
+				case 'list':
+					listWarned();
+				break;
 
-			default:
-				throw new Exception('<p>Cette page n\'existe pas.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
-			break;
+				default:
+					throw new Exception('<p>Cette page n\'existe pas.<br/>Retour à l\'<a href="index.php?link=admin" title="Interface d\'administration" class="alert-link">interface d\'administration</a></p>');
+				break;
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Cette page n\'existe pas.<br/>Retour à l\'<a href="index.php?link=admin" title="Interface d\'administration" class="alert-link">interface d\'administration</a></p>');
+		}
+
+												//FUNCTIONS
+
+		function listWarned()
+		{
+			require 'view/backend/warningCommentsView.php';
 		}
 	}
 	else
 	{
-		require 'view/backend/warningCommentsView.php';
+		throw new Exception('Vous n\'êtes pas autorisé à aller sur cette page !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 	}
-
-												//FUNCTIONS

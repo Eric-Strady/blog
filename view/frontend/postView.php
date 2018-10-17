@@ -69,6 +69,15 @@
 		      	<div class="media mb-4" id="comments">
 					<div class="media-body">
 		      	<?php
+		      		if (isset($_COOKIE['warned']) AND $_COOKIE['warned'] == 'done')
+					{
+				?>
+						<div class="alert alert-success mb-4">
+							Le commentaire a bien été signalé !
+						</div>
+				<?php
+					}
+
 			      	foreach ($comments as $oneComment)
 					{
 				?>
@@ -80,9 +89,9 @@
 							if ($oneComment->getPseudo() == $_SESSION['pseudo'])
 							{	
 				?>
-								<a href="index.php?link=post&amp;action=read&amp;id=<?= $post->getId() ?>&commentId=update#update" title="Modifier son commentaire"><span class="fas fa-pen-fancy fa-lg"></span></a>
+								<a href="index.php?link=post&amp;action=read&amp;id=<?= $post->getId() ?>&change=comment#update" title="Modifier son commentaire"><span class="fas fa-pen-fancy fa-lg"></span></a>
 				<?php
-								if (isset($_GET['commentId']) AND $_GET['commentId']=='update')
+								if (isset($_GET['change']) AND $_GET['change']=='comment')
 								{
 				?>
 									<hr>
@@ -102,7 +111,7 @@
 							else
 							{
 				?>
-								<a href="index.php?link=post&amp;action=warning&amp;comment_id=<?= $oneComment->getId() ?>&amp;informerId=<?= $_SESSION['id'] ?>" title="Signaler un commentaire"><span class="fas fa-exclamation-triangle fa-lg"></span></a>
+								<a href="index.php?link=post&amp;action=warning&amp;id_comment=<?= $oneComment->getId() ?>&amp;id_user=<?= $_SESSION['id'] ?>&amp;id_post=<?= $post->getId() ?>" title="Signaler un commentaire"><span class="fas fa-exclamation-triangle fa-lg"></span></a>
 				<?php
 							}
 						}

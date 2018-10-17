@@ -4,7 +4,7 @@
 
 	class Warning
 	{
-		private $_id, $_id_user, $_id_comment, $_warning_date, $_nb_times;
+		private $_id, $_id_user, $_id_comment, $id_post, $_warning_date;
 
 		public function __construct(array $data)
 		{
@@ -37,15 +37,15 @@
         {
             return $this->_id_comment;
         }
+
+        public function getIdPost()
+        {
+            return $this->_id_post;
+        }
         
         public function getWarningDate()
         {
             return $this->_warning_date;
-        }
-        
-        public function getNbTimes()
-        {
-            return $this->_nb_times;
         }
 
         public function setId($id)
@@ -86,22 +86,22 @@
                 throw new \Exception('<p>Ce commentaire n\'existe pas !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
             } 
         }
+
+        public function setId_post($idPost)
+        {
+            $idPost = (int) $idPost;
+            if ($idPost > 0)
+            {
+                $this->_id_post = $idPost;
+            }
+            else
+            {
+                throw new \Exception('<p>Ce billet n\'existe pas !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+            } 
+        }
         
         public function setWarning_date($warningDate)
         {
             $this->_comment = $warningDate; 
-        }
-        
-        public function setNb_times($nb_times)
-        {
-            $nb_times = (int) $nb_times;
-            if ($nb_times > 0)
-            {
-                $this->_nb_times = $nb_times;
-            }
-            else
-            {
-                throw new \Exception('<p>Impossible de signaler ce commentaire.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
-            }
         }
     }

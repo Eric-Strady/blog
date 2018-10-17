@@ -4,7 +4,7 @@
 
 	class Warning
 	{
-		private $_id, $_id_user, $_id_comment, $id_post, $_warning_date;
+		private $_id, $_id_user, $_id_comment, $id_post, $nbTimes, $_d_warning, $_h_warning, $pseudo, $comment;
 
 		public function __construct(array $data)
 		{
@@ -43,9 +43,29 @@
             return $this->_id_post;
         }
         
-        public function getWarningDate()
+        public function getNbTimes()
         {
-            return $this->_warning_date;
+            return $this->_nbTimes;
+        }
+
+        public function getWarningDay()
+        {
+            return $this->_d_warning;
+        }
+
+        public function getWarningHour()
+        {
+            return $this->_h_warning;
+        }
+
+        public function getPseudo()
+        {
+            return $this->_pseudo;
+        }
+
+        public function getComment()
+        {
+            return $this->_comment;
         }
 
         public function setId($id)
@@ -99,9 +119,57 @@
                 throw new \Exception('<p>Ce billet n\'existe pas !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
             } 
         }
-        
-        public function setWarning_date($warningDate)
+
+        public function setNbTimes($nbTimes)
         {
-            $this->_comment = $warningDate; 
+            $nbTimes = (int) $nbTimes;
+            if ($nbTimes > 0)
+            {
+                $this->_nbTimes = $nbTimes;
+            }
+            else
+            {
+                throw new \Exception('<p>Impossible d\'afficher la liste des commentaires signalés.<br/>Retour à l\'<a href="index.php?link=admin" title="Interface d\'administration" class="alert-link">interface d\'administration</a></p>');
+            } 
+        }
+        
+        public function setD_warning($warningDay)
+        {
+            $this->_d_warning = $warningDay; 
+        }
+
+        public function setH_Warning($warningHour)
+        {
+            $this->_h_warning = $warningHour; 
+        }
+
+        public function setPseudo($pseudo)
+        {
+            if (is_string($pseudo))
+            {
+                if (strlen($pseudo) <= 255)
+                {
+                    $this->_pseudo = $pseudo; 
+                }
+                else
+                {
+                    throw new \Exception('<p>Impossible d\'afficher la liste des commentaires signalés.<br/>Retour à l\'<a href="index.php?link=admin" title="Interface d\'administration" class="alert-link">interface d\'administration</a></p>');
+                }
+            }
+        }
+
+        public function setComment($comment)
+        {
+            if (is_string($comment))
+            {
+                if (strlen($comment) <= 255)
+                {
+                    $this->_comment = $comment; 
+                }
+                else
+                {
+                    throw new \Exception('<p>Impossible d\'afficher la liste des commentaires signalés.<br/>Retour à l\'<a href="index.php?link=admin" title="Interface d\'administration" class="alert-link">interface d\'administration</a></p>');
+                }
+            }
         }
     }

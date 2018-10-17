@@ -32,10 +32,9 @@
         }
         
         public function findPost($id_post)
-        {
-            $id = (int) $id_post;
-            
-            $req = $this->_db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM posts WHERE id =' .$id);
+        {          
+            $req = $this->_db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM posts WHERE id = :id');
+            $req->execute(array('id' => $id_post));
             
             $data = $req->fetch(\PDO::FETCH_ASSOC);
             return new Post($data);
@@ -84,11 +83,6 @@
 			));
         }
         
-        public function deletePost(Post $post)
-        {
-            $deletePost = $this->_db->prepare('DELETE FROM posts WHERE id =' . $post->getId());
-        }
-
         /*
 		public function countPosts()
 		{

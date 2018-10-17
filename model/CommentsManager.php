@@ -4,7 +4,6 @@
 
 	class CommentsManager extends \Eric\Blog\Model\Manager
 	{
-
 		public function listComments($id_post)
 		{
 			$comments = [];

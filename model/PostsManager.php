@@ -22,10 +22,18 @@
             
             return $posts;
         }
-        
-        public function findPost($id)
+
+        public function isExist($infos)
         {
-            $id = (int) $id;
+        	$req = $this->_db->prepare('SELECT COUNT(*) FROM posts WHERE id = :infos');
+			$req->execute(array('infos' => $infos));
+			
+			return (bool) $req->fetchcolumn();
+        }
+        
+        public function findPost($id_post)
+        {
+            $id = (int) $id_post;
             
             $req = $this->_db->query('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y\') AS creation_date_fr FROM posts WHERE id =' .$id);
             

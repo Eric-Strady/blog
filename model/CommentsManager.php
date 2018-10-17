@@ -5,15 +5,17 @@
 	class CommentsManager extends \Eric\Blog\Model\Manager
 	{
 
-		public function listComments($idPost)
+		public function listComments($id_post)
 		{
 			$comments = [];
-			$req = $this->_db->query('
+			$req = $this->_db->prepare('
 				SELECT c.id, c.id_user, c.comment, DATE_FORMAT(c.comment_date, \'%d/%m/%Y\') AS d_comment, DATE_FORMAT(c.comment_date, \'%Hh%imin%ss\') AS h_comment, u.pseudo, u.email
 				FROM comments AS c
 				INNER JOIN users AS u
 				ON c.id_user = u.id
-				WHERE c.id_post = ' . $idPost);
+				WHERE c.id_post = :id_post
+				ORDER BY c.comment_date DESC');
+			$req->execute(array('id_post' => $id_post));
 
 			while ($data = $req->fetch(\PDO::FETCH_ASSOC))
             {
@@ -21,6 +23,12 @@
             }
             
             return $comments;
+		}
+
+		public function addComment($id_user, $id_post, $comment)
+		{
+			$req = $this->_db->prepare('INSERT INTO comments(id_user, id_post, comment, comment_date) VALUES (:id_user, :id_post, :comment, NOW())');
+			$req->execute(array('id_user' => $id_user, 'id_post' => $id_post, 'comment' => $comment));
 		}
 
 		/*

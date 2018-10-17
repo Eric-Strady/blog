@@ -69,6 +69,7 @@
         	$req->execute(array('id' => $id));
         }
         
+        
         /*
 		public function addUser($pseudo, $pass_hash, $email, $registration_key, $confirm, $admin)
 		{

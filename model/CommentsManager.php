@@ -31,6 +31,20 @@
 			$req->execute(array('id_user' => $id_user, 'id_post' => $id_post, 'comment' => $comment));
 		}
 
+		public function isExist($infos)
+        {
+        	$req = $this->_db->prepare('SELECT COUNT(*) FROM comments WHERE id = :infos');
+			$req->execute(array('infos' => $infos));
+			
+			return (bool) $req->fetchcolumn();
+        }
+
+        public function updateComment($comment, $id)
+        {
+        	$req = $this->_db->prepare('UPDATE comments SET comment = :comment WHERE id = :id');
+        	$req->execute(array('comment' => $comment, 'id' =>$id));
+        }
+
 		/*
 		public function getComments($postId)
 		{

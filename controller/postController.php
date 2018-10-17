@@ -25,6 +25,10 @@
 				newComment();
 			break;
 
+			case 'update_comment':
+				changeComment();
+			break;
+
 			default:
 				throw new Exception('<p>Cette page n\'existe pas.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
 			break;
@@ -82,6 +86,42 @@
 
 				$path = 'Location: http://127.0.0.1/blog/index.php?link=post&action=read&id=' . $id_post . '#comments';
 				header($path);
+			}
+			else
+			{
+				throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+		}
+	}
+
+	function changeComment()
+	{
+		if (isset($_POST['up_comment'], $_POST['id_comment'], $_POST['id_post']))
+		{
+			if ($_POST['up_comment']!='' AND $_POST['id_comment']!='' AND $_POST['id_post']!='')
+			{
+				$up_comment = strip_tags($_POST['up_comment']);
+				$id = $_POST['id_comment'];
+				$id_post = $_POST['id_post'];
+
+				$comment = new Comment(['comment' => $up_comment, 'id' => $id]);
+				$commentsManager = new CommentsManager();
+
+				if ($commentsManager->isExist($comment->getId()))
+				{
+					$commentsManager->updateComment($comment->getComment(), $comment->getId());
+
+					$path = 'Location: http://127.0.0.1/blog/index.php?link=post&action=read&id=' . $id_post . '#comments';
+					header($path);
+				}
+				else
+				{
+					throw new Exception('<p>Impossible de modifier ce commentaire !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+				}
 			}
 			else
 			{

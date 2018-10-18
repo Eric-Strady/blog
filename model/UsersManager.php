@@ -81,6 +81,12 @@
         	$req->execute(array('new_email' => $user->getEmail(), 'id' => $user->getId()));
         }
 
+        public function deleteAccount(User $user)
+        {
+        	$req = $this->_db->prepare('DELETE FROM users WHERE id = :id');
+        	$req->execute(array('id' => $user->getId()));
+        }
+
         /*
 		public function addUser($pseudo, $pass_hash, $email, $registration_key, $confirm, $admin)
 		{

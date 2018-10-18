@@ -4,10 +4,10 @@
 
 	class BannedManager extends \Eric\Blog\Model\Manager
 	{
-		public function checkBanned($email)
+		public function checkBanned(Banned $banned)
 		{
 			$req = $this->_db->prepare('SELECT COUNT(*) FROM banned WHERE email = :email ');
-			$req->execute(array('email' => $email));
+			$req->execute(array('email' => $banned->getEmail()));
 			
 			return (bool) $req->fetchcolumn();
 		}

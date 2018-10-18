@@ -64,7 +64,7 @@
 
 			if ($postsManager->isExist($post->getId()))
 			{
-				$post = $postsManager->findPost($post->getId());
+				$post = $postsManager->findPost($post);
 				$comments = $commentsManager->listComments($post->getId());
 
 				require 'view/frontend/postView.php';

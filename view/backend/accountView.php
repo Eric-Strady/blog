@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <?php 
 	if (isset($_SESSION['admin']) AND $_SESSION['admin']=='ok')
  	{
@@ -62,14 +60,13 @@
 				if (isset($_GET['form']) AND $_GET['form']=='pseudo')
 				{
 			?>
-					<p><form action="index.php" method="POST">
+					<p><form action="index.php?link=account&amp;action=pseudo" method="POST">
 						<fieldset>
 							<legend>Changer de pseudo</legend>
 							<p><label for="new_pseudo">Nouveau pseudo: </label>
 							<input type="text" name="new_pseudo" id="new_pseudo" maxlength="255" required/></p>
 							<p><label for="password">Merci de confirmer votre mot de passe: </label>
 						    <input type="password" name="password" id="password" maxlength="255" required/></p>
-							<input type="hidden" name="id" value="<?= $_SESSION['id'] ?>"/>
 						    <p><input class="btn btn-sm btn-outline-dark" type="submit" value="Soumettre"/></p>
 						</fieldset>
 					</form></p>
@@ -78,8 +75,8 @@
 				else
 				{
 			?>
-					<p><form action="index.php" method="POST">
-				 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;id=<?= $_SESSION['id'] ?>&form=pseudo">Changer de pseudo</button>
+					<p><form action="#" method="POST">
+				 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;form=pseudo">Changer de pseudo</button>
 					</form></p>
 			<?php
 				}
@@ -91,14 +88,13 @@
 				if (isset($_GET['form']) AND $_GET['form']=='email')
 				{
 			?>
-					<p><form action="index.php" method="POST">
+					<p><form action="index.php?link=account&amp;action=email" method="POST">
 						<fieldset>
 							<legend>Changer d'adresse e-mail</legend>
 							<p><label for="new_email">Nouvelle adresse e-mail: </label>
 							<input type="text" name="new_email" id="new_email" maxlength="255" size="40" required/></p>
 							<p><label for="password">Merci de confirmer votre mot de passe: </label>
 						    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
-							<input type="hidden" name="id" value="<?= $_SESSION['id'] ?>"/>
 						    <p><input class="btn btn-sm btn-outline-dark" type="submit" value="Soumettre"/></p>
 						</fieldset>
 					</form></p>
@@ -107,8 +103,8 @@
 				else
 				{
 			?>
-					<p><form action="index.php" method="POST">
-				 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;id=<?= $_SESSION['id'] ?>&form=email">Changer d'adresse e-mail</button>
+					<p><form action="#" method="POST">
+				 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;form=email">Changer d'adresse e-mail</button>
 					</form></p>
 			<?php
 				}
@@ -120,7 +116,7 @@
 				if (isset($_GET['form']) AND $_GET['form']=='password')
 				{
 			?>
-					<p><form action="index.php" method="POST">
+					<p><form action="index.php?link=account&amp;action=password" method="POST">
 						<fieldset>
 							<legend>Changer de mot de passe</legend>
 							<p><label for="old_password">Ancien mot de passe: </label>
@@ -129,7 +125,6 @@
 						    <input type="password" name="change_password" id="change_password" maxlength="255" size="40" required/></p>
 						    <p><label for="confirm_change_password">Confirmez votre nouveau mot de passe: </label>
 						    <input type="password" name="confirm_change_password" id="confirm_change_password" maxlength="255" size="40" required/></p>
-							<input type="hidden" name="id" value="<?= $_SESSION['id'] ?>"/>
 						    <p><input class="btn btn-sm btn-outline-dark" type="submit" value="Soumettre"/></p>
 
 						    <p>* Pour rappel, votre mot de passe doit:<br/>
@@ -146,8 +141,8 @@
 				else
 				{
 			?>
-					<p><form action="index.php" method="POST">
-				 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;id=<?= $_SESSION['id'] ?>&form=password">Changer de mot de passe</button>
+					<p><form action="#" method="POST">
+				 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;&form=password">Changer de mot de passe</button>
 					</form></p>
 			<?php
 				}
@@ -159,12 +154,11 @@
 				if (isset($_GET['form']) AND $_GET['form']=='delete')
 				{
 			?>
-					<p><form action="index.php" method="POST">
+					<p><form action="index.php?link=account&amp;action=delete" method="POST">
 						<fieldset>
 							<legend>Supprimer son compte</legend>
 							<p><label for="password">Merci de confirmer votre mot de passe: </label>
 						    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
-							<input type="hidden" name="id" value="<?= $_SESSION['id'] ?>"/>
 						    <p><input class="btn btn-sm btn-outline-danger" type="submit" value="Supprimer"/></p>
 						</fieldset>
 					</form></p>
@@ -173,8 +167,8 @@
 				else
 				{
 			?>
-					<p><form action="index.php" method="POST">
-				 		<button class="btn btn-lg btn-dark mb-4" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;id=<?= $_SESSION['id'] ?>&amp;form=delete">Supprimer son compte</button>
+					<p><form action="#" method="POST">
+				 		<button class="btn btn-lg btn-dark mb-4" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;form=delete">Supprimer son compte</button>
 					</form></p>
 			<?php
 				}
@@ -190,7 +184,7 @@
 	?>			
 				<div class="row account">
 					<div class="col-lg-2 col-sm-6 col-xs-12">
-						<p><form action="index.php" method="POST">
+						<p><form action="index.php?link=account&amp;action=delete_user" method="POST">
 							<fieldset>
 								<legend>Supprimer un utilisateur</legend>
 								<p><label for="user_pseudo">Pseudo de l'utilisateur: </label>
@@ -199,7 +193,6 @@
 								<textarea name="reasons_suppression" id="reasons_suppression" placeholder="Limité à 255 caractères" maxlength="255" required></textarea></p>
 								<p><label for="password">Merci de confirmer votre mot de passe: </label>
 							    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
-								<input type="hidden" name="id" value="<?= $_SESSION['id'] ?>"/>
 							    <p><input class="btn btn-sm btn-outline-danger" type="submit" value="Supprimer"/></p>
 							</fieldset>
 						</form></p>
@@ -212,8 +205,8 @@
 	?>
 				<div class="row account">
 					<div class="col-lg-2 col-sm-6 col-xs-12">
-						<p><form action="index.php" method="POST">
-					 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;id=<?= $_SESSION['id'] ?>&form=delete_user">Supprimer un utilisateur</button>
+						<p><form action="#" method="POST">
+					 		<button class="btn btn-lg btn-dark" type="submit" formaction="http://127.0.0.1/blog/index.php?link=account&amp;form=delete_user">Supprimer un utilisateur</button>
 						</form></p>
 					</div>
 				</div>

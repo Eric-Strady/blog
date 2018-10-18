@@ -75,7 +75,12 @@
         	$req->execute(array('new_pseudo' => $user->getPseudo(), 'id' => $user->getId()));
         }
         
-        
+        public function updateEmail(User $user)
+        {
+        	$req = $this->_db->prepare('UPDATE users SET email = :new_email WHERE id = :id');
+        	$req->execute(array('new_email' => $user->getEmail(), 'id' => $user->getId()));
+        }
+
         /*
 		public function addUser($pseudo, $pass_hash, $email, $registration_key, $confirm, $admin)
 		{

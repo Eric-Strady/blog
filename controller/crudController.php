@@ -24,7 +24,7 @@
 				break;
 
 				case 'read':
-					require 'view/backend/readPostView.php';
+					readPost();
 				break;
 
 				case 'update_page':
@@ -112,6 +112,31 @@
 		else
 		{
 			throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à la page de <a href="index.php?link=crud&amp;action=create_page" title="Page de création" class="alert-link">création</a></p>');
+		}
+	}
+
+	function readPost()
+	{
+		if (isset($_GET['id_post']) AND $_GET['id_post']!='')
+		{
+			$id_post = $_GET['id_post'];
+			$post = new Post(['id' => $id_post]);
+			$postsManager = new PostsManager();
+
+			if ($postsManager->isExist($post->getId()))
+			{
+				$post = $postsManager->findPost($post->getId());
+
+				require 'view/backend/readPostView.php';
+			}
+			else
+			{
+				throw new Exception('<p>Ce billet n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin" title="Interface d\'administration" class="alert-link">interface d\'administration</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseigné l\'identifiant du billet.<br/>Retour à l\'<a href="index.php?link=admin" title="Interface d\'administration" class="alert-link">interface d\'administration</a></p>');
 		}
 	}
 

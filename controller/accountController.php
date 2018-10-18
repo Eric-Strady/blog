@@ -30,6 +30,10 @@
 			break;
 
 			case 'delete':
+				confirmDelete();
+			break;
+
+			case 'delete_account':
 				deleteAccount();
 			break;
 
@@ -209,9 +213,79 @@
 		}
 	}
 
+	function confirmDelete()
+	{
+		if (isset($_POST['password'], $_SESSION['id']))
+		{
+			if ($_POST['password']!='' AND $_SESSION['id']!='')
+			{
+				$password = strip_tags($_POST['password']);
+				$id = $_SESSION['id'];
+
+				$user = new User(['id' => $id]);
+				$usersManager = new UsersManager();
+
+				$user = $usersManager->findUser($user->getId());
+
+				if (password_verify($password, $user->getPassword()))
+				{
+					require 'view/backend/deleteAccountView.php';
+				}
+				else
+				{
+					throw new Exception('<p>Le mot de passe n\'est pas correct !<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+				}			
+			}
+			else
+			{
+				throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+		}
+	}
+
 	function deleteAccount()
 	{
-		
+		if (isset($_POST['delete'], $_SESSION['id']))
+		{
+			if ($_POST['delete']!='' AND $_SESSION['id']!='')
+			{
+				$choice = $_POST['delete'];
+				
+				if ($choice == 'confirm')
+				{
+					$id = $_SESSION['id'];
+					$user = new User(['id' => $id]);
+					$usersManager = new UsersManager();
+
+					if ($usersManager->isExist($user->getId()))
+					{
+						$usersManager->deleteAccount($user);
+
+						require 'view/frontend/signOutView.php';
+					}
+					else
+					{
+						throw new Exception('<p>Cet utilisateur n\'existe pas.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+					}
+				}
+				else
+				{
+					require 'view/backend/accountView.php';
+				}			
+			}
+			else
+			{
+				throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+		}
 	}
 
 	function deleteUserAccount()

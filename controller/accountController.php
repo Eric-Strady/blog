@@ -97,7 +97,60 @@
 
 	function changeEmail()
 	{
-		
+		if (isset($_POST['new_email'], $_POST['password'], $_SESSION['id']))
+		{
+			if ($_POST['new_email']!='' AND $_POST['password']!='' AND $_SESSION['id']!='')
+			{
+				$new_email = strip_tags($_POST['new_email']);
+				$password = strip_tags($_POST['password']);
+				$id = $_SESSION['id'];
+
+				$user = new User(['id' => $id]);
+				$usersManager = new UsersManager();
+
+				$banned = new Banned(['email' => $new_email]);
+				$bannedManager = new BannedManager();
+
+				$user = $usersManager->findUser($user->getId());
+
+				if (password_verify($password, $user->getPassword()))
+				{
+					$user->setEmail($new_email);
+
+					if (!$usersManager->isExist($user->getEmail()))
+					{
+						if (!$bannedManager->checkBanned($banned))
+						{
+							$usersManager->updateEmail($user);
+							$user->sendUpdateEmail();
+
+							$path = 'Location: http://127.0.0.1/blog/index.php?link=account&success=email';
+							header($path);
+						}
+						else
+						{
+							throw new Exception('<p>L\'adresse e-mail renseignée fait l\'objet d\'un bannissement sur ce site. Merci d\'en indiqué une autre.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+						}
+					}
+					else
+					{
+						throw new Exception('<p>L\'adresse e-mail renseignée existe déjà sur un autre compte. Merci d\'en indiqué une autre.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+					}
+				}
+				else
+				{
+					throw new Exception('<p>Le mot de passe n\'est pas correct !<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+				}			
+			}
+			else
+			{
+				throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+		}
 	}
 
 	function changePassword()

@@ -2,9 +2,11 @@
 
 	require_once('model/Warning.php');
 	require_once('model/WarningManager.php');
+	require_once('model/CommentsManager.php');
 
 	use \Eric\Blog\Model\Warning\Warning;
 	use \Eric\Blog\Model\Warning\WarningManager;
+	use \Eric\Blog\Model\Comments\CommentsManager;
 
 												//DEFINE ACTION
 
@@ -17,6 +19,14 @@
 			{
 				case 'list':
 					showWarned();
+				break;
+
+				case 'delete_comment':
+					eraseComment();
+				break;
+
+				case 'conserve_comment':
+					eraseWarning();
 				break;
 
 				default:
@@ -43,4 +53,57 @@
 		$warning = $warningManager->listWarned();
 		
 		require 'view/backend/warningCommentsView.php';
+	}
+
+	function eraseComment()
+	{
+		if (isset($_GET['id_comment']) AND $_GET['id_comment']!='')
+		{
+			$id_comment = $_GET['id_comment'];
+			$warning = new Warning(['id_comment' => $id_comment]);
+			$warningManager = new WarningManager();
+			$commentsManager = new CommentsManager();
+
+			if ($warningManager->isExist($warning->getIdComment()))
+			{
+				$commentsManager->deleteComment($warning->getIdComment());
+
+				$path = 'Location: http://127.0.0.1/blog/index.php?link=moderate&action=list';
+				header($path);
+			}
+			else
+			{
+				throw new Exception('<p>Ce commentaire n\'existe pas !<br/>Retour à la page de <a href="index.php?link=moderate&amp;action=list" title="Page de modération" class="alert-link">modération</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseigner l\'identifiant du comentaire.<br/>Retour à la page de <a href="index.php?link=moderate&amp;action=list" title="Page de modération" class="alert-link">modération</a></p>');
+		}
+	}
+
+	function eraseWarning()
+	{
+		if (isset($_GET['id_comment']) AND $_GET['id_comment']!='')
+		{
+			$id_comment = $_GET['id_comment'];
+			$warning = new Warning(['id_comment' => $id_comment]);
+			$warningManager = new WarningManager();
+
+			if ($warningManager->isExist($warning->getIdComment()))
+			{
+				$warningManager->deleteWarning($warning->getIdComment());
+				
+				$path = 'Location: http://127.0.0.1/blog/index.php?link=moderate&action=list';
+				header($path);
+			}
+			else
+			{
+				throw new Exception('<p>Ce commentaire n\'existe pas !<br/>Retour à la page de <a href="index.php?link=moderate&amp;action=list" title="Page de modération" class="alert-link">modération</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseigner l\'identifiant du comentaire.<br/>Retour à la page de <a href="index.php?link=moderate&amp;action=list" title="Page de modération" class="alert-link">modération</a></p>');
+		}
 	}

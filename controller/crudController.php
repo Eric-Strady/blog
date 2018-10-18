@@ -129,7 +129,7 @@
 
 			if ($postsManager->isExist($post->getId()))
 			{
-				$post = $postsManager->findPost($post->getId());
+				$post = $postsManager->findPost($post);
 
 				require 'view/backend/readPostView.php';
 			}
@@ -154,7 +154,7 @@
 
 			if ($postsManager->isExist($post->getId()))
 			{
-				$post = $postsManager->findPost($post->getId());
+				$post = $postsManager->findPost($post);
 
 				require 'view/backend/updatePostView.php';
 			}
@@ -270,7 +270,43 @@
 
 	function erasePost()
 	{
+		if (isset($_POST['delete'], $_POST['id_post']))
+		{
+			if ($_POST['delete']=='confirm' AND $_POST['id_post']!='')
+			{
+				$id_post = ($_POST['id_post']);
+				
+				$post = new Post(['id' => $id_post]);
+				$postsManager = new PostsManager();
+				$post = $postsManager->findPost($post);
 
+				if ($postsManager->isExist($post->getId()))
+				{
+					$postsManager->deletePost($post);
+					unlink('public/images/cover/' . $post->getId() . '.' . $post->getImgExt());
+
+					$path = 'Location: http://127.0.0.1/blog/index.php?link=admin&deleted=post';
+					header($path);
+				}
+				else
+				{
+					throw new Exception('<p>Ce billet n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin" title="Interface d\'administration" class="alert-link">interface d\'administration</a></p>');
+				}
+			}
+			elseif ($_POST['delete']=='cancel' AND $_POST['id_post']!='')
+			{
+				$path = 'Location: http://127.0.0.1/blog/index.php?link=admin';
+				header($path);
+			}
+			else
+			{
+				throw new Exception('<p>Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)<br/>Retour à l\'<a href="index.php?link=admin" title="Page d\'administration" class="alert-link">interface d\'administration</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous n\'avez pas renseigné votre choix. Prenez votre temps pour peser le pour et le contre ;)<br/>Retour à l\'<a href="index.php?link=admin" title="Page d\'administration" class="alert-link">interface d\'administration</a></p>');
+		}
 	}	
 
 	/*

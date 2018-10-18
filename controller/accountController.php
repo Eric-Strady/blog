@@ -1,5 +1,80 @@
 <?php
 
+	require_once('model/User.php');
+	require_once('model/UsersManager.php');
+	require_once('model/Banned.php');
+	require_once('model/BannedManager.php');
+
+	use \Eric\Blog\Model\Users\User;
+	use \Eric\Blog\Model\Users\UsersManager;
+	use \Eric\blog\Model\Banned\Banned;
+	use \Eric\Blog\Model\Banned\BannedManager;
+
+												//DEFINE ACTION
+
+	if (isset($_GET['action']) AND !empty($_GET['action']))
+	{
+		$action = strip_tags($_GET['action']);
+		switch ($action)
+		{
+			case 'pseudo':
+				changePseudo();
+			break;
+
+			case 'email':
+				changeEmail();
+			break;
+
+			case 'password':
+				changePassword();
+			break;
+
+			case 'delete':
+				deleteAccount();
+			break;
+
+			case 'delete_user':
+				deleteUserAccount();
+			break;
+
+			default:
+				throw new Exception('<p>Cette page n\'existe pas.<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+			break;
+		}
+	}
+	else
+	{
+		require 'view/backend/accountView.php';
+	}
+
+											//FUNCTIONS
+
+	function changePseudo()
+	{
+
+	}
+
+	function changeEmail()
+	{
+
+	}
+
+	function changePassword()
+	{
+		
+	}
+
+	function deleteAccount()
+	{
+		
+	}
+
+	function deleteUserAccount()
+	{
+		
+	}
+
+	/*
 	require_once('model/UsersManager.php');
 	require_once('model/WarningManager.php');
 	require_once('model/BannedManager.php');
@@ -125,3 +200,4 @@
 		unlink('public/images/avatars/' . $id . '.png');
 		unlink('public/images/thumbnails/' . $id . '.png');
 	}
+	*/

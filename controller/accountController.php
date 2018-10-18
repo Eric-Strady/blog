@@ -62,14 +62,22 @@
 				$user = new User(['id' => $id]);
 				$usersManager = new UsersManager();
 				$user = $usersManager->findUser($user->getId());
-				$user->setPseudo($new_pseudo);
 
 				if (password_verify($password, $user->getPassword()))
 				{
-					$usersManager->updatePseudo($user);
-					$_SESSION['pseudo'] = $user->getPseudo();
+					$user->setPseudo($new_pseudo);
 
-					require 'view/backend/accountView.php';
+					if (!$usersManager->isExist($user->getPseudo()))
+					{
+						$usersManager->updatePseudo($user);
+						$_SESSION['pseudo'] = $user->getPseudo();
+
+						require 'view/backend/accountView.php';
+					}
+					else
+					{
+						throw new Exception('<p>Ce pseudo est déjà pris. Merci d\'en choisir un autre.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+					}
 				}
 				else
 				{
@@ -89,7 +97,7 @@
 
 	function changeEmail()
 	{
-
+		
 	}
 
 	function changePassword()

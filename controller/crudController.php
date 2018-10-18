@@ -233,7 +233,39 @@
 
 	function changePost()
 	{
+		if (isset($_POST['up_title'], $_POST['up_content'], $_POST['id_post']))
+		{
+			if ($_POST['up_title']!='' AND $_POST['up_content']!='' AND $_POST['id_post']!='')
+			{
 
+				$title = strip_tags($_POST['up_title']);
+				$content = strip_tags($_POST['up_content']);
+				$id_post = strip_tags($_POST['id_post']);
+
+				$post = new Post(['id' => $id_post, 'title' => $title, 'content' => $content]);
+				$postsManager = new PostsManager();
+
+				if ($postsManager->isExist($post->getId()))
+				{
+					$postsManager->updatePost($post);
+
+					$path = 'Location: http://127.0.0.1/blog/index.php?link=crud&action=read&id_post=' . $post->getId();
+					header($path);
+				}
+				else
+				{
+					throw new Exception('<p>Ce billet n\'existe pas !<br/>Retour à l\'<a href="index.php?link=admin" title="Interface d\'administration" class="alert-link">interface d\'administration</a></p>');
+				}		
+			}
+			else
+			{
+				throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à l\'<a href="index.php?link=admin" title="Interface d\'administration" class="alert-link">interface d\'administration</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à l\'<a href="index.php?link=admin" title="Interface d\'administration" class="alert-link">interface d\'administration</a></p>');
+		}
 	}
 
 	function erasePost()

@@ -1,5 +1,83 @@
 <?php
 
+	require_once('model/Warning.php');
+	require_once('model/WarningManager.php');
+	require_once('model/CommentsManager.php');
+
+	use \Eric\Blog\Model\Warning\Warning;
+	use \Eric\Blog\Model\Warning\WarningManager;
+	use \Eric\Blog\Model\Comments\CommentsManager;
+
+												//DEFINE ACTION
+
+	if (isset($_SESSION['admin']) AND $_SESSION['admin']=='ok')
+	{
+		if (isset($_GET['action']) AND !empty($_GET['action']))
+		{
+			$action = strip_tags($_GET['action']);
+			switch ($action)
+			{
+				case 'create_page':
+					require 'view/backend/addPostView.php';
+				break;
+
+				case 'create':
+					createPost();
+				break;
+
+				case 'read':
+					require 'view/backend/readPostView.php';
+				break;
+
+				case 'update_page':
+					require 'view/backend/updatePostView.php';
+				break;
+
+				case 'update':
+					changePost();
+				break;
+
+				case 'delete_page':
+					require 'view/backend/deletePostView.php';
+				break;
+
+				case 'delete':
+					erasePost();
+				break;
+
+				default:
+					throw new Exception('<p>Cette page n\'existe pas.<br/>Retour à l\'<a href="index.php?link=admin" title="Interface d\'administration" class="alert-link">interface d\'administration</a></p>');
+				break;
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Cette page n\'existe pas.<br/>Retour à l\'<a href="index.php?link=admin" title="Interface d\'administration" class="alert-link">interface d\'administration</a></p>');
+		}
+	}
+	else
+	{
+		throw new Exception('Vous n\'êtes pas autorisé à aller sur cette page !<br/>Retour à la page d\'<a href="index.php" title="Page d\'accueil" class="alert-link">accueil</a></p>');
+	}
+
+												//FUNCTIONS
+
+	function createPost()
+	{
+
+	}
+
+	function changePost()
+	{
+
+	}
+
+	function erasePost()
+	{
+
+	}	
+
+	/*
 	require_once('model/PostsManager.php');
 	require_once('model/AdminManager.php');
 	require_once('model/WarningManager.php');
@@ -93,3 +171,4 @@
 		$adminManager = new AdminManager();
 		$adminManager->deletePost($id);
 	}
+	*/

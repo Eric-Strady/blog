@@ -3,10 +3,12 @@
 	require ('recaptcha/autoload.php');
 	require_once('model/User.php');
 	require_once('model/UsersManager.php');
+	require_once('model/Banned.php');
 	require_once('model/BannedManager.php');
 
 	use \Eric\Blog\Model\Users\User;
 	use \Eric\Blog\Model\Users\UsersManager;
+	use \Eric\Blog\Model\Banned\Banned;
 	use \Eric\Blog\Model\Banned\BannedManager;
 
 												//DEFINE ACTION
@@ -70,9 +72,10 @@
 								{
 									if (!$usersManager->isExist($user->getEmail()))
 									{
+										$banned = new Banned(['email' => $user->getEmail()]);
 										$bannedManager = new BannedManager();
 
-										if (!$bannedManager->checkBanned($user->getEmail()))
+										if (!$bannedManager->checkBanned($banned))
 										{
 											$pass_hash = password_hash($user->getPassword(), PASSWORD_DEFAULT);
 											$user->setPassword($pass_hash);

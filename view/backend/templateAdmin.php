@@ -49,7 +49,7 @@
 		        <div class="collapse navbar-collapse" id="navbarResponsive">
 		            <ul class="navbar-nav ml-auto">
 			            <li class="nav-item">
-			            	<a class="nav-link" href="index.php?link=crud&amp;action=create" title="Page de création">Ajouter un billet</a>
+			            	<a class="nav-link" href="index.php?link=crud&amp;action=create_page" title="Page de création">Ajouter un billet</a>
 			            </li>
 			            <li class="nav-item">
 			            	<a class="nav-link" href="index.php?link=moderate&amp;action=list" title="Page de modération">

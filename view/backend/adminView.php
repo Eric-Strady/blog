@@ -4,8 +4,19 @@
 
 	<div class="container">
 		<div id="transparency">
+			<?php
+				if (isset($_GET['deleted']) AND $_GET['deleted'] == 'post')
+				{
+			?>
+					<div class="alert alert-success mb-3">
+						Le billet a bien été supprimé !
+					</div>
+			<?php
+				}
+			?>
+					
 			<div class="row">
-				<?php
+				<?php	
 					foreach ($posts as $onePost)
 					{
 				?>
@@ -19,7 +30,7 @@
 					      			<em> le <?= $onePost->getCreationDate() ?></em>
 					      			<em><a href="index.php?link=crud&amp;action=read&amp;id_post=<?= $onePost->getId() ?>" title="Lecture du billet">Lire</a></em>
 					     			- <em><a href="index.php?link=crud&amp;action=update_page&amp;id_post=<?= $onePost->getId() ?>" title="Modification du billet">Mettre à jour</a></em>
-					     			- <em><a href="index.php?link=crud&amp;action=delete_page&amp;id_post=<?= $onePost->getId() ?>&amp;pic=<?= $onePost->getImgExt() ?>" title="Suppression du billet">Supprimer</a></em></p>
+					     			- <em><a href="index.php?link=crud&amp;action=delete_page&amp;id_post=<?= $onePost->getId() ?>" title="Suppression du billet">Supprimer</a></em></p>
 					      			<p class="card-text"><?= substr($onePost->getContent(), 0, 45) . '...' ?></p>
 					        	</div>
 					      	</div>

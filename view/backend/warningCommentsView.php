@@ -24,9 +24,9 @@
 							<h5 class="card-header">Signalé <?= $oneWarning->getNbTimes() ?> fois:</h5>
 							<div class="card-body">
 								<p><em>Le <?= $oneWarning->getWarningDay() ?> à <?= $oneWarning->getWarningHour() ?></em> - Commentaire de <strong><?= $oneWarning->getPseudo() ?></strong>:
-								<a href="index.php?eraseComment=<?= $oneWarning->getId() ?>" title="Supprimer le commentaire"><span class="fas fa-times fa-lg"></a>
+								<a href="index.php?link=moderate&amp;action=delete_comment&amp;id_comment=<?= $oneWarning->getIdComment() ?>" title="Supprimer le commentaire"><span class="fas fa-times fa-lg"></a>
 								 - 
-								<a href="index.php?conserve=<?= $oneWarning->getPseudo() ?>" title="Conserver le commentaire"><span class="fas fa-check fa-lg"></a><br/>
+								<a href="index.php?link=moderate&amp;action=conserve_comment&amp;id_comment=<?= $oneWarning->getIdComment() ?>" title="Conserver le commentaire"><span class="fas fa-check fa-lg"></a><br/>
 								" <?= $oneWarning->getComment() ?> "</p>
 							</div>
 						</div>

@@ -54,6 +54,12 @@
             return $warning;
         }
 
+        public function deleteWarning($id_comment)
+        {
+        	$req = $this->_db->prepare('DELETE FROM warning WHERE id_comment = :id_comment');
+			$req->execute(array('id_comment' => $id_comment));
+        }
+
 		/*
 		public function checkWarning($id, $informer)
 		{

@@ -22,11 +22,9 @@
 ?>
 				<p>Souhaitez-vous vraiment procéder à la suppression de votre compte ?</p>
 
-				<form action="index.php" method="POST">
-					<p><input type="radio" name="delete_account" value="confirm" id="confirm"/> <label for="confirm">Oui</label></p>
-				    <p><input type="radio" name="delete_account" value="cancel" id="cancel"/> <label for="cancel">Non</label></p>
-				    <input type="hidden" name="pseudo" value="<?= $_SESSION['pseudo'] ?>"/>
-				    <input type="hidden" name="id" value="<?= $_SESSION['id'] ?>"/>
+				<form action="index.php?link=account&amp;action=delete_account" method="POST">
+					<p><input type="radio" name="delete" value="confirm" id="confirm"/> <label for="confirm">Oui</label></p>
+				    <p><input type="radio" name="delete" value="cancel" id="cancel"/> <label for="cancel">Non</label></p>
 					<input class="btn btn-primary" type="submit" value="Confirmer"/>
 				</form>
 			</div>

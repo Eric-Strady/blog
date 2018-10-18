@@ -6,7 +6,7 @@
 		<div id="transparency">
 			<h3 id="post-title" class="mb-4">Création d'un billet:</h3>
 
-			<form action="index.php" method="POST" enctype="multipart/form-data">
+			<form action="index.php?link=crud&action=create" method="POST" enctype="multipart/form-data">
 				<fieldset>
 					<legend>Image d'illustration</legend>
 					<p><label for="description">Description:</label><br/>

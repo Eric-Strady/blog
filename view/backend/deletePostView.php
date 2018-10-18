@@ -8,11 +8,10 @@
 
 			<p>Souhaitez-vous vraiment procéder à la suppression de ce billet ?</p>
 
-			<form action="index.php" method="POST">
+			<form action="index.php?link=crud&amp;action=delete" method="POST">
 				<p><input type="radio" name="delete" value="confirm" id="confirm" /> <label for="confirm">Oui</label></p>
 			    <p><input type="radio" name="delete" value="cancel" id="cancel" /> <label for="cancel">Non</label></p>
-			    <input type="hidden" name="id" value="<?= $_GET['delete'] ?>">
-			    <input type="hidden" name="extension" value="<?= $_GET['pic'] ?>">
+			    <input type="hidden" name="id_post" value="<?= $_GET['id_post'] ?>">
 				<input class="btn btn-primary" type="submit" value="Confirmer"/>
 			</form>
 		</div>

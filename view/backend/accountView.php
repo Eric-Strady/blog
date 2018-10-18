@@ -189,8 +189,8 @@
 								<legend>Supprimer un utilisateur</legend>
 								<p><label for="user_pseudo">Pseudo de l'utilisateur: </label>
 								<input type="text" name="user_pseudo" id="user_pseudo" maxlength="255" size="40" required/></p>
-								<p><label for="reasons_suppression">Motif de suppression:</label><br/>
-								<textarea name="reasons_suppression" id="reasons_suppression" placeholder="Limité à 255 caractères" maxlength="255" required></textarea></p>
+								<p><label for="reasons">Motif de suppression:</label><br/>
+								<textarea name="reasons" id="reasons" placeholder="Limité à 255 caractères" maxlength="255" required></textarea></p>
 								<p><label for="password">Merci de confirmer votre mot de passe: </label>
 							    <input type="password" name="password" id="password" maxlength="255" size="40" required/></p>
 							    <p><input class="btn btn-sm btn-outline-danger" type="submit" value="Supprimer"/></p>

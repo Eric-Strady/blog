@@ -12,6 +12,12 @@
 			return (bool) $req->fetchcolumn();
 		}
 
+		public function addBanned(Banned $banned)
+		{
+			$req = $this->_db->prepare('INSERT INTO banned(email, reasons, banned_date) VALUES(:email, :reasons , NOW())');
+			$req->execute(array('email' => $banned->getEmail(), 'reasons' => $banned->getReasons()));
+		}
+
 		/*
 		public function addBanned($pseudo, $email, $reasons)
 		{

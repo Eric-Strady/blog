@@ -40,11 +40,11 @@
 
 	function registration()
 	{
-		if (isset($_POST['pseudo'], $_POST['password'], $_POST['passwordVerify'], $_POST['email']))
+		$recaptcha = new \ReCaptcha\ReCaptcha('6LfRh20UAAAAAIR3yJLwr3fZCFybqe6tpklXVixw');
+		$resp = $recaptcha->verify($_POST['g-recaptcha-response']);
+		if ($resp->isSuccess())
 		{
-			$recaptcha = new \ReCaptcha\ReCaptcha('6LfRh20UAAAAAIR3yJLwr3fZCFybqe6tpklXVixw');
-			$resp = $recaptcha->verify($_POST['g-recaptcha-response']);
-			if ($resp->isSuccess())
+			if (isset($_POST['pseudo'], $_POST['password'], $_POST['passwordVerify'], $_POST['email']))
 			{
 				if ($_POST['pseudo']!='' AND $_POST['password']!='' AND $_POST['passwordVerify']!='' AND $_POST['email']!='')
 				{
@@ -125,12 +125,12 @@
 			}
 			else
 			{
-			    $errors = $resp->getErrorCodes();
+			    throw new Exception('<p>Vous devez renseigné tous les champs.<br/>Retour à la page d\'<a href="index.php?link=registration" title="Page d\'inscription" class="alert-link">inscription</a></p>');
 			}
 		}
 		else
 		{
-			throw new Exception('<p>Vous devez renseigné tous les champs.<br/>Retour à la page d\'<a href="index.php?link=registration" title="Page d\'inscription" class="alert-link">inscription</a></p>');
+			throw new Exception('<p>Le reCAPTCHA est obligatoire !<br/>Retour à la page d\'<a href="index.php?link=registration" title="Page d\'inscription" class="alert-link">inscription</a></p>');
 		}
 	}
 

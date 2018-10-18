@@ -39,14 +39,6 @@
             $data = $req->fetch(\PDO::FETCH_ASSOC);
             return new Post($data);
         }
-        
-        public function lastPost()
-        {
-            $req = $this->_db->query('SELECT MAX(id) AS last FROM posts');
-            
-            $data = $req->fetch(\PDO::FETCH_ASSOC);
-			return new Post($data);
-        }
 
         public function addPost(Post $post)
         {

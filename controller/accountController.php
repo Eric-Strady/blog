@@ -290,7 +290,55 @@
 
 	function deleteUserAccount()
 	{
-		
+		if (isset($_POST['user_pseudo'], $_POST['reasons'], $_POST['password'], $_SESSION['id']))
+		{
+			if ($_POST['user_pseudo']!='' AND $_POST['reasons']!='' AND $_POST['password']!='' AND $_SESSION['id']!='')
+			{
+				$user_pseudo = strip_tags($_POST['user_pseudo']);
+				$reasons = strip_tags($_POST['reasons']);
+				$password = strip_tags($_POST['password']);
+				$id = $_SESSION['id'];
+
+				$user = new User(['id' => $id]);
+				$usersManager = new UsersManager();
+				$user = $usersManager->findUser($user->getId());
+
+				if (password_verify($password, $user->getPassword()))
+				{
+					$userToDelete = new User(['pseudo' => $user_pseudo]);
+
+					if ($usersManager->isExist($userToDelete->getPseudo()))
+					{
+						$userToDelete = $usersManager->findUser($userToDelete->getPseudo());
+						$banned = new Banned(['email' => $userToDelete->getEmail(), 'reasons' => $reasons]);
+						$bannedManager = new BannedManager();
+
+						$usersManager->deleteAccount($userToDelete);
+						$bannedManager->addBanned($banned);
+						$banned->sendBannedEmail();
+
+						$path = 'Location: http://127.0.0.1/blog/index.php?link=account&success=user_suppression';
+						header($path);
+					}
+					else
+					{
+						throw new Exception('<p>Cet utilisateur n\'existe pas.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+					}					
+				}
+				else
+				{
+					throw new Exception('<p>Le mot de passe n\'est pas correct !<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+				}			
+			}
+			else
+			{
+				throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+		}
 	}
 
 	/*

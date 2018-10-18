@@ -4,17 +4,7 @@
 
 	class User
 	{
-		private $_id,
-                $_pseudo,
-                $_password,
-                $_email,
-                $_registration_key,
-                $_registration_date,
-                $_confirm,
-                $_admin,
-                $_token_pass,
-                $_token_pass_date,
-                $_connect;
+		private $_id, $_pseudo, $_password, $_email, $_registration_key, $_registration_date, $_confirm, $_admin, $_token_pass, $_token_pass_date, $_connect;
 
 		public function __construct(array $data)
 		{
@@ -33,60 +23,17 @@
             }
         }
 
-        public function getId()
-        {
-            return $this->_id;
-        }
-        
-        public function getPseudo()
-        {
-            return $this->_pseudo;
-        }
-        
-        public function getPassword()
-        {
-            return $this->_password;
-        }
-        
-        public function getEmail()
-        {
-            return $this->_email;
-        }
-        
-        public function getRegistrationKey()
-        {
-            return $this->_registration_key;
-        }
-        
-        public function getRegistrationDate()
-        {
-            return $this->_registration_date;
-        }
-        
-        public function getConfirm()
-        {
-            return $this->_confirm;
-        }
-
-        public function getAdmin()
-        {
-            return $this->_admin;
-        }
-
-        public function getTokenPass()
-        {
-            return $this->_token_pass;
-        }
-
-        public function getTokenPassDate()
-        {
-            return $this->_token_pass_date;
-        }
-
-        public function getConnect()
-        {
-            return $this->_connect;
-        }
+        public function getId(){ return $this->_id; }
+        public function getPseudo(){ return $this->_pseudo; }
+        public function getPassword(){ return $this->_password; }
+        public function getEmail(){ return $this->_email; }
+        public function getRegistrationKey(){ return $this->_registration_key; }
+        public function getRegistrationDate(){ return $this->_registration_date; }
+        public function getConfirm(){ return $this->_confirm; }
+        public function getAdmin(){ return $this->_admin; }
+        public function getTokenPass(){ return $this->_token_pass; }
+        public function getTokenPassDate(){ return $this->_token_pass_date; }
+        public function getConnect(){ return $this->_connect; }
 
         public function setId($id)
         {

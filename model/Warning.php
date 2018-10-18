@@ -23,50 +23,15 @@
             }
         }
 
-        public function getId()
-        {
-            return $this->_id;
-        }
-        
-        public function getIdUser()
-        {
-            return $this->_id_user;
-        }
-        
-        public function getIdComment()
-        {
-            return $this->_id_comment;
-        }
-
-        public function getIdPost()
-        {
-            return $this->_id_post;
-        }
-        
-        public function getNbTimes()
-        {
-            return $this->_nbTimes;
-        }
-
-        public function getWarningDay()
-        {
-            return $this->_d_warning;
-        }
-
-        public function getWarningHour()
-        {
-            return $this->_h_warning;
-        }
-
-        public function getPseudo()
-        {
-            return $this->_pseudo;
-        }
-
-        public function getComment()
-        {
-            return $this->_comment;
-        }
+        public function getId(){ return $this->_id; }
+        public function getIdUser(){ return $this->_id_user; }
+        public function getIdComment(){ return $this->_id_comment; }
+        public function getIdPost(){ return $this->_id_post; }
+        public function getNbTimes(){ return $this->_nbTimes; }
+        public function getWarningDay(){ return $this->_d_warning; }
+        public function getWarningHour(){ return $this->_h_warning; }
+        public function getPseudo(){ return $this->_pseudo; }
+        public function getComment(){ return $this->_comment; }
 
         public function setId($id)
         {

@@ -23,35 +23,12 @@
             }
         }
 
-        public function getId()
-        {
-            return $this->_id;
-        }
-        
-        public function getTitle()
-        {
-            return $this->_title;
-        }
-        
-        public function getContent()
-        {
-            return $this->_content;
-        }
-        
-        public function getCreationDate()
-        {
-            return $this->_creation_date;
-        }
-        
-        public function getImgDesc()
-        {
-            return $this->_image_description;
-        }
-        
-        public function getImgExt()
-        {
-            return $this->_image_extension;
-        }
+        public function getId(){ return $this->_id; }
+        public function getTitle(){ return $this->_title; }
+        public function getContent(){ return $this->_content; }      
+        public function getCreationDate(){ return $this->_creation_date; }
+        public function getImgDesc(){ return $this->_image_description; }
+        public function getImgExt(){ return $this->_image_extension; }
         
         public function setId($id)
         {

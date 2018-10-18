@@ -23,15 +23,8 @@
             }
         }
 
-        public function getEmail()
-        {
-            return $this->_email;
-        }
-        
-        public function getReasons()
-        {
-            return $this->_reasons;
-        }
+        public function getEmail(){ return $this->_email; }
+        public function getReasons(){ return $this->_reasons; }
         
         public function setEmail($email)
         {

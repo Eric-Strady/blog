@@ -23,20 +23,9 @@
             }
         }
 
-        public function getEmail()
-        {
-            return $this->_email;
-        }
-        
-        public function getSubject()
-        {
-            return $this->_subject;
-        }
-
-        public function getMessage()
-        {
-            return $this->_message;
-        }
+        public function getEmail(){ return $this->_email; }
+        public function getSubject(){ return $this->_subject; }
+        public function getMessage(){ return $this->_message; }
 
         public function setEmail($email)
         {

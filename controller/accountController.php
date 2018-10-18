@@ -155,7 +155,58 @@
 
 	function changePassword()
 	{
-		
+		if (isset($_POST['old_password'], $_POST['change_password'], $_POST['confirm_change_password'], $_SESSION['id']))
+		{
+			if ($_POST['old_password']!='' AND $_POST['change_password']!='' AND $_POST['confirm_change_password']!='' AND $_SESSION['id']!='')
+			{
+				$old_password = strip_tags($_POST['old_password']);
+				$new_password = strip_tags($_POST['change_password']);
+				$confirm_password = strip_tags($_POST['confirm_change_password']);
+				$id = $_SESSION['id'];
+
+				$user = new User(['id' => $id]);
+				$usersManager = new UsersManager();
+
+				$user = $usersManager->findUser($user->getId());
+
+				if (password_verify($old_password, $user->getPassword()))
+				{
+					if ($new_password == $confirm_password)
+					{
+						if (preg_match("#((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,255})#", $new_password))
+						{
+							$pass_hash = password_hash($new_password, PASSWORD_DEFAULT);
+							$user->setPassword($pass_hash);
+
+							$usersManager->updatePassword($user);
+
+							$path = 'Location: http://127.0.0.1/blog/index.php?link=account&success=password';
+							header($path);
+						}
+						else
+						{
+							throw new Exception('<p>Le mot de passe indiqué n\'est pas assez fort! Pour votre sécurité, merci d\'en saisir un autre.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+						}					
+					}
+					else
+					{
+						throw new Exception('<p>Le mot de passe ne correspond pas à celui renseigné.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+					}
+				}
+				else
+				{
+					throw new Exception('<p>Le mot de passe n\'est pas correct !<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+				}			
+			}
+			else
+			{
+				throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+		}
 	}
 
 	function deleteAccount()

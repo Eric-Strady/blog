@@ -25,7 +25,7 @@
 					{
 				?>
 						<p>
-							<form action="index.php" method="POST">
+							<form action="#" method="POST">
 								<button type="submit" class="btn btn-dark" formaction="http://127.0.0.1/blog/index.php?link=post&amp;action=read&amp;id=<?= $post->getId() ?>&comment=add#add">Ajouter un commentaire</button>
 							</form>
 						</p>

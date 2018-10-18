@@ -140,7 +140,7 @@
 				$user = $usersManager->findUser($user->getEmail());
 				$user->setNewTokenPass();
 
-				$usersManager->updateTokenPass($user->getTokenPass(), $user->getId());
+				$usersManager->updateTokenPass($user);
 				$user->sendResetPassword();
 
 				$_SESSION['forgotPass'] = 'yes';
@@ -175,7 +175,7 @@
 					{
 						$user = $usersManager->findUser($user->getId());
 
-						if ($usersManager->checkTokenDate($user->getId(), $user->getTokenPass()))
+						if ($usersManager->checkTokenDate($user))
 						{
 							$_SESSION['resetPassId'] = $user->getId();
 							require 'view/frontend/changePasswordView.php';
@@ -223,8 +223,8 @@
 						$user->setPassword($pass_hash);
 
 						$usersManager = new UsersManager();
-						$usersManager->updatePassword($user->getPassword(), $user->getId());
-						$usersManager->resetTokenPass($user->getId());
+						$usersManager->updatePassword($user);
+						$usersManager->resetTokenPass($user);
 
 						unset($_SESSION['forgotPass']);
 						$_SESSION['changedPass'] = 'yes';

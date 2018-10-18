@@ -92,7 +92,7 @@
 
 			if ($warningManager->isExist($warning->getIdComment()))
 			{
-				$warningManager->deleteWarning($warning->getIdComment());
+				$warningManager->deleteWarning($warning);
 				
 				$path = 'Location: http://127.0.0.1/blog/index.php?link=moderate&action=list';
 				header($path);

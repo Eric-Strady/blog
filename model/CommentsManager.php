@@ -24,10 +24,10 @@
             return $comments;
 		}
 
-		public function addComment($id_user, $id_post, $comment)
+		public function addComment(Comment $comment)
 		{
 			$req = $this->_db->prepare('INSERT INTO comments(id_user, id_post, comment, comment_date) VALUES (:id_user, :id_post, :comment, NOW())');
-			$req->execute(array('id_user' => $id_user, 'id_post' => $id_post, 'comment' => $comment));
+			$req->execute(array('id_user' => $comment->getIdUser(), 'id_post' => $comment->getIdPost(), 'comment' => $comment->getComment()));
 		}
 
 		public function isExist($infos)
@@ -38,10 +38,10 @@
 			return (bool) $req->fetchcolumn();
         }
 
-        public function updateComment($comment, $id)
+        public function updateComment(Comment $comment)
         {
         	$req = $this->_db->prepare('UPDATE comments SET comment = :comment WHERE id = :id');
-        	$req->execute(array('comment' => $comment, 'id' => $id));
+        	$req->execute(array('comment' => $comment->getComment(), 'id' => $comment->getId()));
         }
 
         public function deleteComment($id_comment)

@@ -141,7 +141,7 @@
 
 			if ($userManager->isExist($user->getRegistrationKey()))
 			{
-				$userManager->updateConfirm($user->getRegistrationKey());
+				$userManager->updateConfirm($user);
 				require 'view/frontend/confirmedRegistrationView.php';
 			}
 			else

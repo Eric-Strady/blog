@@ -92,7 +92,7 @@
 
 				$comment = new Comment(['comment' => $new_comment, 'id_post' => $id_post, 'id_user' => $id_user]);
 				$commentsManager = new CommentsManager();
-				$commentsManager->addComment($comment->getIdUser(), $comment->getIdPost(), $comment->getComment());
+				$commentsManager->addComment($comment);
 
 				$path = 'Location: http://127.0.0.1/blog/index.php?link=post&action=read&id=' . $comment->getIdPost() . '#comments';
 				header($path);
@@ -123,7 +123,7 @@
 
 				if ($commentsManager->isExist($comment->getId()))
 				{
-					$commentsManager->updateComment($comment->getComment(), $comment->getId());
+					$commentsManager->updateComment($comment);
 
 					$path = 'Location: http://127.0.0.1/blog/index.php?link=post&action=read&id=' . $comment->getIdPost() . '#comments';
 					header($path);
@@ -163,9 +163,9 @@
 				{
 					$warningManager = new WarningManager();
 
-					if (!$warningManager->alreadyWarned($warning->getIdUser(), $warning->getIdComment()))
+					if (!$warningManager->alreadyWarned($warning))
 					{
-						$warningManager->addWarning($warning->getIdUser(), $warning->getIdComment(), $warning->getIdPost());
+						$warningManager->addWarning($warning);
 
 						setcookie('warned', 'done', time()+30, null, null, false, true);
 						$path = 'Location: http://127.0.0.1/blog/index.php?link=post&action=read&id=' . $warning->getIdPost() . '#comments';

@@ -29,10 +29,10 @@
             ]);
         }
 
-        public function updateConfirm($key)
+        public function updateConfirm(User $user)
         {
         	$req = $this->_db->prepare('UPDATE users SET confirm = 1 WHERE registration_key = :key');
-        	$req->execute(array('key' => $key));
+        	$req->execute(array('key' => $user->getRegistrationKey()));
         }
         
         public function findUser($id_connect)
@@ -43,30 +43,30 @@
             return new User($data);
         }
 
-        public function updateTokenPass($token, $id)
+        public function updateTokenPass(User $user)
         {
         	$req = $this->_db->prepare('UPDATE users SET token_pass = :token, token_pass_date = NOW() WHERE id = :id');
-        	$req->execute(array('token' => $token, 'id' => $id));
+        	$req->execute(array('token' => $user->getTokenPass(), 'id' => $user->getId()));
         }
 
-        public function checkTokenDate($id, $token)
+        public function checkTokenDate(User $user)
         {
         	$req = $this->_db->prepare('SELECT COUNT(*) FROM users WHERE id = :id AND token_pass = :token AND token_pass_date > DATE_SUB(NOW(), INTERVAL 15 MINUTE)');
-        	$req->execute(array('id' => $id, 'token' => $token));
+        	$req->execute(array('id' => $user->getId(), 'token' => $user->getTokenPass()));
 
         	return (bool) $req->fetchcolumn();
         }
 
-        public function updatePassword($newPass, $id)
+        public function updatePassword(User $user)
         {
         	$req = $this->_db->prepare('UPDATE users SET password = :newPass WHERE id = :id');
-        	$req->execute(array('newPass' => $newPass, 'id' => $id));
+        	$req->execute(array('newPass' => $user->getPassword(), 'id' => $user->getId()));
         }
 
-        public function resetTokenPass($id)
+        public function resetTokenPass(User $user)
         {
         	$req = $this->_db->prepare('UPDATE users SET token_pass = NULL WHERE id = :id');
-        	$req->execute(array('id' => $id));
+        	$req->execute(array('id' => $user->getId()));
         }
         
         

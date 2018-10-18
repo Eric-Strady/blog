@@ -12,18 +12,18 @@
 			return (bool) $req->fetchcolumn();
         }
 
-        public function alreadyWarned($id_user, $id_comment)
+        public function alreadyWarned(Warning $warning)
         {
         	$req = $this->_db->prepare('SELECT COUNT(*) FROM warning WHERE id_user = :id_user AND id_comment = :id_comment');
-			$req->execute(array('id_user' => $id_user, 'id_comment' => $id_comment));
+			$req->execute(array('id_user' => $warning->getIdUser(), 'id_comment' => $warning->getIdComment()));
 			
 			return (bool) $req->fetchcolumn();
         }
 
-		public function addWarning($id_user, $id_comment, $id_post)
+		public function addWarning(Warning $warning)
 		{
 			$req = $this->_db->prepare('INSERT INTO warning(id_user, id_comment, id_post, warning_date) VALUES (:id_user, :id_comment, :id_post, NOW())');
-			$req->execute(array('id_user' => $id_user, 'id_comment' => $id_comment, 'id_post' => $id_post));
+			$req->execute(array('id_user' => $warning->getIdUser(), 'id_comment' => $warning->getIdComment(), 'id_post' => $warning->getIdPost()));
 		}
 
 		public function count()
@@ -54,10 +54,10 @@
             return $warning;
         }
 
-        public function deleteWarning($id_comment)
+        public function deleteWarning(Warning $warning)
         {
         	$req = $this->_db->prepare('DELETE FROM warning WHERE id_comment = :id_comment');
-			$req->execute(array('id_comment' => $id_comment));
+			$req->execute(array('id_comment' => $warning->getIdComment()));
         }
 
 		/*

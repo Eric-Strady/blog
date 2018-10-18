@@ -54,6 +54,16 @@
                 'id' => $this->_db->lastInsertId()
             ]);
         }
+
+        public function updateImage(Post $post)
+        {
+            $req = $this->_db->prepare('UPDATE posts SET image_description = :description, image_extension = :extension WHERE id = :id');
+			$req->execute(array(
+				'description' => $post->getImgDesc(),
+				'extension' => $post->getImgExt(),
+				'id' => $post->getId()
+			));
+        }
         
         public function updatePost(Post $post)
         {
@@ -65,15 +75,6 @@
 			));
         }
         
-        public function updateImage(Post $post)
-        {
-            $req = $this->_db->prepare('UPDATE posts SET image_description = :description, image_extension = :extension WHERE id = :id');
-			$req->execute(array(
-				'description' => $post->getImgDesc(),
-				'extension' => $post->getImgExt(),
-				'id' => $post->getId()
-			));
-        }
         
         /*
 		public function countPosts()

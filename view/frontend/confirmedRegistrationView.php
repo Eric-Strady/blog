@@ -7,7 +7,7 @@
 		<h1 class="h3 mb-3 font-weight-normal">Inscription finalisée</h1>
 
 		<div class="alert alert-success">
-			<strong>Félicitation !</strong><br/>
+			<strong>Félicitations !</strong><br/>
 			Votre inscription est désormais finalisée. Vous pouvez dès à présent vous <a href="index.php?link=signin" title="Page de connexion" class="alert-link">connecter</a> ;)
 		</div>
 	</div>

@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <?php $title = 'Suppression du compte'; ?>
 
 <?php ob_start(); ?>
@@ -22,7 +20,6 @@
 <?php
 	}
 ?>
-
 				<p>Souhaitez-vous vraiment procéder à la suppression de votre compte ?</p>
 
 				<form action="index.php" method="POST">

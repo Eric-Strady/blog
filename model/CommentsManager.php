@@ -44,6 +44,12 @@
         	$req->execute(array('comment' => $comment, 'id' => $id));
         }
 
+        public function deleteComment($id_comment)
+        {
+        	$req = $this->_db->prepare('DELETE FROM comments WHERE id = :id_comment');
+			$req->execute(array('id_comment' => $id_comment));
+        }
+
 		/*
 		public function getComments($postId)
 		{

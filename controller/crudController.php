@@ -1,12 +1,10 @@
 <?php
 
-	require_once('model/Warning.php');
-	require_once('model/WarningManager.php');
-	require_once('model/CommentsManager.php');
+	require_once('model/Post.php');
+	require_once('model/PostsManager.php');
 
-	use \Eric\Blog\Model\Warning\Warning;
-	use \Eric\Blog\Model\Warning\WarningManager;
-	use \Eric\Blog\Model\Comments\CommentsManager;
+	use \Eric\Blog\Model\Posts\Post;
+	use \Eric\Blog\Model\Posts\PostsManager;
 
 												//DEFINE ACTION
 
@@ -64,7 +62,57 @@
 
 	function createPost()
 	{
+		if (isset($_POST['description'], $_FILES['image'], $_POST['add_title'], $_POST['add_content']))
+		{
+			if ($_POST['description']!='' AND $_FILES['image']!='' AND $_POST['add_title']!='' AND $_POST['add_content']!='')
+			{
+				if ($_FILES['image']['error'] == 0)
+				{
+					if ($_FILES['image']['size']<=500000)
+					{
+						$data_files = pathinfo($_FILES['image']['name']);
+						$extension_upload = $data_files['extension'];
+						$authorized_extensions = array('jpg', 'jpeg', 'png');
 
+						if (in_array($extension_upload, $authorized_extensions))
+						{
+							$description = strip_tags($_POST['description']);
+							$title = strip_tags($_POST['add_title']);
+							$content = strip_tags($_POST['add_content']);
+
+							$post = new Post(['title' => $title, 'content' => $content, 'image_description' => $description, 'image_extension' => $extension_upload]);
+							$postsManager = new PostsManager();
+							$postsManager->addPost($post);
+
+							move_uploaded_file($_FILES['image']['tmp_name'], 'public/images/cover/' . $post->getId() . '.' . $post->getImgExt());
+
+							$path = 'Location: http://127.0.0.1/blog/index.php?link=crud&action=read&id_post=' . $post->getId();
+							header($path);
+						}
+						else
+						{
+							throw new Exception('<p>Le format de l\'image n\'est pas conforme. Pour rappel, vous devez transmettre une image au format "JPG", "JPEG" ou "PNG".<br/>Retour à la page de <a href="index.php?link=crud&amp;action=create_page" title="Page de création" class="alert-link">création</a></p>');
+						}
+					}
+					else
+					{
+						throw new Exception('<p>L\'image est trop volumineuse. Pour rappel, elle ne doit pas dépasser 500Ko.<br/>Retour à la page de <a href="index.php?link=crud&amp;action=create_page" title="Page de création" class="alert-link">création</a></p>');
+					}
+				}
+				else
+				{
+					throw new Exception('<p>Une erreur est survenue lors du téléchargement.<br/>Retour à la page de <a href="index.php?link=crud&amp;action=create_page" title="Page de création" class="alert-link">création</a></p>');
+				}
+			}
+			else
+			{
+				throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à la page de <a href="index.php?link=crud&amp;action=create_page" title="Page de création" class="alert-link">création</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à la page de <a href="index.php?link=crud&amp;action=create_page" title="Page de création" class="alert-link">création</a></p>');
+		}
 	}
 
 	function changePost()

@@ -294,4 +294,30 @@
 
             mail($to, $subject, $message, $header);
         }
+
+        public function sendUpdateEmail()
+        {
+            $to = $this->getEmail();
+            $subject = 'Changement d\'adresse e-mail';
+            $message = '
+                <html>
+                    <head></head>
+                    <body>
+                        <div align="center">
+                            <h3>Un petit pas pour l\'homme mais un grand pas pour le numérique !</h3>
+                            <p>Bravo ! La modification de votre adresse e-mail a bien été prise en compte.</p>
+                            <p>Lors de votre prochaine connexion vous pourrez renseigner cette adresse e-mail comme identifiant ;)</p>
+                            <p>A bientôt sur le <a href="127.0.0.1/blog/index.php" target="_blank">blog de Jean Forteroche</a></p>
+                        </div>
+                    </body>
+                </html>
+            ';
+            $header = "From: \"Jean Forteroche\"<test.coxus@gmail.com>\n";
+            $header.= "Reply-to: \"Jean Forteroche\" <test.coxus@gmail.com>\n";
+            $header.= "MIME-Version: 1.0\n";
+            $header.= "Content-Type: text/html; charset=\"UTF-8\"";
+            $header.= "Content-Transfer-Encoding: 8bit";
+
+            mail($to, $subject, $message, $header);
+        }
     }

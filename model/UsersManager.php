@@ -68,6 +68,12 @@
         	$req = $this->_db->prepare('UPDATE users SET token_pass = NULL WHERE id = :id');
         	$req->execute(array('id' => $user->getId()));
         }
+
+        public function updatePseudo(User $user)
+        {
+        	$req = $this->_db->prepare('UPDATE users SET pseudo = :new_pseudo WHERE id = :id');
+        	$req->execute(array('new_pseudo' => $user->getPseudo(), 'id' => $user->getId()));
+        }
         
         
         /*

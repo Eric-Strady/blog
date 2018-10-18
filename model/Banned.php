@@ -4,8 +4,7 @@
 
 	class Banned
 	{
-		private $_email,
-                $_reasons,
+		private $_email, $_reasons;
 
 		public function __construct(array $data)
 		{

@@ -51,7 +51,40 @@
 
 	function changePseudo()
 	{
+		if (isset($_POST['new_pseudo'], $_POST['password'], $_SESSION['id']))
+		{
+			if ($_POST['new_pseudo']!='' AND $_POST['password']!='' AND $_SESSION['id']!='')
+			{
+				$new_pseudo = strip_tags($_POST['new_pseudo']);
+				$password = strip_tags($_POST['password']);
+				$id = $_SESSION['id'];
 
+				$user = new User(['id' => $id]);
+				$usersManager = new UsersManager();
+				$user = $usersManager->findUser($user->getId());
+				$user->setPseudo($new_pseudo);
+
+				if (password_verify($password, $user->getPassword()))
+				{
+					$usersManager->updatePseudo($user);
+					$_SESSION['pseudo'] = $user->getPseudo();
+
+					require 'view/backend/accountView.php';
+				}
+				else
+				{
+					throw new Exception('<p>Le mot de passe n\'est pas correct !<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+				}	
+			}
+			else
+			{
+				throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+			}
+		}
+		else
+		{
+			throw new Exception('<p>Vous devez renseignez tous les champs.<br/>Retour à votre <a href="index.php?link=account" title="Page du profil" class="alert-link">profil</a></p>');
+		}
 	}
 
 	function changeEmail()

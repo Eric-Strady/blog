@@ -148,7 +148,7 @@
 			}
 			else
 			{
-				throw new Exception('<p>Cette adresse e-mail ne correspond à aucuns comptes.<br/>Retour à la page de <a href="index.php?link=signin&amp;action=forgot_password" title="Page de réinitialisation" class="alert-link">réinitialisation</a></p>');
+				throw new Exception('<p>Cette adresse e-mail ne correspond à aucun compte.<br/>Retour à la page de <a href="index.php?link=signin&amp;action=forgot_password" title="Page de réinitialisation" class="alert-link">réinitialisation</a></p>');
 			}
 		}
 		else

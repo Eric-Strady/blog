@@ -26,13 +26,6 @@
 			$req->execute(array('id_user' => $warning->getIdUser(), 'id_comment' => $warning->getIdComment(), 'id_post' => $warning->getIdPost()));
 		}
 
-		public function count()
-		{
-			$req = $this->_db->query('SELECT COUNT(*) FROM warning');
-			
-			return (bool) $req->fetchcolumn();
-		}
-
 		public function listWarned()
         {
             $warning = [];

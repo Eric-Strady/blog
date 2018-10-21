@@ -12,6 +12,13 @@
 			return (bool) $req->fetchcolumn();
         }
 
+        public function count()
+        {
+            $req = $this->_db->query('SELECT * FROM warning');
+
+            return (bool) $req->fetchcolumn(); 
+        }
+
         public function alreadyWarned(Warning $warning)
         {
         	$req = $this->_db->prepare('SELECT COUNT(*) FROM warning WHERE id_user = :id_user AND id_comment = :id_comment');

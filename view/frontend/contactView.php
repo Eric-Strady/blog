@@ -20,9 +20,9 @@
 		<form id="form-contact" action="index.php?link=contact&amp;action=message" method="post">
 			<h1 class="h3 mb-3 font-weight-normal">Contact</h1>
 			<p><label for="email">Votre adresse e-mail:</label><br/>
-			<input class="form-control" type="text" name="email" id="email" maxlength="255" required/></p>
+			<input class="form-control" type="text" name="email" id="email" maxlength="255" required autofocus/></p>
 			<p><label for="subject">Sujet:</label><br/>
-			<input class="form-control" type="text" name="subject" id="subject" placeholder="Limité à 60 caractères" maxlength="60" required autofocus/></p>
+			<input class="form-control" type="text" name="subject" id="subject" placeholder="Limité à 60 caractères" maxlength="60" required/></p>
 			<p><label for="message">Message:</label><br/>
 			<textarea class="form-control" name="message" id="message" placeholder="Limité à 255 caractères" maxlength="255" required></textarea></p>
 			<div class="g-recaptcha mb-3" data-sitekey="6LfRh20UAAAAAECJ4QkzsCdxCJ3XbXWHRoKhVngm"></div>

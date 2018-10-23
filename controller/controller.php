@@ -13,43 +13,7 @@
 					$link = strip_tags($_GET['link']);
 					switch ($link)
 					{
-						case 'account':
-							require  $link . 'Controller.php';
-						break;
-						
-						case 'admin':
-							require  $link . 'Controller.php';
-						break;
-
-						case 'contact':
-							require  $link . 'Controller.php';
-						break;
-
-						case 'crud':
-							require  $link . 'Controller.php';
-						break;
-
-						case 'moderate':
-							require  $link . 'Controller.php';
-						break;
-
-						case 'post':
-							require  $link . 'Controller.php';
-						break;
-
-						case 'registration':
-							require  $link . 'Controller.php';
-						break;
-
-						case 'signin':
-							require  $link . 'Controller.php';
-						break;
-
-						case 'signout':
-							require  $link . 'Controller.php';
-						break;
-
-						case 'warning':
+						case 'account' || 'admin' || 'contact' || 'crud' || 'moderate' || 'post' || 'registration' || 'signin' || 'signout' || 'warning':
 							require  $link . 'Controller.php';
 						break;
 

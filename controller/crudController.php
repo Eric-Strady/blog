@@ -82,7 +82,7 @@
 						{
 							$description = strip_tags($_POST['description']);
 							$title = strip_tags($_POST['add_title']);
-							$content = strip_tags($_POST['add_content']);
+							$content = ($_POST['add_content']);
 
 							$post = new Post(['title' => $title, 'content' => $content, 'image_description' => $description, 'image_extension' => $extension_upload]);
 							$postsManager = new PostsManager();
@@ -239,7 +239,7 @@
 			{
 
 				$title = strip_tags($_POST['up_title']);
-				$content = strip_tags($_POST['up_content']);
+				$content = ($_POST['up_content']);
 				$id_post = strip_tags($_POST['id_post']);
 
 				$post = new Post(['id' => $id_post, 'title' => $title, 'content' => $content]);

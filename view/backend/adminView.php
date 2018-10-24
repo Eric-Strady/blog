@@ -31,7 +31,7 @@
 					      			<em><a href="index.php?link=crud&amp;action=read&amp;id_post=<?= $onePost->getId() ?>" title="Lecture du billet">Lire</a></em>
 					     			- <em><a href="index.php?link=crud&amp;action=update_page&amp;id_post=<?= $onePost->getId() ?>" title="Modification du billet">Mettre à jour</a></em>
 					     			- <em><a href="index.php?link=crud&amp;action=delete_page&amp;id_post=<?= $onePost->getId() ?>" title="Suppression du billet">Supprimer</a></em></p>
-					      			<p class="card-text"><?= substr($onePost->getContent(), 0, 45) . '...' ?></p>
+					      			<p class="card-text"><?= substr(strip_tags($onePost->getContent()), 0, 70) . '...' ?></p>
 					        	</div>
 					      	</div>
 					    </div>

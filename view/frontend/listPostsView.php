@@ -16,7 +16,7 @@
 				        			<a href="index.php?link=post&amp;action=read&amp;id=<?= $onePost->getId() ?>" title="Page du billet"><?= $onePost->getTitle() ?></a>
 				      			</h4>
 				      			<em> le <?= $onePost->getCreationDate() ?></em>
-				      			<p class="card-text"><?= substr($onePost->getContent(), 0, 45) . '...' ?></p>
+				      			<p class="card-text"><?= substr(strip_tags($onePost->getContent()), 0, 70) . '...' ?></p>
 				      			<div class="card-footer">
 				      				<a class="btn btn-dark" href="index.php?link=post&amp;action=read&amp;id=<?= $onePost->getId() ?>" title="Lecture du billet">Lire la suite</a>
 				      			</div>

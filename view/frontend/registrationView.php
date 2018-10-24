@@ -1,5 +1,5 @@
 <?php $script = '<script src=\'https://www.google.com/recaptcha/api.js\'></script>'; ?>
-<?php $title = 'Page de connexion'; ?>
+<?php $title = 'Page d\'inscription'; ?>
 
 <?php ob_start(); ?>
 <div class="container">

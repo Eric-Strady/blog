@@ -6,22 +6,24 @@ This blog need to be build with PHP and MVC architecture. Moreover it has to be 
 In my project you can find 5 folders and 1 file (except this README.md).
 
 File:
-->index.php:
-	-->instantiate Router
 
-Folder:
-->controller:
-	-->You gonna find one router and several specific controllers.
+-index.php:
+	-instantiate Router
 
-->model:
-	-->In this folder, you can find several files with their managers in folder "Manager".
-	-->Each file create a class object.
+Folders:
 
-->public:
-	-->Here we find stylesheet in "css", two specific fonts "BLOODY" and "Monospace Typewriter" in "fonts", pictures for website in "images" and TinyMCE files in "js".
+-controller:
+	-You gonna find one router and several specific controllers.
 
-->recaptcha:
-	-->Files to benefit from reCAPTCHA.
+-model:
+	-In this folder, you can find several files with their managers in folder "Manager".
+	-Each file create a class object.
 
-->view:
-	-->Two folders inside, one for backend views and one for frontend views.
+-public:
+	-Here we find stylesheet in "css", two specific fonts "BLOODY" and "Monospace Typewriter" in "fonts", pictures for website in "images" and TinyMCE files in "js".
+
+-recaptcha:
+	-Files to benefit from reCAPTCHA.
+
+-view:
+	-Two folders inside, one for backend views and one for frontend views.

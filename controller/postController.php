@@ -1,20 +1,20 @@
 <?php
 
 	require_once('model/Post.php');
-	require_once('model/PostsManager.php');
+	require_once('model/Manager/PostsManager.php');
 	require_once('model/Comment.php');
-	require_once('model/CommentsManager.php');
-	require_once('model/UsersManager.php');
+	require_once('model/Manager/CommentsManager.php');
+	require_once('model/Manager/UsersManager.php');
 	require_once('model/Warning.php');
-	require_once('model/WarningManager.php');
+	require_once('model/Manager/WarningManager.php');
 
 	use \Eric\Blog\Model\Posts\Post;
-	use \Eric\Blog\Model\Posts\PostsManager;
+	use \Eric\Blog\Model\Manager\Posts\PostsManager;
 	use \Eric\Blog\Model\Comments\Comment;
-	use \Eric\Blog\Model\Comments\CommentsManager;
-	use \Eric\Blog\Model\Users\UsersManager;
+	use \Eric\Blog\Model\Manager\Comments\CommentsManager;
+	use \Eric\Blog\Model\Manager\Users\UsersManager;
 	use \Eric\Blog\Model\Warning\Warning;
-	use \Eric\Blog\Model\Warning\WarningManager;
+	use \Eric\Blog\Model\Manager\Warning\WarningManager;
 
 												//DEFINE ACTION
 

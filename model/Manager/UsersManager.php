@@ -1,8 +1,9 @@
 <?php
-	namespace Eric\Blog\Model\Users;
-	require_once("model/Manager.php");
+	namespace Eric\Blog\Model\Manager\Users;
+	require_once("model/Manager/Manager.php");
+    use \Eric\Blog\Model\Users\User;
 
-	class UsersManager extends \Eric\Blog\Model\Manager
+	class UsersManager extends \Eric\Blog\Model\Manager\Manager
 	{
 		public function isExist($infos)
 		{

@@ -2,14 +2,14 @@
 	
 	require ('recaptcha/autoload.php');
 	require_once('model/User.php');
-	require_once('model/UsersManager.php');
+	require_once('model/Manager/UsersManager.php');
 	require_once('model/Banned.php');
-	require_once('model/BannedManager.php');
+	require_once('model/Manager/BannedManager.php');
 
 	use \Eric\Blog\Model\Users\User;
-	use \Eric\Blog\Model\Users\UsersManager;
+	use \Eric\Blog\Model\Manager\Users\UsersManager;
 	use \Eric\Blog\Model\Banned\Banned;
-	use \Eric\Blog\Model\Banned\BannedManager;
+	use \Eric\Blog\Model\Manager\Banned\BannedManager;
 
 												//DEFINE ACTION
 

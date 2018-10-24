@@ -1,8 +1,9 @@
 <?php
-	namespace Eric\Blog\Model\Warning;
-	require_once("model/Manager.php");
+	namespace Eric\Blog\Model\Manager\Warning;
+	require_once("model/Manager/Manager.php");
+    use \Eric\Blog\Model\Warning\Warning;
 
-	class WarningManager extends \Eric\Blog\Model\Manager
+	class WarningManager extends \Eric\Blog\Model\Manager\Manager
 	{
 		public function isExist($infos)
         {

@@ -1,8 +1,9 @@
 <?php
-	namespace Eric\Blog\Model\Banned;
-	require_once("model/Manager.php");
+	namespace Eric\Blog\Model\Manager\Banned;
+	require_once("model/Manager/Manager.php");
+	use \Eric\Blog\Model\Banned\Banned;
 
-	class BannedManager extends \Eric\Blog\Model\Manager
+	class BannedManager extends \Eric\Blog\Model\Manager\Manager
 	{
 		public function checkBanned(Banned $banned)
 		{

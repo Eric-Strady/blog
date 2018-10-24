@@ -1,12 +1,12 @@
 <?php
 
 	require_once('model/Warning.php');
-	require_once('model/WarningManager.php');
-	require_once('model/CommentsManager.php');
+	require_once('model/Manager/WarningManager.php');
+	require_once('model/Manager/CommentsManager.php');
 
 	use \Eric\Blog\Model\Warning\Warning;
-	use \Eric\Blog\Model\Warning\WarningManager;
-	use \Eric\Blog\Model\Comments\CommentsManager;
+	use \Eric\Blog\Model\Manager\Warning\WarningManager;
+	use \Eric\Blog\Model\Manager\Comments\CommentsManager;
 
 												//DEFINE ACTION
 

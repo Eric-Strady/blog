@@ -1,8 +1,9 @@
 <?php
-	namespace Eric\Blog\Model\Posts;
-	require_once("model/Manager.php");
+	namespace Eric\Blog\Model\Manager\Posts;
+	require_once("model/Manager/Manager.php");
+    use \Eric\Blog\Model\Posts\Post;
 
-	class PostsManager extends \Eric\Blog\Model\Manager
+	class PostsManager extends \Eric\Blog\Model\Manager\Manager
 	{
 		public function count()
   		{

@@ -1,5 +1,5 @@
 <?php
-	namespace Eric\Blog\Model;
+	namespace Eric\Blog\Model\Manager;
 
 	class Manager
 	{

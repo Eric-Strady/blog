@@ -1,8 +1,9 @@
 <?php
-	namespace Eric\Blog\Model\Comments;
-	require_once("model/Manager.php");
+	namespace Eric\Blog\Model\Manager\Comments;
+	require_once("model/Manager/Manager.php");
+	use \Eric\Blog\Model\Comments\Comment;
 
-	class CommentsManager extends \Eric\Blog\Model\Manager
+	class CommentsManager extends \Eric\Blog\Model\Manager\Manager
 	{
 		public function listComments($id_post)
 		{

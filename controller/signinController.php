@@ -1,10 +1,10 @@
 <?php
 
 	require_once('model/User.php');
-	require_once('model/UsersManager.php');
+	require_once('model/Manager/UsersManager.php');
 
 	use \Eric\Blog\Model\Users\User;
-	use \Eric\Blog\Model\Users\UsersManager;
+	use \Eric\Blog\Model\Manager\Users\UsersManager;
 
 												//DEFINE ACTION
 

@@ -1,10 +1,10 @@
 <?php
 
 	require_once('model/Post.php');
-	require_once('model/PostsManager.php');
+	require_once('model/Manager/PostsManager.php');
 
 	use \Eric\Blog\Model\Posts\Post;
-	use \Eric\Blog\Model\Posts\PostsManager;
+	use \Eric\Blog\Model\Manager\Posts\PostsManager;
 
 
 	if (isset($_SESSION['admin']) AND $_SESSION['admin']=='ok')

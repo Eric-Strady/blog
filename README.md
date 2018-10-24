@@ -14,3 +14,14 @@ Folder:
 	-->You gonna find one router and several specific controllers.
 
 ->model:
+	-->In this folder, you can find several files with their managers in folder "Manager".
+	-->Each file create a class object.
+
+->public:
+	-->Here we find stylesheet in "css", two specific fonts "BLOODY" and "Monospace Typewriter" in "fonts", pictures for website in "images" and TinyMCE files in "js".
+
+->recaptcha:
+	-->Files to benefit from reCAPTCHA.
+
+->view:
+	-->Two folders inside, one for backend views and one for frontend views.

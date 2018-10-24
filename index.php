@@ -1,6 +1,6 @@
 <?php
 	
-	require 'controller/controller.php';
+	require 'controller/router.php';
 
 	$url = new Router();
 	$url->loadCtrl();

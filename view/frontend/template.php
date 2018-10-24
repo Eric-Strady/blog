@@ -30,7 +30,7 @@
 		            <ul class="navbar-nav ml-auto">
 		            	
 			            <li class="nav-item">
-			              	<a class="nav-link" href="index.php" title="Page d\'accueil"><span class="fas fa-home"></span> Accueil</a>
+			              	<a class="nav-link" href="index.php" title="Page d'accueil"><span class="fas fa-home"></span> Accueil</a>
 			            </li>
 			            <?php
 							if (!isset($_SESSION['id']) AND !isset($_SESSION['pseudo']))

@@ -4,7 +4,7 @@
 
 	class Warning
 	{
-		private $_id, $_id_user, $_id_comment, $id_post, $nbTimes, $_d_warning, $_h_warning, $_pseudo, $_comment;
+		private $_id, $_id_user, $_id_comment, $id_post, $_nbTimes, $_d_warning, $_h_warning, $_pseudo, $_comment;
 
 		public function __construct(array $data)
 		{

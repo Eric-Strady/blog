@@ -43,10 +43,18 @@
 					$message = strip_tags($_POST['message']);
 
 					$contact = new Contact(['email' => $email, 'subject' => $subject, 'message' => $message]);
-					$contact->sendMessage();
 
-					$path = 'Location: http://127.0.0.1/blog/index.php?link=contact&send=message';
-					header($path);
+					if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $contact->getEmail()))
+					{
+						$contact->sendMessage();
+
+						$path = 'Location: http://127.0.0.1/blog/index.php?link=contact&send=message';
+						header($path);
+					}
+					else
+					{
+						throw new Exception('<p>L\'adresse e-mail n\'est pas valide.<br/>Retour à la page de <a href="index.php?link=contact" title="Page de contact" class="alert-link">contact</a></p>');
+					}
 				}
 				else
 				{

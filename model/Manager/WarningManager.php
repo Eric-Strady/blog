@@ -41,9 +41,9 @@
             	SELECT SUM(w.nb_times) AS nbTimes, w.id, w.id_user, w.id_comment, u.pseudo, c.comment, 
             	DATE_FORMAT(w.warning_date, \'%d/%m/%Y\') AS d_warning, 
             	DATE_FORMAT(w.warning_date, \'%Hh%imin%ss\') AS h_warning 
-            	FROM warning AS w 
-            	INNER JOIN users AS u ON w.id_user = u.id 
-            	INNER JOIN comments AS c ON w.id_comment = c.id 
+            	FROM warning AS w, comments AS c
+            	INNER JOIN users AS u ON c.id_user = u.id 
+            	WHERE w.id_comment = c.id 
             	GROUP BY w.id_comment 
             	ORDER BY nbTimes DESC');
             

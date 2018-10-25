@@ -127,6 +127,7 @@
 						{
 							$usersManager->updateEmail($user);
 							$user->sendUpdateEmail();
+							$_SESSION['email'] = $user->getEmail();
 
 							$path = 'Location: http://127.0.0.1/blog/index.php?link=account&success=email';
 							header($path);

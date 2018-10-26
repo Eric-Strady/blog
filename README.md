@@ -20,3 +20,6 @@ Folders:
 -recaptcha: Files to benefit from reCAPTCHA.
 
 -view: Two folders inside, one for backend views and one for frontend views.
+
+
+The connection to the datebase is done in the file "model/Manager/Manager.php".
